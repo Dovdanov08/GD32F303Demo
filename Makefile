@@ -30,40 +30,17 @@ OPT = -Og
 #######################################
 # Build path
 BUILD_DIR = build
-
+GCC_PATH = c:/ST/STM32CubeIDE_1.15.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin
 ######################################
 # source
 ######################################
 # C sources
 C_SOURCES =  \
-Core/Src/main.c \
-Core/Src/stm32f3xx_it.c \
-Core/Src/stm32f3xx_hal_msp.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_tim_ex.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_rcc_ex.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_gpio.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_dma.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_cortex.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_pwr_ex.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_flash_ex.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_i2c_ex.c \
-Drivers/STM32F3xx_HAL_Driver/Src/stm32f3xx_hal_exti.c \
-Core/Src/system_stm32f3xx.c \
-Core/Src/sysmem.c \
-Core/Src/syscalls.c  
+$(shell find ./ -type f -name *.c)
 
 # ASM sources
 ASM_SOURCES =  \
-startup_stm32f303xc.s
-
-# ASM sources
-ASMM_SOURCES = 
+startup/startup_gd32f30x_hd.S
 
 
 #######################################
@@ -107,8 +84,18 @@ AS_DEFS =
 
 # C defines
 C_DEFS =  \
--DUSE_HAL_DRIVER \
--DSTM32F303xC
+-DUSE_FULL_LL_DRIVER \
+-DHSE_VALUE=8000000 \
+-DHSE_STARTUP_TIMEOUT=100 \
+-DLSE_STARTUP_TIMEOUT=5000 \
+-DLSE_VALUE=32768 \
+-DHSI_VALUE=8000000 \
+-DLSI_VALUE=40000 \
+-DVDD_VALUE=3300 \
+-DPREFETCH_ENABLE=1 \
+-DGD32F30X_HD\
+-DHXTAL_VALUE=8000000 
+
 
 
 # AS includes
@@ -116,11 +103,10 @@ AS_INCLUDES =
 
 # C includes
 C_INCLUDES =  \
+-ICMSIS \
 -ICore/Inc \
--IDrivers/STM32F3xx_HAL_Driver/Inc \
--IDrivers/STM32F3xx_HAL_Driver/Inc/Legacy \
--IDrivers/CMSIS/Device/ST/STM32F3xx/Include \
--IDrivers/CMSIS/Include
+-ICMSIS/GD/GD32F30x/Include\
+-IGD32F30x_standard_peripheral/Include
 
 
 # compile gcc flags
@@ -141,7 +127,7 @@ CFLAGS += -MMD -MP -MF"$(@:%.o=%.d)"
 # LDFLAGS
 #######################################
 # link script
-LDSCRIPT = STM32F303CCTx_FLASH.ld
+LDSCRIPT = ldscripts/gd32f30x_flash.ld
 
 # libraries
 LIBS = -lc -lm -lnosys 
@@ -159,16 +145,13 @@ all: $(BUILD_DIR)/$(TARGET).elf $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET
 OBJECTS = $(addprefix $(BUILD_DIR)/,$(notdir $(C_SOURCES:.c=.o)))
 vpath %.c $(sort $(dir $(C_SOURCES)))
 # list of ASM program objects
-OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.s=.o)))
-vpath %.s $(sort $(dir $(ASM_SOURCES)))
-OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASMM_SOURCES:.S=.o)))
-vpath %.S $(sort $(dir $(ASMM_SOURCES)))
+OBJECTS += $(addprefix $(BUILD_DIR)/,$(notdir $(ASM_SOURCES:.S=.o)))
+vpath %.S $(sort $(dir $(ASM_SOURCES)))
+
 
 $(BUILD_DIR)/%.o: %.c Makefile | $(BUILD_DIR) 
 	$(CC) -c $(CFLAGS) -Wa,-a,-ad,-alms=$(BUILD_DIR)/$(notdir $(<:.c=.lst)) $< -o $@
 
-$(BUILD_DIR)/%.o: %.s Makefile | $(BUILD_DIR)
-	$(AS) -c $(CFLAGS) $< -o $@
 $(BUILD_DIR)/%.o: %.S Makefile | $(BUILD_DIR)
 	$(AS) -c $(CFLAGS) $< -o $@
 
@@ -195,5 +178,11 @@ clean:
 # dependencies
 #######################################
 -include $(wildcard $(BUILD_DIR)/*.d)
+
+prog:
+	openocd -f interface/stlink.cfg -f target/stm32f3x.cfg -c "program $(BUILD_DIR)/$(TARGET).elf verify exit reset"
+
+reset:
+	openocd -f interface/stlink.cfg -f target/stm32f3x.cfg -c "init" -c "reset" -c "shutdown"
 
 # *** EOF ***

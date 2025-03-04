@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"cortex-debug.armToolchainPath": "c:/ST/STM32CubeIDE_1.15.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/",
+		"cortex-debug.openocdPath": "C:/OpenOCD-0.12.0/bin/openocd.exe",
+		"files.associations": {
+			"gd32f30x.h": "c",
+			"gpio.h": "c"
+		}
+	}
+}

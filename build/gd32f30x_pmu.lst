@@ -1,0 +1,1864 @@
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_pmu.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c"
+  20              		.section	.text.pmu_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	pmu_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	pmu_deinit:
+  28              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \file    gd32f30x_pmu.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief   PMU driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     Redistribution and use in source and binary forms, with or without modification,
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     1. Redistributions of source code must retain the above copyright notice, this
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     2. Redistributions in binary form must reproduce the above copyright notice,
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****        this list of conditions and the following disclaimer in the documentation
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     3. Neither the name of the copyright holder nor the names of its contributors
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****        may be used to endorse or promote products derived from this software without
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 2
+
+
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** #include "gd32f30x_pmu.h"
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      reset PMU register
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_deinit(void)
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+  29              		.loc 1 45 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* reset PMU */
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     rcu_periph_reset_enable(RCU_PMURST);
+  38              		.loc 1 47 5 view .LVU1
+  39 0002 40F21C40 		movw	r0, #1052
+  40 0006 FFF7FEFF 		bl	rcu_periph_reset_enable
+  41              	.LVL0:
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     rcu_periph_reset_disable(RCU_PMURST);
+  42              		.loc 1 48 5 view .LVU2
+  43 000a 40F21C40 		movw	r0, #1052
+  44 000e FFF7FEFF 		bl	rcu_periph_reset_disable
+  45              	.LVL1:
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+  46              		.loc 1 49 1 is_stmt 0 view .LVU3
+  47 0012 08BD     		pop	{r3, pc}
+  48              		.cfi_endproc
+  49              	.LFE116:
+  51              		.section	.text.pmu_lvd_select,"ax",%progbits
+  52              		.align	1
+  53              		.global	pmu_lvd_select
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	pmu_lvd_select:
+  59              	.LVL2:
+  60              	.LFB117:
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      select low voltage detector threshold
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  lvdt_n:
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_0: voltage threshold is 2.1V
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_1: voltage threshold is 2.3V
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_2: voltage threshold is 2.4V
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_3: voltage threshold is 2.6V
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 3
+
+
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_4: voltage threshold is 2.7V
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_5: voltage threshold is 2.9V
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_6: voltage threshold is 3.0V
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LVDT_7: voltage threshold is 3.1V
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_lvd_select(uint32_t lvdt_n)
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+  61              		.loc 1 66 1 is_stmt 1 view -0
+  62              		.cfi_startproc
+  63              		@ args = 0, pretend = 0, frame = 0
+  64              		@ frame_needed = 0, uses_anonymous_args = 0
+  65              		@ link register save eliminated.
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* disable LVD */
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_LVDEN;
+  66              		.loc 1 68 5 view .LVU5
+  67 0000 084B     		ldr	r3, .L4
+  68 0002 1A68     		ldr	r2, [r3]
+  69              		.loc 1 68 13 is_stmt 0 view .LVU6
+  70 0004 22F01002 		bic	r2, r2, #16
+  71 0008 1A60     		str	r2, [r3]
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* clear LVDT bits */
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_LVDT;
+  72              		.loc 1 70 5 is_stmt 1 view .LVU7
+  73 000a 1A68     		ldr	r2, [r3]
+  74              		.loc 1 70 13 is_stmt 0 view .LVU8
+  75 000c 22F0E002 		bic	r2, r2, #224
+  76 0010 1A60     		str	r2, [r3]
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* set LVDT bits according to lvdt_n */
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= lvdt_n;
+  77              		.loc 1 72 5 is_stmt 1 view .LVU9
+  78 0012 1A68     		ldr	r2, [r3]
+  79              		.loc 1 72 13 is_stmt 0 view .LVU10
+  80 0014 0243     		orrs	r2, r2, r0
+  81 0016 1A60     		str	r2, [r3]
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* enable LVD */
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= PMU_CTL_LVDEN;
+  82              		.loc 1 74 5 is_stmt 1 view .LVU11
+  83 0018 1A68     		ldr	r2, [r3]
+  84              		.loc 1 74 13 is_stmt 0 view .LVU12
+  85 001a 42F01002 		orr	r2, r2, #16
+  86 001e 1A60     		str	r2, [r3]
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+  87              		.loc 1 75 1 view .LVU13
+  88 0020 7047     		bx	lr
+  89              	.L5:
+  90 0022 00BF     		.align	2
+  91              	.L4:
+  92 0024 00700040 		.word	1073770496
+  93              		.cfi_endproc
+  94              	.LFE117:
+  96              		.section	.text.pmu_ldo_output_select,"ax",%progbits
+  97              		.align	1
+  98              		.global	pmu_ldo_output_select
+  99              		.syntax unified
+ 100              		.thumb
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 4
+
+
+ 101              		.thumb_func
+ 103              	pmu_ldo_output_select:
+ 104              	.LVL3:
+ 105              	.LFB118:
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      select LDO output voltage
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****                 this bit set by software when the main PLL closed, before closing PLL, change the s
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  ldo_output:
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LDOVS_LOW: LDO output voltage low mode
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LDOVS_MID: LDO output voltage mid mode
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LDOVS_HIGH: LDO output voltage high mode
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_ldo_output_select(uint32_t ldo_output)
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 106              		.loc 1 88 1 is_stmt 1 view -0
+ 107              		.cfi_startproc
+ 108              		@ args = 0, pretend = 0, frame = 0
+ 109              		@ frame_needed = 0, uses_anonymous_args = 0
+ 110              		@ link register save eliminated.
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_LDOVS;
+ 111              		.loc 1 89 5 view .LVU15
+ 112 0000 044B     		ldr	r3, .L7
+ 113 0002 1A68     		ldr	r2, [r3]
+ 114              		.loc 1 89 13 is_stmt 0 view .LVU16
+ 115 0004 22F44042 		bic	r2, r2, #49152
+ 116 0008 1A60     		str	r2, [r3]
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= ldo_output;
+ 117              		.loc 1 90 5 is_stmt 1 view .LVU17
+ 118 000a 1A68     		ldr	r2, [r3]
+ 119              		.loc 1 90 13 is_stmt 0 view .LVU18
+ 120 000c 0243     		orrs	r2, r2, r0
+ 121 000e 1A60     		str	r2, [r3]
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 122              		.loc 1 91 1 view .LVU19
+ 123 0010 7047     		bx	lr
+ 124              	.L8:
+ 125 0012 00BF     		.align	2
+ 126              	.L7:
+ 127 0014 00700040 		.word	1073770496
+ 128              		.cfi_endproc
+ 129              	.LFE118:
+ 131              		.section	.text.pmu_lvd_disable,"ax",%progbits
+ 132              		.align	1
+ 133              		.global	pmu_lvd_disable
+ 134              		.syntax unified
+ 135              		.thumb
+ 136              		.thumb_func
+ 138              	pmu_lvd_disable:
+ 139              	.LFB119:
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      disable PMU lvd
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 5
+
+
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_lvd_disable(void)
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 140              		.loc 1 100 1 is_stmt 1 view -0
+ 141              		.cfi_startproc
+ 142              		@ args = 0, pretend = 0, frame = 0
+ 143              		@ frame_needed = 0, uses_anonymous_args = 0
+ 144              		@ link register save eliminated.
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* disable LVD */
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_LVDEN;
+ 145              		.loc 1 102 5 view .LVU21
+ 146 0000 024A     		ldr	r2, .L10
+ 147 0002 1368     		ldr	r3, [r2]
+ 148              		.loc 1 102 13 is_stmt 0 view .LVU22
+ 149 0004 23F01003 		bic	r3, r3, #16
+ 150 0008 1360     		str	r3, [r2]
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 151              		.loc 1 103 1 view .LVU23
+ 152 000a 7047     		bx	lr
+ 153              	.L11:
+ 154              		.align	2
+ 155              	.L10:
+ 156 000c 00700040 		.word	1073770496
+ 157              		.cfi_endproc
+ 158              	.LFE119:
+ 160              		.section	.text.pmu_highdriver_mode_enable,"ax",%progbits
+ 161              		.align	1
+ 162              		.global	pmu_highdriver_mode_enable
+ 163              		.syntax unified
+ 164              		.thumb
+ 165              		.thumb_func
+ 167              	pmu_highdriver_mode_enable:
+ 168              	.LFB121:
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      switch high-driver mode
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****                 this bit set by software only when IRC16M or HXTAL used as system clock
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  highdr_switch:
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_HIGHDR_SWITCH_NONE: disable high-driver mode switch
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_HIGHDR_SWITCH_EN: enable high-driver mode switch
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_highdriver_switch_select(uint32_t highdr_switch)
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* wait for HDRF flag set */
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     while(SET != pmu_flag_get(PMU_FLAG_HDRF)) {
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_HDS;
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= highdr_switch;
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      enable high-driver mode
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****                 this bit set by software only when IRC16M or HXTAL used as system clock
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 6
+
+
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_highdriver_mode_enable(void)
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 169              		.loc 1 131 1 is_stmt 1 view -0
+ 170              		.cfi_startproc
+ 171              		@ args = 0, pretend = 0, frame = 0
+ 172              		@ frame_needed = 0, uses_anonymous_args = 0
+ 173              		@ link register save eliminated.
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 174              		.loc 1 132 5 view .LVU25
+ 175 0000 024A     		ldr	r2, .L13
+ 176 0002 1368     		ldr	r3, [r2]
+ 177              		.loc 1 132 13 is_stmt 0 view .LVU26
+ 178 0004 43F48033 		orr	r3, r3, #65536
+ 179 0008 1360     		str	r3, [r2]
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 180              		.loc 1 133 1 view .LVU27
+ 181 000a 7047     		bx	lr
+ 182              	.L14:
+ 183              		.align	2
+ 184              	.L13:
+ 185 000c 00700040 		.word	1073770496
+ 186              		.cfi_endproc
+ 187              	.LFE121:
+ 189              		.section	.text.pmu_highdriver_mode_disable,"ax",%progbits
+ 190              		.align	1
+ 191              		.global	pmu_highdriver_mode_disable
+ 192              		.syntax unified
+ 193              		.thumb
+ 194              		.thumb_func
+ 196              	pmu_highdriver_mode_disable:
+ 197              	.LFB122:
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      disable high-driver mode
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_highdriver_mode_disable(void)
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 198              		.loc 1 142 1 is_stmt 1 view -0
+ 199              		.cfi_startproc
+ 200              		@ args = 0, pretend = 0, frame = 0
+ 201              		@ frame_needed = 0, uses_anonymous_args = 0
+ 202              		@ link register save eliminated.
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_HDEN;
+ 203              		.loc 1 143 5 view .LVU29
+ 204 0000 024A     		ldr	r2, .L16
+ 205 0002 1368     		ldr	r3, [r2]
+ 206              		.loc 1 143 13 is_stmt 0 view .LVU30
+ 207 0004 23F48033 		bic	r3, r3, #65536
+ 208 0008 1360     		str	r3, [r2]
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 209              		.loc 1 144 1 view .LVU31
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 7
+
+
+ 210 000a 7047     		bx	lr
+ 211              	.L17:
+ 212              		.align	2
+ 213              	.L16:
+ 214 000c 00700040 		.word	1073770496
+ 215              		.cfi_endproc
+ 216              	.LFE122:
+ 218              		.section	.text.pmu_lowdriver_mode_enable,"ax",%progbits
+ 219              		.align	1
+ 220              		.global	pmu_lowdriver_mode_enable
+ 221              		.syntax unified
+ 222              		.thumb
+ 223              		.thumb_func
+ 225              	pmu_lowdriver_mode_enable:
+ 226              	.LFB123:
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      enable low-driver mode in deep-sleep mode
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_lowdriver_mode_enable(void)
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 227              		.loc 1 153 1 is_stmt 1 view -0
+ 228              		.cfi_startproc
+ 229              		@ args = 0, pretend = 0, frame = 0
+ 230              		@ frame_needed = 0, uses_anonymous_args = 0
+ 231              		@ link register save eliminated.
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= PMU_CTL_LDEN;
+ 232              		.loc 1 154 5 view .LVU33
+ 233 0000 024A     		ldr	r2, .L19
+ 234 0002 1368     		ldr	r3, [r2]
+ 235              		.loc 1 154 13 is_stmt 0 view .LVU34
+ 236 0004 43F44023 		orr	r3, r3, #786432
+ 237 0008 1360     		str	r3, [r2]
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 238              		.loc 1 155 1 view .LVU35
+ 239 000a 7047     		bx	lr
+ 240              	.L20:
+ 241              		.align	2
+ 242              	.L19:
+ 243 000c 00700040 		.word	1073770496
+ 244              		.cfi_endproc
+ 245              	.LFE123:
+ 247              		.section	.text.pmu_lowdriver_mode_disable,"ax",%progbits
+ 248              		.align	1
+ 249              		.global	pmu_lowdriver_mode_disable
+ 250              		.syntax unified
+ 251              		.thumb
+ 252              		.thumb_func
+ 254              	pmu_lowdriver_mode_disable:
+ 255              	.LFB124:
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      disable low-driver mode in deep-sleep mode
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 8
+
+
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_lowdriver_mode_disable(void)
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 256              		.loc 1 164 1 is_stmt 1 view -0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260              		@ link register save eliminated.
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_LDEN;
+ 261              		.loc 1 165 5 view .LVU37
+ 262 0000 024A     		ldr	r2, .L22
+ 263 0002 1368     		ldr	r3, [r2]
+ 264              		.loc 1 165 13 is_stmt 0 view .LVU38
+ 265 0004 23F44023 		bic	r3, r3, #786432
+ 266 0008 1360     		str	r3, [r2]
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 267              		.loc 1 166 1 view .LVU39
+ 268 000a 7047     		bx	lr
+ 269              	.L23:
+ 270              		.align	2
+ 271              	.L22:
+ 272 000c 00700040 		.word	1073770496
+ 273              		.cfi_endproc
+ 274              	.LFE124:
+ 276              		.section	.text.pmu_lowpower_driver_config,"ax",%progbits
+ 277              		.align	1
+ 278              		.global	pmu_lowpower_driver_config
+ 279              		.syntax unified
+ 280              		.thumb
+ 281              		.thumb_func
+ 283              	pmu_lowpower_driver_config:
+ 284              	.LVL4:
+ 285              	.LFB125:
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      driver mode when use low power LDO
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  mode:
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_NORMALDR_LOWPWR:  normal driver when use low power LDO
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LOWDR_LOWPWR:  low-driver mode enabled when LDEN is 11 and use low power LDO
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 176:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_lowpower_driver_config(uint32_t mode)
+ 177:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 286              		.loc 1 177 1 is_stmt 1 view -0
+ 287              		.cfi_startproc
+ 288              		@ args = 0, pretend = 0, frame = 0
+ 289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 290              		@ link register save eliminated.
+ 178:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_LDLP;
+ 291              		.loc 1 178 5 view .LVU41
+ 292 0000 044B     		ldr	r3, .L25
+ 293 0002 1A68     		ldr	r2, [r3]
+ 294              		.loc 1 178 13 is_stmt 0 view .LVU42
+ 295 0004 22F48062 		bic	r2, r2, #1024
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 9
+
+
+ 296 0008 1A60     		str	r2, [r3]
+ 179:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= mode;
+ 297              		.loc 1 179 5 is_stmt 1 view .LVU43
+ 298 000a 1A68     		ldr	r2, [r3]
+ 299              		.loc 1 179 13 is_stmt 0 view .LVU44
+ 300 000c 0243     		orrs	r2, r2, r0
+ 301 000e 1A60     		str	r2, [r3]
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 302              		.loc 1 180 1 view .LVU45
+ 303 0010 7047     		bx	lr
+ 304              	.L26:
+ 305 0012 00BF     		.align	2
+ 306              	.L25:
+ 307 0014 00700040 		.word	1073770496
+ 308              		.cfi_endproc
+ 309              	.LFE125:
+ 311              		.section	.text.pmu_normalpower_driver_config,"ax",%progbits
+ 312              		.align	1
+ 313              		.global	pmu_normalpower_driver_config
+ 314              		.syntax unified
+ 315              		.thumb
+ 316              		.thumb_func
+ 318              	pmu_normalpower_driver_config:
+ 319              	.LVL5:
+ 320              	.LFB126:
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 183:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      driver mode when use normal power LDO
+ 184:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  mode:
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_NORMALDR_NORMALPWR:  normal driver when use normal power LDO
+ 186:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LOWDR_NORMALPWR:  low-driver mode enabled when LDEN is 11 and use normal powe
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_normalpower_driver_config(uint32_t mode)
+ 191:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 321              		.loc 1 191 1 is_stmt 1 view -0
+ 322              		.cfi_startproc
+ 323              		@ args = 0, pretend = 0, frame = 0
+ 324              		@ frame_needed = 0, uses_anonymous_args = 0
+ 325              		@ link register save eliminated.
+ 192:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_LDNP;
+ 326              		.loc 1 192 5 view .LVU47
+ 327 0000 044B     		ldr	r3, .L28
+ 328 0002 1A68     		ldr	r2, [r3]
+ 329              		.loc 1 192 13 is_stmt 0 view .LVU48
+ 330 0004 22F40062 		bic	r2, r2, #2048
+ 331 0008 1A60     		str	r2, [r3]
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= mode;
+ 332              		.loc 1 193 5 is_stmt 1 view .LVU49
+ 333 000a 1A68     		ldr	r2, [r3]
+ 334              		.loc 1 193 13 is_stmt 0 view .LVU50
+ 335 000c 0243     		orrs	r2, r2, r0
+ 336 000e 1A60     		str	r2, [r3]
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 337              		.loc 1 194 1 view .LVU51
+ 338 0010 7047     		bx	lr
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 10
+
+
+ 339              	.L29:
+ 340 0012 00BF     		.align	2
+ 341              	.L28:
+ 342 0014 00700040 		.word	1073770496
+ 343              		.cfi_endproc
+ 344              	.LFE126:
+ 346              		.section	.text.pmu_to_sleepmode,"ax",%progbits
+ 347              		.align	1
+ 348              		.global	pmu_to_sleepmode
+ 349              		.syntax unified
+ 350              		.thumb
+ 351              		.thumb_func
+ 353              	pmu_to_sleepmode:
+ 354              	.LVL6:
+ 355              	.LFB127:
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 197:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      PMU work in sleep mode
+ 198:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  sleepmodecmd:
+ 199:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        WFI_CMD: use WFI command
+ 200:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        WFE_CMD: use WFE command
+ 201:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 202:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 204:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_to_sleepmode(uint8_t sleepmodecmd)
+ 205:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 356              		.loc 1 205 1 is_stmt 1 view -0
+ 357              		.cfi_startproc
+ 358              		@ args = 0, pretend = 0, frame = 0
+ 359              		@ frame_needed = 0, uses_anonymous_args = 0
+ 360              		@ link register save eliminated.
+ 206:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* clear sleepdeep bit of Cortex-M4 system control register */
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     SCB->SCR &= ~((uint32_t)SCB_SCR_SLEEPDEEP_Msk);
+ 361              		.loc 1 207 5 view .LVU53
+ 362              		.loc 1 207 8 is_stmt 0 view .LVU54
+ 363 0000 044A     		ldr	r2, .L33
+ 364 0002 1369     		ldr	r3, [r2, #16]
+ 365              		.loc 1 207 14 view .LVU55
+ 366 0004 23F00403 		bic	r3, r3, #4
+ 367 0008 1361     		str	r3, [r2, #16]
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* select WFI or WFE command to enter sleep mode */
+ 210:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     if(WFI_CMD == sleepmodecmd) {
+ 368              		.loc 1 210 5 is_stmt 1 view .LVU56
+ 369              		.loc 1 210 7 is_stmt 0 view .LVU57
+ 370 000a 08B9     		cbnz	r0, .L31
+ 211:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __WFI();
+ 371              		.loc 1 211 9 is_stmt 1 view .LVU58
+ 372              	.LBB16:
+ 373              	.LBI16:
+ 374              		.file 2 "CMSIS/core_cmInstr.h"
+   1:CMSIS/core_cmInstr.h **** /**************************************************************************//**
+   2:CMSIS/core_cmInstr.h ****  * @file     core_cmInstr.h
+   3:CMSIS/core_cmInstr.h ****  * @brief    CMSIS Cortex-M Core Instruction Access Header File
+   4:CMSIS/core_cmInstr.h ****  * @version  V3.01
+   5:CMSIS/core_cmInstr.h ****  * @date     06. March 2012
+   6:CMSIS/core_cmInstr.h ****  *
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 11
+
+
+   7:CMSIS/core_cmInstr.h ****  * @note
+   8:CMSIS/core_cmInstr.h ****  * Copyright (C) 2009-2012 ARM Limited. All rights reserved.
+   9:CMSIS/core_cmInstr.h ****  *
+  10:CMSIS/core_cmInstr.h ****  * @par
+  11:CMSIS/core_cmInstr.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M
+  12:CMSIS/core_cmInstr.h ****  * processor based microcontrollers.  This file can be freely distributed
+  13:CMSIS/core_cmInstr.h ****  * within development tools that are supporting such ARM based processors.
+  14:CMSIS/core_cmInstr.h ****  *
+  15:CMSIS/core_cmInstr.h ****  * @par
+  16:CMSIS/core_cmInstr.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  17:CMSIS/core_cmInstr.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  18:CMSIS/core_cmInstr.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  19:CMSIS/core_cmInstr.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  20:CMSIS/core_cmInstr.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  21:CMSIS/core_cmInstr.h ****  *
+  22:CMSIS/core_cmInstr.h ****  ******************************************************************************/
+  23:CMSIS/core_cmInstr.h **** 
+  24:CMSIS/core_cmInstr.h **** #ifndef __CORE_CMINSTR_H
+  25:CMSIS/core_cmInstr.h **** #define __CORE_CMINSTR_H
+  26:CMSIS/core_cmInstr.h **** 
+  27:CMSIS/core_cmInstr.h **** 
+  28:CMSIS/core_cmInstr.h **** /* ##########################  Core Instruction Access  ######################### */
+  29:CMSIS/core_cmInstr.h **** /** \defgroup CMSIS_Core_InstructionInterface CMSIS Core Instruction Interface
+  30:CMSIS/core_cmInstr.h ****   Access to dedicated instructions
+  31:CMSIS/core_cmInstr.h ****   @{
+  32:CMSIS/core_cmInstr.h **** */
+  33:CMSIS/core_cmInstr.h **** 
+  34:CMSIS/core_cmInstr.h **** #if   defined ( __CC_ARM ) /*------------------RealView Compiler -----------------*/
+  35:CMSIS/core_cmInstr.h **** /* ARM armcc specific functions */
+  36:CMSIS/core_cmInstr.h **** 
+  37:CMSIS/core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
+  38:CMSIS/core_cmInstr.h ****   #error "Please use ARM Compiler Toolchain V4.0.677 or later!"
+  39:CMSIS/core_cmInstr.h **** #endif
+  40:CMSIS/core_cmInstr.h **** 
+  41:CMSIS/core_cmInstr.h **** 
+  42:CMSIS/core_cmInstr.h **** /** \brief  No Operation
+  43:CMSIS/core_cmInstr.h **** 
+  44:CMSIS/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+  45:CMSIS/core_cmInstr.h ****  */
+  46:CMSIS/core_cmInstr.h **** #define __NOP                             __nop
+  47:CMSIS/core_cmInstr.h **** 
+  48:CMSIS/core_cmInstr.h **** 
+  49:CMSIS/core_cmInstr.h **** /** \brief  Wait For Interrupt
+  50:CMSIS/core_cmInstr.h **** 
+  51:CMSIS/core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+  52:CMSIS/core_cmInstr.h ****     until one of a number of events occurs.
+  53:CMSIS/core_cmInstr.h ****  */
+  54:CMSIS/core_cmInstr.h **** #define __WFI                             __wfi
+  55:CMSIS/core_cmInstr.h **** 
+  56:CMSIS/core_cmInstr.h **** 
+  57:CMSIS/core_cmInstr.h **** /** \brief  Wait For Event
+  58:CMSIS/core_cmInstr.h **** 
+  59:CMSIS/core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+  60:CMSIS/core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+  61:CMSIS/core_cmInstr.h ****  */
+  62:CMSIS/core_cmInstr.h **** #define __WFE                             __wfe
+  63:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 12
+
+
+  64:CMSIS/core_cmInstr.h **** 
+  65:CMSIS/core_cmInstr.h **** /** \brief  Send Event
+  66:CMSIS/core_cmInstr.h **** 
+  67:CMSIS/core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+  68:CMSIS/core_cmInstr.h ****  */
+  69:CMSIS/core_cmInstr.h **** #define __SEV                             __sev
+  70:CMSIS/core_cmInstr.h **** 
+  71:CMSIS/core_cmInstr.h **** 
+  72:CMSIS/core_cmInstr.h **** /** \brief  Instruction Synchronization Barrier
+  73:CMSIS/core_cmInstr.h **** 
+  74:CMSIS/core_cmInstr.h ****     Instruction Synchronization Barrier flushes the pipeline in the processor,
+  75:CMSIS/core_cmInstr.h ****     so that all instructions following the ISB are fetched from cache or
+  76:CMSIS/core_cmInstr.h ****     memory, after the instruction has been completed.
+  77:CMSIS/core_cmInstr.h ****  */
+  78:CMSIS/core_cmInstr.h **** #define __ISB()                           __isb(0xF)
+  79:CMSIS/core_cmInstr.h **** 
+  80:CMSIS/core_cmInstr.h **** 
+  81:CMSIS/core_cmInstr.h **** /** \brief  Data Synchronization Barrier
+  82:CMSIS/core_cmInstr.h **** 
+  83:CMSIS/core_cmInstr.h ****     This function acts as a special kind of Data Memory Barrier.
+  84:CMSIS/core_cmInstr.h ****     It completes when all explicit memory accesses before this instruction complete.
+  85:CMSIS/core_cmInstr.h ****  */
+  86:CMSIS/core_cmInstr.h **** #define __DSB()                           __dsb(0xF)
+  87:CMSIS/core_cmInstr.h **** 
+  88:CMSIS/core_cmInstr.h **** 
+  89:CMSIS/core_cmInstr.h **** /** \brief  Data Memory Barrier
+  90:CMSIS/core_cmInstr.h **** 
+  91:CMSIS/core_cmInstr.h ****     This function ensures the apparent order of the explicit memory operations before
+  92:CMSIS/core_cmInstr.h ****     and after the instruction, without ensuring their completion.
+  93:CMSIS/core_cmInstr.h ****  */
+  94:CMSIS/core_cmInstr.h **** #define __DMB()                           __dmb(0xF)
+  95:CMSIS/core_cmInstr.h **** 
+  96:CMSIS/core_cmInstr.h **** 
+  97:CMSIS/core_cmInstr.h **** /** \brief  Reverse byte order (32 bit)
+  98:CMSIS/core_cmInstr.h **** 
+  99:CMSIS/core_cmInstr.h ****     This function reverses the byte order in integer value.
+ 100:CMSIS/core_cmInstr.h **** 
+ 101:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 102:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 103:CMSIS/core_cmInstr.h ****  */
+ 104:CMSIS/core_cmInstr.h **** #define __REV                             __rev
+ 105:CMSIS/core_cmInstr.h **** 
+ 106:CMSIS/core_cmInstr.h **** 
+ 107:CMSIS/core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
+ 108:CMSIS/core_cmInstr.h **** 
+ 109:CMSIS/core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
+ 110:CMSIS/core_cmInstr.h **** 
+ 111:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 112:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 113:CMSIS/core_cmInstr.h ****  */
+ 114:CMSIS/core_cmInstr.h **** __attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+ 115:CMSIS/core_cmInstr.h **** {
+ 116:CMSIS/core_cmInstr.h ****   rev16 r0, r0
+ 117:CMSIS/core_cmInstr.h ****   bx lr
+ 118:CMSIS/core_cmInstr.h **** }
+ 119:CMSIS/core_cmInstr.h **** 
+ 120:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 13
+
+
+ 121:CMSIS/core_cmInstr.h **** /** \brief  Reverse byte order in signed short value
+ 122:CMSIS/core_cmInstr.h **** 
+ 123:CMSIS/core_cmInstr.h ****     This function reverses the byte order in a signed short value with sign extension to integer.
+ 124:CMSIS/core_cmInstr.h **** 
+ 125:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 126:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 127:CMSIS/core_cmInstr.h ****  */
+ 128:CMSIS/core_cmInstr.h **** __attribute__((section(".revsh_text"))) __STATIC_INLINE __ASM int32_t __REVSH(int32_t value)
+ 129:CMSIS/core_cmInstr.h **** {
+ 130:CMSIS/core_cmInstr.h ****   revsh r0, r0
+ 131:CMSIS/core_cmInstr.h ****   bx lr
+ 132:CMSIS/core_cmInstr.h **** }
+ 133:CMSIS/core_cmInstr.h **** 
+ 134:CMSIS/core_cmInstr.h **** 
+ 135:CMSIS/core_cmInstr.h **** /** \brief  Rotate Right in unsigned value (32 bit)
+ 136:CMSIS/core_cmInstr.h **** 
+ 137:CMSIS/core_cmInstr.h ****     This function Rotate Right (immediate) provides the value of the contents of a register rotated
+ 138:CMSIS/core_cmInstr.h **** 
+ 139:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to rotate
+ 140:CMSIS/core_cmInstr.h ****     \param [in]    value  Number of Bits to rotate
+ 141:CMSIS/core_cmInstr.h ****     \return               Rotated value
+ 142:CMSIS/core_cmInstr.h ****  */
+ 143:CMSIS/core_cmInstr.h **** #define __ROR                             __ror
+ 144:CMSIS/core_cmInstr.h **** 
+ 145:CMSIS/core_cmInstr.h **** 
+ 146:CMSIS/core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
+ 147:CMSIS/core_cmInstr.h **** 
+ 148:CMSIS/core_cmInstr.h **** /** \brief  Reverse bit order of value
+ 149:CMSIS/core_cmInstr.h **** 
+ 150:CMSIS/core_cmInstr.h ****     This function reverses the bit order of the given value.
+ 151:CMSIS/core_cmInstr.h **** 
+ 152:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 153:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 154:CMSIS/core_cmInstr.h ****  */
+ 155:CMSIS/core_cmInstr.h **** #define __RBIT                            __rbit
+ 156:CMSIS/core_cmInstr.h **** 
+ 157:CMSIS/core_cmInstr.h **** 
+ 158:CMSIS/core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
+ 159:CMSIS/core_cmInstr.h **** 
+ 160:CMSIS/core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
+ 161:CMSIS/core_cmInstr.h **** 
+ 162:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 163:CMSIS/core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
+ 164:CMSIS/core_cmInstr.h ****  */
+ 165:CMSIS/core_cmInstr.h **** #define __LDREXB(ptr)                     ((uint8_t ) __ldrex(ptr))
+ 166:CMSIS/core_cmInstr.h **** 
+ 167:CMSIS/core_cmInstr.h **** 
+ 168:CMSIS/core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
+ 169:CMSIS/core_cmInstr.h **** 
+ 170:CMSIS/core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
+ 171:CMSIS/core_cmInstr.h **** 
+ 172:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 173:CMSIS/core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
+ 174:CMSIS/core_cmInstr.h ****  */
+ 175:CMSIS/core_cmInstr.h **** #define __LDREXH(ptr)                     ((uint16_t) __ldrex(ptr))
+ 176:CMSIS/core_cmInstr.h **** 
+ 177:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 14
+
+
+ 178:CMSIS/core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
+ 179:CMSIS/core_cmInstr.h **** 
+ 180:CMSIS/core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
+ 181:CMSIS/core_cmInstr.h **** 
+ 182:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 183:CMSIS/core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
+ 184:CMSIS/core_cmInstr.h ****  */
+ 185:CMSIS/core_cmInstr.h **** #define __LDREXW(ptr)                     ((uint32_t ) __ldrex(ptr))
+ 186:CMSIS/core_cmInstr.h **** 
+ 187:CMSIS/core_cmInstr.h **** 
+ 188:CMSIS/core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
+ 189:CMSIS/core_cmInstr.h **** 
+ 190:CMSIS/core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
+ 191:CMSIS/core_cmInstr.h **** 
+ 192:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to store
+ 193:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 194:CMSIS/core_cmInstr.h ****     \return          0  Function succeeded
+ 195:CMSIS/core_cmInstr.h ****     \return          1  Function failed
+ 196:CMSIS/core_cmInstr.h ****  */
+ 197:CMSIS/core_cmInstr.h **** #define __STREXB(value, ptr)              __strex(value, ptr)
+ 198:CMSIS/core_cmInstr.h **** 
+ 199:CMSIS/core_cmInstr.h **** 
+ 200:CMSIS/core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
+ 201:CMSIS/core_cmInstr.h **** 
+ 202:CMSIS/core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
+ 203:CMSIS/core_cmInstr.h **** 
+ 204:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to store
+ 205:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 206:CMSIS/core_cmInstr.h ****     \return          0  Function succeeded
+ 207:CMSIS/core_cmInstr.h ****     \return          1  Function failed
+ 208:CMSIS/core_cmInstr.h ****  */
+ 209:CMSIS/core_cmInstr.h **** #define __STREXH(value, ptr)              __strex(value, ptr)
+ 210:CMSIS/core_cmInstr.h **** 
+ 211:CMSIS/core_cmInstr.h **** 
+ 212:CMSIS/core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
+ 213:CMSIS/core_cmInstr.h **** 
+ 214:CMSIS/core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
+ 215:CMSIS/core_cmInstr.h **** 
+ 216:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to store
+ 217:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 218:CMSIS/core_cmInstr.h ****     \return          0  Function succeeded
+ 219:CMSIS/core_cmInstr.h ****     \return          1  Function failed
+ 220:CMSIS/core_cmInstr.h ****  */
+ 221:CMSIS/core_cmInstr.h **** #define __STREXW(value, ptr)              __strex(value, ptr)
+ 222:CMSIS/core_cmInstr.h **** 
+ 223:CMSIS/core_cmInstr.h **** 
+ 224:CMSIS/core_cmInstr.h **** /** \brief  Remove the exclusive lock
+ 225:CMSIS/core_cmInstr.h **** 
+ 226:CMSIS/core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
+ 227:CMSIS/core_cmInstr.h **** 
+ 228:CMSIS/core_cmInstr.h ****  */
+ 229:CMSIS/core_cmInstr.h **** #define __CLREX                           __clrex
+ 230:CMSIS/core_cmInstr.h **** 
+ 231:CMSIS/core_cmInstr.h **** 
+ 232:CMSIS/core_cmInstr.h **** /** \brief  Signed Saturate
+ 233:CMSIS/core_cmInstr.h **** 
+ 234:CMSIS/core_cmInstr.h ****     This function saturates a signed value.
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 15
+
+
+ 235:CMSIS/core_cmInstr.h **** 
+ 236:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 237:CMSIS/core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (1..32)
+ 238:CMSIS/core_cmInstr.h ****     \return             Saturated value
+ 239:CMSIS/core_cmInstr.h ****  */
+ 240:CMSIS/core_cmInstr.h **** #define __SSAT                            __ssat
+ 241:CMSIS/core_cmInstr.h **** 
+ 242:CMSIS/core_cmInstr.h **** 
+ 243:CMSIS/core_cmInstr.h **** /** \brief  Unsigned Saturate
+ 244:CMSIS/core_cmInstr.h **** 
+ 245:CMSIS/core_cmInstr.h ****     This function saturates an unsigned value.
+ 246:CMSIS/core_cmInstr.h **** 
+ 247:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 248:CMSIS/core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (0..31)
+ 249:CMSIS/core_cmInstr.h ****     \return             Saturated value
+ 250:CMSIS/core_cmInstr.h ****  */
+ 251:CMSIS/core_cmInstr.h **** #define __USAT                            __usat
+ 252:CMSIS/core_cmInstr.h **** 
+ 253:CMSIS/core_cmInstr.h **** 
+ 254:CMSIS/core_cmInstr.h **** /** \brief  Count leading zeros
+ 255:CMSIS/core_cmInstr.h **** 
+ 256:CMSIS/core_cmInstr.h ****     This function counts the number of leading zeros of a data value.
+ 257:CMSIS/core_cmInstr.h **** 
+ 258:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to count the leading zeros
+ 259:CMSIS/core_cmInstr.h ****     \return             number of leading zeros in value
+ 260:CMSIS/core_cmInstr.h ****  */
+ 261:CMSIS/core_cmInstr.h **** #define __CLZ                             __clz
+ 262:CMSIS/core_cmInstr.h **** 
+ 263:CMSIS/core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 264:CMSIS/core_cmInstr.h **** 
+ 265:CMSIS/core_cmInstr.h **** 
+ 266:CMSIS/core_cmInstr.h **** 
+ 267:CMSIS/core_cmInstr.h **** #elif defined ( __ICCARM__ ) /*------------------ ICC Compiler -------------------*/
+ 268:CMSIS/core_cmInstr.h **** /* IAR iccarm specific functions */
+ 269:CMSIS/core_cmInstr.h **** 
+ 270:CMSIS/core_cmInstr.h **** #include <cmsis_iar.h>
+ 271:CMSIS/core_cmInstr.h **** 
+ 272:CMSIS/core_cmInstr.h **** 
+ 273:CMSIS/core_cmInstr.h **** #elif defined ( __TMS470__ ) /*---------------- TI CCS Compiler ------------------*/
+ 274:CMSIS/core_cmInstr.h **** /* TI CCS specific functions */
+ 275:CMSIS/core_cmInstr.h **** 
+ 276:CMSIS/core_cmInstr.h **** #include <cmsis_ccs.h>
+ 277:CMSIS/core_cmInstr.h **** 
+ 278:CMSIS/core_cmInstr.h **** 
+ 279:CMSIS/core_cmInstr.h **** #elif defined ( __GNUC__ ) /*------------------ GNU Compiler ---------------------*/
+ 280:CMSIS/core_cmInstr.h **** /* GNU gcc specific functions */
+ 281:CMSIS/core_cmInstr.h **** 
+ 282:CMSIS/core_cmInstr.h **** /** \brief  No Operation
+ 283:CMSIS/core_cmInstr.h **** 
+ 284:CMSIS/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+ 285:CMSIS/core_cmInstr.h ****  */
+ 286:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __NOP(void)
+ 287:CMSIS/core_cmInstr.h **** {
+ 288:CMSIS/core_cmInstr.h ****   __ASM volatile ("nop");
+ 289:CMSIS/core_cmInstr.h **** }
+ 290:CMSIS/core_cmInstr.h **** 
+ 291:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 16
+
+
+ 292:CMSIS/core_cmInstr.h **** /** \brief  Wait For Interrupt
+ 293:CMSIS/core_cmInstr.h **** 
+ 294:CMSIS/core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+ 295:CMSIS/core_cmInstr.h ****     until one of a number of events occurs.
+ 296:CMSIS/core_cmInstr.h ****  */
+ 297:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __WFI(void)
+ 375              		.loc 2 297 57 view .LVU59
+ 376              	.LBB17:
+ 298:CMSIS/core_cmInstr.h **** {
+ 299:CMSIS/core_cmInstr.h ****   __ASM volatile ("wfi");
+ 377              		.loc 2 299 3 view .LVU60
+ 378              		.syntax unified
+ 379              	@ 299 "CMSIS/core_cmInstr.h" 1
+ 380 000c 30BF     		wfi
+ 381              	@ 0 "" 2
+ 300:CMSIS/core_cmInstr.h **** }
+ 382              		.loc 2 300 1 is_stmt 0 view .LVU61
+ 383              		.thumb
+ 384              		.syntax unified
+ 385 000e 7047     		bx	lr
+ 386              	.L31:
+ 387              	.LBE17:
+ 388              	.LBE16:
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     } else {
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __WFE();
+ 389              		.loc 1 213 9 is_stmt 1 view .LVU62
+ 390              	.LBB18:
+ 391              	.LBI18:
+ 301:CMSIS/core_cmInstr.h **** 
+ 302:CMSIS/core_cmInstr.h **** 
+ 303:CMSIS/core_cmInstr.h **** /** \brief  Wait For Event
+ 304:CMSIS/core_cmInstr.h **** 
+ 305:CMSIS/core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+ 306:CMSIS/core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+ 307:CMSIS/core_cmInstr.h ****  */
+ 308:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __WFE(void)
+ 392              		.loc 2 308 57 view .LVU63
+ 393              	.LBB19:
+ 309:CMSIS/core_cmInstr.h **** {
+ 310:CMSIS/core_cmInstr.h ****   __ASM volatile ("wfe");
+ 394              		.loc 2 310 3 view .LVU64
+ 395              		.syntax unified
+ 396              	@ 310 "CMSIS/core_cmInstr.h" 1
+ 397 0010 20BF     		wfe
+ 398              	@ 0 "" 2
+ 399              		.thumb
+ 400              		.syntax unified
+ 401              	.LBE19:
+ 402              	.LBE18:
+ 214:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 215:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 403              		.loc 1 215 1 is_stmt 0 view .LVU65
+ 404 0012 7047     		bx	lr
+ 405              	.L34:
+ 406              		.align	2
+ 407              	.L33:
+ 408 0014 00ED00E0 		.word	-536810240
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 17
+
+
+ 409              		.cfi_endproc
+ 410              	.LFE127:
+ 412              		.section	.text.pmu_to_deepsleepmode,"ax",%progbits
+ 413              		.align	1
+ 414              		.global	pmu_to_deepsleepmode
+ 415              		.syntax unified
+ 416              		.thumb
+ 417              		.thumb_func
+ 419              	pmu_to_deepsleepmode:
+ 420              	.LVL7:
+ 421              	.LFB128:
+ 216:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 217:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 218:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      PMU work in deepsleep mode
+ 219:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  ldo:
+ 220:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****                 only one parameter can be selected which is shown as below:
+ 221:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LDO_NORMAL: LDO work in normal power mode when pmu enter deepsleep mode
+ 222:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LDO_LOWPOWER: LDO work in low power mode when pmu enter deepsleep mode
+ 223:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  lowdrive:
+ 224:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****                 only one parameter can be selected which is shown as below:
+ 225:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LOWDRIVER_ENABLE: low-driver mode enable in deep-sleep mode
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_LOWDRIVER_DISABLE: low-driver mode disable in deep-sleep mode
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  deepsleepmodecmd:
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****                 only one parameter can be selected which is shown as below:
+ 229:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        WFI_CMD: use WFI command
+ 230:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        WFE_CMD: use WFE command
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 233:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 234:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_to_deepsleepmode(uint32_t ldo, uint32_t lowdrive, uint8_t deepsleepmodecmd)
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 422              		.loc 1 235 1 is_stmt 1 view -0
+ 423              		.cfi_startproc
+ 424              		@ args = 0, pretend = 0, frame = 0
+ 425              		@ frame_needed = 0, uses_anonymous_args = 0
+ 426              		@ link register save eliminated.
+ 427              		.loc 1 235 1 is_stmt 0 view .LVU67
+ 428 0000 30B4     		push	{r4, r5}
+ 429              	.LCFI1:
+ 430              		.cfi_def_cfa_offset 8
+ 431              		.cfi_offset 4, -8
+ 432              		.cfi_offset 5, -4
+ 236:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     static uint32_t reg_snap[ 4 ];
+ 433              		.loc 1 236 5 is_stmt 1 view .LVU68
+ 237:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* clear stbmod and ldolp bits */
+ 238:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~((uint32_t)(PMU_CTL_STBMOD | PMU_CTL_LDOLP | PMU_CTL_LDEN | PMU_CTL_LDNP | PMU_CTL_
+ 434              		.loc 1 238 5 view .LVU69
+ 435 0002 2C4B     		ldr	r3, .L42
+ 436 0004 1D68     		ldr	r5, [r3]
+ 437              		.loc 1 238 13 is_stmt 0 view .LVU70
+ 438 0006 2C4C     		ldr	r4, .L42+4
+ 439 0008 2C40     		ands	r4, r4, r5
+ 440 000a 1C60     		str	r4, [r3]
+ 239:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 240:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* set ldolp bit according to pmu_ldo */
+ 241:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= ldo;
+ 441              		.loc 1 241 5 is_stmt 1 view .LVU71
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 18
+
+
+ 442 000c 1C68     		ldr	r4, [r3]
+ 443              		.loc 1 241 13 is_stmt 0 view .LVU72
+ 444 000e 0443     		orrs	r4, r4, r0
+ 445 0010 1C60     		str	r4, [r3]
+ 242:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 243:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* low drive mode config in deep-sleep mode */
+ 244:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     if(PMU_LOWDRIVER_ENABLE == lowdrive) {
+ 446              		.loc 1 244 5 is_stmt 1 view .LVU73
+ 447              		.loc 1 244 7 is_stmt 0 view .LVU74
+ 448 0012 B1F5402F 		cmp	r1, #786432
+ 449 0016 38D0     		beq	.L41
+ 450              	.LVL8:
+ 451              	.L36:
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         if(PMU_LDO_NORMAL == ldo) {
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****             PMU_CTL |= (uint32_t)(PMU_CTL_LDEN | PMU_CTL_LDNP);
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         } else {
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****             PMU_CTL |= (uint32_t)(PMU_CTL_LDEN | PMU_CTL_LDLP);
+ 249:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         }
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 252:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* set sleepdeep bit of Cortex-M4 system control register */
+ 253:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+ 452              		.loc 1 253 5 is_stmt 1 view .LVU75
+ 453              		.loc 1 253 8 is_stmt 0 view .LVU76
+ 454 0018 2849     		ldr	r1, .L42+8
+ 455 001a 0B69     		ldr	r3, [r1, #16]
+ 456              		.loc 1 253 14 view .LVU77
+ 457 001c 43F00403 		orr	r3, r3, #4
+ 458 0020 0B61     		str	r3, [r1, #16]
+ 254:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 255:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     reg_snap[ 0 ] = REG32(0xE000E010U);
+ 459              		.loc 1 255 5 is_stmt 1 view .LVU78
+ 460              		.loc 1 255 21 is_stmt 0 view .LVU79
+ 461 0022 4FF0E023 		mov	r3, #-536813568
+ 462 0026 1869     		ldr	r0, [r3, #16]
+ 463              	.LVL9:
+ 464              		.loc 1 255 19 view .LVU80
+ 465 0028 2549     		ldr	r1, .L42+12
+ 466 002a 0860     		str	r0, [r1]
+ 256:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     reg_snap[ 1 ] = REG32(0xE000E100U);
+ 467              		.loc 1 256 5 is_stmt 1 view .LVU81
+ 468              		.loc 1 256 21 is_stmt 0 view .LVU82
+ 469 002c D3F80001 		ldr	r0, [r3, #256]
+ 470              		.loc 1 256 19 view .LVU83
+ 471 0030 4860     		str	r0, [r1, #4]
+ 257:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     reg_snap[ 2 ] = REG32(0xE000E104U);
+ 472              		.loc 1 257 5 is_stmt 1 view .LVU84
+ 473              		.loc 1 257 21 is_stmt 0 view .LVU85
+ 474 0032 D3F80401 		ldr	r0, [r3, #260]
+ 475              		.loc 1 257 19 view .LVU86
+ 476 0036 8860     		str	r0, [r1, #8]
+ 258:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     reg_snap[ 3 ] = REG32(0xE000E108U);
+ 477              		.loc 1 258 5 is_stmt 1 view .LVU87
+ 478              		.loc 1 258 21 is_stmt 0 view .LVU88
+ 479 0038 D3F80801 		ldr	r0, [r3, #264]
+ 480              		.loc 1 258 19 view .LVU89
+ 481 003c C860     		str	r0, [r1, #12]
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 19
+
+
+ 259:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 260:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E010U) &= 0x00010004U;
+ 482              		.loc 1 260 5 is_stmt 1 view .LVU90
+ 483 003e 1869     		ldr	r0, [r3, #16]
+ 484              		.loc 1 260 24 is_stmt 0 view .LVU91
+ 485 0040 2049     		ldr	r1, .L42+16
+ 486 0042 0140     		ands	r1, r1, r0
+ 487 0044 1961     		str	r1, [r3, #16]
+ 261:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E180U)  = 0XFF7FF83DU;
+ 488              		.loc 1 261 5 is_stmt 1 view .LVU92
+ 489              		.loc 1 261 25 is_stmt 0 view .LVU93
+ 490 0046 2049     		ldr	r1, .L42+20
+ 491 0048 C3F88011 		str	r1, [r3, #384]
+ 262:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E184U)  = 0XFFFFF8FFU;
+ 492              		.loc 1 262 5 is_stmt 1 view .LVU94
+ 493              		.loc 1 262 25 is_stmt 0 view .LVU95
+ 494 004c 6FF4E061 		mvn	r1, #1792
+ 495 0050 C3F88411 		str	r1, [r3, #388]
+ 263:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E188U)  = 0xFFFFFFFFU;
+ 496              		.loc 1 263 5 is_stmt 1 view .LVU96
+ 497              		.loc 1 263 25 is_stmt 0 view .LVU97
+ 498 0054 4FF0FF31 		mov	r1, #-1
+ 499 0058 C3F88811 		str	r1, [r3, #392]
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* select WFI or WFE command to enter deepsleep mode */
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     if(WFI_CMD == deepsleepmodecmd) {
+ 500              		.loc 1 266 5 is_stmt 1 view .LVU98
+ 501              		.loc 1 266 7 is_stmt 0 view .LVU99
+ 502 005c 32BB     		cbnz	r2, .L38
+ 267:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __WFI();
+ 503              		.loc 1 267 9 is_stmt 1 view .LVU100
+ 504              	.LBB20:
+ 505              	.LBI20:
+ 297:CMSIS/core_cmInstr.h **** {
+ 506              		.loc 2 297 57 view .LVU101
+ 507              	.LBB21:
+ 299:CMSIS/core_cmInstr.h **** }
+ 508              		.loc 2 299 3 view .LVU102
+ 509              		.syntax unified
+ 510              	@ 299 "CMSIS/core_cmInstr.h" 1
+ 511 005e 30BF     		wfi
+ 512              	@ 0 "" 2
+ 513              		.thumb
+ 514              		.syntax unified
+ 515              	.L39:
+ 516              	.LBE21:
+ 517              	.LBE20:
+ 268:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     } else {
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __SEV();
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __WFE();
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __WFE();
+ 272:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 273:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 274:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E010U) = reg_snap[ 0 ] ;
+ 518              		.loc 1 274 5 view .LVU103
+ 519              		.loc 1 274 34 is_stmt 0 view .LVU104
+ 520 0060 174A     		ldr	r2, .L42+12
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 20
+
+
+ 521              	.LVL10:
+ 522              		.loc 1 274 34 view .LVU105
+ 523 0062 1168     		ldr	r1, [r2]
+ 524              		.loc 1 274 24 view .LVU106
+ 525 0064 4FF0E023 		mov	r3, #-536813568
+ 526 0068 1961     		str	r1, [r3, #16]
+ 275:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E100U) = reg_snap[ 1 ] ;
+ 527              		.loc 1 275 5 is_stmt 1 view .LVU107
+ 528              		.loc 1 275 34 is_stmt 0 view .LVU108
+ 529 006a 5168     		ldr	r1, [r2, #4]
+ 530              		.loc 1 275 24 view .LVU109
+ 531 006c C3F80011 		str	r1, [r3, #256]
+ 276:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E104U) = reg_snap[ 2 ] ;
+ 532              		.loc 1 276 5 is_stmt 1 view .LVU110
+ 533              		.loc 1 276 34 is_stmt 0 view .LVU111
+ 534 0070 9168     		ldr	r1, [r2, #8]
+ 535              		.loc 1 276 24 view .LVU112
+ 536 0072 C3F80411 		str	r1, [r3, #260]
+ 277:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E108U) = reg_snap[ 3 ] ;
+ 537              		.loc 1 277 5 is_stmt 1 view .LVU113
+ 538              		.loc 1 277 34 is_stmt 0 view .LVU114
+ 539 0076 D268     		ldr	r2, [r2, #12]
+ 540              		.loc 1 277 24 view .LVU115
+ 541 0078 C3F80821 		str	r2, [r3, #264]
+ 278:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 279:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* reset sleepdeep bit of Cortex-M4 system control register */
+ 280:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     SCB->SCR &= ~((uint32_t)SCB_SCR_SLEEPDEEP_Msk);
+ 542              		.loc 1 280 5 is_stmt 1 view .LVU116
+ 543              		.loc 1 280 8 is_stmt 0 view .LVU117
+ 544 007c 0F4A     		ldr	r2, .L42+8
+ 545 007e 1369     		ldr	r3, [r2, #16]
+ 546              		.loc 1 280 14 view .LVU118
+ 547 0080 23F00403 		bic	r3, r3, #4
+ 548 0084 1361     		str	r3, [r2, #16]
+ 281:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 549              		.loc 1 281 1 view .LVU119
+ 550 0086 30BC     		pop	{r4, r5}
+ 551              	.LCFI2:
+ 552              		.cfi_remember_state
+ 553              		.cfi_restore 5
+ 554              		.cfi_restore 4
+ 555              		.cfi_def_cfa_offset 0
+ 556 0088 7047     		bx	lr
+ 557              	.LVL11:
+ 558              	.L41:
+ 559              	.LCFI3:
+ 560              		.cfi_restore_state
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****             PMU_CTL |= (uint32_t)(PMU_CTL_LDEN | PMU_CTL_LDNP);
+ 561              		.loc 1 245 9 is_stmt 1 view .LVU120
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****             PMU_CTL |= (uint32_t)(PMU_CTL_LDEN | PMU_CTL_LDNP);
+ 562              		.loc 1 245 11 is_stmt 0 view .LVU121
+ 563 008a 38B9     		cbnz	r0, .L37
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         } else {
+ 564              		.loc 1 246 13 is_stmt 1 view .LVU122
+ 565 008c 1946     		mov	r1, r3
+ 566              	.LVL12:
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         } else {
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 21
+
+
+ 567              		.loc 1 246 13 is_stmt 0 view .LVU123
+ 568 008e 1B68     		ldr	r3, [r3]
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         } else {
+ 569              		.loc 1 246 21 view .LVU124
+ 570 0090 43F44023 		orr	r3, r3, #786432
+ 571 0094 43F40063 		orr	r3, r3, #2048
+ 572 0098 0B60     		str	r3, [r1]
+ 573 009a BDE7     		b	.L36
+ 574              	.LVL13:
+ 575              	.L37:
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         }
+ 576              		.loc 1 248 13 is_stmt 1 view .LVU125
+ 577 009c 0549     		ldr	r1, .L42
+ 578              	.LVL14:
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         }
+ 579              		.loc 1 248 13 is_stmt 0 view .LVU126
+ 580 009e 0B68     		ldr	r3, [r1]
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         }
+ 581              		.loc 1 248 21 view .LVU127
+ 582 00a0 43F44023 		orr	r3, r3, #786432
+ 583 00a4 43F48063 		orr	r3, r3, #1024
+ 584 00a8 0B60     		str	r3, [r1]
+ 585 00aa B5E7     		b	.L36
+ 586              	.LVL15:
+ 587              	.L38:
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __WFE();
+ 588              		.loc 1 269 9 is_stmt 1 view .LVU128
+ 589              	.LBB22:
+ 590              	.LBI22:
+ 311:CMSIS/core_cmInstr.h **** }
+ 312:CMSIS/core_cmInstr.h **** 
+ 313:CMSIS/core_cmInstr.h **** 
+ 314:CMSIS/core_cmInstr.h **** /** \brief  Send Event
+ 315:CMSIS/core_cmInstr.h **** 
+ 316:CMSIS/core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+ 317:CMSIS/core_cmInstr.h ****  */
+ 318:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __SEV(void)
+ 591              		.loc 2 318 57 view .LVU129
+ 592              	.LBB23:
+ 319:CMSIS/core_cmInstr.h **** {
+ 320:CMSIS/core_cmInstr.h ****   __ASM volatile ("sev");
+ 593              		.loc 2 320 3 view .LVU130
+ 594              		.syntax unified
+ 595              	@ 320 "CMSIS/core_cmInstr.h" 1
+ 596 00ac 40BF     		sev
+ 597              	@ 0 "" 2
+ 598              		.thumb
+ 599              		.syntax unified
+ 600              	.LBE23:
+ 601              	.LBE22:
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         __WFE();
+ 602              		.loc 1 270 9 view .LVU131
+ 603              	.LBB24:
+ 604              	.LBI24:
+ 308:CMSIS/core_cmInstr.h **** {
+ 605              		.loc 2 308 57 view .LVU132
+ 606              	.LBB25:
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 22
+
+
+ 310:CMSIS/core_cmInstr.h **** }
+ 607              		.loc 2 310 3 view .LVU133
+ 608              		.syntax unified
+ 609              	@ 310 "CMSIS/core_cmInstr.h" 1
+ 610 00ae 20BF     		wfe
+ 611              	@ 0 "" 2
+ 612              		.thumb
+ 613              		.syntax unified
+ 614              	.LBE25:
+ 615              	.LBE24:
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 616              		.loc 1 271 9 view .LVU134
+ 617              	.LBB26:
+ 618              	.LBI26:
+ 308:CMSIS/core_cmInstr.h **** {
+ 619              		.loc 2 308 57 view .LVU135
+ 620              	.LBB27:
+ 310:CMSIS/core_cmInstr.h **** }
+ 621              		.loc 2 310 3 view .LVU136
+ 622              		.syntax unified
+ 623              	@ 310 "CMSIS/core_cmInstr.h" 1
+ 624 00b0 20BF     		wfe
+ 625              	@ 0 "" 2
+ 311:CMSIS/core_cmInstr.h **** 
+ 626              		.loc 2 311 1 is_stmt 0 view .LVU137
+ 627              		.thumb
+ 628              		.syntax unified
+ 629 00b2 D5E7     		b	.L39
+ 630              	.L43:
+ 631              		.align	2
+ 632              	.L42:
+ 633 00b4 00700040 		.word	1073770496
+ 634 00b8 FCF3F3FF 		.word	-789508
+ 635 00bc 00ED00E0 		.word	-536810240
+ 636 00c0 00000000 		.word	reg_snap.0
+ 637 00c4 04000100 		.word	65540
+ 638 00c8 3DF87FFF 		.word	-8390595
+ 639              	.LBE27:
+ 640              	.LBE26:
+ 641              		.cfi_endproc
+ 642              	.LFE128:
+ 644              		.section	.text.pmu_to_standbymode,"ax",%progbits
+ 645              		.align	1
+ 646              		.global	pmu_to_standbymode
+ 647              		.syntax unified
+ 648              		.thumb
+ 649              		.thumb_func
+ 651              	pmu_to_standbymode:
+ 652              	.LFB129:
+ 282:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 283:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      pmu work in standby mode
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 287:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 288:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_to_standbymode(void)
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 23
+
+
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 653              		.loc 1 290 1 is_stmt 1 view -0
+ 654              		.cfi_startproc
+ 655              		@ args = 0, pretend = 0, frame = 0
+ 656              		@ frame_needed = 0, uses_anonymous_args = 0
+ 657              		@ link register save eliminated.
+ 291:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* set stbmod bit */
+ 292:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= PMU_CTL_STBMOD;
+ 658              		.loc 1 292 5 view .LVU139
+ 659 0000 104B     		ldr	r3, .L45
+ 660 0002 1A68     		ldr	r2, [r3]
+ 661              		.loc 1 292 13 is_stmt 0 view .LVU140
+ 662 0004 42F00202 		orr	r2, r2, #2
+ 663 0008 1A60     		str	r2, [r3]
+ 293:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 294:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* reset wakeup flag */
+ 295:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= PMU_CTL_WURST;
+ 664              		.loc 1 295 5 is_stmt 1 view .LVU141
+ 665 000a 1A68     		ldr	r2, [r3]
+ 666              		.loc 1 295 13 is_stmt 0 view .LVU142
+ 667 000c 42F00402 		orr	r2, r2, #4
+ 668 0010 1A60     		str	r2, [r3]
+ 296:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 297:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* set sleepdeep bit of Cortex-M4 system control register */
+ 298:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     SCB->SCR |= SCB_SCR_SLEEPDEEP_Msk;
+ 669              		.loc 1 298 5 is_stmt 1 view .LVU143
+ 670              		.loc 1 298 8 is_stmt 0 view .LVU144
+ 671 0012 0D4A     		ldr	r2, .L45+4
+ 672 0014 1369     		ldr	r3, [r2, #16]
+ 673              		.loc 1 298 14 view .LVU145
+ 674 0016 43F00403 		orr	r3, r3, #4
+ 675 001a 1361     		str	r3, [r2, #16]
+ 299:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 300:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E010U) &= 0x00010004U;
+ 676              		.loc 1 300 5 is_stmt 1 view .LVU146
+ 677 001c 4FF0E023 		mov	r3, #-536813568
+ 678 0020 1969     		ldr	r1, [r3, #16]
+ 679              		.loc 1 300 24 is_stmt 0 view .LVU147
+ 680 0022 0A4A     		ldr	r2, .L45+8
+ 681 0024 0A40     		ands	r2, r2, r1
+ 682 0026 1A61     		str	r2, [r3, #16]
+ 301:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E180U)  = 0XFFFFFFF7U;
+ 683              		.loc 1 301 5 is_stmt 1 view .LVU148
+ 684              		.loc 1 301 25 is_stmt 0 view .LVU149
+ 685 0028 6FF00802 		mvn	r2, #8
+ 686 002c C3F88021 		str	r2, [r3, #384]
+ 302:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E184U)  = 0XFFFFFDFFU;
+ 687              		.loc 1 302 5 is_stmt 1 view .LVU150
+ 688              		.loc 1 302 25 is_stmt 0 view .LVU151
+ 689 0030 6FF40072 		mvn	r2, #512
+ 690 0034 C3F88421 		str	r2, [r3, #388]
+ 303:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     REG32(0xE000E188U)  = 0xFFFFFFFFU;
+ 691              		.loc 1 303 5 is_stmt 1 view .LVU152
+ 692              		.loc 1 303 25 is_stmt 0 view .LVU153
+ 693 0038 4FF0FF32 		mov	r2, #-1
+ 694 003c C3F88821 		str	r2, [r3, #392]
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 24
+
+
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* select WFI or WFE command to enter standby mode */
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     __WFI();
+ 695              		.loc 1 306 5 is_stmt 1 view .LVU154
+ 696              	.LBB28:
+ 697              	.LBI28:
+ 297:CMSIS/core_cmInstr.h **** {
+ 698              		.loc 2 297 57 view .LVU155
+ 699              	.LBB29:
+ 299:CMSIS/core_cmInstr.h **** }
+ 700              		.loc 2 299 3 view .LVU156
+ 701              		.syntax unified
+ 702              	@ 299 "CMSIS/core_cmInstr.h" 1
+ 703 0040 30BF     		wfi
+ 704              	@ 0 "" 2
+ 705              		.thumb
+ 706              		.syntax unified
+ 707              	.LBE29:
+ 708              	.LBE28:
+ 307:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 709              		.loc 1 307 1 is_stmt 0 view .LVU157
+ 710 0042 7047     		bx	lr
+ 711              	.L46:
+ 712              		.align	2
+ 713              	.L45:
+ 714 0044 00700040 		.word	1073770496
+ 715 0048 00ED00E0 		.word	-536810240
+ 716 004c 04000100 		.word	65540
+ 717              		.cfi_endproc
+ 718              	.LFE129:
+ 720              		.section	.text.pmu_backup_write_enable,"ax",%progbits
+ 721              		.align	1
+ 722              		.global	pmu_backup_write_enable
+ 723              		.syntax unified
+ 724              		.thumb
+ 725              		.thumb_func
+ 727              	pmu_backup_write_enable:
+ 728              	.LFB130:
+ 308:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      enable backup domain write
+ 311:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ 312:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 313:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 314:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 315:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_backup_write_enable(void)
+ 316:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 729              		.loc 1 316 1 is_stmt 1 view -0
+ 730              		.cfi_startproc
+ 731              		@ args = 0, pretend = 0, frame = 0
+ 732              		@ frame_needed = 0, uses_anonymous_args = 0
+ 733              		@ link register save eliminated.
+ 317:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= PMU_CTL_BKPWEN;
+ 734              		.loc 1 317 5 view .LVU159
+ 735 0000 024A     		ldr	r2, .L48
+ 736 0002 1368     		ldr	r3, [r2]
+ 737              		.loc 1 317 13 is_stmt 0 view .LVU160
+ 738 0004 43F48073 		orr	r3, r3, #256
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 25
+
+
+ 739 0008 1360     		str	r3, [r2]
+ 318:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 740              		.loc 1 318 1 view .LVU161
+ 741 000a 7047     		bx	lr
+ 742              	.L49:
+ 743              		.align	2
+ 744              	.L48:
+ 745 000c 00700040 		.word	1073770496
+ 746              		.cfi_endproc
+ 747              	.LFE130:
+ 749              		.section	.text.pmu_backup_write_disable,"ax",%progbits
+ 750              		.align	1
+ 751              		.global	pmu_backup_write_disable
+ 752              		.syntax unified
+ 753              		.thumb
+ 754              		.thumb_func
+ 756              	pmu_backup_write_disable:
+ 757              	.LFB131:
+ 319:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 320:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      disable backup domain write
+ 322:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ 323:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_backup_write_disable(void)
+ 327:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 758              		.loc 1 327 1 is_stmt 1 view -0
+ 759              		.cfi_startproc
+ 760              		@ args = 0, pretend = 0, frame = 0
+ 761              		@ frame_needed = 0, uses_anonymous_args = 0
+ 762              		@ link register save eliminated.
+ 328:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_BKPWEN;
+ 763              		.loc 1 328 5 view .LVU163
+ 764 0000 024A     		ldr	r2, .L51
+ 765 0002 1368     		ldr	r3, [r2]
+ 766              		.loc 1 328 13 is_stmt 0 view .LVU164
+ 767 0004 23F48073 		bic	r3, r3, #256
+ 768 0008 1360     		str	r3, [r2]
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 769              		.loc 1 329 1 view .LVU165
+ 770 000a 7047     		bx	lr
+ 771              	.L52:
+ 772              		.align	2
+ 773              	.L51:
+ 774 000c 00700040 		.word	1073770496
+ 775              		.cfi_endproc
+ 776              	.LFE131:
+ 778              		.section	.text.pmu_wakeup_pin_enable,"ax",%progbits
+ 779              		.align	1
+ 780              		.global	pmu_wakeup_pin_enable
+ 781              		.syntax unified
+ 782              		.thumb
+ 783              		.thumb_func
+ 785              	pmu_wakeup_pin_enable:
+ 786              	.LFB132:
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 26
+
+
+ 331:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 332:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      enable wakeup pin
+ 333:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ 334:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 335:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 336:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 337:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_wakeup_pin_enable(void)
+ 338:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 787              		.loc 1 338 1 is_stmt 1 view -0
+ 788              		.cfi_startproc
+ 789              		@ args = 0, pretend = 0, frame = 0
+ 790              		@ frame_needed = 0, uses_anonymous_args = 0
+ 791              		@ link register save eliminated.
+ 339:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CS |= PMU_CS_WUPEN;
+ 792              		.loc 1 339 5 view .LVU167
+ 793 0000 024A     		ldr	r2, .L54
+ 794 0002 5368     		ldr	r3, [r2, #4]
+ 795              		.loc 1 339 12 is_stmt 0 view .LVU168
+ 796 0004 43F48073 		orr	r3, r3, #256
+ 797 0008 5360     		str	r3, [r2, #4]
+ 340:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 798              		.loc 1 340 1 view .LVU169
+ 799 000a 7047     		bx	lr
+ 800              	.L55:
+ 801              		.align	2
+ 802              	.L54:
+ 803 000c 00700040 		.word	1073770496
+ 804              		.cfi_endproc
+ 805              	.LFE132:
+ 807              		.section	.text.pmu_wakeup_pin_disable,"ax",%progbits
+ 808              		.align	1
+ 809              		.global	pmu_wakeup_pin_disable
+ 810              		.syntax unified
+ 811              		.thumb
+ 812              		.thumb_func
+ 814              	pmu_wakeup_pin_disable:
+ 815              	.LFB133:
+ 341:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 342:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      disable wakeup pin
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  none
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 346:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 347:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_wakeup_pin_disable(void)
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 816              		.loc 1 349 1 is_stmt 1 view -0
+ 817              		.cfi_startproc
+ 818              		@ args = 0, pretend = 0, frame = 0
+ 819              		@ frame_needed = 0, uses_anonymous_args = 0
+ 820              		@ link register save eliminated.
+ 350:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CS &= ~PMU_CS_WUPEN;
+ 821              		.loc 1 350 5 view .LVU171
+ 822 0000 024A     		ldr	r2, .L57
+ 823 0002 5368     		ldr	r3, [r2, #4]
+ 824              		.loc 1 350 12 is_stmt 0 view .LVU172
+ 825 0004 23F48073 		bic	r3, r3, #256
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 27
+
+
+ 826 0008 5360     		str	r3, [r2, #4]
+ 351:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 827              		.loc 1 351 1 view .LVU173
+ 828 000a 7047     		bx	lr
+ 829              	.L58:
+ 830              		.align	2
+ 831              	.L57:
+ 832 000c 00700040 		.word	1073770496
+ 833              		.cfi_endproc
+ 834              	.LFE133:
+ 836              		.section	.text.pmu_flag_get,"ax",%progbits
+ 837              		.align	1
+ 838              		.global	pmu_flag_get
+ 839              		.syntax unified
+ 840              		.thumb
+ 841              		.thumb_func
+ 843              	pmu_flag_get:
+ 844              	.LVL16:
+ 845              	.LFB134:
+ 352:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 354:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      get flag state
+ 355:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  flag:
+ 356:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_WAKEUP: wakeup flag
+ 357:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_STANDBY: standby flag
+ 358:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_LVD: lvd flag
+ 359:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_LDOVSRF: LDO voltage select ready flag
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_HDRF: high-driver ready flag
+ 361:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_HDSRF: high-driver switch ready flag
+ 362:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_LDRF: low-driver mode ready flag
+ 363:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 364:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     FlagStatus SET or RESET
+ 365:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 366:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** FlagStatus pmu_flag_get(uint32_t flag)
+ 367:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 846              		.loc 1 367 1 is_stmt 1 view -0
+ 847              		.cfi_startproc
+ 848              		@ args = 0, pretend = 0, frame = 0
+ 849              		@ frame_needed = 0, uses_anonymous_args = 0
+ 850              		@ link register save eliminated.
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     if(PMU_CS & flag) {
+ 851              		.loc 1 368 5 view .LVU175
+ 852              		.loc 1 368 8 is_stmt 0 view .LVU176
+ 853 0000 034B     		ldr	r3, .L62
+ 854 0002 5B68     		ldr	r3, [r3, #4]
+ 855              		.loc 1 368 7 view .LVU177
+ 856 0004 0342     		tst	r3, r0
+ 857 0006 01D0     		beq	.L61
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         return  SET;
+ 858              		.loc 1 369 17 view .LVU178
+ 859 0008 0120     		movs	r0, #1
+ 860              	.LVL17:
+ 861              		.loc 1 369 17 view .LVU179
+ 862 000a 7047     		bx	lr
+ 863              	.LVL18:
+ 864              	.L61:
+ 370:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     } else {
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 28
+
+
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         return  RESET;
+ 865              		.loc 1 371 17 view .LVU180
+ 866 000c 0020     		movs	r0, #0
+ 867              	.LVL19:
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 373:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 868              		.loc 1 373 1 view .LVU181
+ 869 000e 7047     		bx	lr
+ 870              	.L63:
+ 871              		.align	2
+ 872              	.L62:
+ 873 0010 00700040 		.word	1073770496
+ 874              		.cfi_endproc
+ 875              	.LFE134:
+ 877              		.section	.text.pmu_highdriver_switch_select,"ax",%progbits
+ 878              		.align	1
+ 879              		.global	pmu_highdriver_switch_select
+ 880              		.syntax unified
+ 881              		.thumb
+ 882              		.thumb_func
+ 884              	pmu_highdriver_switch_select:
+ 885              	.LVL20:
+ 886              	.LFB120:
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* wait for HDRF flag set */
+ 887              		.loc 1 115 1 is_stmt 1 view -0
+ 888              		.cfi_startproc
+ 889              		@ args = 0, pretend = 0, frame = 0
+ 890              		@ frame_needed = 0, uses_anonymous_args = 0
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     /* wait for HDRF flag set */
+ 891              		.loc 1 115 1 is_stmt 0 view .LVU183
+ 892 0000 10B5     		push	{r4, lr}
+ 893              	.LCFI4:
+ 894              		.cfi_def_cfa_offset 8
+ 895              		.cfi_offset 4, -8
+ 896              		.cfi_offset 14, -4
+ 897 0002 0446     		mov	r4, r0
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 898              		.loc 1 117 5 is_stmt 1 view .LVU184
+ 899              	.LVL21:
+ 900              	.L65:
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL &= ~PMU_CTL_HDS;
+ 901              		.loc 1 118 5 discriminator 1 view .LVU185
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 902              		.loc 1 117 15 discriminator 1 view .LVU186
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 903              		.loc 1 117 18 is_stmt 0 discriminator 1 view .LVU187
+ 904 0004 4FF48030 		mov	r0, #65536
+ 905 0008 FFF7FEFF 		bl	pmu_flag_get
+ 906              	.LVL22:
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 907              		.loc 1 117 15 discriminator 1 view .LVU188
+ 908 000c 0128     		cmp	r0, #1
+ 909 000e F9D1     		bne	.L65
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= highdr_switch;
+ 910              		.loc 1 119 5 is_stmt 1 view .LVU189
+ 911 0010 044B     		ldr	r3, .L67
+ 912 0012 1A68     		ldr	r2, [r3]
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 29
+
+
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     PMU_CTL |= highdr_switch;
+ 913              		.loc 1 119 13 is_stmt 0 view .LVU190
+ 914 0014 22F40032 		bic	r2, r2, #131072
+ 915 0018 1A60     		str	r2, [r3]
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 916              		.loc 1 120 5 is_stmt 1 view .LVU191
+ 917 001a 1A68     		ldr	r2, [r3]
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 918              		.loc 1 120 13 is_stmt 0 view .LVU192
+ 919 001c 2243     		orrs	r2, r2, r4
+ 920 001e 1A60     		str	r2, [r3]
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 921              		.loc 1 121 1 view .LVU193
+ 922 0020 10BD     		pop	{r4, pc}
+ 923              	.LVL23:
+ 924              	.L68:
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 925              		.loc 1 121 1 view .LVU194
+ 926 0022 00BF     		.align	2
+ 927              	.L67:
+ 928 0024 00700040 		.word	1073770496
+ 929              		.cfi_endproc
+ 930              	.LFE120:
+ 932              		.section	.text.pmu_flag_clear,"ax",%progbits
+ 933              		.align	1
+ 934              		.global	pmu_flag_clear
+ 935              		.syntax unified
+ 936              		.thumb
+ 937              		.thumb_func
+ 939              	pmu_flag_clear:
+ 940              	.LVL24:
+ 941              	.LFB135:
+ 374:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** 
+ 375:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** /*!
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \brief      clear flag bit
+ 377:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[in]  flag:
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_RESET_WAKEUP: reset wakeup flag
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****       \arg        PMU_FLAG_RESET_STANDBY: reset standby flag
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \param[out] none
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     \retval     none
+ 382:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** */
+ 383:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** void pmu_flag_clear(uint32_t flag)
+ 384:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** {
+ 942              		.loc 1 384 1 is_stmt 1 view -0
+ 943              		.cfi_startproc
+ 944              		@ args = 0, pretend = 0, frame = 0
+ 945              		@ frame_needed = 0, uses_anonymous_args = 0
+ 946              		@ link register save eliminated.
+ 385:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     switch(flag) {
+ 947              		.loc 1 385 5 view .LVU196
+ 948 0000 10B1     		cbz	r0, .L70
+ 949 0002 0128     		cmp	r0, #1
+ 950 0004 06D0     		beq	.L71
+ 951 0006 7047     		bx	lr
+ 952              	.L70:
+ 386:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     case PMU_FLAG_RESET_WAKEUP:
+ 387:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         /* reset wakeup flag */
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 30
+
+
+ 388:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         PMU_CTL |= PMU_CTL_WURST;
+ 953              		.loc 1 388 9 view .LVU197
+ 954 0008 054A     		ldr	r2, .L73
+ 955 000a 1368     		ldr	r3, [r2]
+ 956              		.loc 1 388 17 is_stmt 0 view .LVU198
+ 957 000c 43F00403 		orr	r3, r3, #4
+ 958 0010 1360     		str	r3, [r2]
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         break;
+ 959              		.loc 1 389 9 is_stmt 1 view .LVU199
+ 960 0012 7047     		bx	lr
+ 961              	.L71:
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     case PMU_FLAG_RESET_STANDBY:
+ 391:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         /* reset standby flag */
+ 392:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         PMU_CTL |= PMU_CTL_STBRST;
+ 962              		.loc 1 392 9 view .LVU200
+ 963 0014 024A     		ldr	r2, .L73
+ 964 0016 1368     		ldr	r3, [r2]
+ 965              		.loc 1 392 17 is_stmt 0 view .LVU201
+ 966 0018 43F00803 		orr	r3, r3, #8
+ 967 001c 1360     		str	r3, [r2]
+ 393:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         break;
+ 968              		.loc 1 393 9 is_stmt 1 view .LVU202
+ 394:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     default :
+ 395:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****         break;
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c ****     }
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_pmu.c **** }
+ 969              		.loc 1 397 1 is_stmt 0 view .LVU203
+ 970 001e 7047     		bx	lr
+ 971              	.L74:
+ 972              		.align	2
+ 973              	.L73:
+ 974 0020 00700040 		.word	1073770496
+ 975              		.cfi_endproc
+ 976              	.LFE135:
+ 978              		.section	.bss.reg_snap.0,"aw",%nobits
+ 979              		.align	2
+ 982              	reg_snap.0:
+ 983 0000 00000000 		.space	16
+ 983      00000000 
+ 983      00000000 
+ 983      00000000 
+ 984              		.text
+ 985              	.Letext0:
+ 986              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 987              		.file 4 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 988              		.file 5 "CMSIS/core_cm4.h"
+ 989              		.file 6 "CMSIS/GD/GD32F30x/Include/gd32f30x.h"
+ 990              		.file 7 "GD32F30x_standard_peripheral/Include/gd32f30x_rcu.h"
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 31
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_pmu.c
+  C:\Temp\ccBdxJFX.s:21     .text.pmu_deinit:00000000 $t
+  C:\Temp\ccBdxJFX.s:27     .text.pmu_deinit:00000000 pmu_deinit
+  C:\Temp\ccBdxJFX.s:52     .text.pmu_lvd_select:00000000 $t
+  C:\Temp\ccBdxJFX.s:58     .text.pmu_lvd_select:00000000 pmu_lvd_select
+  C:\Temp\ccBdxJFX.s:92     .text.pmu_lvd_select:00000024 $d
+  C:\Temp\ccBdxJFX.s:97     .text.pmu_ldo_output_select:00000000 $t
+  C:\Temp\ccBdxJFX.s:103    .text.pmu_ldo_output_select:00000000 pmu_ldo_output_select
+  C:\Temp\ccBdxJFX.s:127    .text.pmu_ldo_output_select:00000014 $d
+  C:\Temp\ccBdxJFX.s:132    .text.pmu_lvd_disable:00000000 $t
+  C:\Temp\ccBdxJFX.s:138    .text.pmu_lvd_disable:00000000 pmu_lvd_disable
+  C:\Temp\ccBdxJFX.s:156    .text.pmu_lvd_disable:0000000c $d
+  C:\Temp\ccBdxJFX.s:161    .text.pmu_highdriver_mode_enable:00000000 $t
+  C:\Temp\ccBdxJFX.s:167    .text.pmu_highdriver_mode_enable:00000000 pmu_highdriver_mode_enable
+  C:\Temp\ccBdxJFX.s:185    .text.pmu_highdriver_mode_enable:0000000c $d
+  C:\Temp\ccBdxJFX.s:190    .text.pmu_highdriver_mode_disable:00000000 $t
+  C:\Temp\ccBdxJFX.s:196    .text.pmu_highdriver_mode_disable:00000000 pmu_highdriver_mode_disable
+  C:\Temp\ccBdxJFX.s:214    .text.pmu_highdriver_mode_disable:0000000c $d
+  C:\Temp\ccBdxJFX.s:219    .text.pmu_lowdriver_mode_enable:00000000 $t
+  C:\Temp\ccBdxJFX.s:225    .text.pmu_lowdriver_mode_enable:00000000 pmu_lowdriver_mode_enable
+  C:\Temp\ccBdxJFX.s:243    .text.pmu_lowdriver_mode_enable:0000000c $d
+  C:\Temp\ccBdxJFX.s:248    .text.pmu_lowdriver_mode_disable:00000000 $t
+  C:\Temp\ccBdxJFX.s:254    .text.pmu_lowdriver_mode_disable:00000000 pmu_lowdriver_mode_disable
+  C:\Temp\ccBdxJFX.s:272    .text.pmu_lowdriver_mode_disable:0000000c $d
+  C:\Temp\ccBdxJFX.s:277    .text.pmu_lowpower_driver_config:00000000 $t
+  C:\Temp\ccBdxJFX.s:283    .text.pmu_lowpower_driver_config:00000000 pmu_lowpower_driver_config
+  C:\Temp\ccBdxJFX.s:307    .text.pmu_lowpower_driver_config:00000014 $d
+  C:\Temp\ccBdxJFX.s:312    .text.pmu_normalpower_driver_config:00000000 $t
+  C:\Temp\ccBdxJFX.s:318    .text.pmu_normalpower_driver_config:00000000 pmu_normalpower_driver_config
+  C:\Temp\ccBdxJFX.s:342    .text.pmu_normalpower_driver_config:00000014 $d
+  C:\Temp\ccBdxJFX.s:347    .text.pmu_to_sleepmode:00000000 $t
+  C:\Temp\ccBdxJFX.s:353    .text.pmu_to_sleepmode:00000000 pmu_to_sleepmode
+  C:\Temp\ccBdxJFX.s:408    .text.pmu_to_sleepmode:00000014 $d
+  C:\Temp\ccBdxJFX.s:413    .text.pmu_to_deepsleepmode:00000000 $t
+  C:\Temp\ccBdxJFX.s:419    .text.pmu_to_deepsleepmode:00000000 pmu_to_deepsleepmode
+  C:\Temp\ccBdxJFX.s:633    .text.pmu_to_deepsleepmode:000000b4 $d
+  C:\Temp\ccBdxJFX.s:982    .bss.reg_snap.0:00000000 reg_snap.0
+  C:\Temp\ccBdxJFX.s:645    .text.pmu_to_standbymode:00000000 $t
+  C:\Temp\ccBdxJFX.s:651    .text.pmu_to_standbymode:00000000 pmu_to_standbymode
+  C:\Temp\ccBdxJFX.s:714    .text.pmu_to_standbymode:00000044 $d
+  C:\Temp\ccBdxJFX.s:721    .text.pmu_backup_write_enable:00000000 $t
+  C:\Temp\ccBdxJFX.s:727    .text.pmu_backup_write_enable:00000000 pmu_backup_write_enable
+  C:\Temp\ccBdxJFX.s:745    .text.pmu_backup_write_enable:0000000c $d
+  C:\Temp\ccBdxJFX.s:750    .text.pmu_backup_write_disable:00000000 $t
+  C:\Temp\ccBdxJFX.s:756    .text.pmu_backup_write_disable:00000000 pmu_backup_write_disable
+  C:\Temp\ccBdxJFX.s:774    .text.pmu_backup_write_disable:0000000c $d
+  C:\Temp\ccBdxJFX.s:779    .text.pmu_wakeup_pin_enable:00000000 $t
+  C:\Temp\ccBdxJFX.s:785    .text.pmu_wakeup_pin_enable:00000000 pmu_wakeup_pin_enable
+  C:\Temp\ccBdxJFX.s:803    .text.pmu_wakeup_pin_enable:0000000c $d
+  C:\Temp\ccBdxJFX.s:808    .text.pmu_wakeup_pin_disable:00000000 $t
+  C:\Temp\ccBdxJFX.s:814    .text.pmu_wakeup_pin_disable:00000000 pmu_wakeup_pin_disable
+  C:\Temp\ccBdxJFX.s:832    .text.pmu_wakeup_pin_disable:0000000c $d
+  C:\Temp\ccBdxJFX.s:837    .text.pmu_flag_get:00000000 $t
+  C:\Temp\ccBdxJFX.s:843    .text.pmu_flag_get:00000000 pmu_flag_get
+  C:\Temp\ccBdxJFX.s:873    .text.pmu_flag_get:00000010 $d
+  C:\Temp\ccBdxJFX.s:878    .text.pmu_highdriver_switch_select:00000000 $t
+ARM GAS  C:\Temp\ccBdxJFX.s 			page 32
+
+
+  C:\Temp\ccBdxJFX.s:884    .text.pmu_highdriver_switch_select:00000000 pmu_highdriver_switch_select
+  C:\Temp\ccBdxJFX.s:928    .text.pmu_highdriver_switch_select:00000024 $d
+  C:\Temp\ccBdxJFX.s:933    .text.pmu_flag_clear:00000000 $t
+  C:\Temp\ccBdxJFX.s:939    .text.pmu_flag_clear:00000000 pmu_flag_clear
+  C:\Temp\ccBdxJFX.s:974    .text.pmu_flag_clear:00000020 $d
+  C:\Temp\ccBdxJFX.s:979    .bss.reg_snap.0:00000000 $d
+
+UNDEFINED SYMBOLS
+rcu_periph_reset_enable
+rcu_periph_reset_disable

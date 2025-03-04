@@ -1,0 +1,1849 @@
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"system_gd32f30x.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c"
+  20              		.section	.text.system_clock_120m_hxtal,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	system_clock_120m_hxtal:
+  27              	.LFB118:
+   1:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+   2:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \file  system_gd32f30x.c
+   3:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief CMSIS Cortex-M4 Device Peripheral Access Layer Source File for
+   4:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****            GD32F30x Device Series
+   5:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+   6:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+   7:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* Copyright (c) 2012 ARM LIMITED
+   8:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    Copyright (c) 2023, GigaDevice Semiconductor Inc.
+   9:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  10:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    All rights reserved.
+  11:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    Redistribution and use in source and binary forms, with or without
+  12:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    modification, are permitted provided that the following conditions are met:
+  13:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    - Redistributions of source code must retain the above copyright
+  14:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****      notice, this list of conditions and the following disclaimer.
+  15:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    - Redistributions in binary form must reproduce the above copyright
+  16:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****      notice, this list of conditions and the following disclaimer in the
+  17:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****      documentation and/or other materials provided with the distribution.
+  18:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    - Neither the name of ARM nor the names of its contributors may be used
+  19:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****      to endorse or promote products derived from this software without
+  20:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****      specific prior written permission.
+  21:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    *
+  22:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  23:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  24:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  25:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    ARE DISCLAIMED. IN NO EVENT SHALL COPYRIGHT HOLDERS AND CONTRIBUTORS BE
+  26:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  27:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  28:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  29:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  30:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  31:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 2
+
+
+  32:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    POSSIBILITY OF SUCH DAMAGE.
+  33:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****    ---------------------------------------------------------------------------*/
+  34:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  35:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* This file refers the CMSIS standard, some adjustments are made according to GigaDevice chips */
+  36:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  37:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #include "gd32f30x.h"
+  38:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  39:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* system frequency define */
+  40:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define __IRC8M           (IRC8M_VALUE)            /* internal 8 MHz RC oscillator frequency */
+  41:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define __HXTAL           (HXTAL_VALUE)            /* high speed crystal oscillator frequency */
+  42:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define __SYS_OSC_CLK     (__IRC8M)                /* main oscillator frequency */
+  43:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  44:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* select a system clock by uncommenting the following line */
+  45:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* use IRC8M */
+  46:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_IRC8M                    (uint32_t)(__IRC8M) 
+  47:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_48M_PLL_IRC8M            (uint32_t)(48000000)
+  48:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_72M_PLL_IRC8M            (uint32_t)(72000000)
+  49:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_108M_PLL_IRC8M           (uint32_t)(108000000)
+  50:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_120M_PLL_IRC8M           (uint32_t)(120000000)
+  51:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  52:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* use HXTAL(XD series CK_HXTAL = 8M, CL series CK_HXTAL = 25M) */
+  53:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_HXTAL                    (uint32_t)(__HXTAL)
+  54:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_48M_PLL_HXTAL            (uint32_t)(48000000)
+  55:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_72M_PLL_HXTAL            (uint32_t)(72000000)
+  56:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** //#define __SYSTEM_CLOCK_108M_PLL_HXTAL           (uint32_t)(108000000)
+  57:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define __SYSTEM_CLOCK_120M_PLL_HXTAL           (uint32_t)(120000000)
+  58:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  59:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define RCU_MODIFY(__delay)     do{                                     \
+  60:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                     volatile uint32_t i;                \
+  61:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                     if(0 != __delay){                   \
+  62:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                         RCU_CFG0 |= RCU_AHB_CKSYS_DIV2; \
+  63:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                         for(i=0; i<__delay; i++){       \
+  64:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                         }                               \
+  65:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                         RCU_CFG0 |= RCU_AHB_CKSYS_DIV4; \
+  66:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                         for(i=0; i<__delay; i++){       \
+  67:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                         }                               \
+  68:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                     }                                   \
+  69:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                                 }while(0)
+  70:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  71:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define SEL_IRC8M       0x00U
+  72:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define SEL_HXTAL       0x01U
+  73:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #define SEL_PLL         0x02U
+  74:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  75:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* set the system clock frequency and declare the system clock configuration function */
+  76:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #ifdef __SYSTEM_CLOCK_IRC8M
+  77:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_IRC8M;
+  78:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_8m_irc8m(void);
+  79:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_48M_PLL_IRC8M)
+  80:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_48M_PLL_IRC8M;
+  81:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_48m_irc8m(void);
+  82:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_72M_PLL_IRC8M)
+  83:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_72M_PLL_IRC8M;
+  84:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_72m_irc8m(void);
+  85:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_108M_PLL_IRC8M)
+  86:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_108M_PLL_IRC8M;
+  87:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_108m_irc8m(void);
+  88:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_120M_PLL_IRC8M)
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 3
+
+
+  89:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_120M_PLL_IRC8M;
+  90:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_120m_irc8m(void);
+  91:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+  92:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_HXTAL)
+  93:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_HXTAL;
+  94:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_hxtal(void);
+  95:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_48M_PLL_HXTAL)
+  96:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_48M_PLL_HXTAL;
+  97:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_48m_hxtal(void);
+  98:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_72M_PLL_HXTAL)
+  99:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_72M_PLL_HXTAL;
+ 100:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_72m_hxtal(void);
+ 101:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_108M_PLL_HXTAL)
+ 102:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_108M_PLL_HXTAL;
+ 103:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_108m_hxtal(void);
+ 104:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_120M_PLL_HXTAL)
+ 105:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** uint32_t SystemCoreClock = __SYSTEM_CLOCK_120M_PLL_HXTAL;
+ 106:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_120m_hxtal(void);
+ 107:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* __SYSTEM_CLOCK_IRC8M */
+ 108:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 109:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /* configure the system clock */
+ 110:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_config(void);
+ 111:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 112:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 113:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      setup the microcontroller system, initialize the system
+ 114:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 115:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 116:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 117:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 118:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** void SystemInit (void)
+ 119:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 120:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****   /* FPU settings */
+ 121:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #if (__FPU_PRESENT == 1) && (__FPU_USED == 1)
+ 122:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     SCB->CPACR |= ((3UL << 10*2)|(3UL << 11*2));  /* set CP10 and CP11 Full Access */
+ 123:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif
+ 124:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* reset the RCU clock configuration to the default reset state */
+ 125:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* Set IRC8MEN bit */
+ 126:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_IRC8MEN;
+ 127:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 128:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_MODIFY(0x50);
+ 130:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 131:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 132:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 133:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #if (defined(GD32F30X_HD) || defined(GD32F30X_XD))
+ 134:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* reset HXTALEN, CKMEN and PLLEN bits */
+ 135:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL &= ~(RCU_CTL_PLLEN | RCU_CTL_CKMEN | RCU_CTL_HXTALEN);
+ 136:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* disable all interrupts */
+ 137:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_INT = 0x009f0000U;
+ 138:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 139:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* Reset HXTALEN, CKMEN, PLLEN, PLL1EN and PLL2EN bits */
+ 140:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL &= ~(RCU_CTL_PLLEN |RCU_CTL_PLL1EN | RCU_CTL_PLL2EN | RCU_CTL_CKMEN | RCU_CTL_HXTALEN);
+ 141:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* disable all interrupts */
+ 142:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_INT = 0x00ff0000U;
+ 143:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif
+ 144:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 145:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* reset HXTALBPS bit */
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 4
+
+
+ 146:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL &= ~(RCU_CTL_HXTALBPS);
+ 147:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 148:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* Reset CFG0 and CFG1 registers */
+ 149:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 = 0x00000000U;
+ 150:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 = 0x00000000U;
+ 151:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 152:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* configure the system clock source, PLL Multiplier, AHB/APBx prescalers and Flash settings */
+ 153:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_config();
+ 154:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 155:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 156:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock
+ 157:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 158:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 159:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 160:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 161:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_config(void)
+ 162:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 163:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #ifdef __SYSTEM_CLOCK_IRC8M
+ 164:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_8m_irc8m();
+ 165:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_48M_PLL_IRC8M)
+ 166:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_48m_irc8m();
+ 167:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_72M_PLL_IRC8M)
+ 168:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_72m_irc8m();
+ 169:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_108M_PLL_IRC8M)
+ 170:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_108m_irc8m();
+ 171:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_120M_PLL_IRC8M)
+ 172:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_120m_irc8m();
+ 173:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 174:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_HXTAL)
+ 175:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_hxtal();
+ 176:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_48M_PLL_HXTAL)
+ 177:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_48m_hxtal();
+ 178:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_72M_PLL_HXTAL)
+ 179:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_72m_hxtal();
+ 180:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_108M_PLL_HXTAL)
+ 181:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_108m_hxtal();
+ 182:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_120M_PLL_HXTAL)
+ 183:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     system_clock_120m_hxtal();
+ 184:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* __SYSTEM_CLOCK_IRC8M */
+ 185:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 186:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 187:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #ifdef __SYSTEM_CLOCK_IRC8M
+ 188:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 189:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 8M by IRC8M
+ 190:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 191:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 192:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 193:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 194:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_8m_irc8m(void)
+ 195:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 196:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 197:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 198:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 199:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable IRC8M */
+ 200:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_IRC8MEN;
+ 201:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 202:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until IRC8M is stable or the startup time is longer than IRC8M_STARTUP_TIMEOUT */
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 5
+
+
+ 203:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 204:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 205:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_IRC8MSTB);
+ 206:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 207:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while((0U == stab_flag) && (IRC8M_STARTUP_TIMEOUT != timeout));
+ 208:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 209:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 210:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 211:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 212:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 213:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 214:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 215:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 216:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 217:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 218:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 219:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 220:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 221:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 222:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select IRC8M as system clock */
+ 223:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 224:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_IRC8M;
+ 225:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 226:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until IRC8M is selected as system clock */
+ 227:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U != (RCU_CFG0 & RCU_SCSS_IRC8M)){
+ 228:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 229:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 230:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 231:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_48M_PLL_IRC8M)
+ 232:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 233:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 48M by PLL which selects IRC8M as its clock source
+ 234:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 235:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 236:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 237:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 238:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_48m_irc8m(void)
+ 239:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 240:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 241:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 242:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 243:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable IRC8M */
+ 244:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_IRC8MEN;
+ 245:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 246:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until IRC8M is stable or the startup time is longer than IRC8M_STARTUP_TIMEOUT */
+ 247:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 248:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 249:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_IRC8MSTB);
+ 250:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 251:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while((0U == stab_flag) && (IRC8M_STARTUP_TIMEOUT != timeout));
+ 252:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 253:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 254:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 255:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****       while(1){
+ 256:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****       }
+ 257:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 258:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 259:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* LDO output voltage high mode */
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 6
+
+
+ 260:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+ 261:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+ 262:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 263:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* IRC8M is stable */
+ 264:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 265:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 266:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 267:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 268:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 269:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 270:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 271:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_IRC8M/2) * 12 = 48 MHz */
+ 272:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 273:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL12;
+ 274:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 275:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 276:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 277:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 278:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 279:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 280:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 281:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 282:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 283:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 284:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 285:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 286:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 287:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 288:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ 289:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 290:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     } 
+ 291:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 292:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ 293:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 294:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 295:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 296:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 297:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 298:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 299:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 300:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 301:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_72M_PLL_IRC8M)
+ 302:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 303:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 72M by PLL which selects IRC8M as its clock source
+ 304:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 305:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 306:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 307:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 308:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_72m_irc8m(void)
+ 309:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 310:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 311:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 312:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 313:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable IRC8M */
+ 314:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_IRC8MEN;
+ 315:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 316:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until IRC8M is stable or the startup time is longer than IRC8M_STARTUP_TIMEOUT */
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 7
+
+
+ 317:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 318:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 319:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_IRC8MSTB);
+ 320:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (IRC8M_STARTUP_TIMEOUT != timeout));
+ 321:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 322:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 323:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 324:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 325:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 326:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 327:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 328:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* LDO output voltage high mode */
+ 329:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+ 330:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+ 331:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 332:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* IRC8M is stable */
+ 333:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 334:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 335:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 336:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 337:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 338:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 339:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 340:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_IRC8M/2) * 18 = 72 MHz */
+ 341:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 342:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL18;
+ 343:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 344:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 345:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 346:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 347:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 348:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 349:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 350:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 351:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 352:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 353:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 354:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 355:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 356:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 357:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ 358:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 359:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 360:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 361:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ 362:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 363:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 364:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 365:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 366:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 367:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 368:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 369:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 370:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_108M_PLL_IRC8M)
+ 371:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 372:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 108M by PLL which selects IRC8M as its clock source
+ 373:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 8
+
+
+ 374:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 375:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 376:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 377:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_108m_irc8m(void)
+ 378:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 379:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 380:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 381:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 382:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable IRC8M */
+ 383:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_IRC8MEN;
+ 384:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 385:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until IRC8M is stable or the startup time is longer than IRC8M_STARTUP_TIMEOUT */
+ 386:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 387:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 388:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_IRC8MSTB);
+ 389:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (IRC8M_STARTUP_TIMEOUT != timeout));
+ 390:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 391:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 392:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 393:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 394:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 395:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 396:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 397:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* LDO output voltage high mode */
+ 398:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+ 399:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+ 400:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 401:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* IRC8M is stable */
+ 402:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 403:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 404:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 405:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 406:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 407:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 408:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 409:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_IRC8M/2) * 27 = 108 MHz */
+ 410:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 411:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL27;
+ 412:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 413:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 414:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 415:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 416:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 417:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 418:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 419:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 420:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 421:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 422:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 423:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 424:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 425:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 426:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ 427:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 428:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 429:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 430:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 9
+
+
+ 431:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 432:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 433:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 434:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 435:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 436:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 437:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 438:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 439:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_120M_PLL_IRC8M)
+ 440:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 441:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 120M by PLL which selects IRC8M as its clock source
+ 442:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 443:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 444:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 445:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 446:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_120m_irc8m(void)
+ 447:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 448:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 449:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 450:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 451:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable IRC8M */
+ 452:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_IRC8MEN;
+ 453:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 454:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until IRC8M is stable or the startup time is longer than IRC8M_STARTUP_TIMEOUT */
+ 455:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 456:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 457:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_IRC8MSTB);
+ 458:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (IRC8M_STARTUP_TIMEOUT != timeout));
+ 459:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 460:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 461:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 462:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 463:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 464:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 465:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 466:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* LDO output voltage high mode */
+ 467:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+ 468:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+ 469:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 470:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* IRC8M is stable */
+ 471:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 472:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 473:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 474:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 475:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 476:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 477:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 478:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_IRC8M/2) * 30 = 120 MHz */
+ 479:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 480:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL30;
+ 481:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 482:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 483:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 484:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 485:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 486:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 487:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 10
+
+
+ 488:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 489:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 490:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 491:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 492:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 493:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 494:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 495:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ 496:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 497:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 498:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 499:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ 500:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 501:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 502:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 503:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 504:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 505:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 506:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 507:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 508:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_HXTAL)
+ 509:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 510:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to HXTAL
+ 511:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 512:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 513:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 514:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 515:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_hxtal(void)
+ 516:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 517:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 518:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 519:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 520:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable HXTAL */
+ 521:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_HXTALEN;
+ 522:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 523:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until HXTAL is stable or the startup time is longer than HXTAL_STARTUP_TIMEOUT */
+ 524:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 525:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 526:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_HXTALSTB);
+ 527:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (HXTAL_STARTUP_TIMEOUT != timeout));
+ 528:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 529:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 530:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_HXTALSTB)){
+ 531:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 532:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 533:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 534:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 535:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 536:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 537:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 538:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 539:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 540:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 541:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 542:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select HXTAL as system clock */
+ 543:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 544:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_HXTAL;
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 11
+
+
+ 545:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 546:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until HXTAL is selected as system clock */
+ 547:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0 == (RCU_CFG0 & RCU_SCSS_HXTAL)){
+ 548:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 549:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 550:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 551:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_48M_PLL_HXTAL)
+ 552:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 553:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 48M by PLL which selects HXTAL(8M) as its clock sourc
+ 554:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 555:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 556:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 557:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 558:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_48m_hxtal(void)
+ 559:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 560:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 561:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 562:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 563:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable HXTAL */
+ 564:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_HXTALEN;
+ 565:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 566:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until HXTAL is stable or the startup time is longer than HXTAL_STARTUP_TIMEOUT */
+ 567:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 568:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 569:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_HXTALSTB);
+ 570:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (HXTAL_STARTUP_TIMEOUT != timeout));
+ 571:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 572:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 573:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_HXTALSTB)){
+ 574:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 575:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 576:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 577:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 578:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+ 579:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+ 580:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 581:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* HXTAL is stable */
+ 582:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 583:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 584:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 585:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 586:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 587:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 588:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 589:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #if (defined(GD32F30X_HD) || defined(GD32F30X_XD))
+ 590:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select HXTAL/2 as clock source */
+ 591:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLSEL | RCU_CFG0_PREDV0);
+ 592:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_CFG0_PREDV0);
+ 593:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 594:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_HXTAL/2) * 12 = 48 MHz */
+ 595:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 596:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL12;
+ 597:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 598:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 599:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_PREDIV0) * 12 = 48 MHz */ 
+ 600:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 601:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_PLL_MUL12);
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 12
+
+
+ 602:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 603:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PREDIV0 = (CK_HXTAL)/5 *8 /10 = 4 MHz */ 
+ 604:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 &= ~(RCU_CFG1_PLLPRESEL | RCU_CFG1_PREDV0SEL | RCU_CFG1_PLL1MF | RCU_CFG1_PREDV1 | RCU
+ 605:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 |= (RCU_PLLPRESRC_HXTAL | RCU_PREDV0SRC_CKPLL1 | RCU_PLL1_MUL8 | RCU_PREDV1_DIV5 | RCU
+ 606:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 607:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL1 */
+ 608:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLL1EN;
+ 609:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait till PLL1 is ready */
+ 610:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while((RCU_CTL & RCU_CTL_PLL1STB) == 0){
+ 611:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 612:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* GD32F30X_HD and GD32F30X_XD */
+ 613:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 614:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 615:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 616:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 617:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 618:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 619:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 620:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 621:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 622:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 623:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 624:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 625:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 626:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 627:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ 628:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 629:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 630:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 631:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ 632:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 633:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 634:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 635:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 636:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 637:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 638:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 639:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_72M_PLL_HXTAL)
+ 640:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 641:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 72M by PLL which selects HXTAL(8M) as its clock sourc
+ 642:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 643:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 644:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 645:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 646:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_72m_hxtal(void)
+ 647:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 648:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 649:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 650:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 651:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable HXTAL */
+ 652:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_HXTALEN;
+ 653:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 654:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until HXTAL is stable or the startup time is longer than HXTAL_STARTUP_TIMEOUT */
+ 655:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 656:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 657:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_HXTALSTB);
+ 658:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (HXTAL_STARTUP_TIMEOUT != timeout));
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 13
+
+
+ 659:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 660:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 661:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_HXTALSTB)){
+ 662:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 663:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 664:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 665:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 666:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+ 667:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+ 668:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 669:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* HXTAL is stable */
+ 670:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 671:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 672:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 673:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 674:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 675:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 676:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 677:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #if (defined(GD32F30X_HD) || defined(GD32F30X_XD))
+ 678:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select HXTAL/2 as clock source */
+ 679:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLSEL | RCU_CFG0_PREDV0);
+ 680:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_CFG0_PREDV0);
+ 681:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 682:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_HXTAL/2) * 18 = 72 MHz */
+ 683:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 684:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL18;
+ 685:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 686:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 687:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_PREDIV0) * 18 = 72 MHz */ 
+ 688:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 689:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_PLL_MUL18);
+ 690:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 691:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PREDIV0 = (CK_HXTAL)/5 *8 /10 = 4 MHz */ 
+ 692:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 &= ~(RCU_CFG1_PLLPRESEL | RCU_CFG1_PREDV0SEL | RCU_CFG1_PLL1MF | RCU_CFG1_PREDV1 | RCU
+ 693:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 |= (RCU_PLLPRESRC_HXTAL | RCU_PREDV0SRC_CKPLL1 | RCU_PLL1_MUL8 | RCU_PREDV1_DIV5 | RCU
+ 694:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 695:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL1 */
+ 696:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLL1EN;
+ 697:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait till PLL1 is ready */
+ 698:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while((RCU_CTL & RCU_CTL_PLL1STB) == 0){
+ 699:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 700:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* GD32F30X_HD and GD32F30X_XD */
+ 701:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 702:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 703:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 704:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 705:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 706:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 707:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 708:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 709:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 710:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 711:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 712:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 713:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 714:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 715:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 14
+
+
+ 716:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 717:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 718:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 719:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ 720:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 721:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 722:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 723:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 724:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 725:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 726:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 727:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 728:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_108M_PLL_HXTAL)
+ 729:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 730:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 108M by PLL which selects HXTAL(8M) as its clock sour
+ 731:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 732:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 733:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 734:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 735:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_108m_hxtal(void)
+ 736:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 737:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+ 738:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+ 739:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 740:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable HXTAL */
+ 741:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_HXTALEN;
+ 742:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 743:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until HXTAL is stable or the startup time is longer than HXTAL_STARTUP_TIMEOUT */
+ 744:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+ 745:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+ 746:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_HXTALSTB);
+ 747:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (HXTAL_STARTUP_TIMEOUT != timeout));
+ 748:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 749:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 750:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_HXTALSTB)){
+ 751:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+ 752:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 753:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 754:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 755:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+ 756:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+ 757:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 758:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* HXTAL is stable */
+ 759:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 760:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+ 761:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 762:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+ 763:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 764:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 765:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 766:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #if (defined(GD32F30X_HD) || defined(GD32F30X_XD))
+ 767:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select HXTAL/2 as clock source */
+ 768:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLSEL | RCU_CFG0_PREDV0);
+ 769:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_CFG0_PREDV0);
+ 770:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 771:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_HXTAL/2) * 27 = 108 MHz */
+ 772:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 15
+
+
+ 773:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL27;
+ 774:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 775:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 776:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_PREDIV0) * 27 = 108 MHz */ 
+ 777:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 778:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_PLL_MUL27);
+ 779:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 780:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PREDIV0 = (CK_HXTAL)/5 *8 /10 = 4 MHz */ 
+ 781:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 &= ~(RCU_CFG1_PLLPRESEL | RCU_CFG1_PREDV0SEL | RCU_CFG1_PLL1MF | RCU_CFG1_PREDV1 | RCU
+ 782:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 |= (RCU_PLLPRESRC_HXTAL | RCU_PREDV0SRC_CKPLL1 | RCU_PLL1_MUL8 | RCU_PREDV1_DIV5 | RCU
+ 783:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 784:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL1 */
+ 785:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLL1EN;
+ 786:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait till PLL1 is ready */
+ 787:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while((RCU_CTL & RCU_CTL_PLL1STB) == 0){
+ 788:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 789:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* GD32F30X_HD and GD32F30X_XD */
+ 790:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 791:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 792:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 793:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 794:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 795:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 796:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 797:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 798:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 799:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 800:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 801:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 802:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 803:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 804:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ 805:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 806:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 807:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 808:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ 809:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 810:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 811:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 812:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 813:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 814:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 815:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 816:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 817:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined (__SYSTEM_CLOCK_120M_PLL_HXTAL)
+ 818:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 819:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      configure the system clock to 120M by PLL which selects HXTAL(8M) as its clock sour
+ 820:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 821:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 822:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 823:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 824:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** static void system_clock_120m_hxtal(void)
+ 825:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+  28              		.loc 1 825 1 view -0
+  29              		.cfi_startproc
+  30              		@ args = 0, pretend = 0, frame = 0
+  31              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 16
+
+
+  32              		@ link register save eliminated.
+ 826:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t timeout = 0U;
+  33              		.loc 1 826 5 view .LVU1
+  34              	.LVL0:
+ 827:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+  35              		.loc 1 827 5 view .LVU2
+ 828:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 829:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable HXTAL */
+ 830:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_HXTALEN;
+  36              		.loc 1 830 5 view .LVU3
+  37 0000 334A     		ldr	r2, .L10
+  38 0002 1368     		ldr	r3, [r2]
+  39              		.loc 1 830 13 is_stmt 0 view .LVU4
+  40 0004 43F48033 		orr	r3, r3, #65536
+  41 0008 1360     		str	r3, [r2]
+ 826:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t stab_flag = 0U;
+  42              		.loc 1 826 14 view .LVU5
+  43 000a 0023     		movs	r3, #0
+  44              	.LVL1:
+  45              	.L3:
+ 831:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 832:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until HXTAL is stable or the startup time is longer than HXTAL_STARTUP_TIMEOUT */
+ 833:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     do{
+  46              		.loc 1 833 5 is_stmt 1 discriminator 2 view .LVU6
+ 834:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         timeout++;
+  47              		.loc 1 834 9 discriminator 2 view .LVU7
+  48              		.loc 1 834 16 is_stmt 0 discriminator 2 view .LVU8
+  49 000c 0133     		adds	r3, r3, #1
+  50              	.LVL2:
+ 835:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         stab_flag = (RCU_CTL & RCU_CTL_HXTALSTB);
+  51              		.loc 1 835 9 is_stmt 1 discriminator 2 view .LVU9
+  52              		.loc 1 835 22 is_stmt 0 discriminator 2 view .LVU10
+  53 000e 304A     		ldr	r2, .L10
+  54 0010 1268     		ldr	r2, [r2]
+  55              	.LVL3:
+ 836:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }while((0U == stab_flag) && (HXTAL_STARTUP_TIMEOUT != timeout));
+  56              		.loc 1 836 30 is_stmt 1 discriminator 2 view .LVU11
+  57 0012 12F4003F 		tst	r2, #131072
+  58 0016 03D1     		bne	.L2
+  59              		.loc 1 836 30 is_stmt 0 discriminator 1 view .LVU12
+  60 0018 4FF6FF72 		movw	r2, #65535
+  61              	.LVL4:
+  62              		.loc 1 836 30 discriminator 1 view .LVU13
+  63 001c 9342     		cmp	r3, r2
+  64 001e F5D1     		bne	.L3
+  65              	.L2:
+ 837:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 838:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* if fail */
+ 839:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     if(0U == (RCU_CTL & RCU_CTL_HXTALSTB)){
+  66              		.loc 1 839 5 is_stmt 1 view .LVU14
+  67              		.loc 1 839 15 is_stmt 0 view .LVU15
+  68 0020 2B4B     		ldr	r3, .L10
+  69              	.LVL5:
+  70              		.loc 1 839 15 view .LVU16
+  71 0022 1B68     		ldr	r3, [r3]
+  72              		.loc 1 839 7 view .LVU17
+  73 0024 13F4003F 		tst	r3, #131072
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 17
+
+
+  74 0028 00D1     		bne	.L4
+  75              	.L5:
+ 840:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+  76              		.loc 1 840 9 is_stmt 1 discriminator 1 view .LVU18
+ 841:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+  77              		.loc 1 841 9 discriminator 1 view .LVU19
+ 840:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         while(1){
+  78              		.loc 1 840 14 discriminator 1 view .LVU20
+  79 002a FEE7     		b	.L5
+  80              	.L4:
+ 842:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 843:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 844:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_APB1EN |= RCU_APB1EN_PMUEN;
+  81              		.loc 1 844 5 view .LVU21
+  82 002c 284B     		ldr	r3, .L10
+  83 002e DA69     		ldr	r2, [r3, #28]
+  84              		.loc 1 844 16 is_stmt 0 view .LVU22
+  85 0030 42F08052 		orr	r2, r2, #268435456
+  86 0034 DA61     		str	r2, [r3, #28]
+ 845:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_LDOVS;
+  87              		.loc 1 845 5 is_stmt 1 view .LVU23
+  88 0036 2749     		ldr	r1, .L10+4
+  89 0038 0A68     		ldr	r2, [r1]
+  90              		.loc 1 845 13 is_stmt 0 view .LVU24
+  91 003a 42F44042 		orr	r2, r2, #49152
+  92 003e 0A60     		str	r2, [r1]
+ 846:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 847:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* HXTAL is stable */
+ 848:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* AHB = SYSCLK */
+ 849:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_AHB_CKSYS_DIV1;
+  93              		.loc 1 849 5 is_stmt 1 view .LVU25
+  94              		.loc 1 849 14 is_stmt 0 view .LVU26
+  95 0040 5A68     		ldr	r2, [r3, #4]
+  96 0042 5A60     		str	r2, [r3, #4]
+ 850:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB2 = AHB/1 */
+ 851:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB2_CKAHB_DIV1;
+  97              		.loc 1 851 5 is_stmt 1 view .LVU27
+  98              		.loc 1 851 14 is_stmt 0 view .LVU28
+  99 0044 5A68     		ldr	r2, [r3, #4]
+ 100 0046 5A60     		str	r2, [r3, #4]
+ 852:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* APB1 = AHB/2 */
+ 853:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_APB1_CKAHB_DIV2;
+ 101              		.loc 1 853 5 is_stmt 1 view .LVU29
+ 102 0048 5A68     		ldr	r2, [r3, #4]
+ 103              		.loc 1 853 14 is_stmt 0 view .LVU30
+ 104 004a 42F48062 		orr	r2, r2, #1024
+ 105 004e 5A60     		str	r2, [r3, #4]
+ 854:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 855:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #if (defined(GD32F30X_HD) || defined(GD32F30X_XD))
+ 856:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select HXTAL/2 as clock source */
+ 857:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLSEL | RCU_CFG0_PREDV0);
+ 106              		.loc 1 857 5 is_stmt 1 view .LVU31
+ 107 0050 5A68     		ldr	r2, [r3, #4]
+ 108              		.loc 1 857 14 is_stmt 0 view .LVU32
+ 109 0052 22F44032 		bic	r2, r2, #196608
+ 110 0056 5A60     		str	r2, [r3, #4]
+ 858:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_CFG0_PREDV0);
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 18
+
+
+ 111              		.loc 1 858 5 is_stmt 1 view .LVU33
+ 112 0058 5A68     		ldr	r2, [r3, #4]
+ 113              		.loc 1 858 14 is_stmt 0 view .LVU34
+ 114 005a 42F44032 		orr	r2, r2, #196608
+ 115 005e 5A60     		str	r2, [r3, #4]
+ 859:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 860:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_HXTAL/2) * 30 = 120 MHz */
+ 861:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 116              		.loc 1 861 5 is_stmt 1 view .LVU35
+ 117 0060 5A68     		ldr	r2, [r3, #4]
+ 118              		.loc 1 861 14 is_stmt 0 view .LVU36
+ 119 0062 22F09042 		bic	r2, r2, #1207959552
+ 120 0066 22F47012 		bic	r2, r2, #3932160
+ 121 006a 5A60     		str	r2, [r3, #4]
+ 862:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_PLL_MUL30;
+ 122              		.loc 1 862 5 is_stmt 1 view .LVU37
+ 123 006c 5A68     		ldr	r2, [r3, #4]
+ 124              		.loc 1 862 14 is_stmt 0 view .LVU38
+ 125 006e 42F00362 		orr	r2, r2, #137363456
+ 126 0072 42F48022 		orr	r2, r2, #262144
+ 127 0076 5A60     		str	r2, [r3, #4]
+ 863:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 864:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 865:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PLL = (CK_PREDIV0) * 30 = 120 MHz */
+ 866:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~(RCU_CFG0_PLLMF | RCU_CFG0_PLLMF_4 | RCU_CFG0_PLLMF_5);
+ 867:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= (RCU_PLLSRC_HXTAL_IRC48M | RCU_PLL_MUL30);
+ 868:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 869:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* CK_PREDIV0 = (CK_HXTAL)/5 *8 /10 = 4 MHz */
+ 870:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 &= ~(RCU_CFG1_PLLPRESEL | RCU_CFG1_PREDV0SEL | RCU_CFG1_PLL1MF | RCU_CFG1_PREDV1 | RCU
+ 871:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 |= (RCU_PLLPRESRC_HXTAL | RCU_PREDV0SRC_CKPLL1 | RCU_PLL1_MUL8 | RCU_PREDV1_DIV5 | RCU
+ 872:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 873:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL1 */
+ 874:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLL1EN;
+ 875:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait till PLL1 is ready */
+ 876:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while((RCU_CTL & RCU_CTL_PLL1STB) == 0U){
+ 877:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 878:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* GD32F30X_HD and GD32F30X_XD */
+ 879:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 880:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable PLL */
+ 881:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CTL |= RCU_CTL_PLLEN;
+ 128              		.loc 1 881 5 is_stmt 1 view .LVU39
+ 129 0078 1A68     		ldr	r2, [r3]
+ 130              		.loc 1 881 13 is_stmt 0 view .LVU40
+ 131 007a 42F08072 		orr	r2, r2, #16777216
+ 132 007e 1A60     		str	r2, [r3]
+ 882:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 883:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is stable */
+ 884:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_PLLSTB)){
+ 133              		.loc 1 884 5 is_stmt 1 view .LVU41
+ 134              	.L6:
+ 885:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 135              		.loc 1 885 5 discriminator 1 view .LVU42
+ 884:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 136              		.loc 1 884 14 discriminator 1 view .LVU43
+ 884:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 137              		.loc 1 884 18 is_stmt 0 discriminator 1 view .LVU44
+ 138 0080 134B     		ldr	r3, .L10
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 19
+
+
+ 139 0082 1B68     		ldr	r3, [r3]
+ 884:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 140              		.loc 1 884 14 discriminator 1 view .LVU45
+ 141 0084 13F0007F 		tst	r3, #33554432
+ 142 0088 FAD0     		beq	.L6
+ 886:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 887:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* enable the high-drive to extend the clock frequency to 120 MHz */
+ 888:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDEN;
+ 143              		.loc 1 888 5 is_stmt 1 view .LVU46
+ 144 008a 124A     		ldr	r2, .L10+4
+ 145 008c 1368     		ldr	r3, [r2]
+ 146              		.loc 1 888 13 is_stmt 0 view .LVU47
+ 147 008e 43F48033 		orr	r3, r3, #65536
+ 148 0092 1360     		str	r3, [r2]
+ 889:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 149              		.loc 1 889 5 is_stmt 1 view .LVU48
+ 150              	.L7:
+ 890:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 151              		.loc 1 890 5 discriminator 1 view .LVU49
+ 889:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 152              		.loc 1 889 14 discriminator 1 view .LVU50
+ 889:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 153              		.loc 1 889 18 is_stmt 0 discriminator 1 view .LVU51
+ 154 0094 0F4B     		ldr	r3, .L10+4
+ 155 0096 5B68     		ldr	r3, [r3, #4]
+ 889:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDRF)){
+ 156              		.loc 1 889 14 discriminator 1 view .LVU52
+ 157 0098 13F4803F 		tst	r3, #65536
+ 158 009c FAD0     		beq	.L7
+ 891:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 892:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select the high-drive mode */
+ 893:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     PMU_CTL |= PMU_CTL_HDS;
+ 159              		.loc 1 893 5 is_stmt 1 view .LVU53
+ 160 009e 0D4A     		ldr	r2, .L10+4
+ 161 00a0 1368     		ldr	r3, [r2]
+ 162              		.loc 1 893 13 is_stmt 0 view .LVU54
+ 163 00a2 43F40033 		orr	r3, r3, #131072
+ 164 00a6 1360     		str	r3, [r2]
+ 894:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 165              		.loc 1 894 5 is_stmt 1 view .LVU55
+ 166              	.L8:
+ 895:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 167              		.loc 1 895 5 discriminator 1 view .LVU56
+ 894:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 168              		.loc 1 894 14 discriminator 1 view .LVU57
+ 894:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 169              		.loc 1 894 18 is_stmt 0 discriminator 1 view .LVU58
+ 170 00a8 0A4B     		ldr	r3, .L10+4
+ 171 00aa 5B68     		ldr	r3, [r3, #4]
+ 894:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (PMU_CS & PMU_CS_HDSRF)){
+ 172              		.loc 1 894 14 discriminator 1 view .LVU59
+ 173 00ac 13F4003F 		tst	r3, #131072
+ 174 00b0 FAD0     		beq	.L8
+ 896:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 897:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* select PLL as system clock */
+ 898:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 &= ~RCU_CFG0_SCS;
+ 175              		.loc 1 898 5 is_stmt 1 view .LVU60
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 20
+
+
+ 176 00b2 074B     		ldr	r3, .L10
+ 177 00b4 5A68     		ldr	r2, [r3, #4]
+ 178              		.loc 1 898 14 is_stmt 0 view .LVU61
+ 179 00b6 22F00302 		bic	r2, r2, #3
+ 180 00ba 5A60     		str	r2, [r3, #4]
+ 899:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG0 |= RCU_CKSYSSRC_PLL;
+ 181              		.loc 1 899 5 is_stmt 1 view .LVU62
+ 182 00bc 5A68     		ldr	r2, [r3, #4]
+ 183              		.loc 1 899 14 is_stmt 0 view .LVU63
+ 184 00be 42F00202 		orr	r2, r2, #2
+ 185 00c2 5A60     		str	r2, [r3, #4]
+ 900:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 901:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* wait until PLL is selected as system clock */
+ 902:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CFG0 & RCU_SCSS_PLL)){
+ 186              		.loc 1 902 5 is_stmt 1 view .LVU64
+ 187              	.L9:
+ 903:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 188              		.loc 1 903 5 discriminator 1 view .LVU65
+ 902:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 189              		.loc 1 902 14 discriminator 1 view .LVU66
+ 902:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 190              		.loc 1 902 18 is_stmt 0 discriminator 1 view .LVU67
+ 191 00c4 024B     		ldr	r3, .L10
+ 192 00c6 5B68     		ldr	r3, [r3, #4]
+ 902:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 193              		.loc 1 902 14 discriminator 1 view .LVU68
+ 194 00c8 13F0080F 		tst	r3, #8
+ 195 00cc FAD0     		beq	.L9
+ 904:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 196              		.loc 1 904 1 view .LVU69
+ 197 00ce 7047     		bx	lr
+ 198              	.L11:
+ 199              		.align	2
+ 200              	.L10:
+ 201 00d0 00100240 		.word	1073876992
+ 202 00d4 00700040 		.word	1073770496
+ 203              		.cfi_endproc
+ 204              	.LFE118:
+ 206              		.section	.text.system_clock_config,"ax",%progbits
+ 207              		.align	1
+ 208              		.syntax unified
+ 209              		.thumb
+ 210              		.thumb_func
+ 212              	system_clock_config:
+ 213              	.LFB117:
+ 162:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #ifdef __SYSTEM_CLOCK_IRC8M
+ 214              		.loc 1 162 1 is_stmt 1 view -0
+ 215              		.cfi_startproc
+ 216              		@ args = 0, pretend = 0, frame = 0
+ 217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 218 0000 08B5     		push	{r3, lr}
+ 219              	.LCFI0:
+ 220              		.cfi_def_cfa_offset 8
+ 221              		.cfi_offset 3, -8
+ 222              		.cfi_offset 14, -4
+ 183:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* __SYSTEM_CLOCK_IRC8M */
+ 223              		.loc 1 183 5 view .LVU71
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 21
+
+
+ 224 0002 FFF7FEFF 		bl	system_clock_120m_hxtal
+ 225              	.LVL6:
+ 185:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 226              		.loc 1 185 1 is_stmt 0 view .LVU72
+ 227 0006 08BD     		pop	{r3, pc}
+ 228              		.cfi_endproc
+ 229              	.LFE117:
+ 231              		.section	.text.SystemInit,"ax",%progbits
+ 232              		.align	1
+ 233              		.global	SystemInit
+ 234              		.syntax unified
+ 235              		.thumb
+ 236              		.thumb_func
+ 238              	SystemInit:
+ 239              	.LFB116:
+ 119:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****   /* FPU settings */
+ 240              		.loc 1 119 1 is_stmt 1 view -0
+ 241              		.cfi_startproc
+ 242              		@ args = 0, pretend = 0, frame = 8
+ 243              		@ frame_needed = 0, uses_anonymous_args = 0
+ 244 0000 00B5     		push	{lr}
+ 245              	.LCFI1:
+ 246              		.cfi_def_cfa_offset 4
+ 247              		.cfi_offset 14, -4
+ 248 0002 83B0     		sub	sp, sp, #12
+ 249              	.LCFI2:
+ 250              		.cfi_def_cfa_offset 16
+ 122:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif
+ 251              		.loc 1 122 5 view .LVU74
+ 122:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif
+ 252              		.loc 1 122 8 is_stmt 0 view .LVU75
+ 253 0004 234A     		ldr	r2, .L21
+ 254 0006 D2F88830 		ldr	r3, [r2, #136]
+ 122:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif
+ 255              		.loc 1 122 16 view .LVU76
+ 256 000a 43F47003 		orr	r3, r3, #15728640
+ 257 000e C2F88830 		str	r3, [r2, #136]
+ 126:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 258              		.loc 1 126 5 is_stmt 1 view .LVU77
+ 259 0012 214A     		ldr	r2, .L21+4
+ 260 0014 1368     		ldr	r3, [r2]
+ 126:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     while(0U == (RCU_CTL & RCU_CTL_IRC8MSTB)){
+ 261              		.loc 1 126 13 is_stmt 0 view .LVU78
+ 262 0016 43F00103 		orr	r3, r3, #1
+ 263 001a 1360     		str	r3, [r2]
+ 127:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 264              		.loc 1 127 5 is_stmt 1 view .LVU79
+ 265              	.L15:
+ 128:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_MODIFY(0x50);
+ 266              		.loc 1 128 5 discriminator 1 view .LVU80
+ 127:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 267              		.loc 1 127 14 discriminator 1 view .LVU81
+ 127:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ 268              		.loc 1 127 18 is_stmt 0 discriminator 1 view .LVU82
+ 269 001c 1E4B     		ldr	r3, .L21+4
+ 270 001e 1B68     		ldr	r3, [r3]
+ 127:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 22
+
+
+ 271              		.loc 1 127 14 discriminator 1 view .LVU83
+ 272 0020 13F0020F 		tst	r3, #2
+ 273 0024 FAD0     		beq	.L15
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 274              		.loc 1 129 5 is_stmt 1 discriminator 1 view .LVU84
+ 275              	.LBB2:
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 276              		.loc 1 129 5 discriminator 1 view .LVU85
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 277              		.loc 1 129 5 discriminator 1 view .LVU86
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 278              		.loc 1 129 5 discriminator 1 view .LVU87
+ 279 0026 1C4A     		ldr	r2, .L21+4
+ 280 0028 5368     		ldr	r3, [r2, #4]
+ 281 002a 43F08003 		orr	r3, r3, #128
+ 282 002e 5360     		str	r3, [r2, #4]
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 283              		.loc 1 129 5 discriminator 1 view .LVU88
+ 284 0030 0023     		movs	r3, #0
+ 285 0032 0193     		str	r3, [sp, #4]
+ 286 0034 02E0     		b	.L16
+ 287              	.L17:
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 288              		.loc 1 129 5 discriminator 5 view .LVU89
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 289              		.loc 1 129 5 discriminator 5 view .LVU90
+ 290 0036 019B     		ldr	r3, [sp, #4]
+ 291 0038 0133     		adds	r3, r3, #1
+ 292 003a 0193     		str	r3, [sp, #4]
+ 293              	.L16:
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 294              		.loc 1 129 5 discriminator 3 view .LVU91
+ 295 003c 019B     		ldr	r3, [sp, #4]
+ 296 003e 4F2B     		cmp	r3, #79
+ 297 0040 F9D9     		bls	.L17
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 298              		.loc 1 129 5 discriminator 6 view .LVU92
+ 299 0042 154A     		ldr	r2, .L21+4
+ 300 0044 5368     		ldr	r3, [r2, #4]
+ 301 0046 43F09003 		orr	r3, r3, #144
+ 302 004a 5360     		str	r3, [r2, #4]
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 303              		.loc 1 129 5 discriminator 6 view .LVU93
+ 304 004c 0023     		movs	r3, #0
+ 305 004e 0193     		str	r3, [sp, #4]
+ 306 0050 02E0     		b	.L18
+ 307              	.L19:
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 308              		.loc 1 129 5 discriminator 9 view .LVU94
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 309              		.loc 1 129 5 discriminator 9 view .LVU95
+ 310 0052 019B     		ldr	r3, [sp, #4]
+ 311 0054 0133     		adds	r3, r3, #1
+ 312 0056 0193     		str	r3, [sp, #4]
+ 313              	.L18:
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 314              		.loc 1 129 5 discriminator 7 view .LVU96
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 23
+
+
+ 315 0058 019B     		ldr	r3, [sp, #4]
+ 316 005a 4F2B     		cmp	r3, #79
+ 317 005c F9D9     		bls	.L19
+ 318              	.LBE2:
+ 129:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 319              		.loc 1 129 5 discriminator 10 view .LVU97
+ 131:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 320              		.loc 1 131 5 discriminator 10 view .LVU98
+ 321 005e 0E4B     		ldr	r3, .L21+4
+ 322 0060 5A68     		ldr	r2, [r3, #4]
+ 131:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 323              		.loc 1 131 14 is_stmt 0 discriminator 10 view .LVU99
+ 324 0062 22F00302 		bic	r2, r2, #3
+ 325 0066 5A60     		str	r2, [r3, #4]
+ 135:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* disable all interrupts */
+ 326              		.loc 1 135 5 is_stmt 1 discriminator 10 view .LVU100
+ 327 0068 1A68     		ldr	r2, [r3]
+ 135:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* disable all interrupts */
+ 328              		.loc 1 135 13 is_stmt 0 discriminator 10 view .LVU101
+ 329 006a 22F08472 		bic	r2, r2, #17301504
+ 330 006e 22F48032 		bic	r2, r2, #65536
+ 331 0072 1A60     		str	r2, [r3]
+ 137:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 332              		.loc 1 137 5 is_stmt 1 discriminator 10 view .LVU102
+ 137:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 333              		.loc 1 137 13 is_stmt 0 discriminator 10 view .LVU103
+ 334 0074 4FF41F02 		mov	r2, #10420224
+ 335 0078 9A60     		str	r2, [r3, #8]
+ 146:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 336              		.loc 1 146 5 is_stmt 1 discriminator 10 view .LVU104
+ 337 007a 1A68     		ldr	r2, [r3]
+ 146:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     
+ 338              		.loc 1 146 13 is_stmt 0 discriminator 10 view .LVU105
+ 339 007c 22F48022 		bic	r2, r2, #262144
+ 340 0080 1A60     		str	r2, [r3]
+ 149:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 = 0x00000000U;
+ 341              		.loc 1 149 5 is_stmt 1 discriminator 10 view .LVU106
+ 149:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     RCU_CFG1 = 0x00000000U;
+ 342              		.loc 1 149 14 is_stmt 0 discriminator 10 view .LVU107
+ 343 0082 0022     		movs	r2, #0
+ 344 0084 5A60     		str	r2, [r3, #4]
+ 150:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 345              		.loc 1 150 5 is_stmt 1 discriminator 10 view .LVU108
+ 150:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 346              		.loc 1 150 14 is_stmt 0 discriminator 10 view .LVU109
+ 347 0086 DA62     		str	r2, [r3, #44]
+ 153:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 348              		.loc 1 153 5 is_stmt 1 discriminator 10 view .LVU110
+ 349 0088 FFF7FEFF 		bl	system_clock_config
+ 350              	.LVL7:
+ 154:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 351              		.loc 1 154 1 is_stmt 0 discriminator 10 view .LVU111
+ 352 008c 03B0     		add	sp, sp, #12
+ 353              	.LCFI3:
+ 354              		.cfi_def_cfa_offset 4
+ 355              		@ sp needed
+ 356 008e 5DF804FB 		ldr	pc, [sp], #4
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 24
+
+
+ 357              	.L22:
+ 358 0092 00BF     		.align	2
+ 359              	.L21:
+ 360 0094 00ED00E0 		.word	-536810240
+ 361 0098 00100240 		.word	1073876992
+ 362              		.cfi_endproc
+ 363              	.LFE116:
+ 365              		.section	.text.SystemCoreClockUpdate,"ax",%progbits
+ 366              		.align	1
+ 367              		.global	SystemCoreClockUpdate
+ 368              		.syntax unified
+ 369              		.thumb
+ 370              		.thumb_func
+ 372              	SystemCoreClockUpdate:
+ 373              	.LFB119:
+ 905:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* __SYSTEM_CLOCK_IRC8M */
+ 906:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 907:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** /*!
+ 908:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \brief      update the SystemCoreClock with current core clock retrieved from cpu registers
+ 909:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[in]  none
+ 910:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \param[out] none
+ 911:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     \retval     none
+ 912:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** */
+ 913:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** void SystemCoreClockUpdate(void)
+ 914:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** {
+ 374              		.loc 1 914 1 is_stmt 1 view -0
+ 375              		.cfi_startproc
+ 376              		@ args = 0, pretend = 0, frame = 16
+ 377              		@ frame_needed = 0, uses_anonymous_args = 0
+ 378              		@ link register save eliminated.
+ 379 0000 84B0     		sub	sp, sp, #16
+ 380              	.LCFI4:
+ 381              		.cfi_def_cfa_offset 16
+ 915:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t sws;
+ 382              		.loc 1 915 5 view .LVU113
+ 916:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t pllsel, pllpresel, predv0sel, pllmf, ck_src, idx, clk_exp;
+ 383              		.loc 1 916 5 view .LVU114
+ 917:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* exponent of AHB, APB1 and APB2 clock divider */
+ 918:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     const uint8_t ahb_exp[16] = {0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 6, 7, 8, 9};
+ 384              		.loc 1 918 5 view .LVU115
+ 385              		.loc 1 918 19 is_stmt 0 view .LVU116
+ 386 0002 2D4B     		ldr	r3, .L41
+ 387 0004 0FCB     		ldm	r3, {r0, r1, r2, r3}
+ 388 0006 0DF1100C 		add	ip, sp, #16
+ 389 000a 0CE90F00 		stmdb	ip, {r0, r1, r2, r3}
+ 919:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #ifdef GD32F30X_CL
+ 920:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     uint32_t predv0, predv1, pll1mf;
+ 921:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* GD32F30X_CL */
+ 922:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 923:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     sws = GET_BITS(RCU_CFG0, 2, 3);
+ 390              		.loc 1 923 5 is_stmt 1 view .LVU117
+ 391              		.loc 1 923 11 is_stmt 0 view .LVU118
+ 392 000e 2B4B     		ldr	r3, .L41+4
+ 393 0010 5B68     		ldr	r3, [r3, #4]
+ 394              		.loc 1 923 9 view .LVU119
+ 395 0012 C3F38103 		ubfx	r3, r3, #2, #2
+ 396              	.LVL8:
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 25
+
+
+ 924:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     switch(sws){
+ 397              		.loc 1 924 5 is_stmt 1 view .LVU120
+ 398 0016 012B     		cmp	r3, #1
+ 399 0018 17D0     		beq	.L24
+ 400 001a 022B     		cmp	r3, #2
+ 401 001c 19D0     		beq	.L25
+ 402 001e 1BB1     		cbz	r3, .L40
+ 925:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* IRC8M is selected as CK_SYS */
+ 926:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     case SEL_IRC8M:
+ 927:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         SystemCoreClock = IRC8M_VALUE;
+ 928:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 929:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* HXTAL is selected as CK_SYS */
+ 930:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     case SEL_HXTAL:
+ 931:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         SystemCoreClock = HXTAL_VALUE;
+ 932:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 933:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* PLL is selected as CK_SYS */
+ 934:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     case SEL_PLL:
+ 935:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         /* PLL clock source selection, HXTAL, IRC48M or IRC8M/2 */
+ 936:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         pllsel = (RCU_CFG0 & RCU_CFG0_PLLSEL);
+ 937:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 938:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         if(RCU_PLLSRC_HXTAL_IRC48M == pllsel){
+ 939:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PLL clock source is HXTAL or IRC48M */
+ 940:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllpresel = (RCU_CFG1 & RCU_CFG1_PLLPRESEL);
+ 941:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             
+ 942:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             if(RCU_PLLPRESRC_HXTAL == pllpresel){
+ 943:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 /* PLL clock source is HXTAL */
+ 944:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 ck_src = HXTAL_VALUE;
+ 945:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }else{
+ 946:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 /* PLL clock source is IRC48 */
+ 947:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 ck_src = IRC48M_VALUE;
+ 948:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }
+ 949:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 950:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #if (defined(GD32F30X_HD) || defined(GD32F30X_XD))
+ 951:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             predv0sel = (RCU_CFG0 & RCU_CFG0_PREDV0);
+ 952:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PREDV0 input source clock divided by 2 */
+ 953:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             if(RCU_CFG0_PREDV0 == predv0sel){
+ 954:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 ck_src /= 2U;
+ 955:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }
+ 956:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #elif defined(GD32F30X_CL)
+ 957:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             predv0sel = (RCU_CFG1 & RCU_CFG1_PREDV0SEL);
+ 958:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* source clock use PLL1 */
+ 959:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             if(RCU_PREDV0SRC_CKPLL1 == predv0sel){
+ 960:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 predv1 = ((RCU_CFG1 & RCU_CFG1_PREDV1) >> 4) + 1U;
+ 961:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 pll1mf = ((RCU_CFG1 & RCU_CFG1_PLL1MF) >> 8) + 2U;
+ 962:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 if(17U == pll1mf){
+ 963:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                     pll1mf = 20U;
+ 964:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 }
+ 965:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 ck_src = (ck_src / predv1) * pll1mf;
+ 966:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }
+ 967:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             predv0 = (RCU_CFG1 & RCU_CFG1_PREDV0) + 1U;
+ 968:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             ck_src /= predv0;
+ 969:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** #endif /* GD32F30X_HD and GD32F30X_XD */
+ 970:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }else{
+ 971:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PLL clock source is IRC8M/2 */
+ 972:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             ck_src = IRC8M_VALUE / 2U;
+ 973:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 974:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 26
+
+
+ 975:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         /* PLL multiplication factor */
+ 976:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         pllmf = GET_BITS(RCU_CFG0, 18, 21);
+ 977:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 978:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         if((RCU_CFG0 & RCU_CFG0_PLLMF_4)){
+ 979:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x10U;
+ 980:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 981:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         if((RCU_CFG0 & RCU_CFG0_PLLMF_5)){
+ 982:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x20U;
+ 983:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 984:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 985:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         if( pllmf >= 15U){
+ 986:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf += 1U;
+ 987:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }else{
+ 988:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf += 2U;
+ 989:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 990:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         if(pllmf > 61U){
+ 991:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf = 63U;
+ 992:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 993:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         SystemCoreClock = ck_src * pllmf;
+ 994:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     #ifdef GD32F30X_CL
+ 995:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         if(15U == pllmf){
+ 996:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             SystemCoreClock = (ck_src * 6U) + (ck_src / 2U);
+ 997:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 998:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     #endif /* GD32F30X_CL */
+ 999:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+1000:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* IRC8M is selected as CK_SYS */
+1001:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     default:
+1002:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         SystemCoreClock = IRC8M_VALUE;
+ 403              		.loc 1 1002 9 view .LVU121
+ 404              		.loc 1 1002 25 is_stmt 0 view .LVU122
+ 405 0020 274B     		ldr	r3, .L41+8
+ 406              	.LVL9:
+ 407              		.loc 1 1002 25 view .LVU123
+ 408 0022 284A     		ldr	r2, .L41+12
+ 409 0024 1A60     		str	r2, [r3]
+1003:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 410              		.loc 1 1003 9 is_stmt 1 view .LVU124
+ 411 0026 02E0     		b	.L27
+ 412              	.LVL10:
+ 413              	.L40:
+ 927:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 414              		.loc 1 927 9 view .LVU125
+ 927:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 415              		.loc 1 927 25 is_stmt 0 view .LVU126
+ 416 0028 254B     		ldr	r3, .L41+8
+ 417              	.LVL11:
+ 927:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 418              		.loc 1 927 25 view .LVU127
+ 419 002a 264A     		ldr	r2, .L41+12
+ 420 002c 1A60     		str	r2, [r3]
+ 928:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* HXTAL is selected as CK_SYS */
+ 421              		.loc 1 928 9 is_stmt 1 view .LVU128
+ 422              	.L27:
+1004:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     }
+1005:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+1006:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* calculate AHB clock frequency */
+1007:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     idx = GET_BITS(RCU_CFG0, 4, 7);
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 27
+
+
+ 423              		.loc 1 1007 5 view .LVU129
+ 424              		.loc 1 1007 11 is_stmt 0 view .LVU130
+ 425 002e 234B     		ldr	r3, .L41+4
+ 426 0030 5B68     		ldr	r3, [r3, #4]
+ 427              		.loc 1 1007 9 view .LVU131
+ 428 0032 C3F30313 		ubfx	r3, r3, #4, #4
+ 429              	.LVL12:
+1008:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     clk_exp = ahb_exp[idx];
+ 430              		.loc 1 1008 5 is_stmt 1 view .LVU132
+ 431              		.loc 1 1008 22 is_stmt 0 view .LVU133
+ 432 0036 1033     		adds	r3, r3, #16
+ 433              	.LVL13:
+ 434              		.loc 1 1008 22 view .LVU134
+ 435 0038 6B44     		add	r3, sp, r3
+ 436              	.LVL14:
+ 437              		.loc 1 1008 22 view .LVU135
+ 438 003a 13F8101C 		ldrb	r1, [r3, #-16]	@ zero_extendqisi2
+ 439              	.LVL15:
+1009:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     SystemCoreClock = SystemCoreClock >> clk_exp;
+ 440              		.loc 1 1009 5 is_stmt 1 view .LVU136
+ 441              		.loc 1 1009 39 is_stmt 0 view .LVU137
+ 442 003e 204A     		ldr	r2, .L41+8
+ 443 0040 1368     		ldr	r3, [r2]
+ 444 0042 CB40     		lsrs	r3, r3, r1
+ 445              		.loc 1 1009 21 view .LVU138
+ 446 0044 1360     		str	r3, [r2]
+1010:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** }
+ 447              		.loc 1 1010 1 view .LVU139
+ 448 0046 04B0     		add	sp, sp, #16
+ 449              	.LCFI5:
+ 450              		.cfi_remember_state
+ 451              		.cfi_def_cfa_offset 0
+ 452              		@ sp needed
+ 453 0048 7047     		bx	lr
+ 454              	.LVL16:
+ 455              	.L24:
+ 456              	.LCFI6:
+ 457              		.cfi_restore_state
+ 931:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 458              		.loc 1 931 9 is_stmt 1 view .LVU140
+ 931:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 459              		.loc 1 931 25 is_stmt 0 view .LVU141
+ 460 004a 1D4B     		ldr	r3, .L41+8
+ 461              	.LVL17:
+ 931:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         break;
+ 462              		.loc 1 931 25 view .LVU142
+ 463 004c 1D4A     		ldr	r2, .L41+12
+ 464 004e 1A60     		str	r2, [r3]
+ 932:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* PLL is selected as CK_SYS */
+ 465              		.loc 1 932 9 is_stmt 1 view .LVU143
+ 466 0050 EDE7     		b	.L27
+ 467              	.LVL18:
+ 468              	.L25:
+ 936:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 469              		.loc 1 936 9 view .LVU144
+ 936:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 470              		.loc 1 936 19 is_stmt 0 view .LVU145
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 28
+
+
+ 471 0052 1A4B     		ldr	r3, .L41+4
+ 472              	.LVL19:
+ 936:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 473              		.loc 1 936 19 view .LVU146
+ 474 0054 5B68     		ldr	r3, [r3, #4]
+ 475              	.LVL20:
+ 938:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PLL clock source is HXTAL or IRC48M */
+ 476              		.loc 1 938 9 is_stmt 1 view .LVU147
+ 938:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PLL clock source is HXTAL or IRC48M */
+ 477              		.loc 1 938 11 is_stmt 0 view .LVU148
+ 478 0056 13F4803F 		tst	r3, #65536
+ 479 005a 0ED0     		beq	.L36
+ 940:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             
+ 480              		.loc 1 940 13 is_stmt 1 view .LVU149
+ 940:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             
+ 481              		.loc 1 940 26 is_stmt 0 view .LVU150
+ 482 005c 174B     		ldr	r3, .L41+4
+ 483              	.LVL21:
+ 940:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             
+ 484              		.loc 1 940 26 view .LVU151
+ 485 005e DB6A     		ldr	r3, [r3, #44]
+ 486              	.LVL22:
+ 942:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 /* PLL clock source is HXTAL */
+ 487              		.loc 1 942 13 is_stmt 1 view .LVU152
+ 942:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 /* PLL clock source is HXTAL */
+ 488              		.loc 1 942 15 is_stmt 0 view .LVU153
+ 489 0060 13F0804F 		tst	r3, #1073741824
+ 490 0064 07D1     		bne	.L37
+ 944:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }else{
+ 491              		.loc 1 944 24 view .LVU154
+ 492 0066 1749     		ldr	r1, .L41+12
+ 493              	.L29:
+ 494              	.LVL23:
+ 951:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PREDV0 input source clock divided by 2 */
+ 495              		.loc 1 951 13 is_stmt 1 view .LVU155
+ 951:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PREDV0 input source clock divided by 2 */
+ 496              		.loc 1 951 26 is_stmt 0 view .LVU156
+ 497 0068 144B     		ldr	r3, .L41+4
+ 498              	.LVL24:
+ 951:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             /* PREDV0 input source clock divided by 2 */
+ 499              		.loc 1 951 26 view .LVU157
+ 500 006a 5B68     		ldr	r3, [r3, #4]
+ 501              	.LVL25:
+ 953:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 ck_src /= 2U;
+ 502              		.loc 1 953 13 is_stmt 1 view .LVU158
+ 953:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****                 ck_src /= 2U;
+ 503              		.loc 1 953 15 is_stmt 0 view .LVU159
+ 504 006c 13F4003F 		tst	r3, #131072
+ 505 0070 04D0     		beq	.L28
+ 954:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }
+ 506              		.loc 1 954 17 is_stmt 1 view .LVU160
+ 954:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }
+ 507              		.loc 1 954 24 is_stmt 0 view .LVU161
+ 508 0072 4908     		lsrs	r1, r1, #1
+ 509              	.LVL26:
+ 954:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }
+ 510              		.loc 1 954 24 view .LVU162
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 29
+
+
+ 511 0074 02E0     		b	.L28
+ 512              	.LVL27:
+ 513              	.L37:
+ 947:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             }
+ 514              		.loc 1 947 24 view .LVU163
+ 515 0076 1449     		ldr	r1, .L41+16
+ 516 0078 F6E7     		b	.L29
+ 517              	.LVL28:
+ 518              	.L36:
+ 972:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 519              		.loc 1 972 20 view .LVU164
+ 520 007a 1449     		ldr	r1, .L41+20
+ 521              	.LVL29:
+ 522              	.L28:
+ 976:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 523              		.loc 1 976 9 is_stmt 1 view .LVU165
+ 976:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 524              		.loc 1 976 17 is_stmt 0 view .LVU166
+ 525 007c 0F4A     		ldr	r2, .L41+4
+ 526 007e 5368     		ldr	r3, [r2, #4]
+ 976:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c **** 
+ 527              		.loc 1 976 15 view .LVU167
+ 528 0080 C3F38343 		ubfx	r3, r3, #18, #4
+ 529              	.LVL30:
+ 978:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x10U;
+ 530              		.loc 1 978 9 is_stmt 1 view .LVU168
+ 978:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x10U;
+ 531              		.loc 1 978 13 is_stmt 0 view .LVU169
+ 532 0084 5268     		ldr	r2, [r2, #4]
+ 978:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x10U;
+ 533              		.loc 1 978 11 view .LVU170
+ 534 0086 12F0006F 		tst	r2, #134217728
+ 535 008a 01D0     		beq	.L30
+ 979:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 536              		.loc 1 979 13 is_stmt 1 view .LVU171
+ 979:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 537              		.loc 1 979 19 is_stmt 0 view .LVU172
+ 538 008c 43F01003 		orr	r3, r3, #16
+ 539              	.LVL31:
+ 540              	.L30:
+ 981:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x20U;
+ 541              		.loc 1 981 9 is_stmt 1 view .LVU173
+ 981:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x20U;
+ 542              		.loc 1 981 13 is_stmt 0 view .LVU174
+ 543 0090 0A4A     		ldr	r2, .L41+4
+ 544 0092 5268     		ldr	r2, [r2, #4]
+ 981:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf |= 0x20U;
+ 545              		.loc 1 981 11 view .LVU175
+ 546 0094 12F0804F 		tst	r2, #1073741824
+ 547 0098 0AD0     		beq	.L31
+ 982:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 548              		.loc 1 982 13 is_stmt 1 view .LVU176
+ 982:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 549              		.loc 1 982 19 is_stmt 0 view .LVU177
+ 550 009a 43F02003 		orr	r3, r3, #32
+ 551              	.LVL32:
+ 985:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf += 1U;
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 30
+
+
+ 552              		.loc 1 985 9 is_stmt 1 view .LVU178
+ 553              	.L32:
+ 986:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }else{
+ 554              		.loc 1 986 13 view .LVU179
+ 986:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }else{
+ 555              		.loc 1 986 19 is_stmt 0 view .LVU180
+ 556 009e 0133     		adds	r3, r3, #1
+ 557              	.LVL33:
+ 558              	.L34:
+ 990:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf = 63U;
+ 559              		.loc 1 990 9 is_stmt 1 view .LVU181
+ 990:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf = 63U;
+ 560              		.loc 1 990 11 is_stmt 0 view .LVU182
+ 561 00a0 3D2B     		cmp	r3, #61
+ 562 00a2 00D9     		bls	.L35
+ 991:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 563              		.loc 1 991 19 view .LVU183
+ 564 00a4 3F23     		movs	r3, #63
+ 565              	.LVL34:
+ 566              	.L35:
+ 993:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     #ifdef GD32F30X_CL
+ 567              		.loc 1 993 9 is_stmt 1 view .LVU184
+ 993:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     #ifdef GD32F30X_CL
+ 568              		.loc 1 993 34 is_stmt 0 view .LVU185
+ 569 00a6 01FB03F3 		mul	r3, r1, r3
+ 570              	.LVL35:
+ 993:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     #ifdef GD32F30X_CL
+ 571              		.loc 1 993 25 view .LVU186
+ 572 00aa 054A     		ldr	r2, .L41+8
+ 573 00ac 1360     		str	r3, [r2]
+ 999:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****     /* IRC8M is selected as CK_SYS */
+ 574              		.loc 1 999 9 is_stmt 1 view .LVU187
+ 575 00ae BEE7     		b	.L27
+ 576              	.LVL36:
+ 577              	.L31:
+ 985:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf += 1U;
+ 578              		.loc 1 985 9 view .LVU188
+ 985:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****             pllmf += 1U;
+ 579              		.loc 1 985 11 is_stmt 0 view .LVU189
+ 580 00b0 0E2B     		cmp	r3, #14
+ 581 00b2 F4D8     		bhi	.L32
+ 988:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 582              		.loc 1 988 13 is_stmt 1 view .LVU190
+ 988:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 583              		.loc 1 988 19 is_stmt 0 view .LVU191
+ 584 00b4 0233     		adds	r3, r3, #2
+ 585              	.LVL37:
+ 988:./CMSIS/GD/GD32F30x/Source/system_gd32f30x.c ****         }
+ 586              		.loc 1 988 19 view .LVU192
+ 587 00b6 F3E7     		b	.L34
+ 588              	.L42:
+ 589              		.align	2
+ 590              	.L41:
+ 591 00b8 00000000 		.word	.LANCHOR0
+ 592 00bc 00100240 		.word	1073876992
+ 593 00c0 00000000 		.word	SystemCoreClock
+ 594 00c4 00127A00 		.word	8000000
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 31
+
+
+ 595 00c8 006CDC02 		.word	48000000
+ 596 00cc 00093D00 		.word	4000000
+ 597              		.cfi_endproc
+ 598              	.LFE119:
+ 600              		.global	SystemCoreClock
+ 601              		.section	.data.SystemCoreClock,"aw"
+ 602              		.align	2
+ 605              	SystemCoreClock:
+ 606 0000 000E2707 		.word	120000000
+ 607              		.section	.rodata
+ 608              		.align	2
+ 609              		.set	.LANCHOR0,. + 0
+ 610              	.LC0:
+ 611 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\001\002\003\004\006"
+ 611      00000000 
+ 611      01020304 
+ 611      06
+ 612 000d 070809   		.ascii	"\007\010\011"
+ 613              		.text
+ 614              	.Letext0:
+ 615              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 616              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 617              		.file 4 "CMSIS/core_cm4.h"
+ 618              		.file 5 "CMSIS/GD/GD32F30x/Include/system_gd32f30x.h"
+ 619              		.file 6 "GD32F30x_standard_peripheral/Include/gd32f30x_dbg.h"
+ARM GAS  C:\Temp\ccUvTzqy.s 			page 32
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 system_gd32f30x.c
+  C:\Temp\ccUvTzqy.s:21     .text.system_clock_120m_hxtal:00000000 $t
+  C:\Temp\ccUvTzqy.s:26     .text.system_clock_120m_hxtal:00000000 system_clock_120m_hxtal
+  C:\Temp\ccUvTzqy.s:201    .text.system_clock_120m_hxtal:000000d0 $d
+  C:\Temp\ccUvTzqy.s:207    .text.system_clock_config:00000000 $t
+  C:\Temp\ccUvTzqy.s:212    .text.system_clock_config:00000000 system_clock_config
+  C:\Temp\ccUvTzqy.s:232    .text.SystemInit:00000000 $t
+  C:\Temp\ccUvTzqy.s:238    .text.SystemInit:00000000 SystemInit
+  C:\Temp\ccUvTzqy.s:360    .text.SystemInit:00000094 $d
+  C:\Temp\ccUvTzqy.s:366    .text.SystemCoreClockUpdate:00000000 $t
+  C:\Temp\ccUvTzqy.s:372    .text.SystemCoreClockUpdate:00000000 SystemCoreClockUpdate
+  C:\Temp\ccUvTzqy.s:591    .text.SystemCoreClockUpdate:000000b8 $d
+  C:\Temp\ccUvTzqy.s:605    .data.SystemCoreClock:00000000 SystemCoreClock
+  C:\Temp\ccUvTzqy.s:602    .data.SystemCoreClock:00000000 $d
+  C:\Temp\ccUvTzqy.s:608    .rodata:00000000 $d
+
+NO UNDEFINED SYMBOLS

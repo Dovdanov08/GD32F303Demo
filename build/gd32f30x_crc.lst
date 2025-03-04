@@ -1,0 +1,452 @@
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_crc.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c"
+  20              		.section	.text.crc_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	crc_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	crc_deinit:
+  28              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \file    gd32f30x_crc.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief   CRC driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 2
+
+
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** #include "gd32f30x_crc.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** #define CRC_DATA_RESET_VALUE      ((uint32_t)0xFFFFFFFFU)
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** #define CRC_FDATA_RESET_VALUE     ((uint32_t)0x00000000U)
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief      deinit CRC calculation unit
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  none
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[out] none
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \retval     none
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** void crc_deinit(void)
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** {
+  29              		.loc 1 47 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     CRC_DATA  = CRC_DATA_RESET_VALUE;
+  34              		.loc 1 48 5 view .LVU1
+  35              		.loc 1 48 15 is_stmt 0 view .LVU2
+  36 0000 044B     		ldr	r3, .L2
+  37 0002 4FF0FF32 		mov	r2, #-1
+  38 0006 1A60     		str	r2, [r3]
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     CRC_FDATA = CRC_FDATA_RESET_VALUE;
+  39              		.loc 1 49 5 is_stmt 1 view .LVU3
+  40              		.loc 1 49 15 is_stmt 0 view .LVU4
+  41 0008 0022     		movs	r2, #0
+  42 000a 5A60     		str	r2, [r3, #4]
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     CRC_CTL   = (uint32_t)CRC_CTL_RST;
+  43              		.loc 1 50 5 is_stmt 1 view .LVU5
+  44              		.loc 1 50 15 is_stmt 0 view .LVU6
+  45 000c 0122     		movs	r2, #1
+  46 000e 9A60     		str	r2, [r3, #8]
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+  47              		.loc 1 51 1 view .LVU7
+  48 0010 7047     		bx	lr
+  49              	.L3:
+  50 0012 00BF     		.align	2
+  51              	.L2:
+  52 0014 00300240 		.word	1073885184
+  53              		.cfi_endproc
+  54              	.LFE116:
+  56              		.section	.text.crc_data_register_reset,"ax",%progbits
+  57              		.align	1
+  58              		.global	crc_data_register_reset
+  59              		.syntax unified
+  60              		.thumb
+  61              		.thumb_func
+  63              	crc_data_register_reset:
+  64              	.LFB117:
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 3
+
+
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief      reset data register(CRC_DATA) to the value of 0xFFFFFFFF
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  none
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[out] none
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \retval     none
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** void crc_data_register_reset(void)
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** {
+  65              		.loc 1 60 1 is_stmt 1 view -0
+  66              		.cfi_startproc
+  67              		@ args = 0, pretend = 0, frame = 0
+  68              		@ frame_needed = 0, uses_anonymous_args = 0
+  69              		@ link register save eliminated.
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     CRC_CTL |= (uint32_t)CRC_CTL_RST;
+  70              		.loc 1 61 5 view .LVU9
+  71 0000 024A     		ldr	r2, .L5
+  72 0002 9368     		ldr	r3, [r2, #8]
+  73              		.loc 1 61 13 is_stmt 0 view .LVU10
+  74 0004 43F00103 		orr	r3, r3, #1
+  75 0008 9360     		str	r3, [r2, #8]
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+  76              		.loc 1 62 1 view .LVU11
+  77 000a 7047     		bx	lr
+  78              	.L6:
+  79              		.align	2
+  80              	.L5:
+  81 000c 00300240 		.word	1073885184
+  82              		.cfi_endproc
+  83              	.LFE117:
+  85              		.section	.text.crc_data_register_read,"ax",%progbits
+  86              		.align	1
+  87              		.global	crc_data_register_read
+  88              		.syntax unified
+  89              		.thumb
+  90              		.thumb_func
+  92              	crc_data_register_read:
+  93              	.LFB118:
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief      read the value of the data register 
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  none
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[out] none
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \retval     32-bit value of the data register
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** uint32_t crc_data_register_read(void)
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** {
+  94              		.loc 1 71 1 is_stmt 1 view -0
+  95              		.cfi_startproc
+  96              		@ args = 0, pretend = 0, frame = 0
+  97              		@ frame_needed = 0, uses_anonymous_args = 0
+  98              		@ link register save eliminated.
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     uint32_t data;
+  99              		.loc 1 72 5 view .LVU13
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     data = CRC_DATA;
+ 100              		.loc 1 73 5 view .LVU14
+ 101              		.loc 1 73 10 is_stmt 0 view .LVU15
+ 102 0000 014B     		ldr	r3, .L8
+ 103 0002 1868     		ldr	r0, [r3]
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 4
+
+
+ 104              	.LVL0:
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     return (data);
+ 105              		.loc 1 74 5 is_stmt 1 view .LVU16
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 106              		.loc 1 75 1 is_stmt 0 view .LVU17
+ 107 0004 7047     		bx	lr
+ 108              	.L9:
+ 109 0006 00BF     		.align	2
+ 110              	.L8:
+ 111 0008 00300240 		.word	1073885184
+ 112              		.cfi_endproc
+ 113              	.LFE118:
+ 115              		.section	.text.crc_free_data_register_read,"ax",%progbits
+ 116              		.align	1
+ 117              		.global	crc_free_data_register_read
+ 118              		.syntax unified
+ 119              		.thumb
+ 120              		.thumb_func
+ 122              	crc_free_data_register_read:
+ 123              	.LFB119:
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief      read the value of the free data register
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  none
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[out] none
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \retval     8-bit value of the free data register
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** uint8_t crc_free_data_register_read(void)
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** {
+ 124              		.loc 1 84 1 is_stmt 1 view -0
+ 125              		.cfi_startproc
+ 126              		@ args = 0, pretend = 0, frame = 0
+ 127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 128              		@ link register save eliminated.
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     uint8_t fdata;
+ 129              		.loc 1 85 5 view .LVU19
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     fdata = (uint8_t)CRC_FDATA;
+ 130              		.loc 1 86 5 view .LVU20
+ 131              		.loc 1 86 22 is_stmt 0 view .LVU21
+ 132 0000 014B     		ldr	r3, .L11
+ 133 0002 5868     		ldr	r0, [r3, #4]
+ 134              	.LVL1:
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     return (fdata);
+ 135              		.loc 1 87 5 is_stmt 1 view .LVU22
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 136              		.loc 1 88 1 is_stmt 0 view .LVU23
+ 137 0004 C0B2     		uxtb	r0, r0
+ 138              		.loc 1 88 1 view .LVU24
+ 139 0006 7047     		bx	lr
+ 140              	.L12:
+ 141              		.align	2
+ 142              	.L11:
+ 143 0008 00300240 		.word	1073885184
+ 144              		.cfi_endproc
+ 145              	.LFE119:
+ 147              		.section	.text.crc_free_data_register_write,"ax",%progbits
+ 148              		.align	1
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 5
+
+
+ 149              		.global	crc_free_data_register_write
+ 150              		.syntax unified
+ 151              		.thumb
+ 152              		.thumb_func
+ 154              	crc_free_data_register_write:
+ 155              	.LVL2:
+ 156              	.LFB120:
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief      write data to the free data register
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  free_data: specified 8-bit data
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[out] none
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \retval     none
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** void crc_free_data_register_write(uint8_t free_data)
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** {
+ 157              		.loc 1 97 1 is_stmt 1 view -0
+ 158              		.cfi_startproc
+ 159              		@ args = 0, pretend = 0, frame = 0
+ 160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 161              		@ link register save eliminated.
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     CRC_FDATA = (uint32_t)free_data;
+ 162              		.loc 1 98 5 view .LVU26
+ 163              		.loc 1 98 15 is_stmt 0 view .LVU27
+ 164 0000 014B     		ldr	r3, .L14
+ 165 0002 5860     		str	r0, [r3, #4]
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 166              		.loc 1 99 1 view .LVU28
+ 167 0004 7047     		bx	lr
+ 168              	.L15:
+ 169 0006 00BF     		.align	2
+ 170              	.L14:
+ 171 0008 00300240 		.word	1073885184
+ 172              		.cfi_endproc
+ 173              	.LFE120:
+ 175              		.section	.text.crc_single_data_calculate,"ax",%progbits
+ 176              		.align	1
+ 177              		.global	crc_single_data_calculate
+ 178              		.syntax unified
+ 179              		.thumb
+ 180              		.thumb_func
+ 182              	crc_single_data_calculate:
+ 183              	.LVL3:
+ 184              	.LFB121:
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief      calculate the CRC value of a 32-bit data
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  sdata: specified 32-bit data
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[out] none
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \retval     32-bit value calculated by CRC
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** uint32_t crc_single_data_calculate(uint32_t sdata)
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** {
+ 185              		.loc 1 108 1 is_stmt 1 view -0
+ 186              		.cfi_startproc
+ 187              		@ args = 0, pretend = 0, frame = 0
+ 188              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 6
+
+
+ 189              		@ link register save eliminated.
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     CRC_DATA = sdata;
+ 190              		.loc 1 109 5 view .LVU30
+ 191              		.loc 1 109 14 is_stmt 0 view .LVU31
+ 192 0000 014B     		ldr	r3, .L17
+ 193 0002 1860     		str	r0, [r3]
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     return (CRC_DATA);
+ 194              		.loc 1 110 5 is_stmt 1 view .LVU32
+ 195              		.loc 1 110 13 is_stmt 0 view .LVU33
+ 196 0004 1868     		ldr	r0, [r3]
+ 197              	.LVL4:
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 198              		.loc 1 111 1 view .LVU34
+ 199 0006 7047     		bx	lr
+ 200              	.L18:
+ 201              		.align	2
+ 202              	.L17:
+ 203 0008 00300240 		.word	1073885184
+ 204              		.cfi_endproc
+ 205              	.LFE121:
+ 207              		.section	.text.crc_block_data_calculate,"ax",%progbits
+ 208              		.align	1
+ 209              		.global	crc_block_data_calculate
+ 210              		.syntax unified
+ 211              		.thumb
+ 212              		.thumb_func
+ 214              	crc_block_data_calculate:
+ 215              	.LVL5:
+ 216              	.LFB122:
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** 
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** /*!
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \brief      calculate the CRC value of an array of 32-bit values
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  array: pointer to an array of 32-bit values
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[in]  size: size of the array
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \param[out] none
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     \retval     32-bit value calculated by CRC
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** */
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** uint32_t crc_block_data_calculate(const uint32_t *array, uint32_t size)
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** {
+ 217              		.loc 1 121 1 is_stmt 1 view -0
+ 218              		.cfi_startproc
+ 219              		@ args = 0, pretend = 0, frame = 0
+ 220              		@ frame_needed = 0, uses_anonymous_args = 0
+ 221              		@ link register save eliminated.
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     uint32_t index;
+ 222              		.loc 1 122 5 view .LVU36
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     for(index = 0U; index < size; index++){
+ 223              		.loc 1 123 5 view .LVU37
+ 224              		.loc 1 123 15 is_stmt 0 view .LVU38
+ 225 0000 0023     		movs	r3, #0
+ 226              	.LVL6:
+ 227              		.loc 1 123 27 is_stmt 1 view .LVU39
+ 228 0002 8B42     		cmp	r3, r1
+ 229 0004 0CD2     		bcs	.L26
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     uint32_t index;
+ 230              		.loc 1 121 1 is_stmt 0 view .LVU40
+ 231 0006 10B4     		push	{r4}
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 7
+
+
+ 232              	.LCFI0:
+ 233              		.cfi_def_cfa_offset 4
+ 234              		.cfi_offset 4, -4
+ 235              	.L21:
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****         CRC_DATA = *(array+index);
+ 236              		.loc 1 124 9 is_stmt 1 discriminator 3 view .LVU41
+ 237              		.loc 1 124 18 is_stmt 0 discriminator 3 view .LVU42
+ 238 0008 074A     		ldr	r2, .L27
+ 239 000a 50F82340 		ldr	r4, [r0, r3, lsl #2]
+ 240 000e 1460     		str	r4, [r2]
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     for(index = 0U; index < size; index++){
+ 241              		.loc 1 123 40 is_stmt 1 discriminator 3 view .LVU43
+ 242 0010 0133     		adds	r3, r3, #1
+ 243              	.LVL7:
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     for(index = 0U; index < size; index++){
+ 244              		.loc 1 123 27 discriminator 3 view .LVU44
+ 245 0012 8B42     		cmp	r3, r1
+ 246 0014 F8D3     		bcc	.L21
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     }
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c ****     return (CRC_DATA);
+ 247              		.loc 1 126 5 view .LVU45
+ 248              		.loc 1 126 13 is_stmt 0 view .LVU46
+ 249 0016 044B     		ldr	r3, .L27
+ 250              	.LVL8:
+ 251              		.loc 1 126 13 view .LVU47
+ 252 0018 1868     		ldr	r0, [r3]
+ 253              	.LVL9:
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 254              		.loc 1 127 1 view .LVU48
+ 255 001a 5DF8044B 		ldr	r4, [sp], #4
+ 256              	.LCFI1:
+ 257              		.cfi_restore 4
+ 258              		.cfi_def_cfa_offset 0
+ 259 001e 7047     		bx	lr
+ 260              	.LVL10:
+ 261              	.L26:
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 262              		.loc 1 126 5 is_stmt 1 view .LVU49
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 263              		.loc 1 126 13 is_stmt 0 view .LVU50
+ 264 0020 014B     		ldr	r3, .L27
+ 265              	.LVL11:
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_crc.c **** }
+ 266              		.loc 1 126 13 view .LVU51
+ 267 0022 1868     		ldr	r0, [r3]
+ 268              	.LVL12:
+ 269              		.loc 1 127 1 view .LVU52
+ 270 0024 7047     		bx	lr
+ 271              	.L28:
+ 272 0026 00BF     		.align	2
+ 273              	.L27:
+ 274 0028 00300240 		.word	1073885184
+ 275              		.cfi_endproc
+ 276              	.LFE122:
+ 278              		.text
+ 279              	.Letext0:
+ 280              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 8
+
+
+ 281              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ARM GAS  C:\Temp\ccQ2zOkq.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_crc.c
+  C:\Temp\ccQ2zOkq.s:21     .text.crc_deinit:00000000 $t
+  C:\Temp\ccQ2zOkq.s:27     .text.crc_deinit:00000000 crc_deinit
+  C:\Temp\ccQ2zOkq.s:52     .text.crc_deinit:00000014 $d
+  C:\Temp\ccQ2zOkq.s:57     .text.crc_data_register_reset:00000000 $t
+  C:\Temp\ccQ2zOkq.s:63     .text.crc_data_register_reset:00000000 crc_data_register_reset
+  C:\Temp\ccQ2zOkq.s:81     .text.crc_data_register_reset:0000000c $d
+  C:\Temp\ccQ2zOkq.s:86     .text.crc_data_register_read:00000000 $t
+  C:\Temp\ccQ2zOkq.s:92     .text.crc_data_register_read:00000000 crc_data_register_read
+  C:\Temp\ccQ2zOkq.s:111    .text.crc_data_register_read:00000008 $d
+  C:\Temp\ccQ2zOkq.s:116    .text.crc_free_data_register_read:00000000 $t
+  C:\Temp\ccQ2zOkq.s:122    .text.crc_free_data_register_read:00000000 crc_free_data_register_read
+  C:\Temp\ccQ2zOkq.s:143    .text.crc_free_data_register_read:00000008 $d
+  C:\Temp\ccQ2zOkq.s:148    .text.crc_free_data_register_write:00000000 $t
+  C:\Temp\ccQ2zOkq.s:154    .text.crc_free_data_register_write:00000000 crc_free_data_register_write
+  C:\Temp\ccQ2zOkq.s:171    .text.crc_free_data_register_write:00000008 $d
+  C:\Temp\ccQ2zOkq.s:176    .text.crc_single_data_calculate:00000000 $t
+  C:\Temp\ccQ2zOkq.s:182    .text.crc_single_data_calculate:00000000 crc_single_data_calculate
+  C:\Temp\ccQ2zOkq.s:203    .text.crc_single_data_calculate:00000008 $d
+  C:\Temp\ccQ2zOkq.s:208    .text.crc_block_data_calculate:00000000 $t
+  C:\Temp\ccQ2zOkq.s:214    .text.crc_block_data_calculate:00000000 crc_block_data_calculate
+  C:\Temp\ccQ2zOkq.s:274    .text.crc_block_data_calculate:00000028 $d
+
+NO UNDEFINED SYMBOLS

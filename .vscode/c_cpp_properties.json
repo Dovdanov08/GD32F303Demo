@@ -1,0 +1,36 @@
+{
+    "configurations": [
+        {
+            "name": "gd32f303cct6",
+            "includePath": [
+                "${workspaceFolder}/Core/Inc/",
+                "${workspaceFolder}/CMSIS/",
+                "${workspaceFolder}/CMSIS/GD/GD32F30x/Include/",
+                "${workspaceFolder}/GD32F30x_standard_peripheral/Include/"
+            ],
+            "browse": {
+                "path": [
+                    "${workspaceFolder}/Core/Src/",
+                    "${workspaceFolder}/CMSIS/GD/GD32F30x/Source/",
+                    "${workspaceFolder}/GD32F30x_standard_peripheral/Source/"
+                ]
+            },
+            "defines": [
+                "GD32F30X_HD",
+                "HXTAL_VALUE=8000000"
+            ],
+            "compilerPath": "c:/ST/STM32CubeIDE_1.15.0/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/arm-none-eabi-gcc.exe ",
+            "compilerArgs": [
+                "Wall", 
+                "fdata-sections", 
+                "ffunction-sections",
+                "g"
+            ],
+            "cStandard": "c11",
+            "cppStandard": "gnu++11",
+            "intelliSenseMode": "${default}",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
+}

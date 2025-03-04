@@ -1,0 +1,1023 @@
+ARM GAS  C:\Temp\cc9chJuL.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_misc.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c"
+  20              		.section	.text.nvic_priority_group_set,"ax",%progbits
+  21              		.align	1
+  22              		.global	nvic_priority_group_set
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	nvic_priority_group_set:
+  28              	.LVL0:
+  29              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \file    gd32f30x_misc.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief   MISC driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+ARM GAS  C:\Temp\cc9chJuL.s 			page 2
+
+
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** #include "gd32f30x_misc.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief      set the priority group
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  nvic_prigroup: the NVIC priority group
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        NVIC_PRIGROUP_PRE0_SUB4:0 bits for pre-emption priority 4 bits for subpriority
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        NVIC_PRIGROUP_PRE1_SUB3:1 bits for pre-emption priority 3 bits for subpriority
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        NVIC_PRIGROUP_PRE2_SUB2:2 bits for pre-emption priority 2 bits for subpriority
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        NVIC_PRIGROUP_PRE3_SUB1:3 bits for pre-emption priority 1 bits for subpriority
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        NVIC_PRIGROUP_PRE4_SUB0:4 bits for pre-emption priority 0 bits for subpriority
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[out] none
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \retval     none
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** void nvic_priority_group_set(uint32_t nvic_prigroup)
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** {
+  30              		.loc 1 49 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		@ link register save eliminated.
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     /* set the priority group value */
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     SCB->AIRCR = NVIC_AIRCR_VECTKEY_MASK | nvic_prigroup;
+  35              		.loc 1 51 5 view .LVU1
+  36              		.loc 1 51 42 is_stmt 0 view .LVU2
+  37 0000 40F0BF60 		orr	r0, r0, #100139008
+  38              	.LVL1:
+  39              		.loc 1 51 42 view .LVU3
+  40 0004 40F40030 		orr	r0, r0, #131072
+  41              		.loc 1 51 16 view .LVU4
+  42 0008 014B     		ldr	r3, .L2
+  43 000a D860     		str	r0, [r3, #12]
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** }
+  44              		.loc 1 52 1 view .LVU5
+  45 000c 7047     		bx	lr
+  46              	.L3:
+  47 000e 00BF     		.align	2
+  48              	.L2:
+  49 0010 00ED00E0 		.word	-536810240
+  50              		.cfi_endproc
+  51              	.LFE116:
+  53              		.section	.text.nvic_irq_enable,"ax",%progbits
+  54              		.align	1
+  55              		.global	nvic_irq_enable
+  56              		.syntax unified
+  57              		.thumb
+  58              		.thumb_func
+  60              	nvic_irq_enable:
+  61              	.LVL2:
+  62              	.LFB117:
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief      enable NVIC request
+ARM GAS  C:\Temp\cc9chJuL.s 			page 3
+
+
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  nvic_irq: the NVIC interrupt request, detailed in IRQn_Type
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  nvic_irq_pre_priority: the pre-emption priority needed to set
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  nvic_irq_sub_priority: the subpriority needed to set
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[out] none
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \retval     none
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** void nvic_irq_enable(uint8_t nvic_irq, uint8_t nvic_irq_pre_priority, 
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****                      uint8_t nvic_irq_sub_priority)
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** {
+  63              		.loc 1 64 1 is_stmt 1 view -0
+  64              		.cfi_startproc
+  65              		@ args = 0, pretend = 0, frame = 0
+  66              		@ frame_needed = 0, uses_anonymous_args = 0
+  67              		.loc 1 64 1 is_stmt 0 view .LVU7
+  68 0000 70B5     		push	{r4, r5, r6, lr}
+  69              	.LCFI0:
+  70              		.cfi_def_cfa_offset 16
+  71              		.cfi_offset 4, -16
+  72              		.cfi_offset 5, -12
+  73              		.cfi_offset 6, -8
+  74              		.cfi_offset 14, -4
+  75 0002 0546     		mov	r5, r0
+  76 0004 0E46     		mov	r6, r1
+  77 0006 1446     		mov	r4, r2
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     uint32_t temp_priority = 0x00U, temp_pre = 0x00U, temp_sub = 0x00U;
+  78              		.loc 1 65 5 is_stmt 1 view .LVU8
+  79              	.LVL3:
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     /* use the priority group value to get the temp_pre and the temp_sub */
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE0_SUB4){
+  80              		.loc 1 67 5 view .LVU9
+  81              		.loc 1 67 13 is_stmt 0 view .LVU10
+  82 0008 274B     		ldr	r3, .L13
+  83 000a DB68     		ldr	r3, [r3, #12]
+  84              		.loc 1 67 22 view .LVU11
+  85 000c 03F4E063 		and	r3, r3, #1792
+  86              		.loc 1 67 7 view .LVU12
+  87 0010 B3F5E06F 		cmp	r3, #1792
+  88 0014 25D0     		beq	.L6
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=0U;
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x4U;
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE1_SUB3){
+  89              		.loc 1 70 11 is_stmt 1 view .LVU13
+  90              		.loc 1 70 19 is_stmt 0 view .LVU14
+  91 0016 244B     		ldr	r3, .L13
+  92 0018 DB68     		ldr	r3, [r3, #12]
+  93              		.loc 1 70 28 view .LVU15
+  94 001a 03F4E063 		and	r3, r3, #1792
+  95              		.loc 1 70 13 view .LVU16
+  96 001e B3F5C06F 		cmp	r3, #1536
+  97 0022 38D0     		beq	.L7
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=1U;
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x3U;
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE2_SUB2){
+  98              		.loc 1 73 11 is_stmt 1 view .LVU17
+  99              		.loc 1 73 19 is_stmt 0 view .LVU18
+ 100 0024 204B     		ldr	r3, .L13
+ 101 0026 DB68     		ldr	r3, [r3, #12]
+ARM GAS  C:\Temp\cc9chJuL.s 			page 4
+
+
+ 102              		.loc 1 73 28 view .LVU19
+ 103 0028 03F4E063 		and	r3, r3, #1792
+ 104              		.loc 1 73 13 view .LVU20
+ 105 002c B3F5A06F 		cmp	r3, #1280
+ 106 0030 34D0     		beq	.L8
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=2U;
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x2U;
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE3_SUB1){
+ 107              		.loc 1 76 11 is_stmt 1 view .LVU21
+ 108              		.loc 1 76 19 is_stmt 0 view .LVU22
+ 109 0032 1D4B     		ldr	r3, .L13
+ 110 0034 DB68     		ldr	r3, [r3, #12]
+ 111              		.loc 1 76 28 view .LVU23
+ 112 0036 03F4E063 		and	r3, r3, #1792
+ 113              		.loc 1 76 13 view .LVU24
+ 114 003a B3F5806F 		cmp	r3, #1024
+ 115 003e 30D0     		beq	.L9
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=3U;
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x1U;
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE4_SUB0){
+ 116              		.loc 1 79 11 is_stmt 1 view .LVU25
+ 117              		.loc 1 79 19 is_stmt 0 view .LVU26
+ 118 0040 194B     		ldr	r3, .L13
+ 119 0042 DB68     		ldr	r3, [r3, #12]
+ 120              		.loc 1 79 28 view .LVU27
+ 121 0044 03F4E063 		and	r3, r3, #1792
+ 122              		.loc 1 79 13 view .LVU28
+ 123 0048 B3F5407F 		cmp	r3, #768
+ 124 004c 02D1     		bne	.L12
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=4U;
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x0U;
+ 125              		.loc 1 81 17 view .LVU29
+ 126 004e 0023     		movs	r3, #0
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=4U;
+ 127              		.loc 1 80 17 view .LVU30
+ 128 0050 0422     		movs	r2, #4
+ 129              	.LVL4:
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=4U;
+ 130              		.loc 1 80 17 view .LVU31
+ 131 0052 08E0     		b	.L5
+ 132              	.LVL5:
+ 133              	.L12:
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else{
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         nvic_priority_group_set(NVIC_PRIGROUP_PRE2_SUB2);
+ 134              		.loc 1 83 9 is_stmt 1 view .LVU32
+ 135 0054 4FF4A060 		mov	r0, #1280
+ 136              	.LVL6:
+ 137              		.loc 1 83 9 is_stmt 0 view .LVU33
+ 138 0058 FFF7FEFF 		bl	nvic_priority_group_set
+ 139              	.LVL7:
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=2U;
+ 140              		.loc 1 84 9 is_stmt 1 view .LVU34
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x2U;
+ 141              		.loc 1 85 9 view .LVU35
+ 142              		.loc 1 85 17 is_stmt 0 view .LVU36
+ 143 005c 0223     		movs	r3, #2
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_pre=2U;
+ARM GAS  C:\Temp\cc9chJuL.s 			page 5
+
+
+ 144              		.loc 1 84 17 view .LVU37
+ 145 005e 1A46     		mov	r2, r3
+ 146 0060 01E0     		b	.L5
+ 147              	.LVL8:
+ 148              	.L6:
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE1_SUB3){
+ 149              		.loc 1 69 17 view .LVU38
+ 150 0062 0423     		movs	r3, #4
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x4U;
+ 151              		.loc 1 68 17 view .LVU39
+ 152 0064 0022     		movs	r2, #0
+ 153              	.LVL9:
+ 154              	.L5:
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     /* get the temp_priority to fill the NVIC->IP register */
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     temp_priority = (uint32_t)nvic_irq_pre_priority << (0x4U - temp_pre);
+ 155              		.loc 1 88 5 is_stmt 1 view .LVU40
+ 156              		.loc 1 88 62 is_stmt 0 view .LVU41
+ 157 0066 C2F10402 		rsb	r2, r2, #4
+ 158              	.LVL10:
+ 159              		.loc 1 88 19 view .LVU42
+ 160 006a 9640     		lsls	r6, r6, r2
+ 161              	.LVL11:
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     temp_priority |= nvic_irq_sub_priority &(0x0FU >> (0x4U - temp_sub));
+ 162              		.loc 1 89 5 is_stmt 1 view .LVU43
+ 163              		.loc 1 89 61 is_stmt 0 view .LVU44
+ 164 006c C3F10403 		rsb	r3, r3, #4
+ 165              	.LVL12:
+ 166              		.loc 1 89 52 view .LVU45
+ 167 0070 0F22     		movs	r2, #15
+ 168 0072 22FA03F3 		lsr	r3, r2, r3
+ 169              		.loc 1 89 44 view .LVU46
+ 170 0076 1C40     		ands	r4, r4, r3
+ 171              		.loc 1 89 19 view .LVU47
+ 172 0078 3443     		orrs	r4, r4, r6
+ 173              	.LVL13:
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     temp_priority = temp_priority << 0x04U;
+ 174              		.loc 1 90 5 is_stmt 1 view .LVU48
+ 175              		.loc 1 90 19 is_stmt 0 view .LVU49
+ 176 007a 2401     		lsls	r4, r4, #4
+ 177              	.LVL14:
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     NVIC->IP[nvic_irq] = (uint8_t)temp_priority;
+ 178              		.loc 1 91 5 is_stmt 1 view .LVU50
+ 179              		.loc 1 91 26 is_stmt 0 view .LVU51
+ 180 007c E4B2     		uxtb	r4, r4
+ 181              	.LVL15:
+ 182              		.loc 1 91 24 view .LVU52
+ 183 007e 0B4A     		ldr	r2, .L13+4
+ 184 0080 5319     		adds	r3, r2, r5
+ 185 0082 83F80043 		strb	r4, [r3, #768]
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     /* enable the selected IRQ */
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     NVIC->ISER[nvic_irq >> 0x05U] = (uint32_t)0x01U << (nvic_irq & (uint8_t)0x1FU);
+ 186              		.loc 1 93 5 is_stmt 1 view .LVU53
+ 187              		.loc 1 93 66 is_stmt 0 view .LVU54
+ 188 0086 05F01F01 		and	r1, r5, #31
+ 189              		.loc 1 93 25 view .LVU55
+ 190 008a 6D09     		lsrs	r5, r5, #5
+ARM GAS  C:\Temp\cc9chJuL.s 			page 6
+
+
+ 191              		.loc 1 93 53 view .LVU56
+ 192 008c 0123     		movs	r3, #1
+ 193 008e 8B40     		lsls	r3, r3, r1
+ 194              		.loc 1 93 35 view .LVU57
+ 195 0090 42F82530 		str	r3, [r2, r5, lsl #2]
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** }
+ 196              		.loc 1 94 1 view .LVU58
+ 197 0094 70BD     		pop	{r4, r5, r6, pc}
+ 198              	.LVL16:
+ 199              	.L7:
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE2_SUB2){
+ 200              		.loc 1 72 17 view .LVU59
+ 201 0096 0323     		movs	r3, #3
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x3U;
+ 202              		.loc 1 71 17 view .LVU60
+ 203 0098 0122     		movs	r2, #1
+ 204              	.LVL17:
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x3U;
+ 205              		.loc 1 71 17 view .LVU61
+ 206 009a E4E7     		b	.L5
+ 207              	.LVL18:
+ 208              	.L8:
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE3_SUB1){
+ 209              		.loc 1 75 17 view .LVU62
+ 210 009c 0223     		movs	r3, #2
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x2U;
+ 211              		.loc 1 74 17 view .LVU63
+ 212 009e 1A46     		mov	r2, r3
+ 213              	.LVL19:
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x2U;
+ 214              		.loc 1 74 17 view .LVU64
+ 215 00a0 E1E7     		b	.L5
+ 216              	.LVL20:
+ 217              	.L9:
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else if(((SCB->AIRCR) & (uint32_t)0x700U)==NVIC_PRIGROUP_PRE4_SUB0){
+ 218              		.loc 1 78 17 view .LVU65
+ 219 00a2 0123     		movs	r3, #1
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x1U;
+ 220              		.loc 1 77 17 view .LVU66
+ 221 00a4 0322     		movs	r2, #3
+ 222              	.LVL21:
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         temp_sub=0x1U;
+ 223              		.loc 1 77 17 view .LVU67
+ 224 00a6 DEE7     		b	.L5
+ 225              	.L14:
+ 226              		.align	2
+ 227              	.L13:
+ 228 00a8 00ED00E0 		.word	-536810240
+ 229 00ac 00E100E0 		.word	-536813312
+ 230              		.cfi_endproc
+ 231              	.LFE117:
+ 233              		.section	.text.nvic_irq_disable,"ax",%progbits
+ 234              		.align	1
+ 235              		.global	nvic_irq_disable
+ 236              		.syntax unified
+ 237              		.thumb
+ 238              		.thumb_func
+ARM GAS  C:\Temp\cc9chJuL.s 			page 7
+
+
+ 240              	nvic_irq_disable:
+ 241              	.LVL22:
+ 242              	.LFB118:
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief      disable NVIC request
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  nvic_irq: the NVIC interrupt request, detailed in IRQn_Type
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[out] none
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \retval     none
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** void nvic_irq_disable(uint8_t nvic_irq)
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** {
+ 243              		.loc 1 103 1 is_stmt 1 view -0
+ 244              		.cfi_startproc
+ 245              		@ args = 0, pretend = 0, frame = 0
+ 246              		@ frame_needed = 0, uses_anonymous_args = 0
+ 247              		@ link register save eliminated.
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     /* disable the selected IRQ.*/
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     NVIC->ICER[nvic_irq >> 0x05] = (uint32_t)0x01 << (nvic_irq & (uint8_t)0x1F);
+ 248              		.loc 1 105 5 view .LVU69
+ 249              		.loc 1 105 64 is_stmt 0 view .LVU70
+ 250 0000 00F01F02 		and	r2, r0, #31
+ 251              		.loc 1 105 25 view .LVU71
+ 252 0004 4009     		lsrs	r0, r0, #5
+ 253              	.LVL23:
+ 254              		.loc 1 105 51 view .LVU72
+ 255 0006 0123     		movs	r3, #1
+ 256 0008 9340     		lsls	r3, r3, r2
+ 257              		.loc 1 105 34 view .LVU73
+ 258 000a 2030     		adds	r0, r0, #32
+ 259 000c 014A     		ldr	r2, .L16
+ 260 000e 42F82030 		str	r3, [r2, r0, lsl #2]
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** }
+ 261              		.loc 1 106 1 view .LVU74
+ 262 0012 7047     		bx	lr
+ 263              	.L17:
+ 264              		.align	2
+ 265              	.L16:
+ 266 0014 00E100E0 		.word	-536813312
+ 267              		.cfi_endproc
+ 268              	.LFE118:
+ 270              		.section	.text.nvic_vector_table_set,"ax",%progbits
+ 271              		.align	1
+ 272              		.global	nvic_vector_table_set
+ 273              		.syntax unified
+ 274              		.thumb
+ 275              		.thumb_func
+ 277              	nvic_vector_table_set:
+ 278              	.LVL24:
+ 279              	.LFB119:
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief      set the NVIC vector table base address
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  nvic_vict_tab: the RAM or FLASH base address
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        NVIC_VECTTAB_RAM: RAM base address
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \are        NVIC_VECTTAB_FLASH: Flash base address
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  offset: Vector Table offset
+ARM GAS  C:\Temp\cc9chJuL.s 			page 8
+
+
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[out] none
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \retval     none
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** void nvic_vector_table_set(uint32_t nvic_vict_tab, uint32_t offset)
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** {
+ 280              		.loc 1 118 1 is_stmt 1 view -0
+ 281              		.cfi_startproc
+ 282              		@ args = 0, pretend = 0, frame = 0
+ 283              		@ frame_needed = 0, uses_anonymous_args = 0
+ 284              		@ link register save eliminated.
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     SCB->VTOR = nvic_vict_tab | (offset & NVIC_VECTTAB_OFFSET_MASK);
+ 285              		.loc 1 119 5 view .LVU76
+ 286              		.loc 1 119 41 is_stmt 0 view .LVU77
+ 287 0000 21F06041 		bic	r1, r1, #-536870912
+ 288              	.LVL25:
+ 289              		.loc 1 119 41 view .LVU78
+ 290 0004 21F07F01 		bic	r1, r1, #127
+ 291              		.loc 1 119 31 view .LVU79
+ 292 0008 0143     		orrs	r1, r1, r0
+ 293              		.loc 1 119 15 view .LVU80
+ 294 000a 024B     		ldr	r3, .L19
+ 295 000c 9960     		str	r1, [r3, #8]
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     __DSB();
+ 296              		.loc 1 120 5 is_stmt 1 view .LVU81
+ 297              	.LBB4:
+ 298              	.LBI4:
+ 299              		.file 2 "CMSIS/core_cmInstr.h"
+   1:CMSIS/core_cmInstr.h **** /**************************************************************************//**
+   2:CMSIS/core_cmInstr.h ****  * @file     core_cmInstr.h
+   3:CMSIS/core_cmInstr.h ****  * @brief    CMSIS Cortex-M Core Instruction Access Header File
+   4:CMSIS/core_cmInstr.h ****  * @version  V3.01
+   5:CMSIS/core_cmInstr.h ****  * @date     06. March 2012
+   6:CMSIS/core_cmInstr.h ****  *
+   7:CMSIS/core_cmInstr.h ****  * @note
+   8:CMSIS/core_cmInstr.h ****  * Copyright (C) 2009-2012 ARM Limited. All rights reserved.
+   9:CMSIS/core_cmInstr.h ****  *
+  10:CMSIS/core_cmInstr.h ****  * @par
+  11:CMSIS/core_cmInstr.h ****  * ARM Limited (ARM) is supplying this software for use with Cortex-M
+  12:CMSIS/core_cmInstr.h ****  * processor based microcontrollers.  This file can be freely distributed
+  13:CMSIS/core_cmInstr.h ****  * within development tools that are supporting such ARM based processors.
+  14:CMSIS/core_cmInstr.h ****  *
+  15:CMSIS/core_cmInstr.h ****  * @par
+  16:CMSIS/core_cmInstr.h ****  * THIS SOFTWARE IS PROVIDED "AS IS".  NO WARRANTIES, WHETHER EXPRESS, IMPLIED
+  17:CMSIS/core_cmInstr.h ****  * OR STATUTORY, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF
+  18:CMSIS/core_cmInstr.h ****  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE APPLY TO THIS SOFTWARE.
+  19:CMSIS/core_cmInstr.h ****  * ARM SHALL NOT, IN ANY CIRCUMSTANCES, BE LIABLE FOR SPECIAL, INCIDENTAL, OR
+  20:CMSIS/core_cmInstr.h ****  * CONSEQUENTIAL DAMAGES, FOR ANY REASON WHATSOEVER.
+  21:CMSIS/core_cmInstr.h ****  *
+  22:CMSIS/core_cmInstr.h ****  ******************************************************************************/
+  23:CMSIS/core_cmInstr.h **** 
+  24:CMSIS/core_cmInstr.h **** #ifndef __CORE_CMINSTR_H
+  25:CMSIS/core_cmInstr.h **** #define __CORE_CMINSTR_H
+  26:CMSIS/core_cmInstr.h **** 
+  27:CMSIS/core_cmInstr.h **** 
+  28:CMSIS/core_cmInstr.h **** /* ##########################  Core Instruction Access  ######################### */
+  29:CMSIS/core_cmInstr.h **** /** \defgroup CMSIS_Core_InstructionInterface CMSIS Core Instruction Interface
+  30:CMSIS/core_cmInstr.h ****   Access to dedicated instructions
+ARM GAS  C:\Temp\cc9chJuL.s 			page 9
+
+
+  31:CMSIS/core_cmInstr.h ****   @{
+  32:CMSIS/core_cmInstr.h **** */
+  33:CMSIS/core_cmInstr.h **** 
+  34:CMSIS/core_cmInstr.h **** #if   defined ( __CC_ARM ) /*------------------RealView Compiler -----------------*/
+  35:CMSIS/core_cmInstr.h **** /* ARM armcc specific functions */
+  36:CMSIS/core_cmInstr.h **** 
+  37:CMSIS/core_cmInstr.h **** #if (__ARMCC_VERSION < 400677)
+  38:CMSIS/core_cmInstr.h ****   #error "Please use ARM Compiler Toolchain V4.0.677 or later!"
+  39:CMSIS/core_cmInstr.h **** #endif
+  40:CMSIS/core_cmInstr.h **** 
+  41:CMSIS/core_cmInstr.h **** 
+  42:CMSIS/core_cmInstr.h **** /** \brief  No Operation
+  43:CMSIS/core_cmInstr.h **** 
+  44:CMSIS/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+  45:CMSIS/core_cmInstr.h ****  */
+  46:CMSIS/core_cmInstr.h **** #define __NOP                             __nop
+  47:CMSIS/core_cmInstr.h **** 
+  48:CMSIS/core_cmInstr.h **** 
+  49:CMSIS/core_cmInstr.h **** /** \brief  Wait For Interrupt
+  50:CMSIS/core_cmInstr.h **** 
+  51:CMSIS/core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+  52:CMSIS/core_cmInstr.h ****     until one of a number of events occurs.
+  53:CMSIS/core_cmInstr.h ****  */
+  54:CMSIS/core_cmInstr.h **** #define __WFI                             __wfi
+  55:CMSIS/core_cmInstr.h **** 
+  56:CMSIS/core_cmInstr.h **** 
+  57:CMSIS/core_cmInstr.h **** /** \brief  Wait For Event
+  58:CMSIS/core_cmInstr.h **** 
+  59:CMSIS/core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+  60:CMSIS/core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+  61:CMSIS/core_cmInstr.h ****  */
+  62:CMSIS/core_cmInstr.h **** #define __WFE                             __wfe
+  63:CMSIS/core_cmInstr.h **** 
+  64:CMSIS/core_cmInstr.h **** 
+  65:CMSIS/core_cmInstr.h **** /** \brief  Send Event
+  66:CMSIS/core_cmInstr.h **** 
+  67:CMSIS/core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+  68:CMSIS/core_cmInstr.h ****  */
+  69:CMSIS/core_cmInstr.h **** #define __SEV                             __sev
+  70:CMSIS/core_cmInstr.h **** 
+  71:CMSIS/core_cmInstr.h **** 
+  72:CMSIS/core_cmInstr.h **** /** \brief  Instruction Synchronization Barrier
+  73:CMSIS/core_cmInstr.h **** 
+  74:CMSIS/core_cmInstr.h ****     Instruction Synchronization Barrier flushes the pipeline in the processor,
+  75:CMSIS/core_cmInstr.h ****     so that all instructions following the ISB are fetched from cache or
+  76:CMSIS/core_cmInstr.h ****     memory, after the instruction has been completed.
+  77:CMSIS/core_cmInstr.h ****  */
+  78:CMSIS/core_cmInstr.h **** #define __ISB()                           __isb(0xF)
+  79:CMSIS/core_cmInstr.h **** 
+  80:CMSIS/core_cmInstr.h **** 
+  81:CMSIS/core_cmInstr.h **** /** \brief  Data Synchronization Barrier
+  82:CMSIS/core_cmInstr.h **** 
+  83:CMSIS/core_cmInstr.h ****     This function acts as a special kind of Data Memory Barrier.
+  84:CMSIS/core_cmInstr.h ****     It completes when all explicit memory accesses before this instruction complete.
+  85:CMSIS/core_cmInstr.h ****  */
+  86:CMSIS/core_cmInstr.h **** #define __DSB()                           __dsb(0xF)
+  87:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\cc9chJuL.s 			page 10
+
+
+  88:CMSIS/core_cmInstr.h **** 
+  89:CMSIS/core_cmInstr.h **** /** \brief  Data Memory Barrier
+  90:CMSIS/core_cmInstr.h **** 
+  91:CMSIS/core_cmInstr.h ****     This function ensures the apparent order of the explicit memory operations before
+  92:CMSIS/core_cmInstr.h ****     and after the instruction, without ensuring their completion.
+  93:CMSIS/core_cmInstr.h ****  */
+  94:CMSIS/core_cmInstr.h **** #define __DMB()                           __dmb(0xF)
+  95:CMSIS/core_cmInstr.h **** 
+  96:CMSIS/core_cmInstr.h **** 
+  97:CMSIS/core_cmInstr.h **** /** \brief  Reverse byte order (32 bit)
+  98:CMSIS/core_cmInstr.h **** 
+  99:CMSIS/core_cmInstr.h ****     This function reverses the byte order in integer value.
+ 100:CMSIS/core_cmInstr.h **** 
+ 101:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 102:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 103:CMSIS/core_cmInstr.h ****  */
+ 104:CMSIS/core_cmInstr.h **** #define __REV                             __rev
+ 105:CMSIS/core_cmInstr.h **** 
+ 106:CMSIS/core_cmInstr.h **** 
+ 107:CMSIS/core_cmInstr.h **** /** \brief  Reverse byte order (16 bit)
+ 108:CMSIS/core_cmInstr.h **** 
+ 109:CMSIS/core_cmInstr.h ****     This function reverses the byte order in two unsigned short values.
+ 110:CMSIS/core_cmInstr.h **** 
+ 111:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 112:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 113:CMSIS/core_cmInstr.h ****  */
+ 114:CMSIS/core_cmInstr.h **** __attribute__((section(".rev16_text"))) __STATIC_INLINE __ASM uint32_t __REV16(uint32_t value)
+ 115:CMSIS/core_cmInstr.h **** {
+ 116:CMSIS/core_cmInstr.h ****   rev16 r0, r0
+ 117:CMSIS/core_cmInstr.h ****   bx lr
+ 118:CMSIS/core_cmInstr.h **** }
+ 119:CMSIS/core_cmInstr.h **** 
+ 120:CMSIS/core_cmInstr.h **** 
+ 121:CMSIS/core_cmInstr.h **** /** \brief  Reverse byte order in signed short value
+ 122:CMSIS/core_cmInstr.h **** 
+ 123:CMSIS/core_cmInstr.h ****     This function reverses the byte order in a signed short value with sign extension to integer.
+ 124:CMSIS/core_cmInstr.h **** 
+ 125:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 126:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 127:CMSIS/core_cmInstr.h ****  */
+ 128:CMSIS/core_cmInstr.h **** __attribute__((section(".revsh_text"))) __STATIC_INLINE __ASM int32_t __REVSH(int32_t value)
+ 129:CMSIS/core_cmInstr.h **** {
+ 130:CMSIS/core_cmInstr.h ****   revsh r0, r0
+ 131:CMSIS/core_cmInstr.h ****   bx lr
+ 132:CMSIS/core_cmInstr.h **** }
+ 133:CMSIS/core_cmInstr.h **** 
+ 134:CMSIS/core_cmInstr.h **** 
+ 135:CMSIS/core_cmInstr.h **** /** \brief  Rotate Right in unsigned value (32 bit)
+ 136:CMSIS/core_cmInstr.h **** 
+ 137:CMSIS/core_cmInstr.h ****     This function Rotate Right (immediate) provides the value of the contents of a register rotated
+ 138:CMSIS/core_cmInstr.h **** 
+ 139:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to rotate
+ 140:CMSIS/core_cmInstr.h ****     \param [in]    value  Number of Bits to rotate
+ 141:CMSIS/core_cmInstr.h ****     \return               Rotated value
+ 142:CMSIS/core_cmInstr.h ****  */
+ 143:CMSIS/core_cmInstr.h **** #define __ROR                             __ror
+ 144:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\cc9chJuL.s 			page 11
+
+
+ 145:CMSIS/core_cmInstr.h **** 
+ 146:CMSIS/core_cmInstr.h **** #if       (__CORTEX_M >= 0x03)
+ 147:CMSIS/core_cmInstr.h **** 
+ 148:CMSIS/core_cmInstr.h **** /** \brief  Reverse bit order of value
+ 149:CMSIS/core_cmInstr.h **** 
+ 150:CMSIS/core_cmInstr.h ****     This function reverses the bit order of the given value.
+ 151:CMSIS/core_cmInstr.h **** 
+ 152:CMSIS/core_cmInstr.h ****     \param [in]    value  Value to reverse
+ 153:CMSIS/core_cmInstr.h ****     \return               Reversed value
+ 154:CMSIS/core_cmInstr.h ****  */
+ 155:CMSIS/core_cmInstr.h **** #define __RBIT                            __rbit
+ 156:CMSIS/core_cmInstr.h **** 
+ 157:CMSIS/core_cmInstr.h **** 
+ 158:CMSIS/core_cmInstr.h **** /** \brief  LDR Exclusive (8 bit)
+ 159:CMSIS/core_cmInstr.h **** 
+ 160:CMSIS/core_cmInstr.h ****     This function performs a exclusive LDR command for 8 bit value.
+ 161:CMSIS/core_cmInstr.h **** 
+ 162:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 163:CMSIS/core_cmInstr.h ****     \return             value of type uint8_t at (*ptr)
+ 164:CMSIS/core_cmInstr.h ****  */
+ 165:CMSIS/core_cmInstr.h **** #define __LDREXB(ptr)                     ((uint8_t ) __ldrex(ptr))
+ 166:CMSIS/core_cmInstr.h **** 
+ 167:CMSIS/core_cmInstr.h **** 
+ 168:CMSIS/core_cmInstr.h **** /** \brief  LDR Exclusive (16 bit)
+ 169:CMSIS/core_cmInstr.h **** 
+ 170:CMSIS/core_cmInstr.h ****     This function performs a exclusive LDR command for 16 bit values.
+ 171:CMSIS/core_cmInstr.h **** 
+ 172:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 173:CMSIS/core_cmInstr.h ****     \return        value of type uint16_t at (*ptr)
+ 174:CMSIS/core_cmInstr.h ****  */
+ 175:CMSIS/core_cmInstr.h **** #define __LDREXH(ptr)                     ((uint16_t) __ldrex(ptr))
+ 176:CMSIS/core_cmInstr.h **** 
+ 177:CMSIS/core_cmInstr.h **** 
+ 178:CMSIS/core_cmInstr.h **** /** \brief  LDR Exclusive (32 bit)
+ 179:CMSIS/core_cmInstr.h **** 
+ 180:CMSIS/core_cmInstr.h ****     This function performs a exclusive LDR command for 32 bit values.
+ 181:CMSIS/core_cmInstr.h **** 
+ 182:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to data
+ 183:CMSIS/core_cmInstr.h ****     \return        value of type uint32_t at (*ptr)
+ 184:CMSIS/core_cmInstr.h ****  */
+ 185:CMSIS/core_cmInstr.h **** #define __LDREXW(ptr)                     ((uint32_t ) __ldrex(ptr))
+ 186:CMSIS/core_cmInstr.h **** 
+ 187:CMSIS/core_cmInstr.h **** 
+ 188:CMSIS/core_cmInstr.h **** /** \brief  STR Exclusive (8 bit)
+ 189:CMSIS/core_cmInstr.h **** 
+ 190:CMSIS/core_cmInstr.h ****     This function performs a exclusive STR command for 8 bit values.
+ 191:CMSIS/core_cmInstr.h **** 
+ 192:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to store
+ 193:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 194:CMSIS/core_cmInstr.h ****     \return          0  Function succeeded
+ 195:CMSIS/core_cmInstr.h ****     \return          1  Function failed
+ 196:CMSIS/core_cmInstr.h ****  */
+ 197:CMSIS/core_cmInstr.h **** #define __STREXB(value, ptr)              __strex(value, ptr)
+ 198:CMSIS/core_cmInstr.h **** 
+ 199:CMSIS/core_cmInstr.h **** 
+ 200:CMSIS/core_cmInstr.h **** /** \brief  STR Exclusive (16 bit)
+ 201:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\cc9chJuL.s 			page 12
+
+
+ 202:CMSIS/core_cmInstr.h ****     This function performs a exclusive STR command for 16 bit values.
+ 203:CMSIS/core_cmInstr.h **** 
+ 204:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to store
+ 205:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 206:CMSIS/core_cmInstr.h ****     \return          0  Function succeeded
+ 207:CMSIS/core_cmInstr.h ****     \return          1  Function failed
+ 208:CMSIS/core_cmInstr.h ****  */
+ 209:CMSIS/core_cmInstr.h **** #define __STREXH(value, ptr)              __strex(value, ptr)
+ 210:CMSIS/core_cmInstr.h **** 
+ 211:CMSIS/core_cmInstr.h **** 
+ 212:CMSIS/core_cmInstr.h **** /** \brief  STR Exclusive (32 bit)
+ 213:CMSIS/core_cmInstr.h **** 
+ 214:CMSIS/core_cmInstr.h ****     This function performs a exclusive STR command for 32 bit values.
+ 215:CMSIS/core_cmInstr.h **** 
+ 216:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to store
+ 217:CMSIS/core_cmInstr.h ****     \param [in]    ptr  Pointer to location
+ 218:CMSIS/core_cmInstr.h ****     \return          0  Function succeeded
+ 219:CMSIS/core_cmInstr.h ****     \return          1  Function failed
+ 220:CMSIS/core_cmInstr.h ****  */
+ 221:CMSIS/core_cmInstr.h **** #define __STREXW(value, ptr)              __strex(value, ptr)
+ 222:CMSIS/core_cmInstr.h **** 
+ 223:CMSIS/core_cmInstr.h **** 
+ 224:CMSIS/core_cmInstr.h **** /** \brief  Remove the exclusive lock
+ 225:CMSIS/core_cmInstr.h **** 
+ 226:CMSIS/core_cmInstr.h ****     This function removes the exclusive lock which is created by LDREX.
+ 227:CMSIS/core_cmInstr.h **** 
+ 228:CMSIS/core_cmInstr.h ****  */
+ 229:CMSIS/core_cmInstr.h **** #define __CLREX                           __clrex
+ 230:CMSIS/core_cmInstr.h **** 
+ 231:CMSIS/core_cmInstr.h **** 
+ 232:CMSIS/core_cmInstr.h **** /** \brief  Signed Saturate
+ 233:CMSIS/core_cmInstr.h **** 
+ 234:CMSIS/core_cmInstr.h ****     This function saturates a signed value.
+ 235:CMSIS/core_cmInstr.h **** 
+ 236:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 237:CMSIS/core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (1..32)
+ 238:CMSIS/core_cmInstr.h ****     \return             Saturated value
+ 239:CMSIS/core_cmInstr.h ****  */
+ 240:CMSIS/core_cmInstr.h **** #define __SSAT                            __ssat
+ 241:CMSIS/core_cmInstr.h **** 
+ 242:CMSIS/core_cmInstr.h **** 
+ 243:CMSIS/core_cmInstr.h **** /** \brief  Unsigned Saturate
+ 244:CMSIS/core_cmInstr.h **** 
+ 245:CMSIS/core_cmInstr.h ****     This function saturates an unsigned value.
+ 246:CMSIS/core_cmInstr.h **** 
+ 247:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to be saturated
+ 248:CMSIS/core_cmInstr.h ****     \param [in]    sat  Bit position to saturate to (0..31)
+ 249:CMSIS/core_cmInstr.h ****     \return             Saturated value
+ 250:CMSIS/core_cmInstr.h ****  */
+ 251:CMSIS/core_cmInstr.h **** #define __USAT                            __usat
+ 252:CMSIS/core_cmInstr.h **** 
+ 253:CMSIS/core_cmInstr.h **** 
+ 254:CMSIS/core_cmInstr.h **** /** \brief  Count leading zeros
+ 255:CMSIS/core_cmInstr.h **** 
+ 256:CMSIS/core_cmInstr.h ****     This function counts the number of leading zeros of a data value.
+ 257:CMSIS/core_cmInstr.h **** 
+ 258:CMSIS/core_cmInstr.h ****     \param [in]  value  Value to count the leading zeros
+ARM GAS  C:\Temp\cc9chJuL.s 			page 13
+
+
+ 259:CMSIS/core_cmInstr.h ****     \return             number of leading zeros in value
+ 260:CMSIS/core_cmInstr.h ****  */
+ 261:CMSIS/core_cmInstr.h **** #define __CLZ                             __clz
+ 262:CMSIS/core_cmInstr.h **** 
+ 263:CMSIS/core_cmInstr.h **** #endif /* (__CORTEX_M >= 0x03) */
+ 264:CMSIS/core_cmInstr.h **** 
+ 265:CMSIS/core_cmInstr.h **** 
+ 266:CMSIS/core_cmInstr.h **** 
+ 267:CMSIS/core_cmInstr.h **** #elif defined ( __ICCARM__ ) /*------------------ ICC Compiler -------------------*/
+ 268:CMSIS/core_cmInstr.h **** /* IAR iccarm specific functions */
+ 269:CMSIS/core_cmInstr.h **** 
+ 270:CMSIS/core_cmInstr.h **** #include <cmsis_iar.h>
+ 271:CMSIS/core_cmInstr.h **** 
+ 272:CMSIS/core_cmInstr.h **** 
+ 273:CMSIS/core_cmInstr.h **** #elif defined ( __TMS470__ ) /*---------------- TI CCS Compiler ------------------*/
+ 274:CMSIS/core_cmInstr.h **** /* TI CCS specific functions */
+ 275:CMSIS/core_cmInstr.h **** 
+ 276:CMSIS/core_cmInstr.h **** #include <cmsis_ccs.h>
+ 277:CMSIS/core_cmInstr.h **** 
+ 278:CMSIS/core_cmInstr.h **** 
+ 279:CMSIS/core_cmInstr.h **** #elif defined ( __GNUC__ ) /*------------------ GNU Compiler ---------------------*/
+ 280:CMSIS/core_cmInstr.h **** /* GNU gcc specific functions */
+ 281:CMSIS/core_cmInstr.h **** 
+ 282:CMSIS/core_cmInstr.h **** /** \brief  No Operation
+ 283:CMSIS/core_cmInstr.h **** 
+ 284:CMSIS/core_cmInstr.h ****     No Operation does nothing. This instruction can be used for code alignment purposes.
+ 285:CMSIS/core_cmInstr.h ****  */
+ 286:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __NOP(void)
+ 287:CMSIS/core_cmInstr.h **** {
+ 288:CMSIS/core_cmInstr.h ****   __ASM volatile ("nop");
+ 289:CMSIS/core_cmInstr.h **** }
+ 290:CMSIS/core_cmInstr.h **** 
+ 291:CMSIS/core_cmInstr.h **** 
+ 292:CMSIS/core_cmInstr.h **** /** \brief  Wait For Interrupt
+ 293:CMSIS/core_cmInstr.h **** 
+ 294:CMSIS/core_cmInstr.h ****     Wait For Interrupt is a hint instruction that suspends execution
+ 295:CMSIS/core_cmInstr.h ****     until one of a number of events occurs.
+ 296:CMSIS/core_cmInstr.h ****  */
+ 297:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __WFI(void)
+ 298:CMSIS/core_cmInstr.h **** {
+ 299:CMSIS/core_cmInstr.h ****   __ASM volatile ("wfi");
+ 300:CMSIS/core_cmInstr.h **** }
+ 301:CMSIS/core_cmInstr.h **** 
+ 302:CMSIS/core_cmInstr.h **** 
+ 303:CMSIS/core_cmInstr.h **** /** \brief  Wait For Event
+ 304:CMSIS/core_cmInstr.h **** 
+ 305:CMSIS/core_cmInstr.h ****     Wait For Event is a hint instruction that permits the processor to enter
+ 306:CMSIS/core_cmInstr.h ****     a low-power state until one of a number of events occurs.
+ 307:CMSIS/core_cmInstr.h ****  */
+ 308:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __WFE(void)
+ 309:CMSIS/core_cmInstr.h **** {
+ 310:CMSIS/core_cmInstr.h ****   __ASM volatile ("wfe");
+ 311:CMSIS/core_cmInstr.h **** }
+ 312:CMSIS/core_cmInstr.h **** 
+ 313:CMSIS/core_cmInstr.h **** 
+ 314:CMSIS/core_cmInstr.h **** /** \brief  Send Event
+ 315:CMSIS/core_cmInstr.h **** 
+ARM GAS  C:\Temp\cc9chJuL.s 			page 14
+
+
+ 316:CMSIS/core_cmInstr.h ****     Send Event is a hint instruction. It causes an event to be signaled to the CPU.
+ 317:CMSIS/core_cmInstr.h ****  */
+ 318:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __SEV(void)
+ 319:CMSIS/core_cmInstr.h **** {
+ 320:CMSIS/core_cmInstr.h ****   __ASM volatile ("sev");
+ 321:CMSIS/core_cmInstr.h **** }
+ 322:CMSIS/core_cmInstr.h **** 
+ 323:CMSIS/core_cmInstr.h **** 
+ 324:CMSIS/core_cmInstr.h **** /** \brief  Instruction Synchronization Barrier
+ 325:CMSIS/core_cmInstr.h **** 
+ 326:CMSIS/core_cmInstr.h ****     Instruction Synchronization Barrier flushes the pipeline in the processor,
+ 327:CMSIS/core_cmInstr.h ****     so that all instructions following the ISB are fetched from cache or
+ 328:CMSIS/core_cmInstr.h ****     memory, after the instruction has been completed.
+ 329:CMSIS/core_cmInstr.h ****  */
+ 330:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __ISB(void)
+ 331:CMSIS/core_cmInstr.h **** {
+ 332:CMSIS/core_cmInstr.h ****   __ASM volatile ("isb");
+ 333:CMSIS/core_cmInstr.h **** }
+ 334:CMSIS/core_cmInstr.h **** 
+ 335:CMSIS/core_cmInstr.h **** 
+ 336:CMSIS/core_cmInstr.h **** /** \brief  Data Synchronization Barrier
+ 337:CMSIS/core_cmInstr.h **** 
+ 338:CMSIS/core_cmInstr.h ****     This function acts as a special kind of Data Memory Barrier.
+ 339:CMSIS/core_cmInstr.h ****     It completes when all explicit memory accesses before this instruction complete.
+ 340:CMSIS/core_cmInstr.h ****  */
+ 341:CMSIS/core_cmInstr.h **** __attribute__( ( always_inline ) ) __STATIC_INLINE void __DSB(void)
+ 300              		.loc 2 341 57 view .LVU82
+ 301              	.LBB5:
+ 342:CMSIS/core_cmInstr.h **** {
+ 343:CMSIS/core_cmInstr.h ****   __ASM volatile ("dsb");
+ 302              		.loc 2 343 3 view .LVU83
+ 303              		.syntax unified
+ 304              	@ 343 "CMSIS/core_cmInstr.h" 1
+ 305 000e BFF34F8F 		dsb
+ 306              	@ 0 "" 2
+ 307              		.thumb
+ 308              		.syntax unified
+ 309              	.LBE5:
+ 310              	.LBE4:
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** }
+ 311              		.loc 1 121 1 is_stmt 0 view .LVU84
+ 312 0012 7047     		bx	lr
+ 313              	.L20:
+ 314              		.align	2
+ 315              	.L19:
+ 316 0014 00ED00E0 		.word	-536810240
+ 317              		.cfi_endproc
+ 318              	.LFE119:
+ 320              		.section	.text.system_lowpower_set,"ax",%progbits
+ 321              		.align	1
+ 322              		.global	system_lowpower_set
+ 323              		.syntax unified
+ 324              		.thumb
+ 325              		.thumb_func
+ 327              	system_lowpower_set:
+ 328              	.LVL26:
+ 329              	.LFB120:
+ARM GAS  C:\Temp\cc9chJuL.s 			page 15
+
+
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief      set the state of the low power mode
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  lowpower_mode: the low power mode state
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SCB_LPM_SLEEP_EXIT_ISR: if chose this para, the system always enter low power 
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****                     mode by exiting from ISR
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SCB_LPM_DEEPSLEEP: if chose this para, the system will enter the DEEPSLEEP mode
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SCB_LPM_WAKE_BY_ALL_INT: if chose this para, the lowpower mode can be woke up 
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****                     by all the enable and disable interrupts
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[out] none
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \retval     none
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** void system_lowpower_set(uint8_t lowpower_mode)
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** {
+ 330              		.loc 1 135 1 is_stmt 1 view -0
+ 331              		.cfi_startproc
+ 332              		@ args = 0, pretend = 0, frame = 0
+ 333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 334              		@ link register save eliminated.
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     SCB->SCR |= (uint32_t)lowpower_mode;
+ 335              		.loc 1 136 5 view .LVU86
+ 336              		.loc 1 136 8 is_stmt 0 view .LVU87
+ 337 0000 024A     		ldr	r2, .L22
+ 338 0002 1369     		ldr	r3, [r2, #16]
+ 339              		.loc 1 136 14 view .LVU88
+ 340 0004 0343     		orrs	r3, r3, r0
+ 341 0006 1361     		str	r3, [r2, #16]
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** }
+ 342              		.loc 1 137 1 view .LVU89
+ 343 0008 7047     		bx	lr
+ 344              	.L23:
+ 345 000a 00BF     		.align	2
+ 346              	.L22:
+ 347 000c 00ED00E0 		.word	-536810240
+ 348              		.cfi_endproc
+ 349              	.LFE120:
+ 351              		.section	.text.system_lowpower_reset,"ax",%progbits
+ 352              		.align	1
+ 353              		.global	system_lowpower_reset
+ 354              		.syntax unified
+ 355              		.thumb
+ 356              		.thumb_func
+ 358              	system_lowpower_reset:
+ 359              	.LVL27:
+ 360              	.LFB121:
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief      reset the state of the low power mode
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  lowpower_mode: the low power mode state
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SCB_LPM_SLEEP_EXIT_ISR: if chose this para, the system will exit low power 
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****                     mode by exiting from ISR
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SCB_LPM_DEEPSLEEP: if chose this para, the system will enter the SLEEP mode
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SCB_LPM_WAKE_BY_ALL_INT: if chose this para, the lowpower mode only can be 
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****                     woke up by the enable interrupts
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[out] none
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \retval     none
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+ARM GAS  C:\Temp\cc9chJuL.s 			page 16
+
+
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** void system_lowpower_reset(uint8_t lowpower_mode)
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** {
+ 361              		.loc 1 151 1 is_stmt 1 view -0
+ 362              		.cfi_startproc
+ 363              		@ args = 0, pretend = 0, frame = 0
+ 364              		@ frame_needed = 0, uses_anonymous_args = 0
+ 365              		@ link register save eliminated.
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     SCB->SCR &= (~(uint32_t)lowpower_mode);
+ 366              		.loc 1 152 5 view .LVU91
+ 367              		.loc 1 152 8 is_stmt 0 view .LVU92
+ 368 0000 024A     		ldr	r2, .L25
+ 369 0002 1369     		ldr	r3, [r2, #16]
+ 370              		.loc 1 152 14 view .LVU93
+ 371 0004 23EA0003 		bic	r3, r3, r0
+ 372 0008 1361     		str	r3, [r2, #16]
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** }
+ 373              		.loc 1 153 1 view .LVU94
+ 374 000a 7047     		bx	lr
+ 375              	.L26:
+ 376              		.align	2
+ 377              	.L25:
+ 378 000c 00ED00E0 		.word	-536810240
+ 379              		.cfi_endproc
+ 380              	.LFE121:
+ 382              		.section	.text.systick_clksource_set,"ax",%progbits
+ 383              		.align	1
+ 384              		.global	systick_clksource_set
+ 385              		.syntax unified
+ 386              		.thumb
+ 387              		.thumb_func
+ 389              	systick_clksource_set:
+ 390              	.LVL28:
+ 391              	.LFB122:
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** /*!
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \brief      set the systick clock source
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[in]  systick_clksource: the systick clock source needed to choose
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SYSTICK_CLKSOURCE_HCLK: systick clock source is from HCLK
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****       \arg        SYSTICK_CLKSOURCE_HCLK_DIV8: systick clock source is from HCLK/8
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \param[out] none
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     \retval     none
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** */
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** 
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** void systick_clksource_set(uint32_t systick_clksource)
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** {
+ 392              		.loc 1 165 1 is_stmt 1 view -0
+ 393              		.cfi_startproc
+ 394              		@ args = 0, pretend = 0, frame = 0
+ 395              		@ frame_needed = 0, uses_anonymous_args = 0
+ 396              		@ link register save eliminated.
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     if(SYSTICK_CLKSOURCE_HCLK == systick_clksource ){
+ 397              		.loc 1 166 5 view .LVU96
+ 398              		.loc 1 166 7 is_stmt 0 view .LVU97
+ 399 0000 0428     		cmp	r0, #4
+ 400 0002 06D0     		beq	.L30
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         /* set the systick clock source from HCLK */
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         SysTick->CTRL |= SYSTICK_CLKSOURCE_HCLK;
+ARM GAS  C:\Temp\cc9chJuL.s 			page 17
+
+
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else{
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         /* set the systick clock source from HCLK/8 */
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****         SysTick->CTRL &= SYSTICK_CLKSOURCE_HCLK_DIV8;
+ 401              		.loc 1 171 9 is_stmt 1 view .LVU98
+ 402              		.loc 1 171 16 is_stmt 0 view .LVU99
+ 403 0004 4FF0E022 		mov	r2, #-536813568
+ 404 0008 1369     		ldr	r3, [r2, #16]
+ 405              		.loc 1 171 23 view .LVU100
+ 406 000a 23F00403 		bic	r3, r3, #4
+ 407 000e 1361     		str	r3, [r2, #16]
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c **** }
+ 408              		.loc 1 173 1 view .LVU101
+ 409 0010 7047     		bx	lr
+ 410              	.L30:
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else{
+ 411              		.loc 1 168 9 is_stmt 1 view .LVU102
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else{
+ 412              		.loc 1 168 16 is_stmt 0 view .LVU103
+ 413 0012 4FF0E022 		mov	r2, #-536813568
+ 414 0016 1369     		ldr	r3, [r2, #16]
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_misc.c ****     }else{
+ 415              		.loc 1 168 23 view .LVU104
+ 416 0018 43F00403 		orr	r3, r3, #4
+ 417 001c 1361     		str	r3, [r2, #16]
+ 418 001e 7047     		bx	lr
+ 419              		.cfi_endproc
+ 420              	.LFE122:
+ 422              		.text
+ 423              	.Letext0:
+ 424              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 425              		.file 4 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 426              		.file 5 "CMSIS/core_cm4.h"
+ARM GAS  C:\Temp\cc9chJuL.s 			page 18
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_misc.c
+  C:\Temp\cc9chJuL.s:21     .text.nvic_priority_group_set:00000000 $t
+  C:\Temp\cc9chJuL.s:27     .text.nvic_priority_group_set:00000000 nvic_priority_group_set
+  C:\Temp\cc9chJuL.s:49     .text.nvic_priority_group_set:00000010 $d
+  C:\Temp\cc9chJuL.s:54     .text.nvic_irq_enable:00000000 $t
+  C:\Temp\cc9chJuL.s:60     .text.nvic_irq_enable:00000000 nvic_irq_enable
+  C:\Temp\cc9chJuL.s:228    .text.nvic_irq_enable:000000a8 $d
+  C:\Temp\cc9chJuL.s:234    .text.nvic_irq_disable:00000000 $t
+  C:\Temp\cc9chJuL.s:240    .text.nvic_irq_disable:00000000 nvic_irq_disable
+  C:\Temp\cc9chJuL.s:266    .text.nvic_irq_disable:00000014 $d
+  C:\Temp\cc9chJuL.s:271    .text.nvic_vector_table_set:00000000 $t
+  C:\Temp\cc9chJuL.s:277    .text.nvic_vector_table_set:00000000 nvic_vector_table_set
+  C:\Temp\cc9chJuL.s:316    .text.nvic_vector_table_set:00000014 $d
+  C:\Temp\cc9chJuL.s:321    .text.system_lowpower_set:00000000 $t
+  C:\Temp\cc9chJuL.s:327    .text.system_lowpower_set:00000000 system_lowpower_set
+  C:\Temp\cc9chJuL.s:347    .text.system_lowpower_set:0000000c $d
+  C:\Temp\cc9chJuL.s:352    .text.system_lowpower_reset:00000000 $t
+  C:\Temp\cc9chJuL.s:358    .text.system_lowpower_reset:00000000 system_lowpower_reset
+  C:\Temp\cc9chJuL.s:378    .text.system_lowpower_reset:0000000c $d
+  C:\Temp\cc9chJuL.s:383    .text.systick_clksource_set:00000000 $t
+  C:\Temp\cc9chJuL.s:389    .text.systick_clksource_set:00000000 systick_clksource_set
+
+NO UNDEFINED SYMBOLS

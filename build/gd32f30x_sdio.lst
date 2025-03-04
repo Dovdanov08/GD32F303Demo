@@ -1,0 +1,2595 @@
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_sdio.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c"
+  20              		.section	.text.sdio_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	sdio_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	sdio_deinit:
+  28              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \file    gd32f30x_sdio.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief   SDIO driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 2
+
+
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** #include "gd32f30x_sdio.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** #define DEFAULT_RESET_VALUE 0x00000000U
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      deinitialize the SDIO
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_deinit(void)
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+  29              		.loc 1 46 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_PWRCTL  = DEFAULT_RESET_VALUE;
+  34              		.loc 1 47 5 view .LVU1
+  35              		.loc 1 47 18 is_stmt 0 view .LVU2
+  36 0000 054B     		ldr	r3, .L2
+  37 0002 0022     		movs	r2, #0
+  38 0004 1A60     		str	r2, [r3]
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL  = DEFAULT_RESET_VALUE;
+  39              		.loc 1 48 5 is_stmt 1 view .LVU3
+  40              		.loc 1 48 18 is_stmt 0 view .LVU4
+  41 0006 5A60     		str	r2, [r3, #4]
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDAGMT = DEFAULT_RESET_VALUE;
+  42              		.loc 1 49 5 is_stmt 1 view .LVU5
+  43              		.loc 1 49 18 is_stmt 0 view .LVU6
+  44 0008 9A60     		str	r2, [r3, #8]
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL  = DEFAULT_RESET_VALUE;
+  45              		.loc 1 50 5 is_stmt 1 view .LVU7
+  46              		.loc 1 50 18 is_stmt 0 view .LVU8
+  47 000a DA60     		str	r2, [r3, #12]
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATATO  = DEFAULT_RESET_VALUE;
+  48              		.loc 1 51 5 is_stmt 1 view .LVU9
+  49              		.loc 1 51 18 is_stmt 0 view .LVU10
+  50 000c 5A62     		str	r2, [r3, #36]
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATALEN = DEFAULT_RESET_VALUE;
+  51              		.loc 1 52 5 is_stmt 1 view .LVU11
+  52              		.loc 1 52 18 is_stmt 0 view .LVU12
+  53 000e 9A62     		str	r2, [r3, #40]
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL = DEFAULT_RESET_VALUE;
+  54              		.loc 1 53 5 is_stmt 1 view .LVU13
+  55              		.loc 1 53 18 is_stmt 0 view .LVU14
+  56 0010 DA62     		str	r2, [r3, #44]
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_INTC    = DEFAULT_RESET_VALUE;
+  57              		.loc 1 54 5 is_stmt 1 view .LVU15
+  58              		.loc 1 54 18 is_stmt 0 view .LVU16
+  59 0012 9A63     		str	r2, [r3, #56]
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_INTEN   = DEFAULT_RESET_VALUE;
+  60              		.loc 1 55 5 is_stmt 1 view .LVU17
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 3
+
+
+  61              		.loc 1 55 18 is_stmt 0 view .LVU18
+  62 0014 DA63     		str	r2, [r3, #60]
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+  63              		.loc 1 56 1 view .LVU19
+  64 0016 7047     		bx	lr
+  65              	.L3:
+  66              		.align	2
+  67              	.L2:
+  68 0018 00800140 		.word	1073840128
+  69              		.cfi_endproc
+  70              	.LFE116:
+  72              		.section	.text.sdio_clock_config,"ax",%progbits
+  73              		.align	1
+  74              		.global	sdio_clock_config
+  75              		.syntax unified
+  76              		.thumb
+  77              		.thumb_func
+  79              	sdio_clock_config:
+  80              	.LVL0:
+  81              	.LFB117:
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      configure the SDIO clock
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  clock_edge: SDIO_CLK clock edge
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_SDIOCLKEDGE_RISING: select the rising edge of the SDIOCLK to generate SDIO_C
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_SDIOCLKEDGE_FALLING: select the falling edge of the SDIOCLK to generate SDIO
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  clock_bypass: clock bypass
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_CLOCKBYPASS_ENABLE: clock bypass
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_CLOCKBYPASS_DISABLE: no bypass
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  clock_powersave: SDIO_CLK clock dynamic switch on/off for power saving
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_CLOCKPWRSAVE_ENABLE: SDIO_CLK closed when bus is idle
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_CLOCKPWRSAVE_DISABLE: SDIO_CLK clock is always on
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  clock_division: clock division, less than 512
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_clock_config(uint32_t clock_edge, uint32_t clock_bypass, uint32_t clock_powersave, uint16
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+  82              		.loc 1 77 1 is_stmt 1 view -0
+  83              		.cfi_startproc
+  84              		@ args = 0, pretend = 0, frame = 0
+  85              		@ frame_needed = 0, uses_anonymous_args = 0
+  86              		@ link register save eliminated.
+  87              		.loc 1 77 1 is_stmt 0 view .LVU21
+  88 0000 30B4     		push	{r4, r5}
+  89              	.LCFI0:
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 4, -8
+  92              		.cfi_offset 5, -4
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     uint32_t clock_config = 0U;
+  93              		.loc 1 78 5 is_stmt 1 view .LVU22
+  94              	.LVL1:
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     clock_config = SDIO_CLKCTL;
+  95              		.loc 1 79 5 view .LVU23
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 4
+
+
+  96              		.loc 1 79 18 is_stmt 0 view .LVU24
+  97 0002 094C     		ldr	r4, .L7
+  98 0004 6568     		ldr	r5, [r4, #4]
+  99              	.LVL2:
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* reset the CLKEDGE, CLKBYP, CLKPWRSAV, DIV */
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     clock_config &= ~(SDIO_CLKCTL_CLKEDGE | SDIO_CLKCTL_CLKBYP | SDIO_CLKCTL_CLKPWRSAV | SDIO_CLKCT
+ 100              		.loc 1 81 5 is_stmt 1 view .LVU25
+ 101              		.loc 1 81 18 is_stmt 0 view .LVU26
+ 102 0006 094C     		ldr	r4, .L7+4
+ 103 0008 2C40     		ands	r4, r4, r5
+ 104              	.LVL3:
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* if the clock division is greater or equal to 256, set the DIV[8] */
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     if(clock_division >= 256U){
+ 105              		.loc 1 83 5 is_stmt 1 view .LVU27
+ 106              		.loc 1 83 7 is_stmt 0 view .LVU28
+ 107 000a FF2B     		cmp	r3, #255
+ 108 000c 04D9     		bls	.L5
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         clock_config |= SDIO_CLKCTL_DIV8;
+ 109              		.loc 1 84 9 is_stmt 1 view .LVU29
+ 110              		.loc 1 84 22 is_stmt 0 view .LVU30
+ 111 000e 44F00044 		orr	r4, r4, #-2147483648
+ 112              	.LVL4:
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         clock_division -= 256U;
+ 113              		.loc 1 85 9 is_stmt 1 view .LVU31
+ 114              		.loc 1 85 24 is_stmt 0 view .LVU32
+ 115 0012 A3F58073 		sub	r3, r3, #256
+ 116              	.LVL5:
+ 117              		.loc 1 85 24 view .LVU33
+ 118 0016 9BB2     		uxth	r3, r3
+ 119              	.LVL6:
+ 120              	.L5:
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     }
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* configure the SDIO_CLKCTL according to the parameters */
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     clock_config |= (clock_edge | clock_bypass | clock_powersave | clock_division);
+ 121              		.loc 1 88 5 is_stmt 1 view .LVU34
+ 122              		.loc 1 88 33 is_stmt 0 view .LVU35
+ 123 0018 0843     		orrs	r0, r0, r1
+ 124              	.LVL7:
+ 125              		.loc 1 88 48 view .LVU36
+ 126 001a 0243     		orrs	r2, r2, r0
+ 127              	.LVL8:
+ 128              		.loc 1 88 66 view .LVU37
+ 129 001c 1343     		orrs	r3, r3, r2
+ 130              	.LVL9:
+ 131              		.loc 1 88 18 view .LVU38
+ 132 001e 2343     		orrs	r3, r3, r4
+ 133              	.LVL10:
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL = clock_config;
+ 134              		.loc 1 89 5 is_stmt 1 view .LVU39
+ 135              		.loc 1 89 17 is_stmt 0 view .LVU40
+ 136 0020 014A     		ldr	r2, .L7
+ 137 0022 5360     		str	r3, [r2, #4]
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 138              		.loc 1 90 1 view .LVU41
+ 139 0024 30BC     		pop	{r4, r5}
+ 140              	.LCFI1:
+ 141              		.cfi_restore 5
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 5
+
+
+ 142              		.cfi_restore 4
+ 143              		.cfi_def_cfa_offset 0
+ 144 0026 7047     		bx	lr
+ 145              	.L8:
+ 146              		.align	2
+ 147              	.L7:
+ 148 0028 00800140 		.word	1073840128
+ 149 002c 00D9FF7F 		.word	2147473664
+ 150              		.cfi_endproc
+ 151              	.LFE117:
+ 153              		.section	.text.sdio_hardware_clock_enable,"ax",%progbits
+ 154              		.align	1
+ 155              		.global	sdio_hardware_clock_enable
+ 156              		.syntax unified
+ 157              		.thumb
+ 158              		.thumb_func
+ 160              	sdio_hardware_clock_enable:
+ 161              	.LFB118:
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable hardware clock control
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_hardware_clock_enable(void)
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 162              		.loc 1 99 1 is_stmt 1 view -0
+ 163              		.cfi_startproc
+ 164              		@ args = 0, pretend = 0, frame = 0
+ 165              		@ frame_needed = 0, uses_anonymous_args = 0
+ 166              		@ link register save eliminated.
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL |= SDIO_CLKCTL_HWCLKEN;
+ 167              		.loc 1 100 5 view .LVU43
+ 168 0000 024A     		ldr	r2, .L10
+ 169 0002 5368     		ldr	r3, [r2, #4]
+ 170              		.loc 1 100 17 is_stmt 0 view .LVU44
+ 171 0004 43F48043 		orr	r3, r3, #16384
+ 172 0008 5360     		str	r3, [r2, #4]
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 173              		.loc 1 101 1 view .LVU45
+ 174 000a 7047     		bx	lr
+ 175              	.L11:
+ 176              		.align	2
+ 177              	.L10:
+ 178 000c 00800140 		.word	1073840128
+ 179              		.cfi_endproc
+ 180              	.LFE118:
+ 182              		.section	.text.sdio_hardware_clock_disable,"ax",%progbits
+ 183              		.align	1
+ 184              		.global	sdio_hardware_clock_disable
+ 185              		.syntax unified
+ 186              		.thumb
+ 187              		.thumb_func
+ 189              	sdio_hardware_clock_disable:
+ 190              	.LFB119:
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 6
+
+
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable hardware clock control
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_hardware_clock_disable(void)
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 191              		.loc 1 110 1 is_stmt 1 view -0
+ 192              		.cfi_startproc
+ 193              		@ args = 0, pretend = 0, frame = 0
+ 194              		@ frame_needed = 0, uses_anonymous_args = 0
+ 195              		@ link register save eliminated.
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL &= ~SDIO_CLKCTL_HWCLKEN;
+ 196              		.loc 1 111 5 view .LVU47
+ 197 0000 024A     		ldr	r2, .L13
+ 198 0002 5368     		ldr	r3, [r2, #4]
+ 199              		.loc 1 111 17 is_stmt 0 view .LVU48
+ 200 0004 23F48043 		bic	r3, r3, #16384
+ 201 0008 5360     		str	r3, [r2, #4]
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 202              		.loc 1 112 1 view .LVU49
+ 203 000a 7047     		bx	lr
+ 204              	.L14:
+ 205              		.align	2
+ 206              	.L13:
+ 207 000c 00800140 		.word	1073840128
+ 208              		.cfi_endproc
+ 209              	.LFE119:
+ 211              		.section	.text.sdio_bus_mode_set,"ax",%progbits
+ 212              		.align	1
+ 213              		.global	sdio_bus_mode_set
+ 214              		.syntax unified
+ 215              		.thumb
+ 216              		.thumb_func
+ 218              	sdio_bus_mode_set:
+ 219              	.LVL11:
+ 220              	.LFB120:
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      set different SDIO card bus mode
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  bus_mode: SDIO card bus mode
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_BUSMODE_1BIT: 1-bit SDIO card bus mode
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_BUSMODE_4BIT: 4-bit SDIO card bus mode
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_BUSMODE_8BIT: 8-bit SDIO card bus mode
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_bus_mode_set(uint32_t bus_mode)
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 221              		.loc 1 125 1 is_stmt 1 view -0
+ 222              		.cfi_startproc
+ 223              		@ args = 0, pretend = 0, frame = 0
+ 224              		@ frame_needed = 0, uses_anonymous_args = 0
+ 225              		@ link register save eliminated.
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* reset the SDIO card bus mode bits and set according to bus_mode */
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 7
+
+
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL &= ~SDIO_CLKCTL_BUSMODE;
+ 226              		.loc 1 127 5 view .LVU51
+ 227 0000 044B     		ldr	r3, .L16
+ 228 0002 5A68     		ldr	r2, [r3, #4]
+ 229              		.loc 1 127 17 is_stmt 0 view .LVU52
+ 230 0004 22F4C052 		bic	r2, r2, #6144
+ 231 0008 5A60     		str	r2, [r3, #4]
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL |= bus_mode;
+ 232              		.loc 1 128 5 is_stmt 1 view .LVU53
+ 233 000a 5A68     		ldr	r2, [r3, #4]
+ 234              		.loc 1 128 17 is_stmt 0 view .LVU54
+ 235 000c 0243     		orrs	r2, r2, r0
+ 236 000e 5A60     		str	r2, [r3, #4]
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 237              		.loc 1 129 1 view .LVU55
+ 238 0010 7047     		bx	lr
+ 239              	.L17:
+ 240 0012 00BF     		.align	2
+ 241              	.L16:
+ 242 0014 00800140 		.word	1073840128
+ 243              		.cfi_endproc
+ 244              	.LFE120:
+ 246              		.section	.text.sdio_power_state_set,"ax",%progbits
+ 247              		.align	1
+ 248              		.global	sdio_power_state_set
+ 249              		.syntax unified
+ 250              		.thumb
+ 251              		.thumb_func
+ 253              	sdio_power_state_set:
+ 254              	.LVL12:
+ 255              	.LFB121:
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      set the SDIO power state
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  power_state: SDIO power state
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_POWER_ON: SDIO power on
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_POWER_OFF: SDIO power off
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_power_state_set(uint32_t power_state)
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 256              		.loc 1 141 1 is_stmt 1 view -0
+ 257              		.cfi_startproc
+ 258              		@ args = 0, pretend = 0, frame = 0
+ 259              		@ frame_needed = 0, uses_anonymous_args = 0
+ 260              		@ link register save eliminated.
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_PWRCTL = power_state;
+ 261              		.loc 1 142 5 view .LVU57
+ 262              		.loc 1 142 17 is_stmt 0 view .LVU58
+ 263 0000 014B     		ldr	r3, .L19
+ 264 0002 1860     		str	r0, [r3]
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 265              		.loc 1 143 1 view .LVU59
+ 266 0004 7047     		bx	lr
+ 267              	.L20:
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 8
+
+
+ 268 0006 00BF     		.align	2
+ 269              	.L19:
+ 270 0008 00800140 		.word	1073840128
+ 271              		.cfi_endproc
+ 272              	.LFE121:
+ 274              		.section	.text.sdio_power_state_get,"ax",%progbits
+ 275              		.align	1
+ 276              		.global	sdio_power_state_get
+ 277              		.syntax unified
+ 278              		.thumb
+ 279              		.thumb_func
+ 281              	sdio_power_state_get:
+ 282              	.LFB122:
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      get the SDIO power state
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     SDIO power state
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_POWER_ON: SDIO power on
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_POWER_OFF: SDIO power off
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** uint32_t sdio_power_state_get(void)
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 283              		.loc 1 154 1 is_stmt 1 view -0
+ 284              		.cfi_startproc
+ 285              		@ args = 0, pretend = 0, frame = 0
+ 286              		@ frame_needed = 0, uses_anonymous_args = 0
+ 287              		@ link register save eliminated.
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return SDIO_PWRCTL;
+ 288              		.loc 1 155 5 view .LVU61
+ 289              		.loc 1 155 12 is_stmt 0 view .LVU62
+ 290 0000 014B     		ldr	r3, .L22
+ 291 0002 1868     		ldr	r0, [r3]
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 292              		.loc 1 156 1 view .LVU63
+ 293 0004 7047     		bx	lr
+ 294              	.L23:
+ 295 0006 00BF     		.align	2
+ 296              	.L22:
+ 297 0008 00800140 		.word	1073840128
+ 298              		.cfi_endproc
+ 299              	.LFE122:
+ 301              		.section	.text.sdio_clock_enable,"ax",%progbits
+ 302              		.align	1
+ 303              		.global	sdio_clock_enable
+ 304              		.syntax unified
+ 305              		.thumb
+ 306              		.thumb_func
+ 308              	sdio_clock_enable:
+ 309              	.LFB123:
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable SDIO_CLK clock output
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 9
+
+
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_clock_enable(void)
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 310              		.loc 1 165 1 is_stmt 1 view -0
+ 311              		.cfi_startproc
+ 312              		@ args = 0, pretend = 0, frame = 0
+ 313              		@ frame_needed = 0, uses_anonymous_args = 0
+ 314              		@ link register save eliminated.
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL |= SDIO_CLKCTL_CLKEN;
+ 315              		.loc 1 166 5 view .LVU65
+ 316 0000 024A     		ldr	r2, .L25
+ 317 0002 5368     		ldr	r3, [r2, #4]
+ 318              		.loc 1 166 17 is_stmt 0 view .LVU66
+ 319 0004 43F48073 		orr	r3, r3, #256
+ 320 0008 5360     		str	r3, [r2, #4]
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 321              		.loc 1 167 1 view .LVU67
+ 322 000a 7047     		bx	lr
+ 323              	.L26:
+ 324              		.align	2
+ 325              	.L25:
+ 326 000c 00800140 		.word	1073840128
+ 327              		.cfi_endproc
+ 328              	.LFE123:
+ 330              		.section	.text.sdio_clock_disable,"ax",%progbits
+ 331              		.align	1
+ 332              		.global	sdio_clock_disable
+ 333              		.syntax unified
+ 334              		.thumb
+ 335              		.thumb_func
+ 337              	sdio_clock_disable:
+ 338              	.LFB124:
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable SDIO_CLK clock output
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_clock_disable(void)
+ 176:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 339              		.loc 1 176 1 is_stmt 1 view -0
+ 340              		.cfi_startproc
+ 341              		@ args = 0, pretend = 0, frame = 0
+ 342              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343              		@ link register save eliminated.
+ 177:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CLKCTL &= ~SDIO_CLKCTL_CLKEN;
+ 344              		.loc 1 177 5 view .LVU69
+ 345 0000 024A     		ldr	r2, .L28
+ 346 0002 5368     		ldr	r3, [r2, #4]
+ 347              		.loc 1 177 17 is_stmt 0 view .LVU70
+ 348 0004 23F48073 		bic	r3, r3, #256
+ 349 0008 5360     		str	r3, [r2, #4]
+ 178:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 350              		.loc 1 178 1 view .LVU71
+ 351 000a 7047     		bx	lr
+ 352              	.L29:
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 10
+
+
+ 353              		.align	2
+ 354              	.L28:
+ 355 000c 00800140 		.word	1073840128
+ 356              		.cfi_endproc
+ 357              	.LFE124:
+ 359              		.section	.text.sdio_command_response_config,"ax",%progbits
+ 360              		.align	1
+ 361              		.global	sdio_command_response_config
+ 362              		.syntax unified
+ 363              		.thumb
+ 364              		.thumb_func
+ 366              	sdio_command_response_config:
+ 367              	.LVL13:
+ 368              	.LFB125:
+ 179:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      configure the command and response
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  cmd_index: command index, refer to the related specifications
+ 183:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  cmd_argument: command argument, refer to the related specifications
+ 184:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  response_type: response type
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 186:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_RESPONSETYPE_NO: no response
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_RESPONSETYPE_SHORT: short response
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_RESPONSETYPE_LONG: long response
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 191:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 192:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_command_response_config(uint32_t cmd_index, uint32_t cmd_argument, uint32_t response_type
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 369              		.loc 1 193 1 is_stmt 1 view -0
+ 370              		.cfi_startproc
+ 371              		@ args = 0, pretend = 0, frame = 0
+ 372              		@ frame_needed = 0, uses_anonymous_args = 0
+ 373              		@ link register save eliminated.
+ 374              		.loc 1 193 1 is_stmt 0 view .LVU73
+ 375 0000 10B4     		push	{r4}
+ 376              	.LCFI2:
+ 377              		.cfi_def_cfa_offset 4
+ 378              		.cfi_offset 4, -4
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     uint32_t cmd_config = 0U;
+ 379              		.loc 1 194 5 is_stmt 1 view .LVU74
+ 380              	.LVL14:
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* reset the command index, command argument and response type */
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDAGMT &= ~SDIO_CMDAGMT_CMDAGMT;
+ 381              		.loc 1 196 5 view .LVU75
+ 382 0002 074B     		ldr	r3, .L32
+ 383 0004 9C68     		ldr	r4, [r3, #8]
+ 384              		.loc 1 196 18 is_stmt 0 view .LVU76
+ 385 0006 0024     		movs	r4, #0
+ 386 0008 9C60     		str	r4, [r3, #8]
+ 197:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDAGMT = cmd_argument;
+ 387              		.loc 1 197 5 is_stmt 1 view .LVU77
+ 388              		.loc 1 197 18 is_stmt 0 view .LVU78
+ 389 000a 9960     		str	r1, [r3, #8]
+ 198:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     cmd_config = SDIO_CMDCTL;
+ 390              		.loc 1 198 5 is_stmt 1 view .LVU79
+ 391              		.loc 1 198 16 is_stmt 0 view .LVU80
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 11
+
+
+ 392 000c D968     		ldr	r1, [r3, #12]
+ 393              	.LVL15:
+ 199:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     cmd_config &= ~(SDIO_CMDCTL_CMDIDX | SDIO_CMDCTL_CMDRESP);
+ 394              		.loc 1 199 5 is_stmt 1 view .LVU81
+ 395              		.loc 1 199 16 is_stmt 0 view .LVU82
+ 396 000e 21F0FF01 		bic	r1, r1, #255
+ 397              	.LVL16:
+ 200:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* configure SDIO_CMDCTL and SDIO_CMDAGMT according to the parameters */
+ 201:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     cmd_config |= (cmd_index | response_type);
+ 398              		.loc 1 201 5 is_stmt 1 view .LVU83
+ 399              		.loc 1 201 30 is_stmt 0 view .LVU84
+ 400 0012 1043     		orrs	r0, r0, r2
+ 401              	.LVL17:
+ 402              		.loc 1 201 16 view .LVU85
+ 403 0014 0843     		orrs	r0, r0, r1
+ 404              	.LVL18:
+ 202:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL = cmd_config;
+ 405              		.loc 1 202 5 is_stmt 1 view .LVU86
+ 406              		.loc 1 202 17 is_stmt 0 view .LVU87
+ 407 0016 D860     		str	r0, [r3, #12]
+ 408              	.LVL19:
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 409              		.loc 1 203 1 view .LVU88
+ 410 0018 5DF8044B 		ldr	r4, [sp], #4
+ 411              	.LCFI3:
+ 412              		.cfi_restore 4
+ 413              		.cfi_def_cfa_offset 0
+ 414 001c 7047     		bx	lr
+ 415              	.L33:
+ 416 001e 00BF     		.align	2
+ 417              	.L32:
+ 418 0020 00800140 		.word	1073840128
+ 419              		.cfi_endproc
+ 420              	.LFE125:
+ 422              		.section	.text.sdio_wait_type_set,"ax",%progbits
+ 423              		.align	1
+ 424              		.global	sdio_wait_type_set
+ 425              		.syntax unified
+ 426              		.thumb
+ 427              		.thumb_func
+ 429              	sdio_wait_type_set:
+ 430              	.LVL20:
+ 431              	.LFB126:
+ 204:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 205:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 206:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      set the command state machine wait type
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  wait_type: wait type
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_WAITTYPE_NO: not wait interrupt
+ 210:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_WAITTYPE_INTERRUPT: wait interrupt
+ 211:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_WAITTYPE_DATAEND: wait the end of data transfer
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 214:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 215:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_wait_type_set(uint32_t wait_type)
+ 216:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 432              		.loc 1 216 1 is_stmt 1 view -0
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 12
+
+
+ 433              		.cfi_startproc
+ 434              		@ args = 0, pretend = 0, frame = 0
+ 435              		@ frame_needed = 0, uses_anonymous_args = 0
+ 436              		@ link register save eliminated.
+ 217:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* reset INTWAIT and WAITDEND */
+ 218:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL &= ~(SDIO_CMDCTL_INTWAIT | SDIO_CMDCTL_WAITDEND);
+ 437              		.loc 1 218 5 view .LVU90
+ 438 0000 044B     		ldr	r3, .L35
+ 439 0002 DA68     		ldr	r2, [r3, #12]
+ 440              		.loc 1 218 17 is_stmt 0 view .LVU91
+ 441 0004 22F44072 		bic	r2, r2, #768
+ 442 0008 DA60     		str	r2, [r3, #12]
+ 219:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* set the wait type according to wait_type */
+ 220:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL |= wait_type;
+ 443              		.loc 1 220 5 is_stmt 1 view .LVU92
+ 444 000a DA68     		ldr	r2, [r3, #12]
+ 445              		.loc 1 220 17 is_stmt 0 view .LVU93
+ 446 000c 0243     		orrs	r2, r2, r0
+ 447 000e DA60     		str	r2, [r3, #12]
+ 221:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 448              		.loc 1 221 1 view .LVU94
+ 449 0010 7047     		bx	lr
+ 450              	.L36:
+ 451 0012 00BF     		.align	2
+ 452              	.L35:
+ 453 0014 00800140 		.word	1073840128
+ 454              		.cfi_endproc
+ 455              	.LFE126:
+ 457              		.section	.text.sdio_csm_enable,"ax",%progbits
+ 458              		.align	1
+ 459              		.global	sdio_csm_enable
+ 460              		.syntax unified
+ 461              		.thumb
+ 462              		.thumb_func
+ 464              	sdio_csm_enable:
+ 465              	.LFB127:
+ 222:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 223:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 224:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the CSM(command state machine)
+ 225:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 229:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_csm_enable(void)
+ 230:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 466              		.loc 1 230 1 is_stmt 1 view -0
+ 467              		.cfi_startproc
+ 468              		@ args = 0, pretend = 0, frame = 0
+ 469              		@ frame_needed = 0, uses_anonymous_args = 0
+ 470              		@ link register save eliminated.
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL |= SDIO_CMDCTL_CSMEN;
+ 471              		.loc 1 231 5 view .LVU96
+ 472 0000 024A     		ldr	r2, .L38
+ 473 0002 D368     		ldr	r3, [r2, #12]
+ 474              		.loc 1 231 17 is_stmt 0 view .LVU97
+ 475 0004 43F48063 		orr	r3, r3, #1024
+ 476 0008 D360     		str	r3, [r2, #12]
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 13
+
+
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 477              		.loc 1 232 1 view .LVU98
+ 478 000a 7047     		bx	lr
+ 479              	.L39:
+ 480              		.align	2
+ 481              	.L38:
+ 482 000c 00800140 		.word	1073840128
+ 483              		.cfi_endproc
+ 484              	.LFE127:
+ 486              		.section	.text.sdio_csm_disable,"ax",%progbits
+ 487              		.align	1
+ 488              		.global	sdio_csm_disable
+ 489              		.syntax unified
+ 490              		.thumb
+ 491              		.thumb_func
+ 493              	sdio_csm_disable:
+ 494              	.LFB128:
+ 233:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 234:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the CSM(command state machine)
+ 236:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 237:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 238:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 239:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 240:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_csm_disable(void)
+ 241:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 495              		.loc 1 241 1 is_stmt 1 view -0
+ 496              		.cfi_startproc
+ 497              		@ args = 0, pretend = 0, frame = 0
+ 498              		@ frame_needed = 0, uses_anonymous_args = 0
+ 499              		@ link register save eliminated.
+ 242:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL &= ~SDIO_CMDCTL_CSMEN;
+ 500              		.loc 1 242 5 view .LVU100
+ 501 0000 024A     		ldr	r2, .L41
+ 502 0002 D368     		ldr	r3, [r2, #12]
+ 503              		.loc 1 242 17 is_stmt 0 view .LVU101
+ 504 0004 23F48063 		bic	r3, r3, #1024
+ 505 0008 D360     		str	r3, [r2, #12]
+ 243:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 506              		.loc 1 243 1 view .LVU102
+ 507 000a 7047     		bx	lr
+ 508              	.L42:
+ 509              		.align	2
+ 510              	.L41:
+ 511 000c 00800140 		.word	1073840128
+ 512              		.cfi_endproc
+ 513              	.LFE128:
+ 515              		.section	.text.sdio_command_index_get,"ax",%progbits
+ 516              		.align	1
+ 517              		.global	sdio_command_index_get
+ 518              		.syntax unified
+ 519              		.thumb
+ 520              		.thumb_func
+ 522              	sdio_command_index_get:
+ 523              	.LFB129:
+ 244:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 14
+
+
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      get the last response command index
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 249:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     last response command index
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** uint8_t sdio_command_index_get(void)
+ 252:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 524              		.loc 1 252 1 is_stmt 1 view -0
+ 525              		.cfi_startproc
+ 526              		@ args = 0, pretend = 0, frame = 0
+ 527              		@ frame_needed = 0, uses_anonymous_args = 0
+ 528              		@ link register save eliminated.
+ 253:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return (uint8_t)SDIO_RSPCMDIDX;
+ 529              		.loc 1 253 5 view .LVU104
+ 530              		.loc 1 253 21 is_stmt 0 view .LVU105
+ 531 0000 014B     		ldr	r3, .L44
+ 532 0002 1869     		ldr	r0, [r3, #16]
+ 254:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 533              		.loc 1 254 1 view .LVU106
+ 534 0004 C0B2     		uxtb	r0, r0
+ 535 0006 7047     		bx	lr
+ 536              	.L45:
+ 537              		.align	2
+ 538              	.L44:
+ 539 0008 00800140 		.word	1073840128
+ 540              		.cfi_endproc
+ 541              	.LFE129:
+ 543              		.section	.text.sdio_response_get,"ax",%progbits
+ 544              		.align	1
+ 545              		.global	sdio_response_get
+ 546              		.syntax unified
+ 547              		.thumb
+ 548              		.thumb_func
+ 550              	sdio_response_get:
+ 551              	.LVL21:
+ 552              	.LFB130:
+ 255:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 256:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 257:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      get the response for the last received command
+ 258:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  responsex: SDIO response
+ 259:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 260:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_RESPONSE0: card response[31:0]/card response[127:96]
+ 261:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_RESPONSE1: card response[95:64]
+ 262:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_RESPONSE2: card response[63:32]
+ 263:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_RESPONSE3: card response[31:1], plus bit 0
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     response for the last received command
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 267:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** uint32_t sdio_response_get(uint32_t responsex)
+ 268:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 553              		.loc 1 268 1 is_stmt 1 view -0
+ 554              		.cfi_startproc
+ 555              		@ args = 0, pretend = 0, frame = 0
+ 556              		@ frame_needed = 0, uses_anonymous_args = 0
+ 557              		@ link register save eliminated.
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     uint32_t resp_content = 0U;
+ 558              		.loc 1 269 5 view .LVU108
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 15
+
+
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     switch(responsex){
+ 559              		.loc 1 270 5 view .LVU109
+ 560 0000 0328     		cmp	r0, #3
+ 561 0002 0FD8     		bhi	.L53
+ 562 0004 DFE800F0 		tbb	[pc, r0]
+ 563              	.L49:
+ 564 0008 02       		.byte	(.L52-.L49)/2
+ 565 0009 05       		.byte	(.L51-.L49)/2
+ 566 000a 08       		.byte	(.L50-.L49)/2
+ 567 000b 0B       		.byte	(.L48-.L49)/2
+ 568              		.p2align 1
+ 569              	.L52:
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     case SDIO_RESPONSE0:
+ 272:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         resp_content = SDIO_RESP0;
+ 570              		.loc 1 272 9 view .LVU110
+ 571              		.loc 1 272 22 is_stmt 0 view .LVU111
+ 572 000c 064B     		ldr	r3, .L54
+ 573 000e 5869     		ldr	r0, [r3, #20]
+ 574              	.LVL22:
+ 273:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         break;
+ 575              		.loc 1 273 9 is_stmt 1 view .LVU112
+ 576 0010 7047     		bx	lr
+ 577              	.LVL23:
+ 578              	.L51:
+ 274:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     case SDIO_RESPONSE1:
+ 275:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         resp_content = SDIO_RESP1;
+ 579              		.loc 1 275 9 view .LVU113
+ 580              		.loc 1 275 22 is_stmt 0 view .LVU114
+ 581 0012 054B     		ldr	r3, .L54
+ 582 0014 9869     		ldr	r0, [r3, #24]
+ 583              	.LVL24:
+ 276:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         break;
+ 584              		.loc 1 276 9 is_stmt 1 view .LVU115
+ 585 0016 7047     		bx	lr
+ 586              	.LVL25:
+ 587              	.L50:
+ 277:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     case SDIO_RESPONSE2:
+ 278:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         resp_content = SDIO_RESP2;
+ 588              		.loc 1 278 9 view .LVU116
+ 589              		.loc 1 278 22 is_stmt 0 view .LVU117
+ 590 0018 034B     		ldr	r3, .L54
+ 591 001a D869     		ldr	r0, [r3, #28]
+ 592              	.LVL26:
+ 279:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         break;
+ 593              		.loc 1 279 9 is_stmt 1 view .LVU118
+ 594 001c 7047     		bx	lr
+ 595              	.LVL27:
+ 596              	.L48:
+ 280:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     case SDIO_RESPONSE3:
+ 281:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         resp_content = SDIO_RESP3;
+ 597              		.loc 1 281 9 view .LVU119
+ 598              		.loc 1 281 22 is_stmt 0 view .LVU120
+ 599 001e 024B     		ldr	r3, .L54
+ 600 0020 186A     		ldr	r0, [r3, #32]
+ 601              	.LVL28:
+ 282:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         break;
+ 602              		.loc 1 282 9 is_stmt 1 view .LVU121
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 16
+
+
+ 603 0022 7047     		bx	lr
+ 604              	.LVL29:
+ 605              	.L53:
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     case SDIO_RESPONSE0:
+ 606              		.loc 1 270 5 is_stmt 0 view .LVU122
+ 607 0024 0020     		movs	r0, #0
+ 608              	.LVL30:
+ 283:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     default:
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         break;
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     }
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return resp_content;
+ 609              		.loc 1 286 5 is_stmt 1 view .LVU123
+ 287:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 610              		.loc 1 287 1 is_stmt 0 view .LVU124
+ 611 0026 7047     		bx	lr
+ 612              	.L55:
+ 613              		.align	2
+ 614              	.L54:
+ 615 0028 00800140 		.word	1073840128
+ 616              		.cfi_endproc
+ 617              	.LFE130:
+ 619              		.section	.text.sdio_data_config,"ax",%progbits
+ 620              		.align	1
+ 621              		.global	sdio_data_config
+ 622              		.syntax unified
+ 623              		.thumb
+ 624              		.thumb_func
+ 626              	sdio_data_config:
+ 627              	.LVL31:
+ 628              	.LFB131:
+ 288:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      configure the data timeout, data length and data block size
+ 291:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  data_timeout: data timeout period in card bus clock periods
+ 292:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  data_length: number of data bytes to be transferred
+ 293:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  data_blocksize: size of data block for block transfer
+ 294:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 295:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_1BYTE: block size = 1 byte
+ 296:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_2BYTES: block size = 2 bytes
+ 297:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_4BYTES: block size = 4 bytes
+ 298:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_8BYTES: block size = 8 bytes
+ 299:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_16BYTES: block size = 16 bytes
+ 300:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_32BYTES: block size = 32 bytes
+ 301:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_64BYTES: block size = 64 bytes
+ 302:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_128BYTES: block size = 128 bytes
+ 303:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_256BYTES: block size = 256 bytes
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_512BYTES: block size = 512 bytes
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_1024BYTES: block size = 1024 bytes
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_2048BYTES: block size = 2048 bytes
+ 307:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_4096BYTES: block size = 4096 bytes
+ 308:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_8192BYTES: block size = 8192 bytes
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_DATABLOCKSIZE_16384BYTES: block size = 16384 bytes
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 311:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 312:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 313:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_data_config(uint32_t data_timeout, uint32_t data_length, uint32_t data_blocksize)
+ 314:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 17
+
+
+ 629              		.loc 1 314 1 is_stmt 1 view -0
+ 630              		.cfi_startproc
+ 631              		@ args = 0, pretend = 0, frame = 0
+ 632              		@ frame_needed = 0, uses_anonymous_args = 0
+ 633              		@ link register save eliminated.
+ 634              		.loc 1 314 1 is_stmt 0 view .LVU126
+ 635 0000 10B4     		push	{r4}
+ 636              	.LCFI4:
+ 637              		.cfi_def_cfa_offset 4
+ 638              		.cfi_offset 4, -4
+ 315:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* reset data timeout, data length and data block size */
+ 316:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATATO &= ~SDIO_DATATO_DATATO;
+ 639              		.loc 1 316 5 is_stmt 1 view .LVU127
+ 640 0002 0A4B     		ldr	r3, .L58
+ 641 0004 5C6A     		ldr	r4, [r3, #36]
+ 642              		.loc 1 316 17 is_stmt 0 view .LVU128
+ 643 0006 0024     		movs	r4, #0
+ 644 0008 5C62     		str	r4, [r3, #36]
+ 317:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATALEN &= ~SDIO_DATALEN_DATALEN;
+ 645              		.loc 1 317 5 is_stmt 1 view .LVU129
+ 646 000a 9C6A     		ldr	r4, [r3, #40]
+ 647              		.loc 1 317 18 is_stmt 0 view .LVU130
+ 648 000c 04F07E44 		and	r4, r4, #-33554432
+ 649 0010 9C62     		str	r4, [r3, #40]
+ 318:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL &= ~SDIO_DATACTL_BLKSZ;
+ 650              		.loc 1 318 5 is_stmt 1 view .LVU131
+ 651 0012 DC6A     		ldr	r4, [r3, #44]
+ 652              		.loc 1 318 18 is_stmt 0 view .LVU132
+ 653 0014 24F0F004 		bic	r4, r4, #240
+ 654 0018 DC62     		str	r4, [r3, #44]
+ 319:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* configure the related parameters of data */
+ 320:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATATO = data_timeout;
+ 655              		.loc 1 320 5 is_stmt 1 view .LVU133
+ 656              		.loc 1 320 17 is_stmt 0 view .LVU134
+ 657 001a 5862     		str	r0, [r3, #36]
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATALEN = data_length;
+ 658              		.loc 1 321 5 is_stmt 1 view .LVU135
+ 659              		.loc 1 321 18 is_stmt 0 view .LVU136
+ 660 001c 9962     		str	r1, [r3, #40]
+ 322:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL |= data_blocksize;
+ 661              		.loc 1 322 5 is_stmt 1 view .LVU137
+ 662 001e D96A     		ldr	r1, [r3, #44]
+ 663              	.LVL32:
+ 664              		.loc 1 322 18 is_stmt 0 view .LVU138
+ 665 0020 1143     		orrs	r1, r1, r2
+ 666 0022 D962     		str	r1, [r3, #44]
+ 667              	.LVL33:
+ 323:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 668              		.loc 1 323 1 view .LVU139
+ 669 0024 5DF8044B 		ldr	r4, [sp], #4
+ 670              	.LCFI5:
+ 671              		.cfi_restore 4
+ 672              		.cfi_def_cfa_offset 0
+ 673 0028 7047     		bx	lr
+ 674              	.L59:
+ 675 002a 00BF     		.align	2
+ 676              	.L58:
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 18
+
+
+ 677 002c 00800140 		.word	1073840128
+ 678              		.cfi_endproc
+ 679              	.LFE131:
+ 681              		.section	.text.sdio_data_transfer_config,"ax",%progbits
+ 682              		.align	1
+ 683              		.global	sdio_data_transfer_config
+ 684              		.syntax unified
+ 685              		.thumb
+ 686              		.thumb_func
+ 688              	sdio_data_transfer_config:
+ 689              	.LVL34:
+ 690              	.LFB132:
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      configure the data transfer mode and direction
+ 327:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  transfer_mode: mode of data transfer
+ 328:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_TRANSMODE_BLOCK: block transfer
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_TRANSMODE_STREAM: stream transfer or SDIO multibyte transfer
+ 331:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  transfer_direction: data transfer direction, read or write
+ 332:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 333:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_TRANSDIRECTION_TOCARD: write data to card
+ 334:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg       SDIO_TRANSDIRECTION_TOSDIO: read data from card
+ 335:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 336:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 337:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 338:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_data_transfer_config(uint32_t transfer_mode, uint32_t transfer_direction)
+ 339:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 691              		.loc 1 339 1 is_stmt 1 view -0
+ 692              		.cfi_startproc
+ 693              		@ args = 0, pretend = 0, frame = 0
+ 694              		@ frame_needed = 0, uses_anonymous_args = 0
+ 695              		@ link register save eliminated.
+ 340:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     uint32_t data_trans = 0U;
+ 696              		.loc 1 340 5 view .LVU141
+ 341:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     /* reset the data transfer mode, transfer direction and set according to the parameters */
+ 342:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     data_trans = SDIO_DATACTL;
+ 697              		.loc 1 342 5 view .LVU142
+ 698              		.loc 1 342 16 is_stmt 0 view .LVU143
+ 699 0000 034A     		ldr	r2, .L61
+ 700 0002 D36A     		ldr	r3, [r2, #44]
+ 701              	.LVL35:
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     data_trans &= ~(SDIO_DATACTL_TRANSMOD | SDIO_DATACTL_DATADIR);
+ 702              		.loc 1 343 5 is_stmt 1 view .LVU144
+ 703              		.loc 1 343 16 is_stmt 0 view .LVU145
+ 704 0004 23F00603 		bic	r3, r3, #6
+ 705              	.LVL36:
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     data_trans |= (transfer_mode | transfer_direction);
+ 706              		.loc 1 344 5 is_stmt 1 view .LVU146
+ 707              		.loc 1 344 34 is_stmt 0 view .LVU147
+ 708 0008 0843     		orrs	r0, r0, r1
+ 709              	.LVL37:
+ 710              		.loc 1 344 16 view .LVU148
+ 711 000a 1843     		orrs	r0, r0, r3
+ 712              	.LVL38:
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL = data_trans;
+ 713              		.loc 1 345 5 is_stmt 1 view .LVU149
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 19
+
+
+ 714              		.loc 1 345 18 is_stmt 0 view .LVU150
+ 715 000c D062     		str	r0, [r2, #44]
+ 346:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 716              		.loc 1 346 1 view .LVU151
+ 717 000e 7047     		bx	lr
+ 718              	.L62:
+ 719              		.align	2
+ 720              	.L61:
+ 721 0010 00800140 		.word	1073840128
+ 722              		.cfi_endproc
+ 723              	.LFE132:
+ 725              		.section	.text.sdio_dsm_enable,"ax",%progbits
+ 726              		.align	1
+ 727              		.global	sdio_dsm_enable
+ 728              		.syntax unified
+ 729              		.thumb
+ 730              		.thumb_func
+ 732              	sdio_dsm_enable:
+ 733              	.LFB133:
+ 347:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the DSM(data state machine) for data transfer
+ 350:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 351:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 352:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 354:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_dsm_enable(void)
+ 355:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 734              		.loc 1 355 1 is_stmt 1 view -0
+ 735              		.cfi_startproc
+ 736              		@ args = 0, pretend = 0, frame = 0
+ 737              		@ frame_needed = 0, uses_anonymous_args = 0
+ 738              		@ link register save eliminated.
+ 356:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL |= SDIO_DATACTL_DATAEN;
+ 739              		.loc 1 356 5 view .LVU153
+ 740 0000 024A     		ldr	r2, .L64
+ 741 0002 D36A     		ldr	r3, [r2, #44]
+ 742              		.loc 1 356 18 is_stmt 0 view .LVU154
+ 743 0004 43F00103 		orr	r3, r3, #1
+ 744 0008 D362     		str	r3, [r2, #44]
+ 357:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 745              		.loc 1 357 1 view .LVU155
+ 746 000a 7047     		bx	lr
+ 747              	.L65:
+ 748              		.align	2
+ 749              	.L64:
+ 750 000c 00800140 		.word	1073840128
+ 751              		.cfi_endproc
+ 752              	.LFE133:
+ 754              		.section	.text.sdio_dsm_disable,"ax",%progbits
+ 755              		.align	1
+ 756              		.global	sdio_dsm_disable
+ 757              		.syntax unified
+ 758              		.thumb
+ 759              		.thumb_func
+ 761              	sdio_dsm_disable:
+ 762              	.LFB134:
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 20
+
+
+ 358:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 359:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the DSM(data state machine)
+ 361:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 362:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 363:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 364:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 365:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_dsm_disable(void)
+ 366:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 763              		.loc 1 366 1 is_stmt 1 view -0
+ 764              		.cfi_startproc
+ 765              		@ args = 0, pretend = 0, frame = 0
+ 766              		@ frame_needed = 0, uses_anonymous_args = 0
+ 767              		@ link register save eliminated.
+ 367:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL &= ~SDIO_DATACTL_DATAEN;
+ 768              		.loc 1 367 5 view .LVU157
+ 769 0000 024A     		ldr	r2, .L67
+ 770 0002 D36A     		ldr	r3, [r2, #44]
+ 771              		.loc 1 367 18 is_stmt 0 view .LVU158
+ 772 0004 23F00103 		bic	r3, r3, #1
+ 773 0008 D362     		str	r3, [r2, #44]
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 774              		.loc 1 368 1 view .LVU159
+ 775 000a 7047     		bx	lr
+ 776              	.L68:
+ 777              		.align	2
+ 778              	.L67:
+ 779 000c 00800140 		.word	1073840128
+ 780              		.cfi_endproc
+ 781              	.LFE134:
+ 783              		.section	.text.sdio_data_write,"ax",%progbits
+ 784              		.align	1
+ 785              		.global	sdio_data_write
+ 786              		.syntax unified
+ 787              		.thumb
+ 788              		.thumb_func
+ 790              	sdio_data_write:
+ 791              	.LVL39:
+ 792              	.LFB135:
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 370:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      write data(one word) to the transmit FIFO
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  data: 32-bit data write to card
+ 373:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 374:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 375:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_data_write(uint32_t data)
+ 377:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 793              		.loc 1 377 1 is_stmt 1 view -0
+ 794              		.cfi_startproc
+ 795              		@ args = 0, pretend = 0, frame = 0
+ 796              		@ frame_needed = 0, uses_anonymous_args = 0
+ 797              		@ link register save eliminated.
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_FIFO = data;
+ 798              		.loc 1 378 5 view .LVU161
+ 799              		.loc 1 378 15 is_stmt 0 view .LVU162
+ 800 0000 014B     		ldr	r3, .L70
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 21
+
+
+ 801 0002 C3F88000 		str	r0, [r3, #128]
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 802              		.loc 1 379 1 view .LVU163
+ 803 0006 7047     		bx	lr
+ 804              	.L71:
+ 805              		.align	2
+ 806              	.L70:
+ 807 0008 00800140 		.word	1073840128
+ 808              		.cfi_endproc
+ 809              	.LFE135:
+ 811              		.section	.text.sdio_data_read,"ax",%progbits
+ 812              		.align	1
+ 813              		.global	sdio_data_read
+ 814              		.syntax unified
+ 815              		.thumb
+ 816              		.thumb_func
+ 818              	sdio_data_read:
+ 819              	.LFB136:
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 382:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      read data(one word) from the receive FIFO
+ 383:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 384:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 385:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     received data
+ 386:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 387:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** uint32_t sdio_data_read(void)
+ 388:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 820              		.loc 1 388 1 is_stmt 1 view -0
+ 821              		.cfi_startproc
+ 822              		@ args = 0, pretend = 0, frame = 0
+ 823              		@ frame_needed = 0, uses_anonymous_args = 0
+ 824              		@ link register save eliminated.
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return SDIO_FIFO;
+ 825              		.loc 1 389 5 view .LVU165
+ 826              		.loc 1 389 12 is_stmt 0 view .LVU166
+ 827 0000 014B     		ldr	r3, .L73
+ 828 0002 D3F88000 		ldr	r0, [r3, #128]
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 829              		.loc 1 390 1 view .LVU167
+ 830 0006 7047     		bx	lr
+ 831              	.L74:
+ 832              		.align	2
+ 833              	.L73:
+ 834 0008 00800140 		.word	1073840128
+ 835              		.cfi_endproc
+ 836              	.LFE136:
+ 838              		.section	.text.sdio_data_counter_get,"ax",%progbits
+ 839              		.align	1
+ 840              		.global	sdio_data_counter_get
+ 841              		.syntax unified
+ 842              		.thumb
+ 843              		.thumb_func
+ 845              	sdio_data_counter_get:
+ 846              	.LFB137:
+ 391:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 392:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 393:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      get the number of remaining data bytes to be transferred to card
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 22
+
+
+ 394:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 395:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     number of remaining data bytes to be transferred
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 398:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** uint32_t sdio_data_counter_get(void)
+ 399:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 847              		.loc 1 399 1 is_stmt 1 view -0
+ 848              		.cfi_startproc
+ 849              		@ args = 0, pretend = 0, frame = 0
+ 850              		@ frame_needed = 0, uses_anonymous_args = 0
+ 851              		@ link register save eliminated.
+ 400:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return SDIO_DATACNT;
+ 852              		.loc 1 400 5 view .LVU169
+ 853              		.loc 1 400 12 is_stmt 0 view .LVU170
+ 854 0000 014B     		ldr	r3, .L76
+ 855 0002 186B     		ldr	r0, [r3, #48]
+ 401:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 856              		.loc 1 401 1 view .LVU171
+ 857 0004 7047     		bx	lr
+ 858              	.L77:
+ 859 0006 00BF     		.align	2
+ 860              	.L76:
+ 861 0008 00800140 		.word	1073840128
+ 862              		.cfi_endproc
+ 863              	.LFE137:
+ 865              		.section	.text.sdio_fifo_counter_get,"ax",%progbits
+ 866              		.align	1
+ 867              		.global	sdio_fifo_counter_get
+ 868              		.syntax unified
+ 869              		.thumb
+ 870              		.thumb_func
+ 872              	sdio_fifo_counter_get:
+ 873              	.LFB138:
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 404:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      get the number of words remaining to be written or read from FIFO
+ 405:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 406:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     remaining number of words
+ 408:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 409:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** uint32_t sdio_fifo_counter_get(void)
+ 410:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 874              		.loc 1 410 1 is_stmt 1 view -0
+ 875              		.cfi_startproc
+ 876              		@ args = 0, pretend = 0, frame = 0
+ 877              		@ frame_needed = 0, uses_anonymous_args = 0
+ 878              		@ link register save eliminated.
+ 411:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return SDIO_FIFOCNT;
+ 879              		.loc 1 411 5 view .LVU173
+ 880              		.loc 1 411 12 is_stmt 0 view .LVU174
+ 881 0000 014B     		ldr	r3, .L79
+ 882 0002 986C     		ldr	r0, [r3, #72]
+ 412:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 883              		.loc 1 412 1 view .LVU175
+ 884 0004 7047     		bx	lr
+ 885              	.L80:
+ 886 0006 00BF     		.align	2
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 23
+
+
+ 887              	.L79:
+ 888 0008 00800140 		.word	1073840128
+ 889              		.cfi_endproc
+ 890              	.LFE138:
+ 892              		.section	.text.sdio_dma_enable,"ax",%progbits
+ 893              		.align	1
+ 894              		.global	sdio_dma_enable
+ 895              		.syntax unified
+ 896              		.thumb
+ 897              		.thumb_func
+ 899              	sdio_dma_enable:
+ 900              	.LFB139:
+ 413:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 414:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 415:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the DMA request for SDIO
+ 416:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 417:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 418:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 419:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 420:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_dma_enable(void)
+ 421:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 901              		.loc 1 421 1 is_stmt 1 view -0
+ 902              		.cfi_startproc
+ 903              		@ args = 0, pretend = 0, frame = 0
+ 904              		@ frame_needed = 0, uses_anonymous_args = 0
+ 905              		@ link register save eliminated.
+ 422:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL |= SDIO_DATACTL_DMAEN;
+ 906              		.loc 1 422 5 view .LVU177
+ 907 0000 024A     		ldr	r2, .L82
+ 908 0002 D36A     		ldr	r3, [r2, #44]
+ 909              		.loc 1 422 18 is_stmt 0 view .LVU178
+ 910 0004 43F00803 		orr	r3, r3, #8
+ 911 0008 D362     		str	r3, [r2, #44]
+ 423:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 912              		.loc 1 423 1 view .LVU179
+ 913 000a 7047     		bx	lr
+ 914              	.L83:
+ 915              		.align	2
+ 916              	.L82:
+ 917 000c 00800140 		.word	1073840128
+ 918              		.cfi_endproc
+ 919              	.LFE139:
+ 921              		.section	.text.sdio_dma_disable,"ax",%progbits
+ 922              		.align	1
+ 923              		.global	sdio_dma_disable
+ 924              		.syntax unified
+ 925              		.thumb
+ 926              		.thumb_func
+ 928              	sdio_dma_disable:
+ 929              	.LFB140:
+ 424:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 425:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 426:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the DMA request for SDIO
+ 427:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 428:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 429:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 430:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 24
+
+
+ 431:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_dma_disable(void)
+ 432:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 930              		.loc 1 432 1 is_stmt 1 view -0
+ 931              		.cfi_startproc
+ 932              		@ args = 0, pretend = 0, frame = 0
+ 933              		@ frame_needed = 0, uses_anonymous_args = 0
+ 934              		@ link register save eliminated.
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL &= ~SDIO_DATACTL_DMAEN;
+ 935              		.loc 1 433 5 view .LVU181
+ 936 0000 024A     		ldr	r2, .L85
+ 937 0002 D36A     		ldr	r3, [r2, #44]
+ 938              		.loc 1 433 18 is_stmt 0 view .LVU182
+ 939 0004 23F00803 		bic	r3, r3, #8
+ 940 0008 D362     		str	r3, [r2, #44]
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 941              		.loc 1 434 1 view .LVU183
+ 942 000a 7047     		bx	lr
+ 943              	.L86:
+ 944              		.align	2
+ 945              	.L85:
+ 946 000c 00800140 		.word	1073840128
+ 947              		.cfi_endproc
+ 948              	.LFE140:
+ 950              		.section	.text.sdio_flag_get,"ax",%progbits
+ 951              		.align	1
+ 952              		.global	sdio_flag_get
+ 953              		.syntax unified
+ 954              		.thumb
+ 955              		.thumb_func
+ 957              	sdio_flag_get:
+ 958              	.LVL40:
+ 959              	.LFB141:
+ 435:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 436:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 437:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      get the flags state of SDIO
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  flag: flags state of SDIO
+ 439:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 one or more parameters can be selected which are shown as below:
+ 440:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CCRCERR: command response received (CRC check failed) flag
+ 441:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTCRCERR: data block sent/received (CRC check failed) flag
+ 442:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CMDTMOUT: command response timeout flag
+ 443:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTTMOUT: data timeout flag
+ 444:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_TXURE: transmit FIFO underrun error occurs flag
+ 445:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_RXORE: received FIFO overrun error occurs flag
+ 446:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CMDRECV: command response received (CRC check passed) flag
+ 447:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CMDSEND: command sent (no response required) flag
+ 448:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTEND: data end (data counter, SDIO_DATACNT, is zero) flag
+ 449:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_STBITE: start bit error in the bus flag
+ 450:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTBLKEND: data block sent/received (CRC check passed) flag
+ 451:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CMDRUN: command transmission in progress flag
+ 452:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_TXRUN: data transmission in progress flag
+ 453:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_RXRUN: data reception in progress flag
+ 454:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_TFH: transmit FIFO is half empty flag: at least 8 words can be written 
+ 455:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_RFH: receive FIFO is half full flag: at least 8 words can be read in th
+ 456:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_TFF: transmit FIFO is full flag
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_RFF: receive FIFO is full flag
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_TFE: transmit FIFO is empty flag
+ 459:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_RFE: receive FIFO is empty flag
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 25
+
+
+ 460:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_TXDTVAL: data is valid in transmit FIFO flag
+ 461:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_RXDTVAL: data is valid in receive FIFO flag
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_SDIOINT: SD I/O interrupt received flag
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_ATAEND: CE-ATA command completion signal received (only for CMD61) flag
+ 464:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 465:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     FlagStatus: SET or RESET
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** FlagStatus sdio_flag_get(uint32_t flag)
+ 468:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 960              		.loc 1 468 1 is_stmt 1 view -0
+ 961              		.cfi_startproc
+ 962              		@ args = 0, pretend = 0, frame = 0
+ 963              		@ frame_needed = 0, uses_anonymous_args = 0
+ 964              		@ link register save eliminated.
+ 469:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     if(RESET != (SDIO_STAT & flag)){
+ 965              		.loc 1 469 5 view .LVU185
+ 966              		.loc 1 469 18 is_stmt 0 view .LVU186
+ 967 0000 034B     		ldr	r3, .L90
+ 968 0002 5B6B     		ldr	r3, [r3, #52]
+ 969              		.loc 1 469 7 view .LVU187
+ 970 0004 0342     		tst	r3, r0
+ 971 0006 01D1     		bne	.L89
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         return SET;
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     }
+ 472:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return RESET;
+ 972              		.loc 1 472 12 view .LVU188
+ 973 0008 0020     		movs	r0, #0
+ 974              	.LVL41:
+ 975              		.loc 1 472 12 view .LVU189
+ 976 000a 7047     		bx	lr
+ 977              	.LVL42:
+ 978              	.L89:
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         return SET;
+ 979              		.loc 1 470 16 view .LVU190
+ 980 000c 0120     		movs	r0, #1
+ 981              	.LVL43:
+ 473:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 982              		.loc 1 473 1 view .LVU191
+ 983 000e 7047     		bx	lr
+ 984              	.L91:
+ 985              		.align	2
+ 986              	.L90:
+ 987 0010 00800140 		.word	1073840128
+ 988              		.cfi_endproc
+ 989              	.LFE141:
+ 991              		.section	.text.sdio_flag_clear,"ax",%progbits
+ 992              		.align	1
+ 993              		.global	sdio_flag_clear
+ 994              		.syntax unified
+ 995              		.thumb
+ 996              		.thumb_func
+ 998              	sdio_flag_clear:
+ 999              	.LVL44:
+ 1000              	.LFB142:
+ 474:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 475:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      clear the pending flags of SDIO
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 26
+
+
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  flag: flags state of SDIO
+ 478:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 one or more parameters can be selected which are shown as below:
+ 479:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CCRCERR: command response received (CRC check failed) flag
+ 480:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTCRCERR: data block sent/received (CRC check failed) flag
+ 481:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CMDTMOUT: command response timeout flag
+ 482:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTTMOUT: data timeout flag
+ 483:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_TXURE: transmit FIFO underrun error occurs flag
+ 484:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_RXORE: received FIFO overrun error occurs flag
+ 485:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CMDRECV: command response received (CRC check passed) flag
+ 486:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_CMDSEND: command sent (no response required) flag
+ 487:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTEND: data end (data counter, SDIO_DATACNT, is zero) flag
+ 488:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_STBITE: start bit error in the bus flag
+ 489:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_DTBLKEND: data block sent/received (CRC check passed) flag
+ 490:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_SDIOINT: SD I/O interrupt received flag
+ 491:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_FLAG_ATAEND: CE-ATA command completion signal received (only for CMD61) flag
+ 492:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 493:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 494:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_flag_clear(uint32_t flag)
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1001              		.loc 1 496 1 is_stmt 1 view -0
+ 1002              		.cfi_startproc
+ 1003              		@ args = 0, pretend = 0, frame = 0
+ 1004              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1005              		@ link register save eliminated.
+ 497:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_INTC = flag;
+ 1006              		.loc 1 497 5 view .LVU193
+ 1007              		.loc 1 497 15 is_stmt 0 view .LVU194
+ 1008 0000 014B     		ldr	r3, .L93
+ 1009 0002 9863     		str	r0, [r3, #56]
+ 498:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1010              		.loc 1 498 1 view .LVU195
+ 1011 0004 7047     		bx	lr
+ 1012              	.L94:
+ 1013 0006 00BF     		.align	2
+ 1014              	.L93:
+ 1015 0008 00800140 		.word	1073840128
+ 1016              		.cfi_endproc
+ 1017              	.LFE142:
+ 1019              		.section	.text.sdio_interrupt_enable,"ax",%progbits
+ 1020              		.align	1
+ 1021              		.global	sdio_interrupt_enable
+ 1022              		.syntax unified
+ 1023              		.thumb
+ 1024              		.thumb_func
+ 1026              	sdio_interrupt_enable:
+ 1027              	.LVL45:
+ 1028              	.LFB143:
+ 499:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 500:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 501:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the SDIO interrupt
+ 502:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  int_flag: interrupt flags state of SDIO
+ 503:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 one or more parameters can be selected which are shown as below:
+ 504:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CCRCERR: SDIO CCRCERR interrupt
+ 505:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTCRCERR: SDIO DTCRCERR interrupt
+ 506:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDTMOUT: SDIO CMDTMOUT interrupt
+ 507:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTTMOUT: SDIO DTTMOUT interrupt
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 27
+
+
+ 508:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TXURE: SDIO TXURE interrupt
+ 509:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RXORE: SDIO RXORE interrupt
+ 510:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDRECV: SDIO CMDRECV interrupt
+ 511:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDSEND: SDIO CMDSEND interrupt
+ 512:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTEND: SDIO DTEND interrupt
+ 513:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_STBITE: SDIO STBITE interrupt
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTBLKEND: SDIO DTBLKEND interrupt
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDRUN: SDIO CMDRUN interrupt
+ 516:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TXRUN: SDIO TXRUN interrupt
+ 517:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RXRUN: SDIO RXRUN interrupt
+ 518:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TFH: SDIO TFH interrupt
+ 519:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RFH: SDIO RFH interrupt
+ 520:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TFF: SDIO TFF interrupt
+ 521:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RFF: SDIO RFF interrupt
+ 522:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TFE: SDIO TFE interrupt
+ 523:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RFE: SDIO RFE interrupt
+ 524:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TXDTVAL: SDIO TXDTVAL interrupt
+ 525:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RXDTVAL: SDIO RXDTVAL interrupt
+ 526:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_SDIOINT: SDIO SDIOINT interrupt
+ 527:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_ATAEND: SDIO ATAEND interrupt
+ 528:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 529:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 530:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 531:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_interrupt_enable(uint32_t int_flag)
+ 532:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1029              		.loc 1 532 1 is_stmt 1 view -0
+ 1030              		.cfi_startproc
+ 1031              		@ args = 0, pretend = 0, frame = 0
+ 1032              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1033              		@ link register save eliminated.
+ 533:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_INTEN |= int_flag;
+ 1034              		.loc 1 533 5 view .LVU197
+ 1035 0000 024A     		ldr	r2, .L96
+ 1036 0002 D36B     		ldr	r3, [r2, #60]
+ 1037              		.loc 1 533 16 is_stmt 0 view .LVU198
+ 1038 0004 0343     		orrs	r3, r3, r0
+ 1039 0006 D363     		str	r3, [r2, #60]
+ 534:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1040              		.loc 1 534 1 view .LVU199
+ 1041 0008 7047     		bx	lr
+ 1042              	.L97:
+ 1043 000a 00BF     		.align	2
+ 1044              	.L96:
+ 1045 000c 00800140 		.word	1073840128
+ 1046              		.cfi_endproc
+ 1047              	.LFE143:
+ 1049              		.section	.text.sdio_interrupt_disable,"ax",%progbits
+ 1050              		.align	1
+ 1051              		.global	sdio_interrupt_disable
+ 1052              		.syntax unified
+ 1053              		.thumb
+ 1054              		.thumb_func
+ 1056              	sdio_interrupt_disable:
+ 1057              	.LVL46:
+ 1058              	.LFB144:
+ 535:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 536:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 28
+
+
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the SDIO interrupt
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  int_flag: interrupt flags state of SDIO
+ 539:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 one or more parameters can be selected which are shown as below:
+ 540:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CCRCERR: SDIO CCRCERR interrupt
+ 541:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTCRCERR: SDIO DTCRCERR interrupt
+ 542:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDTMOUT: SDIO CMDTMOUT interrupt
+ 543:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTTMOUT: SDIO DTTMOUT interrupt
+ 544:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TXURE: SDIO TXURE interrupt
+ 545:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RXORE: SDIO RXORE interrupt
+ 546:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDRECV: SDIO CMDRECV interrupt
+ 547:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDSEND: SDIO CMDSEND interrupt
+ 548:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTEND: SDIO DTEND interrupt
+ 549:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_STBITE: SDIO STBITE interrupt
+ 550:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_DTBLKEND: SDIO DTBLKEND interrupt
+ 551:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_CMDRUN: SDIO CMDRUN interrupt
+ 552:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TXRUN: SDIO TXRUN interrupt
+ 553:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RXRUN: SDIO RXRUN interrupt
+ 554:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TFH: SDIO TFH interrupt
+ 555:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RFH: SDIO RFH interrupt
+ 556:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TFF: SDIO TFF interrupt
+ 557:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RFF: SDIO RFF interrupt
+ 558:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TFE: SDIO TFE interrupt
+ 559:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RFE: SDIO RFE interrupt
+ 560:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_TXDTVAL: SDIO TXDTVAL interrupt
+ 561:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_RXDTVAL: SDIO RXDTVAL interrupt
+ 562:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_SDIOINT: SDIO SDIOINT interrupt
+ 563:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_ATAEND: SDIO ATAEND interrupt
+ 564:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 565:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 566:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 567:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_interrupt_disable(uint32_t int_flag)
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1059              		.loc 1 568 1 is_stmt 1 view -0
+ 1060              		.cfi_startproc
+ 1061              		@ args = 0, pretend = 0, frame = 0
+ 1062              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1063              		@ link register save eliminated.
+ 569:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_INTEN &= ~int_flag;
+ 1064              		.loc 1 569 5 view .LVU201
+ 1065 0000 024A     		ldr	r2, .L99
+ 1066 0002 D36B     		ldr	r3, [r2, #60]
+ 1067              		.loc 1 569 16 is_stmt 0 view .LVU202
+ 1068 0004 23EA0003 		bic	r3, r3, r0
+ 1069 0008 D363     		str	r3, [r2, #60]
+ 570:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1070              		.loc 1 570 1 view .LVU203
+ 1071 000a 7047     		bx	lr
+ 1072              	.L100:
+ 1073              		.align	2
+ 1074              	.L99:
+ 1075 000c 00800140 		.word	1073840128
+ 1076              		.cfi_endproc
+ 1077              	.LFE144:
+ 1079              		.section	.text.sdio_interrupt_flag_get,"ax",%progbits
+ 1080              		.align	1
+ 1081              		.global	sdio_interrupt_flag_get
+ 1082              		.syntax unified
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 29
+
+
+ 1083              		.thumb
+ 1084              		.thumb_func
+ 1086              	sdio_interrupt_flag_get:
+ 1087              	.LVL47:
+ 1088              	.LFB145:
+ 571:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 572:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 573:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      get the interrupt flags state of SDIO
+ 574:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  int_flag: interrupt flags state of SDIO
+ 575:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 one or more parameters can be selected which are shown as below:
+ 576:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CCRCERR: SDIO CCRCERR interrupt flag
+ 577:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTCRCERR: SDIO DTCRCERR interrupt flag
+ 578:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CMDTMOUT: SDIO CMDTMOUT interrupt flag
+ 579:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTTMOUT: SDIO DTTMOUT interrupt flag
+ 580:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_TXURE: SDIO TXURE interrupt flag
+ 581:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_RXORE: SDIO RXORE interrupt flag
+ 582:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CMDRECV: SDIO CMDRECV interrupt flag
+ 583:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CMDSEND: SDIO CMDSEND interrupt flag
+ 584:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTEND: SDIO DTEND interrupt flag
+ 585:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_STBITE: SDIO STBITE interrupt flag
+ 586:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTBLKEND: SDIO DTBLKEND interrupt flag
+ 587:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CMDRUN: SDIO CMDRUN interrupt flag
+ 588:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_TXRUN: SDIO TXRUN interrupt flag
+ 589:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_RXRUN: SDIO RXRUN interrupt flag
+ 590:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_TFH: SDIO TFH interrupt flag
+ 591:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_RFH: SDIO RFH interrupt flag
+ 592:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_TFF: SDIO TFF interrupt flag
+ 593:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_RFF: SDIO RFF interrupt flag
+ 594:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_TFE: SDIO TFE interrupt flag
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_RFE: SDIO RFE interrupt flag
+ 596:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_TXDTVAL: SDIO TXDTVAL interrupt flag
+ 597:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_RXDTVAL: SDIO RXDTVAL interrupt flag
+ 598:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_SDIOINT: SDIO SDIOINT interrupt flag
+ 599:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_ATAEND: SDIO ATAEND interrupt flag
+ 600:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 601:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     FlagStatus: SET or RESET
+ 602:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 603:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** FlagStatus sdio_interrupt_flag_get(uint32_t int_flag)
+ 604:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1089              		.loc 1 604 1 is_stmt 1 view -0
+ 1090              		.cfi_startproc
+ 1091              		@ args = 0, pretend = 0, frame = 0
+ 1092              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1093              		@ link register save eliminated.
+ 605:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     if(RESET != (SDIO_STAT & int_flag)){
+ 1094              		.loc 1 605 5 view .LVU205
+ 1095              		.loc 1 605 18 is_stmt 0 view .LVU206
+ 1096 0000 034B     		ldr	r3, .L104
+ 1097 0002 5B6B     		ldr	r3, [r3, #52]
+ 1098              		.loc 1 605 7 view .LVU207
+ 1099 0004 0342     		tst	r3, r0
+ 1100 0006 01D1     		bne	.L103
+ 606:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         return SET;
+ 607:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     }
+ 608:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     return RESET;
+ 1101              		.loc 1 608 12 view .LVU208
+ 1102 0008 0020     		movs	r0, #0
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 30
+
+
+ 1103              	.LVL48:
+ 1104              		.loc 1 608 12 view .LVU209
+ 1105 000a 7047     		bx	lr
+ 1106              	.LVL49:
+ 1107              	.L103:
+ 606:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         return SET;
+ 1108              		.loc 1 606 16 view .LVU210
+ 1109 000c 0120     		movs	r0, #1
+ 1110              	.LVL50:
+ 609:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1111              		.loc 1 609 1 view .LVU211
+ 1112 000e 7047     		bx	lr
+ 1113              	.L105:
+ 1114              		.align	2
+ 1115              	.L104:
+ 1116 0010 00800140 		.word	1073840128
+ 1117              		.cfi_endproc
+ 1118              	.LFE145:
+ 1120              		.section	.text.sdio_interrupt_flag_clear,"ax",%progbits
+ 1121              		.align	1
+ 1122              		.global	sdio_interrupt_flag_clear
+ 1123              		.syntax unified
+ 1124              		.thumb
+ 1125              		.thumb_func
+ 1127              	sdio_interrupt_flag_clear:
+ 1128              	.LVL51:
+ 1129              	.LFB146:
+ 610:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 611:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 612:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      clear the interrupt pending flags of SDIO
+ 613:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  int_flag: interrupt flags state of SDIO
+ 614:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 one or more parameters can be selected which are shown as below:
+ 615:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CCRCERR: command response received (CRC check failed) flag
+ 616:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTCRCERR: data block sent/received (CRC check failed) flag
+ 617:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CMDTMOUT: command response timeout flag
+ 618:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTTMOUT: data timeout flag
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_TXURE: transmit FIFO underrun error occurs flag
+ 620:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_RXORE: received FIFO overrun error occurs flag
+ 621:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CMDRECV: command response received (CRC check passed) flag
+ 622:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_CMDSEND: command sent (no response required) flag
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTEND: data end (data counter, SDIO_DATACNT, is zero) flag
+ 624:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_STBITE: start bit error in the bus flag
+ 625:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_DTBLKEND: data block sent/received (CRC check passed) flag
+ 626:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_SDIOINT: SD I/O interrupt received flag
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_INT_FLAG_ATAEND: CE-ATA command completion signal received (only for CMD61) 
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 629:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 630:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 631:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_interrupt_flag_clear(uint32_t int_flag)
+ 632:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1130              		.loc 1 632 1 is_stmt 1 view -0
+ 1131              		.cfi_startproc
+ 1132              		@ args = 0, pretend = 0, frame = 0
+ 1133              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1134              		@ link register save eliminated.
+ 633:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_INTC = int_flag;
+ 1135              		.loc 1 633 5 view .LVU213
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 31
+
+
+ 1136              		.loc 1 633 15 is_stmt 0 view .LVU214
+ 1137 0000 014B     		ldr	r3, .L107
+ 1138 0002 9863     		str	r0, [r3, #56]
+ 634:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1139              		.loc 1 634 1 view .LVU215
+ 1140 0004 7047     		bx	lr
+ 1141              	.L108:
+ 1142 0006 00BF     		.align	2
+ 1143              	.L107:
+ 1144 0008 00800140 		.word	1073840128
+ 1145              		.cfi_endproc
+ 1146              	.LFE146:
+ 1148              		.section	.text.sdio_readwait_enable,"ax",%progbits
+ 1149              		.align	1
+ 1150              		.global	sdio_readwait_enable
+ 1151              		.syntax unified
+ 1152              		.thumb
+ 1153              		.thumb_func
+ 1155              	sdio_readwait_enable:
+ 1156              	.LFB147:
+ 635:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 636:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 637:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the read wait mode(SD I/O only)
+ 638:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 639:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 640:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 641:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 642:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_readwait_enable(void)
+ 643:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1157              		.loc 1 643 1 is_stmt 1 view -0
+ 1158              		.cfi_startproc
+ 1159              		@ args = 0, pretend = 0, frame = 0
+ 1160              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1161              		@ link register save eliminated.
+ 644:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL |= SDIO_DATACTL_RWEN;
+ 1162              		.loc 1 644 5 view .LVU217
+ 1163 0000 024A     		ldr	r2, .L110
+ 1164 0002 D36A     		ldr	r3, [r2, #44]
+ 1165              		.loc 1 644 18 is_stmt 0 view .LVU218
+ 1166 0004 43F48073 		orr	r3, r3, #256
+ 1167 0008 D362     		str	r3, [r2, #44]
+ 645:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1168              		.loc 1 645 1 view .LVU219
+ 1169 000a 7047     		bx	lr
+ 1170              	.L111:
+ 1171              		.align	2
+ 1172              	.L110:
+ 1173 000c 00800140 		.word	1073840128
+ 1174              		.cfi_endproc
+ 1175              	.LFE147:
+ 1177              		.section	.text.sdio_readwait_disable,"ax",%progbits
+ 1178              		.align	1
+ 1179              		.global	sdio_readwait_disable
+ 1180              		.syntax unified
+ 1181              		.thumb
+ 1182              		.thumb_func
+ 1184              	sdio_readwait_disable:
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 32
+
+
+ 1185              	.LFB148:
+ 646:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 647:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 648:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the read wait mode(SD I/O only)
+ 649:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 650:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 651:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 652:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 653:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_readwait_disable(void)
+ 654:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1186              		.loc 1 654 1 is_stmt 1 view -0
+ 1187              		.cfi_startproc
+ 1188              		@ args = 0, pretend = 0, frame = 0
+ 1189              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1190              		@ link register save eliminated.
+ 655:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL &= ~SDIO_DATACTL_RWEN;
+ 1191              		.loc 1 655 5 view .LVU221
+ 1192 0000 024A     		ldr	r2, .L113
+ 1193 0002 D36A     		ldr	r3, [r2, #44]
+ 1194              		.loc 1 655 18 is_stmt 0 view .LVU222
+ 1195 0004 23F48073 		bic	r3, r3, #256
+ 1196 0008 D362     		str	r3, [r2, #44]
+ 656:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1197              		.loc 1 656 1 view .LVU223
+ 1198 000a 7047     		bx	lr
+ 1199              	.L114:
+ 1200              		.align	2
+ 1201              	.L113:
+ 1202 000c 00800140 		.word	1073840128
+ 1203              		.cfi_endproc
+ 1204              	.LFE148:
+ 1206              		.section	.text.sdio_stop_readwait_enable,"ax",%progbits
+ 1207              		.align	1
+ 1208              		.global	sdio_stop_readwait_enable
+ 1209              		.syntax unified
+ 1210              		.thumb
+ 1211              		.thumb_func
+ 1213              	sdio_stop_readwait_enable:
+ 1214              	.LFB149:
+ 657:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 658:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the function that stop the read wait process(SD I/O only)
+ 660:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 661:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 662:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 663:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 664:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_stop_readwait_enable(void)
+ 665:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1215              		.loc 1 665 1 is_stmt 1 view -0
+ 1216              		.cfi_startproc
+ 1217              		@ args = 0, pretend = 0, frame = 0
+ 1218              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1219              		@ link register save eliminated.
+ 666:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL |= SDIO_DATACTL_RWSTOP;
+ 1220              		.loc 1 666 5 view .LVU225
+ 1221 0000 024A     		ldr	r2, .L116
+ 1222 0002 D36A     		ldr	r3, [r2, #44]
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 33
+
+
+ 1223              		.loc 1 666 18 is_stmt 0 view .LVU226
+ 1224 0004 43F40073 		orr	r3, r3, #512
+ 1225 0008 D362     		str	r3, [r2, #44]
+ 667:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1226              		.loc 1 667 1 view .LVU227
+ 1227 000a 7047     		bx	lr
+ 1228              	.L117:
+ 1229              		.align	2
+ 1230              	.L116:
+ 1231 000c 00800140 		.word	1073840128
+ 1232              		.cfi_endproc
+ 1233              	.LFE149:
+ 1235              		.section	.text.sdio_stop_readwait_disable,"ax",%progbits
+ 1236              		.align	1
+ 1237              		.global	sdio_stop_readwait_disable
+ 1238              		.syntax unified
+ 1239              		.thumb
+ 1240              		.thumb_func
+ 1242              	sdio_stop_readwait_disable:
+ 1243              	.LFB150:
+ 668:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 669:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 670:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the function that stop the read wait process(SD I/O only)
+ 671:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 672:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 673:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 674:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 675:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_stop_readwait_disable(void)
+ 676:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1244              		.loc 1 676 1 is_stmt 1 view -0
+ 1245              		.cfi_startproc
+ 1246              		@ args = 0, pretend = 0, frame = 0
+ 1247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1248              		@ link register save eliminated.
+ 677:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL &= ~SDIO_DATACTL_RWSTOP;
+ 1249              		.loc 1 677 5 view .LVU229
+ 1250 0000 024A     		ldr	r2, .L119
+ 1251 0002 D36A     		ldr	r3, [r2, #44]
+ 1252              		.loc 1 677 18 is_stmt 0 view .LVU230
+ 1253 0004 23F40073 		bic	r3, r3, #512
+ 1254 0008 D362     		str	r3, [r2, #44]
+ 678:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1255              		.loc 1 678 1 view .LVU231
+ 1256 000a 7047     		bx	lr
+ 1257              	.L120:
+ 1258              		.align	2
+ 1259              	.L119:
+ 1260 000c 00800140 		.word	1073840128
+ 1261              		.cfi_endproc
+ 1262              	.LFE150:
+ 1264              		.section	.text.sdio_readwait_type_set,"ax",%progbits
+ 1265              		.align	1
+ 1266              		.global	sdio_readwait_type_set
+ 1267              		.syntax unified
+ 1268              		.thumb
+ 1269              		.thumb_func
+ 1271              	sdio_readwait_type_set:
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 34
+
+
+ 1272              	.LVL52:
+ 1273              	.LFB151:
+ 679:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 680:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 681:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      set the read wait type(SD I/O only)
+ 682:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  readwait_type: SD I/O read wait type
+ 683:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****                 only one parameter can be selected which is shown as below:
+ 684:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_READWAITTYPE_CLK: read wait control by stopping SDIO_CLK
+ 685:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****       \arg        SDIO_READWAITTYPE_DAT2: read wait control using SDIO_DAT[2]
+ 686:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 687:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 688:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 689:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_readwait_type_set(uint32_t readwait_type)
+ 690:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1274              		.loc 1 690 1 is_stmt 1 view -0
+ 1275              		.cfi_startproc
+ 1276              		@ args = 0, pretend = 0, frame = 0
+ 1277              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1278              		@ link register save eliminated.
+ 691:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     if(SDIO_READWAITTYPE_CLK == readwait_type){
+ 1279              		.loc 1 691 5 view .LVU233
+ 1280              		.loc 1 691 7 is_stmt 0 view .LVU234
+ 1281 0000 B0F5806F 		cmp	r0, #1024
+ 1282 0004 05D0     		beq	.L124
+ 692:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         SDIO_DATACTL |= SDIO_DATACTL_RWTYPE;
+ 693:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     }else{
+ 694:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         SDIO_DATACTL &= ~SDIO_DATACTL_RWTYPE;
+ 1283              		.loc 1 694 9 is_stmt 1 view .LVU235
+ 1284 0006 064A     		ldr	r2, .L125
+ 1285 0008 D36A     		ldr	r3, [r2, #44]
+ 1286              		.loc 1 694 22 is_stmt 0 view .LVU236
+ 1287 000a 23F48063 		bic	r3, r3, #1024
+ 1288 000e D362     		str	r3, [r2, #44]
+ 695:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     }
+ 696:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1289              		.loc 1 696 1 view .LVU237
+ 1290 0010 7047     		bx	lr
+ 1291              	.L124:
+ 692:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         SDIO_DATACTL |= SDIO_DATACTL_RWTYPE;
+ 1292              		.loc 1 692 9 is_stmt 1 view .LVU238
+ 1293 0012 034A     		ldr	r2, .L125
+ 1294 0014 D36A     		ldr	r3, [r2, #44]
+ 692:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****         SDIO_DATACTL |= SDIO_DATACTL_RWTYPE;
+ 1295              		.loc 1 692 22 is_stmt 0 view .LVU239
+ 1296 0016 43F48063 		orr	r3, r3, #1024
+ 1297 001a D362     		str	r3, [r2, #44]
+ 1298 001c 7047     		bx	lr
+ 1299              	.L126:
+ 1300 001e 00BF     		.align	2
+ 1301              	.L125:
+ 1302 0020 00800140 		.word	1073840128
+ 1303              		.cfi_endproc
+ 1304              	.LFE151:
+ 1306              		.section	.text.sdio_operation_enable,"ax",%progbits
+ 1307              		.align	1
+ 1308              		.global	sdio_operation_enable
+ 1309              		.syntax unified
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 35
+
+
+ 1310              		.thumb
+ 1311              		.thumb_func
+ 1313              	sdio_operation_enable:
+ 1314              	.LFB152:
+ 697:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 698:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the SD I/O mode specific operation(SD I/O only)
+ 700:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 701:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 702:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 704:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_operation_enable(void)
+ 705:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1315              		.loc 1 705 1 is_stmt 1 view -0
+ 1316              		.cfi_startproc
+ 1317              		@ args = 0, pretend = 0, frame = 0
+ 1318              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1319              		@ link register save eliminated.
+ 706:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL |= SDIO_DATACTL_IOEN;
+ 1320              		.loc 1 706 5 view .LVU241
+ 1321 0000 024A     		ldr	r2, .L128
+ 1322 0002 D36A     		ldr	r3, [r2, #44]
+ 1323              		.loc 1 706 18 is_stmt 0 view .LVU242
+ 1324 0004 43F40063 		orr	r3, r3, #2048
+ 1325 0008 D362     		str	r3, [r2, #44]
+ 707:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1326              		.loc 1 707 1 view .LVU243
+ 1327 000a 7047     		bx	lr
+ 1328              	.L129:
+ 1329              		.align	2
+ 1330              	.L128:
+ 1331 000c 00800140 		.word	1073840128
+ 1332              		.cfi_endproc
+ 1333              	.LFE152:
+ 1335              		.section	.text.sdio_operation_disable,"ax",%progbits
+ 1336              		.align	1
+ 1337              		.global	sdio_operation_disable
+ 1338              		.syntax unified
+ 1339              		.thumb
+ 1340              		.thumb_func
+ 1342              	sdio_operation_disable:
+ 1343              	.LFB153:
+ 708:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 709:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 710:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the SD I/O mode specific operation(SD I/O only)
+ 711:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 712:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 713:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 714:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 715:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_operation_disable(void)
+ 716:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1344              		.loc 1 716 1 is_stmt 1 view -0
+ 1345              		.cfi_startproc
+ 1346              		@ args = 0, pretend = 0, frame = 0
+ 1347              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1348              		@ link register save eliminated.
+ 717:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_DATACTL &= ~SDIO_DATACTL_IOEN;
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 36
+
+
+ 1349              		.loc 1 717 5 view .LVU245
+ 1350 0000 024A     		ldr	r2, .L131
+ 1351 0002 D36A     		ldr	r3, [r2, #44]
+ 1352              		.loc 1 717 18 is_stmt 0 view .LVU246
+ 1353 0004 23F40063 		bic	r3, r3, #2048
+ 1354 0008 D362     		str	r3, [r2, #44]
+ 718:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1355              		.loc 1 718 1 view .LVU247
+ 1356 000a 7047     		bx	lr
+ 1357              	.L132:
+ 1358              		.align	2
+ 1359              	.L131:
+ 1360 000c 00800140 		.word	1073840128
+ 1361              		.cfi_endproc
+ 1362              	.LFE153:
+ 1364              		.section	.text.sdio_suspend_enable,"ax",%progbits
+ 1365              		.align	1
+ 1366              		.global	sdio_suspend_enable
+ 1367              		.syntax unified
+ 1368              		.thumb
+ 1369              		.thumb_func
+ 1371              	sdio_suspend_enable:
+ 1372              	.LFB154:
+ 719:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 720:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 721:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the SD I/O suspend operation(SD I/O only)
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 723:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 724:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 725:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 726:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_suspend_enable(void)
+ 727:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1373              		.loc 1 727 1 is_stmt 1 view -0
+ 1374              		.cfi_startproc
+ 1375              		@ args = 0, pretend = 0, frame = 0
+ 1376              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1377              		@ link register save eliminated.
+ 728:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL |= SDIO_CMDCTL_SUSPEND;
+ 1378              		.loc 1 728 5 view .LVU249
+ 1379 0000 024A     		ldr	r2, .L134
+ 1380 0002 D368     		ldr	r3, [r2, #12]
+ 1381              		.loc 1 728 17 is_stmt 0 view .LVU250
+ 1382 0004 43F40063 		orr	r3, r3, #2048
+ 1383 0008 D360     		str	r3, [r2, #12]
+ 729:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1384              		.loc 1 729 1 view .LVU251
+ 1385 000a 7047     		bx	lr
+ 1386              	.L135:
+ 1387              		.align	2
+ 1388              	.L134:
+ 1389 000c 00800140 		.word	1073840128
+ 1390              		.cfi_endproc
+ 1391              	.LFE154:
+ 1393              		.section	.text.sdio_suspend_disable,"ax",%progbits
+ 1394              		.align	1
+ 1395              		.global	sdio_suspend_disable
+ 1396              		.syntax unified
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 37
+
+
+ 1397              		.thumb
+ 1398              		.thumb_func
+ 1400              	sdio_suspend_disable:
+ 1401              	.LFB155:
+ 730:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 731:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 732:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the SD I/O suspend operation(SD I/O only)
+ 733:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 734:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 735:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 736:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 737:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_suspend_disable(void)
+ 738:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1402              		.loc 1 738 1 is_stmt 1 view -0
+ 1403              		.cfi_startproc
+ 1404              		@ args = 0, pretend = 0, frame = 0
+ 1405              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1406              		@ link register save eliminated.
+ 739:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL &= ~SDIO_CMDCTL_SUSPEND;
+ 1407              		.loc 1 739 5 view .LVU253
+ 1408 0000 024A     		ldr	r2, .L137
+ 1409 0002 D368     		ldr	r3, [r2, #12]
+ 1410              		.loc 1 739 17 is_stmt 0 view .LVU254
+ 1411 0004 23F40063 		bic	r3, r3, #2048
+ 1412 0008 D360     		str	r3, [r2, #12]
+ 740:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1413              		.loc 1 740 1 view .LVU255
+ 1414 000a 7047     		bx	lr
+ 1415              	.L138:
+ 1416              		.align	2
+ 1417              	.L137:
+ 1418 000c 00800140 		.word	1073840128
+ 1419              		.cfi_endproc
+ 1420              	.LFE155:
+ 1422              		.section	.text.sdio_ceata_command_enable,"ax",%progbits
+ 1423              		.align	1
+ 1424              		.global	sdio_ceata_command_enable
+ 1425              		.syntax unified
+ 1426              		.thumb
+ 1427              		.thumb_func
+ 1429              	sdio_ceata_command_enable:
+ 1430              	.LFB156:
+ 741:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 742:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 743:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the CE-ATA command(CE-ATA only)
+ 744:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 745:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 746:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 747:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 748:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_ceata_command_enable(void)
+ 749:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1431              		.loc 1 749 1 is_stmt 1 view -0
+ 1432              		.cfi_startproc
+ 1433              		@ args = 0, pretend = 0, frame = 0
+ 1434              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1435              		@ link register save eliminated.
+ 750:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL |= SDIO_CMDCTL_ATAEN;
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 38
+
+
+ 1436              		.loc 1 750 5 view .LVU257
+ 1437 0000 024A     		ldr	r2, .L140
+ 1438 0002 D368     		ldr	r3, [r2, #12]
+ 1439              		.loc 1 750 17 is_stmt 0 view .LVU258
+ 1440 0004 43F48043 		orr	r3, r3, #16384
+ 1441 0008 D360     		str	r3, [r2, #12]
+ 751:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1442              		.loc 1 751 1 view .LVU259
+ 1443 000a 7047     		bx	lr
+ 1444              	.L141:
+ 1445              		.align	2
+ 1446              	.L140:
+ 1447 000c 00800140 		.word	1073840128
+ 1448              		.cfi_endproc
+ 1449              	.LFE156:
+ 1451              		.section	.text.sdio_ceata_command_disable,"ax",%progbits
+ 1452              		.align	1
+ 1453              		.global	sdio_ceata_command_disable
+ 1454              		.syntax unified
+ 1455              		.thumb
+ 1456              		.thumb_func
+ 1458              	sdio_ceata_command_disable:
+ 1459              	.LFB157:
+ 752:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 753:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 754:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the CE-ATA command(CE-ATA only)
+ 755:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 756:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 757:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 758:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 759:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_ceata_command_disable(void)
+ 760:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1460              		.loc 1 760 1 is_stmt 1 view -0
+ 1461              		.cfi_startproc
+ 1462              		@ args = 0, pretend = 0, frame = 0
+ 1463              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1464              		@ link register save eliminated.
+ 761:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL &= ~SDIO_CMDCTL_ATAEN;
+ 1465              		.loc 1 761 5 view .LVU261
+ 1466 0000 024A     		ldr	r2, .L143
+ 1467 0002 D368     		ldr	r3, [r2, #12]
+ 1468              		.loc 1 761 17 is_stmt 0 view .LVU262
+ 1469 0004 23F48043 		bic	r3, r3, #16384
+ 1470 0008 D360     		str	r3, [r2, #12]
+ 762:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1471              		.loc 1 762 1 view .LVU263
+ 1472 000a 7047     		bx	lr
+ 1473              	.L144:
+ 1474              		.align	2
+ 1475              	.L143:
+ 1476 000c 00800140 		.word	1073840128
+ 1477              		.cfi_endproc
+ 1478              	.LFE157:
+ 1480              		.section	.text.sdio_ceata_interrupt_enable,"ax",%progbits
+ 1481              		.align	1
+ 1482              		.global	sdio_ceata_interrupt_enable
+ 1483              		.syntax unified
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 39
+
+
+ 1484              		.thumb
+ 1485              		.thumb_func
+ 1487              	sdio_ceata_interrupt_enable:
+ 1488              	.LFB158:
+ 763:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 764:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 765:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the CE-ATA interrupt(CE-ATA only)
+ 766:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 767:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 768:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 769:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 770:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_ceata_interrupt_enable(void)
+ 771:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1489              		.loc 1 771 1 is_stmt 1 view -0
+ 1490              		.cfi_startproc
+ 1491              		@ args = 0, pretend = 0, frame = 0
+ 1492              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1493              		@ link register save eliminated.
+ 772:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL &= ~SDIO_CMDCTL_NINTEN;
+ 1494              		.loc 1 772 5 view .LVU265
+ 1495 0000 024A     		ldr	r2, .L146
+ 1496 0002 D368     		ldr	r3, [r2, #12]
+ 1497              		.loc 1 772 17 is_stmt 0 view .LVU266
+ 1498 0004 23F40053 		bic	r3, r3, #8192
+ 1499 0008 D360     		str	r3, [r2, #12]
+ 773:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1500              		.loc 1 773 1 view .LVU267
+ 1501 000a 7047     		bx	lr
+ 1502              	.L147:
+ 1503              		.align	2
+ 1504              	.L146:
+ 1505 000c 00800140 		.word	1073840128
+ 1506              		.cfi_endproc
+ 1507              	.LFE158:
+ 1509              		.section	.text.sdio_ceata_interrupt_disable,"ax",%progbits
+ 1510              		.align	1
+ 1511              		.global	sdio_ceata_interrupt_disable
+ 1512              		.syntax unified
+ 1513              		.thumb
+ 1514              		.thumb_func
+ 1516              	sdio_ceata_interrupt_disable:
+ 1517              	.LFB159:
+ 774:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 775:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 776:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the CE-ATA interrupt(CE-ATA only)
+ 777:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 778:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 779:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 780:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 781:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_ceata_interrupt_disable(void)
+ 782:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1518              		.loc 1 782 1 is_stmt 1 view -0
+ 1519              		.cfi_startproc
+ 1520              		@ args = 0, pretend = 0, frame = 0
+ 1521              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1522              		@ link register save eliminated.
+ 783:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL |= SDIO_CMDCTL_NINTEN;
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 40
+
+
+ 1523              		.loc 1 783 5 view .LVU269
+ 1524 0000 024A     		ldr	r2, .L149
+ 1525 0002 D368     		ldr	r3, [r2, #12]
+ 1526              		.loc 1 783 17 is_stmt 0 view .LVU270
+ 1527 0004 43F40053 		orr	r3, r3, #8192
+ 1528 0008 D360     		str	r3, [r2, #12]
+ 784:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1529              		.loc 1 784 1 view .LVU271
+ 1530 000a 7047     		bx	lr
+ 1531              	.L150:
+ 1532              		.align	2
+ 1533              	.L149:
+ 1534 000c 00800140 		.word	1073840128
+ 1535              		.cfi_endproc
+ 1536              	.LFE159:
+ 1538              		.section	.text.sdio_ceata_command_completion_enable,"ax",%progbits
+ 1539              		.align	1
+ 1540              		.global	sdio_ceata_command_completion_enable
+ 1541              		.syntax unified
+ 1542              		.thumb
+ 1543              		.thumb_func
+ 1545              	sdio_ceata_command_completion_enable:
+ 1546              	.LFB160:
+ 785:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 786:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 787:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      enable the CE-ATA command completion signal(CE-ATA only)
+ 788:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 789:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 790:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 791:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 792:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_ceata_command_completion_enable(void)
+ 793:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1547              		.loc 1 793 1 is_stmt 1 view -0
+ 1548              		.cfi_startproc
+ 1549              		@ args = 0, pretend = 0, frame = 0
+ 1550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1551              		@ link register save eliminated.
+ 794:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL |= SDIO_CMDCTL_ENCMDC;
+ 1552              		.loc 1 794 5 view .LVU273
+ 1553 0000 024A     		ldr	r2, .L152
+ 1554 0002 D368     		ldr	r3, [r2, #12]
+ 1555              		.loc 1 794 17 is_stmt 0 view .LVU274
+ 1556 0004 43F48053 		orr	r3, r3, #4096
+ 1557 0008 D360     		str	r3, [r2, #12]
+ 795:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1558              		.loc 1 795 1 view .LVU275
+ 1559 000a 7047     		bx	lr
+ 1560              	.L153:
+ 1561              		.align	2
+ 1562              	.L152:
+ 1563 000c 00800140 		.word	1073840128
+ 1564              		.cfi_endproc
+ 1565              	.LFE160:
+ 1567              		.section	.text.sdio_ceata_command_completion_disable,"ax",%progbits
+ 1568              		.align	1
+ 1569              		.global	sdio_ceata_command_completion_disable
+ 1570              		.syntax unified
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 41
+
+
+ 1571              		.thumb
+ 1572              		.thumb_func
+ 1574              	sdio_ceata_command_completion_disable:
+ 1575              	.LFB161:
+ 796:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** 
+ 797:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** /*!
+ 798:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \brief      disable the CE-ATA command completion signal(CE-ATA only)
+ 799:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[in]  none
+ 800:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \param[out] none
+ 801:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     \retval     none
+ 802:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** */
+ 803:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** void sdio_ceata_command_completion_disable(void)
+ 804:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** {
+ 1576              		.loc 1 804 1 is_stmt 1 view -0
+ 1577              		.cfi_startproc
+ 1578              		@ args = 0, pretend = 0, frame = 0
+ 1579              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1580              		@ link register save eliminated.
+ 805:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c ****     SDIO_CMDCTL &= ~SDIO_CMDCTL_ENCMDC;
+ 1581              		.loc 1 805 5 view .LVU277
+ 1582 0000 024A     		ldr	r2, .L155
+ 1583 0002 D368     		ldr	r3, [r2, #12]
+ 1584              		.loc 1 805 17 is_stmt 0 view .LVU278
+ 1585 0004 23F48053 		bic	r3, r3, #4096
+ 1586 0008 D360     		str	r3, [r2, #12]
+ 806:./GD32F30x_standard_peripheral/Source/gd32f30x_sdio.c **** }
+ 1587              		.loc 1 806 1 view .LVU279
+ 1588 000a 7047     		bx	lr
+ 1589              	.L156:
+ 1590              		.align	2
+ 1591              	.L155:
+ 1592 000c 00800140 		.word	1073840128
+ 1593              		.cfi_endproc
+ 1594              	.LFE161:
+ 1596              		.text
+ 1597              	.Letext0:
+ 1598              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1599              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1600              		.file 4 "CMSIS/GD/GD32F30x/Include/gd32f30x.h"
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 42
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_sdio.c
+  C:\Temp\ccMSxKOL.s:21     .text.sdio_deinit:00000000 $t
+  C:\Temp\ccMSxKOL.s:27     .text.sdio_deinit:00000000 sdio_deinit
+  C:\Temp\ccMSxKOL.s:68     .text.sdio_deinit:00000018 $d
+  C:\Temp\ccMSxKOL.s:73     .text.sdio_clock_config:00000000 $t
+  C:\Temp\ccMSxKOL.s:79     .text.sdio_clock_config:00000000 sdio_clock_config
+  C:\Temp\ccMSxKOL.s:148    .text.sdio_clock_config:00000028 $d
+  C:\Temp\ccMSxKOL.s:154    .text.sdio_hardware_clock_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:160    .text.sdio_hardware_clock_enable:00000000 sdio_hardware_clock_enable
+  C:\Temp\ccMSxKOL.s:178    .text.sdio_hardware_clock_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:183    .text.sdio_hardware_clock_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:189    .text.sdio_hardware_clock_disable:00000000 sdio_hardware_clock_disable
+  C:\Temp\ccMSxKOL.s:207    .text.sdio_hardware_clock_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:212    .text.sdio_bus_mode_set:00000000 $t
+  C:\Temp\ccMSxKOL.s:218    .text.sdio_bus_mode_set:00000000 sdio_bus_mode_set
+  C:\Temp\ccMSxKOL.s:242    .text.sdio_bus_mode_set:00000014 $d
+  C:\Temp\ccMSxKOL.s:247    .text.sdio_power_state_set:00000000 $t
+  C:\Temp\ccMSxKOL.s:253    .text.sdio_power_state_set:00000000 sdio_power_state_set
+  C:\Temp\ccMSxKOL.s:270    .text.sdio_power_state_set:00000008 $d
+  C:\Temp\ccMSxKOL.s:275    .text.sdio_power_state_get:00000000 $t
+  C:\Temp\ccMSxKOL.s:281    .text.sdio_power_state_get:00000000 sdio_power_state_get
+  C:\Temp\ccMSxKOL.s:297    .text.sdio_power_state_get:00000008 $d
+  C:\Temp\ccMSxKOL.s:302    .text.sdio_clock_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:308    .text.sdio_clock_enable:00000000 sdio_clock_enable
+  C:\Temp\ccMSxKOL.s:326    .text.sdio_clock_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:331    .text.sdio_clock_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:337    .text.sdio_clock_disable:00000000 sdio_clock_disable
+  C:\Temp\ccMSxKOL.s:355    .text.sdio_clock_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:360    .text.sdio_command_response_config:00000000 $t
+  C:\Temp\ccMSxKOL.s:366    .text.sdio_command_response_config:00000000 sdio_command_response_config
+  C:\Temp\ccMSxKOL.s:418    .text.sdio_command_response_config:00000020 $d
+  C:\Temp\ccMSxKOL.s:423    .text.sdio_wait_type_set:00000000 $t
+  C:\Temp\ccMSxKOL.s:429    .text.sdio_wait_type_set:00000000 sdio_wait_type_set
+  C:\Temp\ccMSxKOL.s:453    .text.sdio_wait_type_set:00000014 $d
+  C:\Temp\ccMSxKOL.s:458    .text.sdio_csm_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:464    .text.sdio_csm_enable:00000000 sdio_csm_enable
+  C:\Temp\ccMSxKOL.s:482    .text.sdio_csm_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:487    .text.sdio_csm_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:493    .text.sdio_csm_disable:00000000 sdio_csm_disable
+  C:\Temp\ccMSxKOL.s:511    .text.sdio_csm_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:516    .text.sdio_command_index_get:00000000 $t
+  C:\Temp\ccMSxKOL.s:522    .text.sdio_command_index_get:00000000 sdio_command_index_get
+  C:\Temp\ccMSxKOL.s:539    .text.sdio_command_index_get:00000008 $d
+  C:\Temp\ccMSxKOL.s:544    .text.sdio_response_get:00000000 $t
+  C:\Temp\ccMSxKOL.s:550    .text.sdio_response_get:00000000 sdio_response_get
+  C:\Temp\ccMSxKOL.s:564    .text.sdio_response_get:00000008 $d
+  C:\Temp\ccMSxKOL.s:568    .text.sdio_response_get:0000000c $t
+  C:\Temp\ccMSxKOL.s:615    .text.sdio_response_get:00000028 $d
+  C:\Temp\ccMSxKOL.s:620    .text.sdio_data_config:00000000 $t
+  C:\Temp\ccMSxKOL.s:626    .text.sdio_data_config:00000000 sdio_data_config
+  C:\Temp\ccMSxKOL.s:677    .text.sdio_data_config:0000002c $d
+  C:\Temp\ccMSxKOL.s:682    .text.sdio_data_transfer_config:00000000 $t
+  C:\Temp\ccMSxKOL.s:688    .text.sdio_data_transfer_config:00000000 sdio_data_transfer_config
+  C:\Temp\ccMSxKOL.s:721    .text.sdio_data_transfer_config:00000010 $d
+  C:\Temp\ccMSxKOL.s:726    .text.sdio_dsm_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:732    .text.sdio_dsm_enable:00000000 sdio_dsm_enable
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 43
+
+
+  C:\Temp\ccMSxKOL.s:750    .text.sdio_dsm_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:755    .text.sdio_dsm_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:761    .text.sdio_dsm_disable:00000000 sdio_dsm_disable
+  C:\Temp\ccMSxKOL.s:779    .text.sdio_dsm_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:784    .text.sdio_data_write:00000000 $t
+  C:\Temp\ccMSxKOL.s:790    .text.sdio_data_write:00000000 sdio_data_write
+  C:\Temp\ccMSxKOL.s:807    .text.sdio_data_write:00000008 $d
+  C:\Temp\ccMSxKOL.s:812    .text.sdio_data_read:00000000 $t
+  C:\Temp\ccMSxKOL.s:818    .text.sdio_data_read:00000000 sdio_data_read
+  C:\Temp\ccMSxKOL.s:834    .text.sdio_data_read:00000008 $d
+  C:\Temp\ccMSxKOL.s:839    .text.sdio_data_counter_get:00000000 $t
+  C:\Temp\ccMSxKOL.s:845    .text.sdio_data_counter_get:00000000 sdio_data_counter_get
+  C:\Temp\ccMSxKOL.s:861    .text.sdio_data_counter_get:00000008 $d
+  C:\Temp\ccMSxKOL.s:866    .text.sdio_fifo_counter_get:00000000 $t
+  C:\Temp\ccMSxKOL.s:872    .text.sdio_fifo_counter_get:00000000 sdio_fifo_counter_get
+  C:\Temp\ccMSxKOL.s:888    .text.sdio_fifo_counter_get:00000008 $d
+  C:\Temp\ccMSxKOL.s:893    .text.sdio_dma_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:899    .text.sdio_dma_enable:00000000 sdio_dma_enable
+  C:\Temp\ccMSxKOL.s:917    .text.sdio_dma_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:922    .text.sdio_dma_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:928    .text.sdio_dma_disable:00000000 sdio_dma_disable
+  C:\Temp\ccMSxKOL.s:946    .text.sdio_dma_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:951    .text.sdio_flag_get:00000000 $t
+  C:\Temp\ccMSxKOL.s:957    .text.sdio_flag_get:00000000 sdio_flag_get
+  C:\Temp\ccMSxKOL.s:987    .text.sdio_flag_get:00000010 $d
+  C:\Temp\ccMSxKOL.s:992    .text.sdio_flag_clear:00000000 $t
+  C:\Temp\ccMSxKOL.s:998    .text.sdio_flag_clear:00000000 sdio_flag_clear
+  C:\Temp\ccMSxKOL.s:1015   .text.sdio_flag_clear:00000008 $d
+  C:\Temp\ccMSxKOL.s:1020   .text.sdio_interrupt_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1026   .text.sdio_interrupt_enable:00000000 sdio_interrupt_enable
+  C:\Temp\ccMSxKOL.s:1045   .text.sdio_interrupt_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1050   .text.sdio_interrupt_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1056   .text.sdio_interrupt_disable:00000000 sdio_interrupt_disable
+  C:\Temp\ccMSxKOL.s:1075   .text.sdio_interrupt_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1080   .text.sdio_interrupt_flag_get:00000000 $t
+  C:\Temp\ccMSxKOL.s:1086   .text.sdio_interrupt_flag_get:00000000 sdio_interrupt_flag_get
+  C:\Temp\ccMSxKOL.s:1116   .text.sdio_interrupt_flag_get:00000010 $d
+  C:\Temp\ccMSxKOL.s:1121   .text.sdio_interrupt_flag_clear:00000000 $t
+  C:\Temp\ccMSxKOL.s:1127   .text.sdio_interrupt_flag_clear:00000000 sdio_interrupt_flag_clear
+  C:\Temp\ccMSxKOL.s:1144   .text.sdio_interrupt_flag_clear:00000008 $d
+  C:\Temp\ccMSxKOL.s:1149   .text.sdio_readwait_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1155   .text.sdio_readwait_enable:00000000 sdio_readwait_enable
+  C:\Temp\ccMSxKOL.s:1173   .text.sdio_readwait_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1178   .text.sdio_readwait_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1184   .text.sdio_readwait_disable:00000000 sdio_readwait_disable
+  C:\Temp\ccMSxKOL.s:1202   .text.sdio_readwait_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1207   .text.sdio_stop_readwait_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1213   .text.sdio_stop_readwait_enable:00000000 sdio_stop_readwait_enable
+  C:\Temp\ccMSxKOL.s:1231   .text.sdio_stop_readwait_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1236   .text.sdio_stop_readwait_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1242   .text.sdio_stop_readwait_disable:00000000 sdio_stop_readwait_disable
+  C:\Temp\ccMSxKOL.s:1260   .text.sdio_stop_readwait_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1265   .text.sdio_readwait_type_set:00000000 $t
+  C:\Temp\ccMSxKOL.s:1271   .text.sdio_readwait_type_set:00000000 sdio_readwait_type_set
+  C:\Temp\ccMSxKOL.s:1302   .text.sdio_readwait_type_set:00000020 $d
+  C:\Temp\ccMSxKOL.s:1307   .text.sdio_operation_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1313   .text.sdio_operation_enable:00000000 sdio_operation_enable
+ARM GAS  C:\Temp\ccMSxKOL.s 			page 44
+
+
+  C:\Temp\ccMSxKOL.s:1331   .text.sdio_operation_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1336   .text.sdio_operation_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1342   .text.sdio_operation_disable:00000000 sdio_operation_disable
+  C:\Temp\ccMSxKOL.s:1360   .text.sdio_operation_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1365   .text.sdio_suspend_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1371   .text.sdio_suspend_enable:00000000 sdio_suspend_enable
+  C:\Temp\ccMSxKOL.s:1389   .text.sdio_suspend_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1394   .text.sdio_suspend_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1400   .text.sdio_suspend_disable:00000000 sdio_suspend_disable
+  C:\Temp\ccMSxKOL.s:1418   .text.sdio_suspend_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1423   .text.sdio_ceata_command_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1429   .text.sdio_ceata_command_enable:00000000 sdio_ceata_command_enable
+  C:\Temp\ccMSxKOL.s:1447   .text.sdio_ceata_command_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1452   .text.sdio_ceata_command_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1458   .text.sdio_ceata_command_disable:00000000 sdio_ceata_command_disable
+  C:\Temp\ccMSxKOL.s:1476   .text.sdio_ceata_command_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1481   .text.sdio_ceata_interrupt_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1487   .text.sdio_ceata_interrupt_enable:00000000 sdio_ceata_interrupt_enable
+  C:\Temp\ccMSxKOL.s:1505   .text.sdio_ceata_interrupt_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1510   .text.sdio_ceata_interrupt_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1516   .text.sdio_ceata_interrupt_disable:00000000 sdio_ceata_interrupt_disable
+  C:\Temp\ccMSxKOL.s:1534   .text.sdio_ceata_interrupt_disable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1539   .text.sdio_ceata_command_completion_enable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1545   .text.sdio_ceata_command_completion_enable:00000000 sdio_ceata_command_completion_enable
+  C:\Temp\ccMSxKOL.s:1563   .text.sdio_ceata_command_completion_enable:0000000c $d
+  C:\Temp\ccMSxKOL.s:1568   .text.sdio_ceata_command_completion_disable:00000000 $t
+  C:\Temp\ccMSxKOL.s:1574   .text.sdio_ceata_command_completion_disable:00000000 sdio_ceata_command_completion_disable
+  C:\Temp\ccMSxKOL.s:1592   .text.sdio_ceata_command_completion_disable:0000000c $d
+
+NO UNDEFINED SYMBOLS

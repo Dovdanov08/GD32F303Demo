@@ -1,0 +1,444 @@
+ARM GAS  C:\Temp\cciLGh9c.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_dbg.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c"
+  20              		.section	.text.dbg_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	dbg_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	dbg_deinit:
+  28              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \file    gd32f30x_dbg.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief   DBG driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Temp\cciLGh9c.s 			page 2
+
+
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** #include "gd32f30x_dbg.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** #define DBG_RESET_VAL       0x00000000U
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      deinitialize the DBG
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  none
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     none
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** void dbg_deinit(void)
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+  29              		.loc 1 46 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     DBG_CTL0 = DBG_RESET_VAL;
+  34              		.loc 1 47 5 view .LVU1
+  35              		.loc 1 47 14 is_stmt 0 view .LVU2
+  36 0000 014B     		ldr	r3, .L2
+  37 0002 0022     		movs	r2, #0
+  38 0004 5A60     		str	r2, [r3, #4]
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+  39              		.loc 1 48 1 view .LVU3
+  40 0006 7047     		bx	lr
+  41              	.L3:
+  42              		.align	2
+  43              	.L2:
+  44 0008 002004E0 		.word	-536600576
+  45              		.cfi_endproc
+  46              	.LFE116:
+  48              		.section	.text.dbg_id_get,"ax",%progbits
+  49              		.align	1
+  50              		.global	dbg_id_get
+  51              		.syntax unified
+  52              		.thumb
+  53              		.thumb_func
+  55              	dbg_id_get:
+  56              	.LFB117:
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      read DBG_ID code register
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  none
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     DBG_ID code
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** uint32_t dbg_id_get(void)
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+  57              		.loc 1 57 1 is_stmt 1 view -0
+  58              		.cfi_startproc
+  59              		@ args = 0, pretend = 0, frame = 0
+  60              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Temp\cciLGh9c.s 			page 3
+
+
+  61              		@ link register save eliminated.
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     return DBG_ID;
+  62              		.loc 1 58 5 view .LVU5
+  63              		.loc 1 58 12 is_stmt 0 view .LVU6
+  64 0000 014B     		ldr	r3, .L5
+  65 0002 1868     		ldr	r0, [r3]
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+  66              		.loc 1 59 1 view .LVU7
+  67 0004 7047     		bx	lr
+  68              	.L6:
+  69 0006 00BF     		.align	2
+  70              	.L5:
+  71 0008 002004E0 		.word	-536600576
+  72              		.cfi_endproc
+  73              	.LFE117:
+  75              		.section	.text.dbg_low_power_enable,"ax",%progbits
+  76              		.align	1
+  77              		.global	dbg_low_power_enable
+  78              		.syntax unified
+  79              		.thumb
+  80              		.thumb_func
+  82              	dbg_low_power_enable:
+  83              	.LVL0:
+  84              	.LFB118:
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      enable low power behavior when the mcu is in debug mode
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  dbg_low_power:
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****                 this parameter can be any combination of the following values:
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_LOW_POWER_SLEEP: keep debugger connection during sleep mode
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_LOW_POWER_DEEPSLEEP: keep debugger connection during deepsleep mode
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_LOW_POWER_STANDBY: keep debugger connection during standby mode
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     none
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** void dbg_low_power_enable(uint32_t dbg_low_power)
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+  85              		.loc 1 72 1 is_stmt 1 view -0
+  86              		.cfi_startproc
+  87              		@ args = 0, pretend = 0, frame = 0
+  88              		@ frame_needed = 0, uses_anonymous_args = 0
+  89              		@ link register save eliminated.
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     DBG_CTL0 |= dbg_low_power;
+  90              		.loc 1 73 5 view .LVU9
+  91 0000 024A     		ldr	r2, .L8
+  92 0002 5368     		ldr	r3, [r2, #4]
+  93              		.loc 1 73 14 is_stmt 0 view .LVU10
+  94 0004 0343     		orrs	r3, r3, r0
+  95 0006 5360     		str	r3, [r2, #4]
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+  96              		.loc 1 74 1 view .LVU11
+  97 0008 7047     		bx	lr
+  98              	.L9:
+  99 000a 00BF     		.align	2
+ 100              	.L8:
+ 101 000c 002004E0 		.word	-536600576
+ 102              		.cfi_endproc
+ARM GAS  C:\Temp\cciLGh9c.s 			page 4
+
+
+ 103              	.LFE118:
+ 105              		.section	.text.dbg_low_power_disable,"ax",%progbits
+ 106              		.align	1
+ 107              		.global	dbg_low_power_disable
+ 108              		.syntax unified
+ 109              		.thumb
+ 110              		.thumb_func
+ 112              	dbg_low_power_disable:
+ 113              	.LVL1:
+ 114              	.LFB119:
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      disable low power behavior when the mcu is in debug mode
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  dbg_low_power:
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****                 this parameter can be any combination of the following values:
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_LOW_POWER_SLEEP: donot keep debugger connection during sleep mode
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_LOW_POWER_DEEPSLEEP: donot keep debugger connection during deepsleep mode
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_LOW_POWER_STANDBY: donot keep debugger connection during standby mode
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     none
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** void dbg_low_power_disable(uint32_t dbg_low_power)
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+ 115              		.loc 1 87 1 is_stmt 1 view -0
+ 116              		.cfi_startproc
+ 117              		@ args = 0, pretend = 0, frame = 0
+ 118              		@ frame_needed = 0, uses_anonymous_args = 0
+ 119              		@ link register save eliminated.
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     DBG_CTL0 &= ~dbg_low_power;
+ 120              		.loc 1 88 5 view .LVU13
+ 121 0000 024A     		ldr	r2, .L11
+ 122 0002 5368     		ldr	r3, [r2, #4]
+ 123              		.loc 1 88 14 is_stmt 0 view .LVU14
+ 124 0004 23EA0003 		bic	r3, r3, r0
+ 125 0008 5360     		str	r3, [r2, #4]
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+ 126              		.loc 1 89 1 view .LVU15
+ 127 000a 7047     		bx	lr
+ 128              	.L12:
+ 129              		.align	2
+ 130              	.L11:
+ 131 000c 002004E0 		.word	-536600576
+ 132              		.cfi_endproc
+ 133              	.LFE119:
+ 135              		.section	.text.dbg_periph_enable,"ax",%progbits
+ 136              		.align	1
+ 137              		.global	dbg_periph_enable
+ 138              		.syntax unified
+ 139              		.thumb
+ 140              		.thumb_func
+ 142              	dbg_periph_enable:
+ 143              	.LVL2:
+ 144              	.LFB120:
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      enable peripheral behavior when the mcu is in debug mode
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  dbg_periph: refer to dbg_periph_enum
+ARM GAS  C:\Temp\cciLGh9c.s 			page 5
+
+
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****                 only one parameter can be selected which is shown as below:
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_FWDGT_HOLD : debug FWDGT kept when core is halted
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_WWDGT_HOLD : debug WWDGT kept when core is halted
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_CANx_HOLD (x=0,1,CAN1 is only available for CL series): hold CANx counter whe
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_I2Cx_HOLD (x=0,1): hold I2Cx smbus when core is halted
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_TIMERx_HOLD (x=0,1,2,3,4,5,6,7,8,9,10,11,12,13,TIMER8..13 are not available f
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     none
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** void dbg_periph_enable(dbg_periph_enum dbg_periph)
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+ 145              		.loc 1 104 1 is_stmt 1 view -0
+ 146              		.cfi_startproc
+ 147              		@ args = 0, pretend = 0, frame = 0
+ 148              		@ frame_needed = 0, uses_anonymous_args = 0
+ 149              		@ link register save eliminated.
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     DBG_REG_VAL(dbg_periph) |= BIT(DBG_BIT_POS(dbg_periph));
+ 150              		.loc 1 105 5 view .LVU17
+ 151 0000 8309     		lsrs	r3, r0, #6
+ 152 0002 03F16043 		add	r3, r3, #-536870912
+ 153 0006 03F58423 		add	r3, r3, #270336
+ 154 000a 1A68     		ldr	r2, [r3]
+ 155              		.loc 1 105 32 is_stmt 0 view .LVU18
+ 156 000c 00F01F00 		and	r0, r0, #31
+ 157              	.LVL3:
+ 158              		.loc 1 105 32 view .LVU19
+ 159 0010 0121     		movs	r1, #1
+ 160 0012 8140     		lsls	r1, r1, r0
+ 161              		.loc 1 105 29 view .LVU20
+ 162 0014 0A43     		orrs	r2, r2, r1
+ 163 0016 1A60     		str	r2, [r3]
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+ 164              		.loc 1 106 1 view .LVU21
+ 165 0018 7047     		bx	lr
+ 166              		.cfi_endproc
+ 167              	.LFE120:
+ 169              		.section	.text.dbg_periph_disable,"ax",%progbits
+ 170              		.align	1
+ 171              		.global	dbg_periph_disable
+ 172              		.syntax unified
+ 173              		.thumb
+ 174              		.thumb_func
+ 176              	dbg_periph_disable:
+ 177              	.LVL4:
+ 178              	.LFB121:
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      disable peripheral behavior when the mcu is in debug mode
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  dbg_periph: refer to dbg_periph_enum
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****                 only one parameter can be selected which is shown as below:
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_FWDGT_HOLD : debug FWDGT kept when core is halted
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_WWDGT_HOLD : debug WWDGT kept when core is halted
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_CANx_HOLD (x=0,1,CAN1 is only available for CL series): hold CAN0 counter whe
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_I2Cx_HOLD (x=0,1): hold I2Cx smbus when core is halted
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****       \arg        DBG_TIMERx_HOLD (x=0,1,2,3,4,5,6,7,8,9,10,11,12,13,TIMER8..13 are not available f
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     none
+ARM GAS  C:\Temp\cciLGh9c.s 			page 6
+
+
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** void dbg_periph_disable(dbg_periph_enum dbg_periph)
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+ 179              		.loc 1 121 1 is_stmt 1 view -0
+ 180              		.cfi_startproc
+ 181              		@ args = 0, pretend = 0, frame = 0
+ 182              		@ frame_needed = 0, uses_anonymous_args = 0
+ 183              		@ link register save eliminated.
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     DBG_REG_VAL(dbg_periph) &= ~BIT(DBG_BIT_POS(dbg_periph));
+ 184              		.loc 1 122 5 view .LVU23
+ 185 0000 8309     		lsrs	r3, r0, #6
+ 186 0002 03F16043 		add	r3, r3, #-536870912
+ 187 0006 03F58423 		add	r3, r3, #270336
+ 188 000a 1A68     		ldr	r2, [r3]
+ 189              		.loc 1 122 33 is_stmt 0 view .LVU24
+ 190 000c 00F01F00 		and	r0, r0, #31
+ 191              	.LVL5:
+ 192              		.loc 1 122 33 view .LVU25
+ 193 0010 0121     		movs	r1, #1
+ 194 0012 8140     		lsls	r1, r1, r0
+ 195              		.loc 1 122 29 view .LVU26
+ 196 0014 22EA0102 		bic	r2, r2, r1
+ 197 0018 1A60     		str	r2, [r3]
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+ 198              		.loc 1 123 1 view .LVU27
+ 199 001a 7047     		bx	lr
+ 200              		.cfi_endproc
+ 201              	.LFE121:
+ 203              		.section	.text.dbg_trace_pin_enable,"ax",%progbits
+ 204              		.align	1
+ 205              		.global	dbg_trace_pin_enable
+ 206              		.syntax unified
+ 207              		.thumb
+ 208              		.thumb_func
+ 210              	dbg_trace_pin_enable:
+ 211              	.LFB122:
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      enable trace pin assignment
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  none
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     none
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** void dbg_trace_pin_enable(void)
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+ 212              		.loc 1 132 1 is_stmt 1 view -0
+ 213              		.cfi_startproc
+ 214              		@ args = 0, pretend = 0, frame = 0
+ 215              		@ frame_needed = 0, uses_anonymous_args = 0
+ 216              		@ link register save eliminated.
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     DBG_CTL0 |= DBG_CTL0_TRACE_IOEN;
+ 217              		.loc 1 133 5 view .LVU29
+ 218 0000 024A     		ldr	r2, .L16
+ 219 0002 5368     		ldr	r3, [r2, #4]
+ 220              		.loc 1 133 14 is_stmt 0 view .LVU30
+ 221 0004 43F02003 		orr	r3, r3, #32
+ 222 0008 5360     		str	r3, [r2, #4]
+ARM GAS  C:\Temp\cciLGh9c.s 			page 7
+
+
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+ 223              		.loc 1 134 1 view .LVU31
+ 224 000a 7047     		bx	lr
+ 225              	.L17:
+ 226              		.align	2
+ 227              	.L16:
+ 228 000c 002004E0 		.word	-536600576
+ 229              		.cfi_endproc
+ 230              	.LFE122:
+ 232              		.section	.text.dbg_trace_pin_disable,"ax",%progbits
+ 233              		.align	1
+ 234              		.global	dbg_trace_pin_disable
+ 235              		.syntax unified
+ 236              		.thumb
+ 237              		.thumb_func
+ 239              	dbg_trace_pin_disable:
+ 240              	.LFB123:
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** 
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** /*!
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \brief      disable trace pin assignment
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[in]  none
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \param[out] none
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     \retval     none
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** */
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** void dbg_trace_pin_disable(void)
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** {
+ 241              		.loc 1 143 1 is_stmt 1 view -0
+ 242              		.cfi_startproc
+ 243              		@ args = 0, pretend = 0, frame = 0
+ 244              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245              		@ link register save eliminated.
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c ****     DBG_CTL0 &= ~DBG_CTL0_TRACE_IOEN;
+ 246              		.loc 1 144 5 view .LVU33
+ 247 0000 024A     		ldr	r2, .L19
+ 248 0002 5368     		ldr	r3, [r2, #4]
+ 249              		.loc 1 144 14 is_stmt 0 view .LVU34
+ 250 0004 23F02003 		bic	r3, r3, #32
+ 251 0008 5360     		str	r3, [r2, #4]
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_dbg.c **** }
+ 252              		.loc 1 145 1 view .LVU35
+ 253 000a 7047     		bx	lr
+ 254              	.L20:
+ 255              		.align	2
+ 256              	.L19:
+ 257 000c 002004E0 		.word	-536600576
+ 258              		.cfi_endproc
+ 259              	.LFE123:
+ 261              		.text
+ 262              	.Letext0:
+ 263              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 264              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 265              		.file 4 "GD32F30x_standard_peripheral/Include/gd32f30x_dbg.h"
+ARM GAS  C:\Temp\cciLGh9c.s 			page 8
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_dbg.c
+  C:\Temp\cciLGh9c.s:21     .text.dbg_deinit:00000000 $t
+  C:\Temp\cciLGh9c.s:27     .text.dbg_deinit:00000000 dbg_deinit
+  C:\Temp\cciLGh9c.s:44     .text.dbg_deinit:00000008 $d
+  C:\Temp\cciLGh9c.s:49     .text.dbg_id_get:00000000 $t
+  C:\Temp\cciLGh9c.s:55     .text.dbg_id_get:00000000 dbg_id_get
+  C:\Temp\cciLGh9c.s:71     .text.dbg_id_get:00000008 $d
+  C:\Temp\cciLGh9c.s:76     .text.dbg_low_power_enable:00000000 $t
+  C:\Temp\cciLGh9c.s:82     .text.dbg_low_power_enable:00000000 dbg_low_power_enable
+  C:\Temp\cciLGh9c.s:101    .text.dbg_low_power_enable:0000000c $d
+  C:\Temp\cciLGh9c.s:106    .text.dbg_low_power_disable:00000000 $t
+  C:\Temp\cciLGh9c.s:112    .text.dbg_low_power_disable:00000000 dbg_low_power_disable
+  C:\Temp\cciLGh9c.s:131    .text.dbg_low_power_disable:0000000c $d
+  C:\Temp\cciLGh9c.s:136    .text.dbg_periph_enable:00000000 $t
+  C:\Temp\cciLGh9c.s:142    .text.dbg_periph_enable:00000000 dbg_periph_enable
+  C:\Temp\cciLGh9c.s:170    .text.dbg_periph_disable:00000000 $t
+  C:\Temp\cciLGh9c.s:176    .text.dbg_periph_disable:00000000 dbg_periph_disable
+  C:\Temp\cciLGh9c.s:204    .text.dbg_trace_pin_enable:00000000 $t
+  C:\Temp\cciLGh9c.s:210    .text.dbg_trace_pin_enable:00000000 dbg_trace_pin_enable
+  C:\Temp\cciLGh9c.s:228    .text.dbg_trace_pin_enable:0000000c $d
+  C:\Temp\cciLGh9c.s:233    .text.dbg_trace_pin_disable:00000000 $t
+  C:\Temp\cciLGh9c.s:239    .text.dbg_trace_pin_disable:00000000 dbg_trace_pin_disable
+  C:\Temp\cciLGh9c.s:257    .text.dbg_trace_pin_disable:0000000c $d
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,2664 @@
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_spi.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c"
+  20              		.section	.text.spi_i2s_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	spi_i2s_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	spi_i2s_deinit:
+  28              	.LVL0:
+  29              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \file    gd32f30x_spi.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief   SPI driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 2
+
+
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #include "gd32f30x_spi.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define SPI_ERROR_HANDLE(s)           do{}while(1)
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /* SPI/I2S parameter initialization mask */
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define SPI_INIT_MASK                   ((uint32_t)0x00003040U)  /*!< SPI parameter initialization 
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define I2S_INIT_MASK                   ((uint32_t)0x0000F047U)  /*!< I2S parameter initialization 
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /* default value */
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define SPI_I2SPSC_DEFAULT_VALUE        ((uint32_t)0x00000002U)  /*!< default value of SPI_I2SPSC r
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /* I2S clock source selection, multiplication and division mask */
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define I2S1_CLOCK_SEL                  ((uint32_t)0x00020000U)  /*!< I2S1 clock source selection *
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define I2S2_CLOCK_SEL                  ((uint32_t)0x00040000U)  /*!< I2S2 clock source selection *
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define I2S_CLOCK_MUL_MASK              ((uint32_t)0x0000F000U)  /*!< I2S clock multiplication mask
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #define I2S_CLOCK_DIV_MASK              ((uint32_t)0x000000F0U)  /*!< I2S clock division mask */
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      reset SPI and I2S 
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_i2s_deinit(uint32_t spi_periph)
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+  30              		.loc 1 59 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 59 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     switch(spi_periph){
+  40              		.loc 1 60 5 is_stmt 1 view .LVU2
+  41 0002 134B     		ldr	r3, .L8
+  42 0004 9842     		cmp	r0, r3
+  43 0006 1AD0     		beq	.L2
+  44 0008 03F57443 		add	r3, r3, #62464
+  45 000c 9842     		cmp	r0, r3
+  46 000e 04D0     		beq	.L3
+  47 0010 A3F57843 		sub	r3, r3, #63488
+  48 0014 9842     		cmp	r0, r3
+  49 0016 09D0     		beq	.L7
+  50              	.LVL1:
+  51              	.L1:
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI0:
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* reset SPI0 */
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_enable(RCU_SPI0RST);
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI0RST);
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 3
+
+
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI1:
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* reset SPI1 and I2S1 */
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_enable(RCU_SPI1RST);
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI1RST);
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI2:
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* reset SPI2 and I2S2 */
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_enable(RCU_SPI2RST);
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI2RST);
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default :
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+  52              		.loc 1 79 1 is_stmt 0 view .LVU3
+  53 0018 08BD     		pop	{r3, pc}
+  54              	.LVL2:
+  55              	.L3:
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI0RST);
+  56              		.loc 1 63 9 is_stmt 1 view .LVU4
+  57 001a 4FF44370 		mov	r0, #780
+  58              	.LVL3:
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI0RST);
+  59              		.loc 1 63 9 is_stmt 0 view .LVU5
+  60 001e FFF7FEFF 		bl	rcu_periph_reset_enable
+  61              	.LVL4:
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+  62              		.loc 1 64 9 is_stmt 1 view .LVU6
+  63 0022 4FF44370 		mov	r0, #780
+  64 0026 FFF7FEFF 		bl	rcu_periph_reset_disable
+  65              	.LVL5:
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI1:
+  66              		.loc 1 65 9 view .LVU7
+  67 002a F5E7     		b	.L1
+  68              	.LVL6:
+  69              	.L7:
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI1RST);
+  70              		.loc 1 68 9 view .LVU8
+  71 002c 40F20E40 		movw	r0, #1038
+  72              	.LVL7:
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI1RST);
+  73              		.loc 1 68 9 is_stmt 0 view .LVU9
+  74 0030 FFF7FEFF 		bl	rcu_periph_reset_enable
+  75              	.LVL8:
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+  76              		.loc 1 69 9 is_stmt 1 view .LVU10
+  77 0034 40F20E40 		movw	r0, #1038
+  78 0038 FFF7FEFF 		bl	rcu_periph_reset_disable
+  79              	.LVL9:
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI2:
+  80              		.loc 1 70 9 view .LVU11
+  81 003c ECE7     		b	.L1
+  82              	.LVL10:
+  83              	.L2:
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI2RST);
+  84              		.loc 1 73 9 view .LVU12
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 4
+
+
+  85 003e 40F20F40 		movw	r0, #1039
+  86              	.LVL11:
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         rcu_periph_reset_disable(RCU_SPI2RST);
+  87              		.loc 1 73 9 is_stmt 0 view .LVU13
+  88 0042 FFF7FEFF 		bl	rcu_periph_reset_enable
+  89              	.LVL12:
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+  90              		.loc 1 74 9 is_stmt 1 view .LVU14
+  91 0046 40F20F40 		movw	r0, #1039
+  92 004a FFF7FEFF 		bl	rcu_periph_reset_disable
+  93              	.LVL13:
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default :
+  94              		.loc 1 75 9 view .LVU15
+  95              		.loc 1 79 1 is_stmt 0 view .LVU16
+  96 004e E3E7     		b	.L1
+  97              	.L9:
+  98              		.align	2
+  99              	.L8:
+ 100 0050 003C0040 		.word	1073757184
+ 101              		.cfi_endproc
+ 102              	.LFE116:
+ 104              		.section	.text.spi_struct_para_init,"ax",%progbits
+ 105              		.align	1
+ 106              		.global	spi_struct_para_init
+ 107              		.syntax unified
+ 108              		.thumb
+ 109              		.thumb_func
+ 111              	spi_struct_para_init:
+ 112              	.LVL14:
+ 113              	.LFB117:
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      initialize the parameters of SPI struct with default values
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  none
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] spi_parameter_struct: the initialized struct spi_parameter_struct pointer
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_struct_para_init(spi_parameter_struct *spi_struct)
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 114              		.loc 1 88 1 is_stmt 1 view -0
+ 115              		.cfi_startproc
+ 116              		@ args = 0, pretend = 0, frame = 0
+ 117              		@ frame_needed = 0, uses_anonymous_args = 0
+ 118              		@ link register save eliminated.
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* configure the structure with default value */
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     spi_struct->device_mode          = SPI_SLAVE;
+ 119              		.loc 1 90 5 view .LVU18
+ 120              		.loc 1 90 38 is_stmt 0 view .LVU19
+ 121 0000 0023     		movs	r3, #0
+ 122 0002 0360     		str	r3, [r0]
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     spi_struct->trans_mode           = SPI_TRANSMODE_FULLDUPLEX;
+ 123              		.loc 1 91 5 is_stmt 1 view .LVU20
+ 124              		.loc 1 91 38 is_stmt 0 view .LVU21
+ 125 0004 4360     		str	r3, [r0, #4]
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     spi_struct->frame_size           = SPI_FRAMESIZE_8BIT;
+ 126              		.loc 1 92 5 is_stmt 1 view .LVU22
+ 127              		.loc 1 92 38 is_stmt 0 view .LVU23
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 5
+
+
+ 128 0006 8360     		str	r3, [r0, #8]
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     spi_struct->nss                  = SPI_NSS_HARD;
+ 129              		.loc 1 93 5 is_stmt 1 view .LVU24
+ 130              		.loc 1 93 38 is_stmt 0 view .LVU25
+ 131 0008 C360     		str	r3, [r0, #12]
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     spi_struct->clock_polarity_phase = SPI_CK_PL_LOW_PH_1EDGE;
+ 132              		.loc 1 94 5 is_stmt 1 view .LVU26
+ 133              		.loc 1 94 38 is_stmt 0 view .LVU27
+ 134 000a 4361     		str	r3, [r0, #20]
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     spi_struct->prescale             = SPI_PSC_2;
+ 135              		.loc 1 95 5 is_stmt 1 view .LVU28
+ 136              		.loc 1 95 38 is_stmt 0 view .LVU29
+ 137 000c 8361     		str	r3, [r0, #24]
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     spi_struct->endian               = SPI_ENDIAN_MSB;
+ 138              		.loc 1 96 5 is_stmt 1 view .LVU30
+ 139              		.loc 1 96 38 is_stmt 0 view .LVU31
+ 140 000e 0361     		str	r3, [r0, #16]
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 141              		.loc 1 97 1 view .LVU32
+ 142 0010 7047     		bx	lr
+ 143              		.cfi_endproc
+ 144              	.LFE117:
+ 146              		.section	.text.spi_init,"ax",%progbits
+ 147              		.align	1
+ 148              		.global	spi_init
+ 149              		.syntax unified
+ 150              		.thumb
+ 151              		.thumb_func
+ 153              	spi_init:
+ 154              	.LVL15:
+ 155              	.LFB118:
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      initialize SPI parameter
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_struct: SPI parameter initialization stuct members of the structure 
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                             and the member values are shown as below:
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                   device_mode: SPI_MASTER, SPI_SLAVE
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                   trans_mode: SPI_TRANSMODE_FULLDUPLEX, SPI_TRANSMODE_RECEIVEONLY,
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                               SPI_TRANSMODE_BDRECEIVE, SPI_TRANSMODE_BDTRANSMIT
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                   frame_size: SPI_FRAMESIZE_16BIT, SPI_FRAMESIZE_8BIT
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                   nss: SPI_NSS_SOFT, SPI_NSS_HARD
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                   endian: SPI_ENDIAN_MSB, SPI_ENDIAN_LSB
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                   clock_polarity_phase: SPI_CK_PL_LOW_PH_1EDGE, SPI_CK_PL_HIGH_PH_1EDGE
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                                         SPI_CK_PL_LOW_PH_2EDGE, SPI_CK_PL_HIGH_PH_2EDGE
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                   prescale: SPI_PSC_n (n=2,4,8,16,32,64,128,256)
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_init(uint32_t spi_periph, spi_parameter_struct* spi_struct)
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {   
+ 156              		.loc 1 117 1 is_stmt 1 view -0
+ 157              		.cfi_startproc
+ 158              		@ args = 0, pretend = 0, frame = 0
+ 159              		@ frame_needed = 0, uses_anonymous_args = 0
+ 160              		@ link register save eliminated.
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t reg = 0U;
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 6
+
+
+ 161              		.loc 1 118 5 view .LVU34
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg = SPI_CTL0(spi_periph);
+ 162              		.loc 1 119 5 view .LVU35
+ 163              		.loc 1 119 9 is_stmt 0 view .LVU36
+ 164 0000 0268     		ldr	r2, [r0]
+ 165              	.LVL16:
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg &= SPI_INIT_MASK;
+ 166              		.loc 1 120 5 is_stmt 1 view .LVU37
+ 167              		.loc 1 120 9 is_stmt 0 view .LVU38
+ 168 0002 02F44152 		and	r2, r2, #12352
+ 169              	.LVL17:
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select SPI as master or slave */
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= spi_struct->device_mode;
+ 170              		.loc 1 123 5 is_stmt 1 view .LVU39
+ 171              		.loc 1 123 22 is_stmt 0 view .LVU40
+ 172 0006 0B68     		ldr	r3, [r1]
+ 173              		.loc 1 123 9 view .LVU41
+ 174 0008 1A43     		orrs	r2, r2, r3
+ 175              	.LVL18:
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select SPI transfer mode */
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= spi_struct->trans_mode;
+ 176              		.loc 1 125 5 is_stmt 1 view .LVU42
+ 177              		.loc 1 125 22 is_stmt 0 view .LVU43
+ 178 000a 4B68     		ldr	r3, [r1, #4]
+ 179              		.loc 1 125 9 view .LVU44
+ 180 000c 1A43     		orrs	r2, r2, r3
+ 181              	.LVL19:
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select SPI frame size */
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= spi_struct->frame_size;
+ 182              		.loc 1 127 5 is_stmt 1 view .LVU45
+ 183              		.loc 1 127 22 is_stmt 0 view .LVU46
+ 184 000e 8B68     		ldr	r3, [r1, #8]
+ 185              		.loc 1 127 9 view .LVU47
+ 186 0010 1A43     		orrs	r2, r2, r3
+ 187              	.LVL20:
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select SPI NSS use hardware or software */
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= spi_struct->nss;
+ 188              		.loc 1 129 5 is_stmt 1 view .LVU48
+ 189              		.loc 1 129 22 is_stmt 0 view .LVU49
+ 190 0012 CB68     		ldr	r3, [r1, #12]
+ 191              		.loc 1 129 9 view .LVU50
+ 192 0014 1A43     		orrs	r2, r2, r3
+ 193              	.LVL21:
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select SPI LSB or MSB */
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= spi_struct->endian;
+ 194              		.loc 1 131 5 is_stmt 1 view .LVU51
+ 195              		.loc 1 131 22 is_stmt 0 view .LVU52
+ 196 0016 0B69     		ldr	r3, [r1, #16]
+ 197              		.loc 1 131 9 view .LVU53
+ 198 0018 1A43     		orrs	r2, r2, r3
+ 199              	.LVL22:
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select SPI polarity and phase */
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= spi_struct->clock_polarity_phase;
+ 200              		.loc 1 133 5 is_stmt 1 view .LVU54
+ 201              		.loc 1 133 22 is_stmt 0 view .LVU55
+ 202 001a 4B69     		ldr	r3, [r1, #20]
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 7
+
+
+ 203              		.loc 1 133 9 view .LVU56
+ 204 001c 1A43     		orrs	r2, r2, r3
+ 205              	.LVL23:
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select SPI prescale to adjust transmit speed */
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= spi_struct->prescale;
+ 206              		.loc 1 135 5 is_stmt 1 view .LVU57
+ 207              		.loc 1 135 22 is_stmt 0 view .LVU58
+ 208 001e 8B69     		ldr	r3, [r1, #24]
+ 209              		.loc 1 135 9 view .LVU59
+ 210 0020 1343     		orrs	r3, r3, r2
+ 211              	.LVL24:
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* write to SPI_CTL0 register */
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) = (uint32_t)reg;
+ 212              		.loc 1 138 5 is_stmt 1 view .LVU60
+ 213              		.loc 1 138 26 is_stmt 0 view .LVU61
+ 214 0022 0360     		str	r3, [r0]
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SCTL(spi_periph) &= (uint32_t)(~SPI_I2SCTL_I2SSEL);
+ 215              		.loc 1 140 5 is_stmt 1 view .LVU62
+ 216 0024 C369     		ldr	r3, [r0, #28]
+ 217              	.LVL25:
+ 218              		.loc 1 140 28 is_stmt 0 view .LVU63
+ 219 0026 23F40063 		bic	r3, r3, #2048
+ 220 002a C361     		str	r3, [r0, #28]
+ 221              	.LVL26:
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 222              		.loc 1 141 1 view .LVU64
+ 223 002c 7047     		bx	lr
+ 224              		.cfi_endproc
+ 225              	.LFE118:
+ 227              		.section	.text.spi_enable,"ax",%progbits
+ 228              		.align	1
+ 229              		.global	spi_enable
+ 230              		.syntax unified
+ 231              		.thumb
+ 232              		.thumb_func
+ 234              	spi_enable:
+ 235              	.LVL27:
+ 236              	.LFB119:
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable SPI
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_enable(uint32_t spi_periph)
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 237              		.loc 1 150 1 is_stmt 1 view -0
+ 238              		.cfi_startproc
+ 239              		@ args = 0, pretend = 0, frame = 0
+ 240              		@ frame_needed = 0, uses_anonymous_args = 0
+ 241              		@ link register save eliminated.
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) |= (uint32_t)SPI_CTL0_SPIEN;
+ 242              		.loc 1 151 5 view .LVU66
+ 243 0000 0368     		ldr	r3, [r0]
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 8
+
+
+ 244              		.loc 1 151 26 is_stmt 0 view .LVU67
+ 245 0002 43F04003 		orr	r3, r3, #64
+ 246 0006 0360     		str	r3, [r0]
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 247              		.loc 1 152 1 view .LVU68
+ 248 0008 7047     		bx	lr
+ 249              		.cfi_endproc
+ 250              	.LFE119:
+ 252              		.section	.text.spi_disable,"ax",%progbits
+ 253              		.align	1
+ 254              		.global	spi_disable
+ 255              		.syntax unified
+ 256              		.thumb
+ 257              		.thumb_func
+ 259              	spi_disable:
+ 260              	.LVL28:
+ 261              	.LFB120:
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable SPI 
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_disable(uint32_t spi_periph)
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 262              		.loc 1 161 1 is_stmt 1 view -0
+ 263              		.cfi_startproc
+ 264              		@ args = 0, pretend = 0, frame = 0
+ 265              		@ frame_needed = 0, uses_anonymous_args = 0
+ 266              		@ link register save eliminated.
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) &= (uint32_t)(~SPI_CTL0_SPIEN);
+ 267              		.loc 1 162 5 view .LVU70
+ 268 0000 0368     		ldr	r3, [r0]
+ 269              		.loc 1 162 26 is_stmt 0 view .LVU71
+ 270 0002 23F04003 		bic	r3, r3, #64
+ 271 0006 0360     		str	r3, [r0]
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 272              		.loc 1 163 1 view .LVU72
+ 273 0008 7047     		bx	lr
+ 274              		.cfi_endproc
+ 275              	.LFE120:
+ 277              		.section	.text.i2s_init,"ax",%progbits
+ 278              		.align	1
+ 279              		.global	i2s_init
+ 280              		.syntax unified
+ 281              		.thumb
+ 282              		.thumb_func
+ 284              	i2s_init:
+ 285              	.LVL29:
+ 286              	.LFB121:
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      initialize I2S parameter 
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=1,2)
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  i2s_mode: I2S operation mode
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 9
+
+
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_MODE_SLAVETX: I2S slave transmit mode
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_MODE_SLAVERX: I2S slave receive mode
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_MODE_MASTERTX: I2S master transmit mode
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_MODE_MASTERRX: I2S master receive mode
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  i2s_standard: I2S standard
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 176:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_STD_PHILLIPS: I2S phillips standard
+ 177:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_STD_MSB: I2S MSB standard
+ 178:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_STD_LSB: I2S LSB standard
+ 179:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_STD_PCMSHORT: I2S PCM short standard
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_STD_PCMLONG: I2S PCM long standard
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  i2s_ckpl: I2S idle state clock polarity
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 183:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_CKPL_LOW: I2S clock polarity low level
+ 184:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_CKPL_HIGH: I2S clock polarity high level
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 186:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void i2s_init(uint32_t spi_periph, uint32_t i2s_mode, uint32_t i2s_standard, uint32_t i2s_ckpl)
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 287              		.loc 1 189 1 is_stmt 1 view -0
+ 288              		.cfi_startproc
+ 289              		@ args = 0, pretend = 0, frame = 0
+ 290              		@ frame_needed = 0, uses_anonymous_args = 0
+ 291              		@ link register save eliminated.
+ 292              		.loc 1 189 1 is_stmt 0 view .LVU74
+ 293 0000 10B4     		push	{r4}
+ 294              	.LCFI1:
+ 295              		.cfi_def_cfa_offset 4
+ 296              		.cfi_offset 4, -4
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t reg= 0U;
+ 297              		.loc 1 190 5 is_stmt 1 view .LVU75
+ 298              	.LVL30:
+ 191:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg = SPI_I2SCTL(spi_periph);
+ 299              		.loc 1 191 5 view .LVU76
+ 300              		.loc 1 191 9 is_stmt 0 view .LVU77
+ 301 0002 C469     		ldr	r4, [r0, #28]
+ 302              	.LVL31:
+ 192:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg &= I2S_INIT_MASK;
+ 303              		.loc 1 192 5 is_stmt 1 view .LVU78
+ 304              		.loc 1 192 9 is_stmt 0 view .LVU79
+ 305 0004 4FF2470C 		movw	ip, #61511
+ 306 0008 04EA0C0C 		and	ip, r4, ip
+ 307              	.LVL32:
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* enable I2S mode */
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= (uint32_t)SPI_I2SCTL_I2SSEL; 
+ 308              		.loc 1 195 5 is_stmt 1 view .LVU80
+ 309              		.loc 1 195 9 is_stmt 0 view .LVU81
+ 310 000c 4CF4006C 		orr	ip, ip, #2048
+ 311              	.LVL33:
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select I2S mode */
+ 197:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= (uint32_t)i2s_mode;
+ 312              		.loc 1 197 5 is_stmt 1 view .LVU82
+ 313              		.loc 1 197 9 is_stmt 0 view .LVU83
+ 314 0010 4CEA010C 		orr	ip, ip, r1
+ 315              	.LVL34:
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 10
+
+
+ 198:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select I2S standard */
+ 199:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= (uint32_t)i2s_standard;
+ 316              		.loc 1 199 5 is_stmt 1 view .LVU84
+ 317              		.loc 1 199 9 is_stmt 0 view .LVU85
+ 318 0014 4CEA020C 		orr	ip, ip, r2
+ 319              	.LVL35:
+ 200:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* select I2S polarity */
+ 201:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     reg |= (uint32_t)i2s_ckpl;
+ 320              		.loc 1 201 5 is_stmt 1 view .LVU86
+ 321              		.loc 1 201 9 is_stmt 0 view .LVU87
+ 322 0018 4CEA0303 		orr	r3, ip, r3
+ 323              	.LVL36:
+ 202:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* write to SPI_I2SCTL register */
+ 204:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SCTL(spi_periph) = (uint32_t)reg;
+ 324              		.loc 1 204 5 is_stmt 1 view .LVU88
+ 325              		.loc 1 204 28 is_stmt 0 view .LVU89
+ 326 001c C361     		str	r3, [r0, #28]
+ 205:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 327              		.loc 1 205 1 view .LVU90
+ 328 001e 5DF8044B 		ldr	r4, [sp], #4
+ 329              	.LCFI2:
+ 330              		.cfi_restore 4
+ 331              		.cfi_def_cfa_offset 0
+ 332 0022 7047     		bx	lr
+ 333              		.cfi_endproc
+ 334              	.LFE121:
+ 336              		.section	.text.i2s_psc_config,"ax",%progbits
+ 337              		.align	1
+ 338              		.global	i2s_psc_config
+ 339              		.syntax unified
+ 340              		.thumb
+ 341              		.thumb_func
+ 343              	i2s_psc_config:
+ 344              	.LVL37:
+ 345              	.LFB122:
+ 206:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      configure I2S prescaler 
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=1,2)
+ 210:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  i2s_audiosample: I2S audio sample rate
+ 211:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_8K: audio sample rate is 8KHz
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_11K: audio sample rate is 11KHz
+ 214:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_16K: audio sample rate is 16KHz
+ 215:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_22K: audio sample rate is 22KHz
+ 216:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_32K: audio sample rate is 32KHz
+ 217:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_44K: audio sample rate is 44KHz
+ 218:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_48K: audio sample rate is 48KHz
+ 219:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_96K: audio sample rate is 96KHz
+ 220:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_AUDIOSAMPLE_192K: audio sample rate is 192KHz
+ 221:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  i2s_frameformat: I2S data length and channel length
+ 222:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 223:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FRAMEFORMAT_DT16B_CH16B: I2S data length is 16 bit and channel length is 16 b
+ 224:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FRAMEFORMAT_DT16B_CH32B: I2S data length is 16 bit and channel length is 32 b
+ 225:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FRAMEFORMAT_DT24B_CH32B: I2S data length is 24 bit and channel length is 32 b
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FRAMEFORMAT_DT32B_CH32B: I2S data length is 32 bit and channel length is 32 b
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 11
+
+
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  i2s_mckout: I2S master clock output
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 229:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_MCKOUT_ENABLE: I2S master clock output enable
+ 230:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_MCKOUT_DISABLE: I2S master clock output disable
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 233:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 234:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void i2s_psc_config(uint32_t spi_periph, uint32_t i2s_audiosample, uint32_t i2s_frameformat, uint32
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 346              		.loc 1 235 1 is_stmt 1 view -0
+ 347              		.cfi_startproc
+ 348              		@ args = 0, pretend = 0, frame = 0
+ 349              		@ frame_needed = 0, uses_anonymous_args = 0
+ 236:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t i2sdiv = 2U, i2sof = 0U;
+ 350              		.loc 1 236 5 view .LVU92
+ 237:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t clks = 0U;
+ 351              		.loc 1 237 5 view .LVU93
+ 238:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t i2sclock = 0U;
+ 352              		.loc 1 238 5 view .LVU94
+ 239:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     
+ 240:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #ifdef GD32F30X_CL
+ 241:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t pll2mf_4 = 0U;
+ 242:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #endif /* GD32F30X_CL */
+ 243:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     
+ 244:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****      /* judge whether the audiosample is 0 */
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(0U == i2s_audiosample){
+ 353              		.loc 1 245 5 view .LVU95
+ 354              		.loc 1 245 7 is_stmt 0 view .LVU96
+ 355 0000 01B9     		cbnz	r1, .L17
+ 356              	.L18:
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_ERROR_HANDLE("the parameter can not be 0 \r\n");
+ 357              		.loc 1 246 9 is_stmt 1 discriminator 1 view .LVU97
+ 358              		.loc 1 246 9 discriminator 1 view .LVU98
+ 359              		.loc 1 246 9 discriminator 1 view .LVU99
+ 360 0002 FEE7     		b	.L18
+ 361              	.L17:
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t i2sdiv = 2U, i2sof = 0U;
+ 362              		.loc 1 235 1 is_stmt 0 view .LVU100
+ 363 0004 F8B5     		push	{r3, r4, r5, r6, r7, lr}
+ 364              	.LCFI3:
+ 365              		.cfi_def_cfa_offset 24
+ 366              		.cfi_offset 3, -24
+ 367              		.cfi_offset 4, -20
+ 368              		.cfi_offset 5, -16
+ 369              		.cfi_offset 6, -12
+ 370              		.cfi_offset 7, -8
+ 371              		.cfi_offset 14, -4
+ 372 0006 0546     		mov	r5, r0
+ 373 0008 1646     		mov	r6, r2
+ 374 000a 1F46     		mov	r7, r3
+ 375 000c 0C46     		mov	r4, r1
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* deinit SPI_I2SPSC register */
+ 249:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SPSC(spi_periph) = SPI_I2SPSC_DEFAULT_VALUE;
+ 376              		.loc 1 249 5 is_stmt 1 view .LVU101
+ 377              		.loc 1 249 28 is_stmt 0 view .LVU102
+ 378 000e 0223     		movs	r3, #2
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 12
+
+
+ 379              	.LVL38:
+ 380              		.loc 1 249 28 view .LVU103
+ 381 0010 0362     		str	r3, [r0, #32]
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #ifdef GD32F30X_CL
+ 252:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* get the I2S clock source */
+ 253:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(((uint32_t)spi_periph) == SPI1){
+ 254:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* I2S1 clock source selection */
+ 255:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = I2S1_CLOCK_SEL;
+ 256:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 257:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* I2S2 clock source selection */
+ 258:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = I2S2_CLOCK_SEL;
+ 259:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 260:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     
+ 261:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(0U != (RCU_CFG1 & clks)){
+ 262:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* get RCU PLL2 clock multiplication factor */
+ 263:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = (uint32_t)((RCU_CFG1 & I2S_CLOCK_MUL_MASK) >> 12U);
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         pll2mf_4 = RCU_CFG1 & RCU_CFG1_PLL2MF_4;
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         
+ 267:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         if( 0U == pll2mf_4){
+ 268:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             if((clks > 5U) && (clks < 15U)){
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 /* multiplier is between 8 and 16 */
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 clks += 2U;
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             }else{
+ 272:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 if(15U == clks){
+ 273:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                     /* multiplier is 20 */
+ 274:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                     clks = 20U;
+ 275:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 }
+ 276:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             }
+ 277:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }else{
+ 278:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             if(clks < 15U){
+ 279:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 /* multiplier is between 18 and 32 */
+ 280:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 clks += 18U;
+ 281:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             }else{
+ 282:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 if(15U == clks){
+ 283:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                     /* multiplier is 40 */
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                     clks = 40U;
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 }
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             }
+ 287:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }
+ 288:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* get the PREDV1 value */
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         i2sclock = (uint32_t)(((RCU_CFG1 & I2S_CLOCK_DIV_MASK) >> 4U) + 1U);
+ 291:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* calculate i2sclock based on PLL2 and PREDV1 */
+ 292:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         i2sclock = (uint32_t)((HXTAL_VALUE / i2sclock) * clks * 2U); 
+ 293:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 294:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* get system clock */
+ 295:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         i2sclock = rcu_clock_freq_get(CK_SYS);
+ 296:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 297:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #else
+ 298:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* get system clock */
+ 299:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     i2sclock = rcu_clock_freq_get(CK_SYS);
+ 382              		.loc 1 299 5 is_stmt 1 view .LVU104
+ 383              		.loc 1 299 16 is_stmt 0 view .LVU105
+ 384 0012 0020     		movs	r0, #0
+ 385              	.LVL39:
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 13
+
+
+ 386              		.loc 1 299 16 view .LVU106
+ 387 0014 FFF7FEFF 		bl	rcu_clock_freq_get
+ 388              	.LVL40:
+ 300:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** #endif /* GD32F30X_CL */ 
+ 301:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     
+ 302:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* config the prescaler depending on the mclk output state, the frame format and audio sample r
+ 303:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(I2S_MCKOUT_ENABLE == i2s_mckout){
+ 389              		.loc 1 303 5 is_stmt 1 view .LVU107
+ 390              		.loc 1 303 7 is_stmt 0 view .LVU108
+ 391 0018 B7F5007F 		cmp	r7, #512
+ 392 001c 07D0     		beq	.L26
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = (uint32_t)(((i2sclock / 256U) * 10U) / i2s_audiosample);
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         if(I2S_FRAMEFORMAT_DT16B_CH16B == i2s_frameformat){
+ 393              		.loc 1 306 9 is_stmt 1 view .LVU109
+ 394              		.loc 1 306 11 is_stmt 0 view .LVU110
+ 395 001e 36BB     		cbnz	r6, .L21
+ 307:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             clks = (uint32_t)(((i2sclock / 32U) *10U ) / i2s_audiosample);
+ 396              		.loc 1 307 13 is_stmt 1 view .LVU111
+ 397              		.loc 1 307 42 is_stmt 0 view .LVU112
+ 398 0020 4009     		lsrs	r0, r0, #5
+ 399              	.LVL41:
+ 400              		.loc 1 307 49 view .LVU113
+ 401 0022 00EB8000 		add	r0, r0, r0, lsl #2
+ 402 0026 4000     		lsls	r0, r0, #1
+ 403              		.loc 1 307 18 view .LVU114
+ 404 0028 B0FBF4F4 		udiv	r4, r0, r4
+ 405              	.LVL42:
+ 406              		.loc 1 307 18 view .LVU115
+ 407 002c 05E0     		b	.L20
+ 408              	.LVL43:
+ 409              	.L26:
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = (uint32_t)(((i2sclock / 256U) * 10U) / i2s_audiosample);
+ 410              		.loc 1 304 9 is_stmt 1 view .LVU116
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = (uint32_t)(((i2sclock / 256U) * 10U) / i2s_audiosample);
+ 411              		.loc 1 304 38 is_stmt 0 view .LVU117
+ 412 002e 000A     		lsrs	r0, r0, #8
+ 413              	.LVL44:
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = (uint32_t)(((i2sclock / 256U) * 10U) / i2s_audiosample);
+ 414              		.loc 1 304 46 view .LVU118
+ 415 0030 00EB8000 		add	r0, r0, r0, lsl #2
+ 416 0034 4000     		lsls	r0, r0, #1
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         clks = (uint32_t)(((i2sclock / 256U) * 10U) / i2s_audiosample);
+ 417              		.loc 1 304 14 view .LVU119
+ 418 0036 B0FBF4F4 		udiv	r4, r0, r4
+ 419              	.LVL45:
+ 420              	.L20:
+ 308:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }else{
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****             clks = (uint32_t)(((i2sclock / 64U) *10U ) / i2s_audiosample);
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }
+ 311:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 312:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     
+ 313:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* remove the floating point */
+ 314:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     clks   = (clks + 5U) / 10U;
+ 421              		.loc 1 314 5 is_stmt 1 view .LVU120
+ 422              		.loc 1 314 20 is_stmt 0 view .LVU121
+ 423 003a 611D     		adds	r1, r4, #5
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 14
+
+
+ 424              		.loc 1 314 12 view .LVU122
+ 425 003c 0F4B     		ldr	r3, .L27
+ 426 003e A3FB0131 		umull	r3, r1, r3, r1
+ 427              	.LVL46:
+ 315:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     i2sof  = (clks & 0x00000001U);
+ 428              		.loc 1 315 5 is_stmt 1 view .LVU123
+ 429              		.loc 1 315 12 is_stmt 0 view .LVU124
+ 430 0042 C1F3C003 		ubfx	r3, r1, #3, #1
+ 431              	.LVL47:
+ 316:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     i2sdiv = ((clks - i2sof) / 2U);
+ 432              		.loc 1 316 5 is_stmt 1 view .LVU125
+ 433              		.loc 1 316 21 is_stmt 0 view .LVU126
+ 434 0046 C3EBD101 		rsb	r1, r3, r1, lsr #3
+ 435              	.LVL48:
+ 436              		.loc 1 316 12 view .LVU127
+ 437 004a 4908     		lsrs	r1, r1, #1
+ 438              	.LVL49:
+ 317:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     i2sof  = (i2sof << 8U);
+ 439              		.loc 1 317 5 is_stmt 1 view .LVU128
+ 440              		.loc 1 317 12 is_stmt 0 view .LVU129
+ 441 004c 1B02     		lsls	r3, r3, #8
+ 442              	.LVL50:
+ 318:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 319:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* set the default values */
+ 320:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if((i2sdiv < 2U) || (i2sdiv > 255U)){
+ 443              		.loc 1 320 5 is_stmt 1 view .LVU130
+ 444              		.loc 1 320 22 is_stmt 0 view .LVU131
+ 445 004e 8A1E     		subs	r2, r1, #2
+ 446              		.loc 1 320 7 view .LVU132
+ 447 0050 FD2A     		cmp	r2, #253
+ 448 0052 01D9     		bls	.L22
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         i2sdiv = 2U;
+ 322:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         i2sof = 0U;
+ 449              		.loc 1 322 15 view .LVU133
+ 450 0054 0023     		movs	r3, #0
+ 451              	.LVL51:
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         i2sdiv = 2U;
+ 452              		.loc 1 321 16 view .LVU134
+ 453 0056 0221     		movs	r1, #2
+ 454              	.LVL52:
+ 455              	.L22:
+ 323:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* configure SPI_I2SPSC */
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SPSC(spi_periph) = (uint32_t)(i2sdiv | i2sof | i2s_mckout);
+ 456              		.loc 1 326 5 is_stmt 1 view .LVU135
+ 457              		.loc 1 326 48 is_stmt 0 view .LVU136
+ 458 0058 1943     		orrs	r1, r1, r3
+ 459              	.LVL53:
+ 460              		.loc 1 326 56 view .LVU137
+ 461 005a 3943     		orrs	r1, r1, r7
+ 462              		.loc 1 326 28 view .LVU138
+ 463 005c 2962     		str	r1, [r5, #32]
+ 327:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 328:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* clear SPI_I2SCTL_DTLEN and SPI_I2SCTL_CHLEN bits */
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SCTL(spi_periph) &= (uint32_t)(~(SPI_I2SCTL_DTLEN | SPI_I2SCTL_CHLEN));
+ 464              		.loc 1 329 5 is_stmt 1 view .LVU139
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 15
+
+
+ 465 005e EB69     		ldr	r3, [r5, #28]
+ 466              	.LVL54:
+ 467              		.loc 1 329 28 is_stmt 0 view .LVU140
+ 468 0060 23F00703 		bic	r3, r3, #7
+ 469 0064 EB61     		str	r3, [r5, #28]
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* configure data frame format */
+ 331:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SCTL(spi_periph) |= (uint32_t)i2s_frameformat;
+ 470              		.loc 1 331 5 is_stmt 1 view .LVU141
+ 471 0066 EB69     		ldr	r3, [r5, #28]
+ 472              		.loc 1 331 28 is_stmt 0 view .LVU142
+ 473 0068 3343     		orrs	r3, r3, r6
+ 474 006a EB61     		str	r3, [r5, #28]
+ 332:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 475              		.loc 1 332 1 view .LVU143
+ 476 006c F8BD     		pop	{r3, r4, r5, r6, r7, pc}
+ 477              	.LVL55:
+ 478              	.L21:
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }
+ 479              		.loc 1 309 13 is_stmt 1 view .LVU144
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }
+ 480              		.loc 1 309 42 is_stmt 0 view .LVU145
+ 481 006e 8009     		lsrs	r0, r0, #6
+ 482              	.LVL56:
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }
+ 483              		.loc 1 309 49 view .LVU146
+ 484 0070 00EB8000 		add	r0, r0, r0, lsl #2
+ 485 0074 4000     		lsls	r0, r0, #1
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }
+ 486              		.loc 1 309 18 view .LVU147
+ 487 0076 B0FBF4F4 		udiv	r4, r0, r4
+ 488              	.LVL57:
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         }
+ 489              		.loc 1 309 18 view .LVU148
+ 490 007a DEE7     		b	.L20
+ 491              	.L28:
+ 492              		.align	2
+ 493              	.L27:
+ 494 007c CDCCCCCC 		.word	-858993459
+ 495              		.cfi_endproc
+ 496              	.LFE122:
+ 498              		.section	.text.i2s_enable,"ax",%progbits
+ 499              		.align	1
+ 500              		.global	i2s_enable
+ 501              		.syntax unified
+ 502              		.thumb
+ 503              		.thumb_func
+ 505              	i2s_enable:
+ 506              	.LVL58:
+ 507              	.LFB123:
+ 333:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 334:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 335:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable I2S 
+ 336:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=1,2)
+ 337:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 338:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 339:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 340:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void i2s_enable(uint32_t spi_periph)
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 16
+
+
+ 341:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 508              		.loc 1 341 1 is_stmt 1 view -0
+ 509              		.cfi_startproc
+ 510              		@ args = 0, pretend = 0, frame = 0
+ 511              		@ frame_needed = 0, uses_anonymous_args = 0
+ 512              		@ link register save eliminated.
+ 342:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SCTL(spi_periph) |= (uint32_t)SPI_I2SCTL_I2SEN;
+ 513              		.loc 1 342 5 view .LVU150
+ 514 0000 C369     		ldr	r3, [r0, #28]
+ 515              		.loc 1 342 28 is_stmt 0 view .LVU151
+ 516 0002 43F48063 		orr	r3, r3, #1024
+ 517 0006 C361     		str	r3, [r0, #28]
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 518              		.loc 1 343 1 view .LVU152
+ 519 0008 7047     		bx	lr
+ 520              		.cfi_endproc
+ 521              	.LFE123:
+ 523              		.section	.text.i2s_disable,"ax",%progbits
+ 524              		.align	1
+ 525              		.global	i2s_disable
+ 526              		.syntax unified
+ 527              		.thumb
+ 528              		.thumb_func
+ 530              	i2s_disable:
+ 531              	.LVL59:
+ 532              	.LFB124:
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 346:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable I2S 
+ 347:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=1,2)
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 350:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 351:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void i2s_disable(uint32_t spi_periph)
+ 352:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 533              		.loc 1 352 1 is_stmt 1 view -0
+ 534              		.cfi_startproc
+ 535              		@ args = 0, pretend = 0, frame = 0
+ 536              		@ frame_needed = 0, uses_anonymous_args = 0
+ 537              		@ link register save eliminated.
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_I2SCTL(spi_periph) &= (uint32_t)(~SPI_I2SCTL_I2SEN);
+ 538              		.loc 1 353 5 view .LVU154
+ 539 0000 C369     		ldr	r3, [r0, #28]
+ 540              		.loc 1 353 28 is_stmt 0 view .LVU155
+ 541 0002 23F48063 		bic	r3, r3, #1024
+ 542 0006 C361     		str	r3, [r0, #28]
+ 354:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 543              		.loc 1 354 1 view .LVU156
+ 544 0008 7047     		bx	lr
+ 545              		.cfi_endproc
+ 546              	.LFE124:
+ 548              		.section	.text.spi_nss_output_enable,"ax",%progbits
+ 549              		.align	1
+ 550              		.global	spi_nss_output_enable
+ 551              		.syntax unified
+ 552              		.thumb
+ 553              		.thumb_func
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 17
+
+
+ 555              	spi_nss_output_enable:
+ 556              	.LVL60:
+ 557              	.LFB125:
+ 355:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 356:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 357:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable SPI NSS output 
+ 358:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 359:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 361:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 362:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_nss_output_enable(uint32_t spi_periph)
+ 363:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 558              		.loc 1 363 1 is_stmt 1 view -0
+ 559              		.cfi_startproc
+ 560              		@ args = 0, pretend = 0, frame = 0
+ 561              		@ frame_needed = 0, uses_anonymous_args = 0
+ 562              		@ link register save eliminated.
+ 364:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_NSSDRV;
+ 563              		.loc 1 364 5 view .LVU158
+ 564 0000 4368     		ldr	r3, [r0, #4]
+ 565              		.loc 1 364 26 is_stmt 0 view .LVU159
+ 566 0002 43F00403 		orr	r3, r3, #4
+ 567 0006 4360     		str	r3, [r0, #4]
+ 365:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 568              		.loc 1 365 1 view .LVU160
+ 569 0008 7047     		bx	lr
+ 570              		.cfi_endproc
+ 571              	.LFE125:
+ 573              		.section	.text.spi_nss_output_disable,"ax",%progbits
+ 574              		.align	1
+ 575              		.global	spi_nss_output_disable
+ 576              		.syntax unified
+ 577              		.thumb
+ 578              		.thumb_func
+ 580              	spi_nss_output_disable:
+ 581              	.LVL61:
+ 582              	.LFB126:
+ 366:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 367:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable SPI NSS output 
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 370:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 373:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_nss_output_disable(uint32_t spi_periph)
+ 374:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 583              		.loc 1 374 1 is_stmt 1 view -0
+ 584              		.cfi_startproc
+ 585              		@ args = 0, pretend = 0, frame = 0
+ 586              		@ frame_needed = 0, uses_anonymous_args = 0
+ 587              		@ link register save eliminated.
+ 375:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_NSSDRV);
+ 588              		.loc 1 375 5 view .LVU162
+ 589 0000 4368     		ldr	r3, [r0, #4]
+ 590              		.loc 1 375 26 is_stmt 0 view .LVU163
+ 591 0002 23F00403 		bic	r3, r3, #4
+ 592 0006 4360     		str	r3, [r0, #4]
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 18
+
+
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 593              		.loc 1 376 1 view .LVU164
+ 594 0008 7047     		bx	lr
+ 595              		.cfi_endproc
+ 596              	.LFE126:
+ 598              		.section	.text.spi_nss_internal_high,"ax",%progbits
+ 599              		.align	1
+ 600              		.global	spi_nss_internal_high
+ 601              		.syntax unified
+ 602              		.thumb
+ 603              		.thumb_func
+ 605              	spi_nss_internal_high:
+ 606              	.LVL62:
+ 607              	.LFB127:
+ 377:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      SPI NSS pin high level in software mode
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 382:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 383:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 384:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_nss_internal_high(uint32_t spi_periph)
+ 385:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 608              		.loc 1 385 1 is_stmt 1 view -0
+ 609              		.cfi_startproc
+ 610              		@ args = 0, pretend = 0, frame = 0
+ 611              		@ frame_needed = 0, uses_anonymous_args = 0
+ 612              		@ link register save eliminated.
+ 386:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) |= (uint32_t)SPI_CTL0_SWNSS;
+ 613              		.loc 1 386 5 view .LVU166
+ 614 0000 0368     		ldr	r3, [r0]
+ 615              		.loc 1 386 26 is_stmt 0 view .LVU167
+ 616 0002 43F48073 		orr	r3, r3, #256
+ 617 0006 0360     		str	r3, [r0]
+ 387:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 618              		.loc 1 387 1 view .LVU168
+ 619 0008 7047     		bx	lr
+ 620              		.cfi_endproc
+ 621              	.LFE127:
+ 623              		.section	.text.spi_nss_internal_low,"ax",%progbits
+ 624              		.align	1
+ 625              		.global	spi_nss_internal_low
+ 626              		.syntax unified
+ 627              		.thumb
+ 628              		.thumb_func
+ 630              	spi_nss_internal_low:
+ 631              	.LVL63:
+ 632              	.LFB128:
+ 388:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      SPI NSS pin low level in software mode
+ 391:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 392:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 393:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 394:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 395:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_nss_internal_low(uint32_t spi_periph)
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 19
+
+
+ 633              		.loc 1 396 1 is_stmt 1 view -0
+ 634              		.cfi_startproc
+ 635              		@ args = 0, pretend = 0, frame = 0
+ 636              		@ frame_needed = 0, uses_anonymous_args = 0
+ 637              		@ link register save eliminated.
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) &= (uint32_t)(~SPI_CTL0_SWNSS);
+ 638              		.loc 1 397 5 view .LVU170
+ 639 0000 0368     		ldr	r3, [r0]
+ 640              		.loc 1 397 26 is_stmt 0 view .LVU171
+ 641 0002 23F48073 		bic	r3, r3, #256
+ 642 0006 0360     		str	r3, [r0]
+ 398:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 643              		.loc 1 398 1 view .LVU172
+ 644 0008 7047     		bx	lr
+ 645              		.cfi_endproc
+ 646              	.LFE128:
+ 648              		.section	.text.spi_dma_enable,"ax",%progbits
+ 649              		.align	1
+ 650              		.global	spi_dma_enable
+ 651              		.syntax unified
+ 652              		.thumb
+ 653              		.thumb_func
+ 655              	spi_dma_enable:
+ 656              	.LVL64:
+ 657              	.LFB129:
+ 399:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 400:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 401:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable SPI DMA send or receive 
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  dma: SPI DMA mode
+ 404:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 405:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_DMA_TRANSMIT: SPI transmit data use DMA
+ 406:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_DMA_RECEIVE: SPI receive data use DMA
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 408:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 409:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 410:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_dma_enable(uint32_t spi_periph, uint8_t dma)
+ 411:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 658              		.loc 1 411 1 is_stmt 1 view -0
+ 659              		.cfi_startproc
+ 660              		@ args = 0, pretend = 0, frame = 0
+ 661              		@ frame_needed = 0, uses_anonymous_args = 0
+ 662              		@ link register save eliminated.
+ 412:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(SPI_DMA_TRANSMIT == dma){
+ 663              		.loc 1 412 5 view .LVU174
+ 664              		.loc 1 412 7 is_stmt 0 view .LVU175
+ 665 0000 21B9     		cbnz	r1, .L36
+ 413:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_DMATEN;
+ 666              		.loc 1 413 9 is_stmt 1 view .LVU176
+ 667 0002 4368     		ldr	r3, [r0, #4]
+ 668              		.loc 1 413 30 is_stmt 0 view .LVU177
+ 669 0004 43F00203 		orr	r3, r3, #2
+ 670 0008 4360     		str	r3, [r0, #4]
+ 671 000a 7047     		bx	lr
+ 672              	.L36:
+ 414:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 415:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_DMAREN;
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 20
+
+
+ 673              		.loc 1 415 9 is_stmt 1 view .LVU178
+ 674 000c 4368     		ldr	r3, [r0, #4]
+ 675              		.loc 1 415 30 is_stmt 0 view .LVU179
+ 676 000e 43F00103 		orr	r3, r3, #1
+ 677 0012 4360     		str	r3, [r0, #4]
+ 416:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 417:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 678              		.loc 1 417 1 view .LVU180
+ 679 0014 7047     		bx	lr
+ 680              		.cfi_endproc
+ 681              	.LFE129:
+ 683              		.section	.text.spi_dma_disable,"ax",%progbits
+ 684              		.align	1
+ 685              		.global	spi_dma_disable
+ 686              		.syntax unified
+ 687              		.thumb
+ 688              		.thumb_func
+ 690              	spi_dma_disable:
+ 691              	.LVL65:
+ 692              	.LFB130:
+ 418:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 419:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 420:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable SPI DMA send or receive 
+ 421:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 422:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  dma: SPI DMA mode
+ 423:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 424:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_DMA_TRANSMIT: SPI transmit data use DMA
+ 425:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_DMA_RECEIVE: SPI receive data use DMA
+ 426:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 427:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 428:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 429:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_dma_disable(uint32_t spi_periph, uint8_t dma)
+ 430:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 693              		.loc 1 430 1 is_stmt 1 view -0
+ 694              		.cfi_startproc
+ 695              		@ args = 0, pretend = 0, frame = 0
+ 696              		@ frame_needed = 0, uses_anonymous_args = 0
+ 697              		@ link register save eliminated.
+ 431:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(SPI_DMA_TRANSMIT == dma){
+ 698              		.loc 1 431 5 view .LVU182
+ 699              		.loc 1 431 7 is_stmt 0 view .LVU183
+ 700 0000 21B9     		cbnz	r1, .L39
+ 432:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_DMATEN);
+ 701              		.loc 1 432 9 is_stmt 1 view .LVU184
+ 702 0002 4368     		ldr	r3, [r0, #4]
+ 703              		.loc 1 432 30 is_stmt 0 view .LVU185
+ 704 0004 23F00203 		bic	r3, r3, #2
+ 705 0008 4360     		str	r3, [r0, #4]
+ 706 000a 7047     		bx	lr
+ 707              	.L39:
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_DMAREN);
+ 708              		.loc 1 434 9 is_stmt 1 view .LVU186
+ 709 000c 4368     		ldr	r3, [r0, #4]
+ 710              		.loc 1 434 30 is_stmt 0 view .LVU187
+ 711 000e 23F00103 		bic	r3, r3, #1
+ 712 0012 4360     		str	r3, [r0, #4]
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 21
+
+
+ 435:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 436:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 713              		.loc 1 436 1 view .LVU188
+ 714 0014 7047     		bx	lr
+ 715              		.cfi_endproc
+ 716              	.LFE130:
+ 718              		.section	.text.spi_i2s_data_frame_format_config,"ax",%progbits
+ 719              		.align	1
+ 720              		.global	spi_i2s_data_frame_format_config
+ 721              		.syntax unified
+ 722              		.thumb
+ 723              		.thumb_func
+ 725              	spi_i2s_data_frame_format_config:
+ 726              	.LVL66:
+ 727              	.LFB131:
+ 437:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 439:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      configure SPI/I2S data frame format
+ 440:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 441:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  frame_format: SPI frame size
+ 442:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 443:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FRAMESIZE_16BIT: SPI frame size is 16 bits
+ 444:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FRAMESIZE_8BIT: SPI frame size is 8 bits
+ 445:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 446:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 447:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 448:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_i2s_data_frame_format_config(uint32_t spi_periph, uint16_t frame_format)
+ 449:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 728              		.loc 1 449 1 is_stmt 1 view -0
+ 729              		.cfi_startproc
+ 730              		@ args = 0, pretend = 0, frame = 0
+ 731              		@ frame_needed = 0, uses_anonymous_args = 0
+ 732              		@ link register save eliminated.
+ 450:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* clear SPI_CTL0_FF16 bit */
+ 451:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) &= (uint32_t)(~SPI_CTL0_FF16);
+ 733              		.loc 1 451 5 view .LVU190
+ 734 0000 0368     		ldr	r3, [r0]
+ 735              		.loc 1 451 26 is_stmt 0 view .LVU191
+ 736 0002 23F40063 		bic	r3, r3, #2048
+ 737 0006 0360     		str	r3, [r0]
+ 452:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* confige SPI_CTL0_FF16 bit */
+ 453:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) |= (uint32_t)frame_format;
+ 738              		.loc 1 453 5 is_stmt 1 view .LVU192
+ 739 0008 0368     		ldr	r3, [r0]
+ 740              		.loc 1 453 26 is_stmt 0 view .LVU193
+ 741 000a 0B43     		orrs	r3, r3, r1
+ 742 000c 0360     		str	r3, [r0]
+ 454:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 743              		.loc 1 454 1 view .LVU194
+ 744 000e 7047     		bx	lr
+ 745              		.cfi_endproc
+ 746              	.LFE131:
+ 748              		.section	.text.spi_i2s_data_transmit,"ax",%progbits
+ 749              		.align	1
+ 750              		.global	spi_i2s_data_transmit
+ 751              		.syntax unified
+ 752              		.thumb
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 22
+
+
+ 753              		.thumb_func
+ 755              	spi_i2s_data_transmit:
+ 756              	.LVL67:
+ 757              	.LFB132:
+ 455:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 456:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      SPI transmit data
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 459:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  data: 16-bit data
+ 460:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 461:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_i2s_data_transmit(uint32_t spi_periph, uint16_t data)
+ 464:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 758              		.loc 1 464 1 is_stmt 1 view -0
+ 759              		.cfi_startproc
+ 760              		@ args = 0, pretend = 0, frame = 0
+ 761              		@ frame_needed = 0, uses_anonymous_args = 0
+ 762              		@ link register save eliminated.
+ 465:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_DATA(spi_periph) = (uint32_t)data;
+ 763              		.loc 1 465 5 view .LVU196
+ 764              		.loc 1 465 26 is_stmt 0 view .LVU197
+ 765 0000 C160     		str	r1, [r0, #12]
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 766              		.loc 1 466 1 view .LVU198
+ 767 0002 7047     		bx	lr
+ 768              		.cfi_endproc
+ 769              	.LFE132:
+ 771              		.section	.text.spi_i2s_data_receive,"ax",%progbits
+ 772              		.align	1
+ 773              		.global	spi_i2s_data_receive
+ 774              		.syntax unified
+ 775              		.thumb
+ 776              		.thumb_func
+ 778              	spi_i2s_data_receive:
+ 779              	.LVL68:
+ 780              	.LFB133:
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 468:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 469:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      SPI receive data
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 472:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     16-bit data
+ 473:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 474:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** uint16_t spi_i2s_data_receive(uint32_t spi_periph)
+ 475:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 781              		.loc 1 475 1 is_stmt 1 view -0
+ 782              		.cfi_startproc
+ 783              		@ args = 0, pretend = 0, frame = 0
+ 784              		@ frame_needed = 0, uses_anonymous_args = 0
+ 785              		@ link register save eliminated.
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     return ((uint16_t)SPI_DATA(spi_periph));
+ 786              		.loc 1 476 5 view .LVU200
+ 787              		.loc 1 476 23 is_stmt 0 view .LVU201
+ 788 0000 C068     		ldr	r0, [r0, #12]
+ 789              	.LVL69:
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 23
+
+
+ 790              		.loc 1 477 1 view .LVU202
+ 791 0002 80B2     		uxth	r0, r0
+ 792 0004 7047     		bx	lr
+ 793              		.cfi_endproc
+ 794              	.LFE133:
+ 796              		.section	.text.spi_bidirectional_transfer_config,"ax",%progbits
+ 797              		.align	1
+ 798              		.global	spi_bidirectional_transfer_config
+ 799              		.syntax unified
+ 800              		.thumb
+ 801              		.thumb_func
+ 803              	spi_bidirectional_transfer_config:
+ 804              	.LVL70:
+ 805              	.LFB134:
+ 478:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 479:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 480:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      configure SPI bidirectional transfer direction
+ 481:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 482:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  transfer_direction: SPI transfer direction
+ 483:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 484:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_BIDIRECTIONAL_TRANSMIT: SPI work in transmit-only mode
+ 485:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_BIDIRECTIONAL_RECEIVE: SPI work in receive-only mode
+ 486:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 487:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 488:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_bidirectional_transfer_config(uint32_t spi_periph, uint32_t transfer_direction)
+ 489:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 806              		.loc 1 489 1 is_stmt 1 view -0
+ 807              		.cfi_startproc
+ 808              		@ args = 0, pretend = 0, frame = 0
+ 809              		@ frame_needed = 0, uses_anonymous_args = 0
+ 810              		@ link register save eliminated.
+ 490:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(SPI_BIDIRECTIONAL_TRANSMIT == transfer_direction){
+ 811              		.loc 1 490 5 view .LVU204
+ 812              		.loc 1 490 7 is_stmt 0 view .LVU205
+ 813 0000 B1F5804F 		cmp	r1, #16384
+ 814 0004 04D0     		beq	.L47
+ 491:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* set the transmit only mode */
+ 492:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL0(spi_periph) |= (uint32_t)SPI_BIDIRECTIONAL_TRANSMIT;
+ 493:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 494:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         /* set the receive only mode */
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL0(spi_periph) &= SPI_BIDIRECTIONAL_RECEIVE;
+ 815              		.loc 1 495 9 is_stmt 1 view .LVU206
+ 816 0006 0368     		ldr	r3, [r0]
+ 817              		.loc 1 495 30 is_stmt 0 view .LVU207
+ 818 0008 23F48043 		bic	r3, r3, #16384
+ 819 000c 0360     		str	r3, [r0]
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 497:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 820              		.loc 1 497 1 view .LVU208
+ 821 000e 7047     		bx	lr
+ 822              	.L47:
+ 492:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 823              		.loc 1 492 9 is_stmt 1 view .LVU209
+ 824 0010 0368     		ldr	r3, [r0]
+ 492:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 825              		.loc 1 492 30 is_stmt 0 view .LVU210
+ 826 0012 43F48043 		orr	r3, r3, #16384
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 24
+
+
+ 827 0016 0360     		str	r3, [r0]
+ 828 0018 7047     		bx	lr
+ 829              		.cfi_endproc
+ 830              	.LFE134:
+ 832              		.section	.text.spi_i2s_format_error_clear,"ax",%progbits
+ 833              		.align	1
+ 834              		.global	spi_i2s_format_error_clear
+ 835              		.syntax unified
+ 836              		.thumb
+ 837              		.thumb_func
+ 839              	spi_i2s_format_error_clear:
+ 840              	.LVL71:
+ 841              	.LFB135:
+ 498:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 499:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 500:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      clear SPI/I2S format error flag status
+ 501:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 502:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  flag: SPI/I2S frame format error flag 
+ 503:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_FERR: only for SPI work in TI mode
+ 504:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_FERR: for I2S
+ 505:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 506:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 507:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 508:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_i2s_format_error_clear(uint32_t spi_periph, uint32_t flag)
+ 509:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 842              		.loc 1 509 1 is_stmt 1 view -0
+ 843              		.cfi_startproc
+ 844              		@ args = 0, pretend = 0, frame = 0
+ 845              		@ frame_needed = 0, uses_anonymous_args = 0
+ 846              		@ link register save eliminated.
+ 510:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_STAT(spi_periph) = (uint32_t)(~flag);
+ 847              		.loc 1 510 5 view .LVU212
+ 848              		.loc 1 510 39 is_stmt 0 view .LVU213
+ 849 0000 C943     		mvns	r1, r1
+ 850              	.LVL72:
+ 851              		.loc 1 510 26 view .LVU214
+ 852 0002 8160     		str	r1, [r0, #8]
+ 511:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 853              		.loc 1 511 1 view .LVU215
+ 854 0004 7047     		bx	lr
+ 855              		.cfi_endproc
+ 856              	.LFE135:
+ 858              		.section	.text.spi_crc_polynomial_set,"ax",%progbits
+ 859              		.align	1
+ 860              		.global	spi_crc_polynomial_set
+ 861              		.syntax unified
+ 862              		.thumb
+ 863              		.thumb_func
+ 865              	spi_crc_polynomial_set:
+ 866              	.LVL73:
+ 867              	.LFB136:
+ 512:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 513:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      set SPI CRC polynomial 
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 516:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  crc_poly: CRC polynomial value
+ 517:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 25
+
+
+ 518:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 519:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 520:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_crc_polynomial_set(uint32_t spi_periph,uint16_t crc_poly)
+ 521:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 868              		.loc 1 521 1 is_stmt 1 view -0
+ 869              		.cfi_startproc
+ 870              		@ args = 0, pretend = 0, frame = 0
+ 871              		@ frame_needed = 0, uses_anonymous_args = 0
+ 872              		@ link register save eliminated.
+ 522:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* set SPI CRC polynomial */
+ 523:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CRCPOLY(spi_periph) = (uint32_t)crc_poly;
+ 873              		.loc 1 523 5 view .LVU217
+ 874              		.loc 1 523 29 is_stmt 0 view .LVU218
+ 875 0000 0161     		str	r1, [r0, #16]
+ 524:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 876              		.loc 1 524 1 view .LVU219
+ 877 0002 7047     		bx	lr
+ 878              		.cfi_endproc
+ 879              	.LFE136:
+ 881              		.section	.text.spi_crc_polynomial_get,"ax",%progbits
+ 882              		.align	1
+ 883              		.global	spi_crc_polynomial_get
+ 884              		.syntax unified
+ 885              		.thumb
+ 886              		.thumb_func
+ 888              	spi_crc_polynomial_get:
+ 889              	.LVL74:
+ 890              	.LFB137:
+ 525:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 526:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 527:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      get SPI CRC polynomial 
+ 528:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 529:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 530:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     16-bit CRC polynomial
+ 531:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 532:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** uint16_t spi_crc_polynomial_get(uint32_t spi_periph)
+ 533:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 891              		.loc 1 533 1 is_stmt 1 view -0
+ 892              		.cfi_startproc
+ 893              		@ args = 0, pretend = 0, frame = 0
+ 894              		@ frame_needed = 0, uses_anonymous_args = 0
+ 895              		@ link register save eliminated.
+ 534:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     return ((uint16_t)SPI_CRCPOLY(spi_periph));
+ 896              		.loc 1 534 5 view .LVU221
+ 897              		.loc 1 534 23 is_stmt 0 view .LVU222
+ 898 0000 0069     		ldr	r0, [r0, #16]
+ 899              	.LVL75:
+ 535:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 900              		.loc 1 535 1 view .LVU223
+ 901 0002 80B2     		uxth	r0, r0
+ 902 0004 7047     		bx	lr
+ 903              		.cfi_endproc
+ 904              	.LFE137:
+ 906              		.section	.text.spi_crc_on,"ax",%progbits
+ 907              		.align	1
+ 908              		.global	spi_crc_on
+ 909              		.syntax unified
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 26
+
+
+ 910              		.thumb
+ 911              		.thumb_func
+ 913              	spi_crc_on:
+ 914              	.LVL76:
+ 915              	.LFB138:
+ 536:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      turn on CRC function 
+ 539:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 540:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 541:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 542:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 543:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_crc_on(uint32_t spi_periph)
+ 544:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 916              		.loc 1 544 1 is_stmt 1 view -0
+ 917              		.cfi_startproc
+ 918              		@ args = 0, pretend = 0, frame = 0
+ 919              		@ frame_needed = 0, uses_anonymous_args = 0
+ 920              		@ link register save eliminated.
+ 545:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) |= (uint32_t)SPI_CTL0_CRCEN;
+ 921              		.loc 1 545 5 view .LVU225
+ 922 0000 0368     		ldr	r3, [r0]
+ 923              		.loc 1 545 26 is_stmt 0 view .LVU226
+ 924 0002 43F40053 		orr	r3, r3, #8192
+ 925 0006 0360     		str	r3, [r0]
+ 546:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 926              		.loc 1 546 1 view .LVU227
+ 927 0008 7047     		bx	lr
+ 928              		.cfi_endproc
+ 929              	.LFE138:
+ 931              		.section	.text.spi_crc_off,"ax",%progbits
+ 932              		.align	1
+ 933              		.global	spi_crc_off
+ 934              		.syntax unified
+ 935              		.thumb
+ 936              		.thumb_func
+ 938              	spi_crc_off:
+ 939              	.LVL77:
+ 940              	.LFB139:
+ 547:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 548:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 549:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      turn off CRC function 
+ 550:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 551:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 552:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 553:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 554:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_crc_off(uint32_t spi_periph)
+ 555:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 941              		.loc 1 555 1 is_stmt 1 view -0
+ 942              		.cfi_startproc
+ 943              		@ args = 0, pretend = 0, frame = 0
+ 944              		@ frame_needed = 0, uses_anonymous_args = 0
+ 945              		@ link register save eliminated.
+ 556:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) &= (uint32_t)(~SPI_CTL0_CRCEN);
+ 946              		.loc 1 556 5 view .LVU229
+ 947 0000 0368     		ldr	r3, [r0]
+ 948              		.loc 1 556 26 is_stmt 0 view .LVU230
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 27
+
+
+ 949 0002 23F40053 		bic	r3, r3, #8192
+ 950 0006 0360     		str	r3, [r0]
+ 557:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 951              		.loc 1 557 1 view .LVU231
+ 952 0008 7047     		bx	lr
+ 953              		.cfi_endproc
+ 954              	.LFE139:
+ 956              		.section	.text.spi_crc_next,"ax",%progbits
+ 957              		.align	1
+ 958              		.global	spi_crc_next
+ 959              		.syntax unified
+ 960              		.thumb
+ 961              		.thumb_func
+ 963              	spi_crc_next:
+ 964              	.LVL78:
+ 965              	.LFB140:
+ 558:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 559:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 560:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      SPI next data is CRC value
+ 561:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 562:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 563:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 564:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 565:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_crc_next(uint32_t spi_periph)
+ 566:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 966              		.loc 1 566 1 is_stmt 1 view -0
+ 967              		.cfi_startproc
+ 968              		@ args = 0, pretend = 0, frame = 0
+ 969              		@ frame_needed = 0, uses_anonymous_args = 0
+ 970              		@ link register save eliminated.
+ 567:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL0(spi_periph) |= (uint32_t)SPI_CTL0_CRCNT;
+ 971              		.loc 1 567 5 view .LVU233
+ 972 0000 0368     		ldr	r3, [r0]
+ 973              		.loc 1 567 26 is_stmt 0 view .LVU234
+ 974 0002 43F48053 		orr	r3, r3, #4096
+ 975 0006 0360     		str	r3, [r0]
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 976              		.loc 1 568 1 view .LVU235
+ 977 0008 7047     		bx	lr
+ 978              		.cfi_endproc
+ 979              	.LFE140:
+ 981              		.section	.text.spi_crc_get,"ax",%progbits
+ 982              		.align	1
+ 983              		.global	spi_crc_get
+ 984              		.syntax unified
+ 985              		.thumb
+ 986              		.thumb_func
+ 988              	spi_crc_get:
+ 989              	.LVL79:
+ 990              	.LFB141:
+ 569:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 570:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 571:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      get SPI CRC send value or receive value
+ 572:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 573:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  crc: SPI crc value
+ 574:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 575:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_CRC_TX: get transmit crc value
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 28
+
+
+ 576:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_CRC_RX: get receive crc value
+ 577:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 578:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     16-bit CRC value
+ 579:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 580:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** uint16_t spi_crc_get(uint32_t spi_periph,uint8_t crc)
+ 581:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 991              		.loc 1 581 1 is_stmt 1 view -0
+ 992              		.cfi_startproc
+ 993              		@ args = 0, pretend = 0, frame = 0
+ 994              		@ frame_needed = 0, uses_anonymous_args = 0
+ 995              		@ link register save eliminated.
+ 582:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(SPI_CRC_TX == crc){
+ 996              		.loc 1 582 5 view .LVU237
+ 997              		.loc 1 582 7 is_stmt 0 view .LVU238
+ 998 0000 11B9     		cbnz	r1, .L55
+ 583:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         return ((uint16_t)(SPI_TCRC(spi_periph)));
+ 999              		.loc 1 583 9 is_stmt 1 view .LVU239
+ 1000              		.loc 1 583 28 is_stmt 0 view .LVU240
+ 1001 0002 8069     		ldr	r0, [r0, #24]
+ 1002              	.LVL80:
+ 1003              		.loc 1 583 17 view .LVU241
+ 1004 0004 80B2     		uxth	r0, r0
+ 1005 0006 7047     		bx	lr
+ 1006              	.LVL81:
+ 1007              	.L55:
+ 584:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 585:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         return ((uint16_t)(SPI_RCRC(spi_periph)));
+ 1008              		.loc 1 585 9 is_stmt 1 view .LVU242
+ 1009              		.loc 1 585 28 is_stmt 0 view .LVU243
+ 1010 0008 4069     		ldr	r0, [r0, #20]
+ 1011              	.LVL82:
+ 1012              		.loc 1 585 17 view .LVU244
+ 1013 000a 80B2     		uxth	r0, r0
+ 586:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 587:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1014              		.loc 1 587 1 view .LVU245
+ 1015 000c 7047     		bx	lr
+ 1016              		.cfi_endproc
+ 1017              	.LFE141:
+ 1019              		.section	.text.spi_crc_error_clear,"ax",%progbits
+ 1020              		.align	1
+ 1021              		.global	spi_crc_error_clear
+ 1022              		.syntax unified
+ 1023              		.thumb
+ 1024              		.thumb_func
+ 1026              	spi_crc_error_clear:
+ 1027              	.LVL83:
+ 1028              	.LFB142:
+ 588:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 589:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 590:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      clear SPI CRC error flag status
+ 591:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 592:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 593:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 594:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_crc_error_clear(uint32_t spi_periph)
+ 596:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 29
+
+
+ 1029              		.loc 1 596 1 is_stmt 1 view -0
+ 1030              		.cfi_startproc
+ 1031              		@ args = 0, pretend = 0, frame = 0
+ 1032              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1033              		@ link register save eliminated.
+ 597:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_STAT(spi_periph) = (uint32_t)(~SPI_FLAG_CRCERR);
+ 1034              		.loc 1 597 5 view .LVU247
+ 1035              		.loc 1 597 26 is_stmt 0 view .LVU248
+ 1036 0000 6FF01003 		mvn	r3, #16
+ 1037 0004 8360     		str	r3, [r0, #8]
+ 598:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1038              		.loc 1 598 1 view .LVU249
+ 1039 0006 7047     		bx	lr
+ 1040              		.cfi_endproc
+ 1041              	.LFE142:
+ 1043              		.section	.text.spi_ti_mode_enable,"ax",%progbits
+ 1044              		.align	1
+ 1045              		.global	spi_ti_mode_enable
+ 1046              		.syntax unified
+ 1047              		.thumb
+ 1048              		.thumb_func
+ 1050              	spi_ti_mode_enable:
+ 1051              	.LVL84:
+ 1052              	.LFB143:
+ 599:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 600:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 601:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable SPI TI mode
+ 602:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 603:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 604:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 605:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 606:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_ti_mode_enable(uint32_t spi_periph)
+ 607:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1053              		.loc 1 607 1 is_stmt 1 view -0
+ 1054              		.cfi_startproc
+ 1055              		@ args = 0, pretend = 0, frame = 0
+ 1056              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1057              		@ link register save eliminated.
+ 608:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_TMOD;
+ 1058              		.loc 1 608 5 view .LVU251
+ 1059 0000 4368     		ldr	r3, [r0, #4]
+ 1060              		.loc 1 608 26 is_stmt 0 view .LVU252
+ 1061 0002 43F01003 		orr	r3, r3, #16
+ 1062 0006 4360     		str	r3, [r0, #4]
+ 609:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1063              		.loc 1 609 1 view .LVU253
+ 1064 0008 7047     		bx	lr
+ 1065              		.cfi_endproc
+ 1066              	.LFE143:
+ 1068              		.section	.text.spi_ti_mode_disable,"ax",%progbits
+ 1069              		.align	1
+ 1070              		.global	spi_ti_mode_disable
+ 1071              		.syntax unified
+ 1072              		.thumb
+ 1073              		.thumb_func
+ 1075              	spi_ti_mode_disable:
+ 1076              	.LVL85:
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 30
+
+
+ 1077              	.LFB144:
+ 610:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 611:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 612:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable SPI TI mode
+ 613:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 614:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 615:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 616:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 617:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_ti_mode_disable(uint32_t spi_periph)
+ 618:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1078              		.loc 1 618 1 is_stmt 1 view -0
+ 1079              		.cfi_startproc
+ 1080              		@ args = 0, pretend = 0, frame = 0
+ 1081              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1082              		@ link register save eliminated.
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_TMOD);
+ 1083              		.loc 1 619 5 view .LVU255
+ 1084 0000 4368     		ldr	r3, [r0, #4]
+ 1085              		.loc 1 619 26 is_stmt 0 view .LVU256
+ 1086 0002 23F01003 		bic	r3, r3, #16
+ 1087 0006 4360     		str	r3, [r0, #4]
+ 620:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1088              		.loc 1 620 1 view .LVU257
+ 1089 0008 7047     		bx	lr
+ 1090              		.cfi_endproc
+ 1091              	.LFE144:
+ 1093              		.section	.text.spi_nssp_mode_enable,"ax",%progbits
+ 1094              		.align	1
+ 1095              		.global	spi_nssp_mode_enable
+ 1096              		.syntax unified
+ 1097              		.thumb
+ 1098              		.thumb_func
+ 1100              	spi_nssp_mode_enable:
+ 1101              	.LVL86:
+ 1102              	.LFB145:
+ 621:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 622:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable SPI NSS pulse mode
+ 624:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 625:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 626:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_nssp_mode_enable(uint32_t spi_periph)
+ 629:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1103              		.loc 1 629 1 is_stmt 1 view -0
+ 1104              		.cfi_startproc
+ 1105              		@ args = 0, pretend = 0, frame = 0
+ 1106              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1107              		@ link register save eliminated.
+ 630:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_NSSP;
+ 1108              		.loc 1 630 5 view .LVU259
+ 1109 0000 4368     		ldr	r3, [r0, #4]
+ 1110              		.loc 1 630 26 is_stmt 0 view .LVU260
+ 1111 0002 43F00803 		orr	r3, r3, #8
+ 1112 0006 4360     		str	r3, [r0, #4]
+ 631:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1113              		.loc 1 631 1 view .LVU261
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 31
+
+
+ 1114 0008 7047     		bx	lr
+ 1115              		.cfi_endproc
+ 1116              	.LFE145:
+ 1118              		.section	.text.spi_nssp_mode_disable,"ax",%progbits
+ 1119              		.align	1
+ 1120              		.global	spi_nssp_mode_disable
+ 1121              		.syntax unified
+ 1122              		.thumb
+ 1123              		.thumb_func
+ 1125              	spi_nssp_mode_disable:
+ 1126              	.LVL87:
+ 1127              	.LFB146:
+ 632:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 633:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 634:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable SPI NSS pulse mode
+ 635:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 636:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 637:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 638:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 639:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_nssp_mode_disable(uint32_t spi_periph)
+ 640:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1128              		.loc 1 640 1 is_stmt 1 view -0
+ 1129              		.cfi_startproc
+ 1130              		@ args = 0, pretend = 0, frame = 0
+ 1131              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1132              		@ link register save eliminated.
+ 641:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_NSSP);
+ 1133              		.loc 1 641 5 view .LVU263
+ 1134 0000 4368     		ldr	r3, [r0, #4]
+ 1135              		.loc 1 641 26 is_stmt 0 view .LVU264
+ 1136 0002 23F00803 		bic	r3, r3, #8
+ 1137 0006 4360     		str	r3, [r0, #4]
+ 642:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1138              		.loc 1 642 1 view .LVU265
+ 1139 0008 7047     		bx	lr
+ 1140              		.cfi_endproc
+ 1141              	.LFE146:
+ 1143              		.section	.text.spi_quad_enable,"ax",%progbits
+ 1144              		.align	1
+ 1145              		.global	spi_quad_enable
+ 1146              		.syntax unified
+ 1147              		.thumb
+ 1148              		.thumb_func
+ 1150              	spi_quad_enable:
+ 1151              	.LVL88:
+ 1152              	.LFB147:
+ 643:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 644:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 645:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable quad wire SPI
+ 646:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(only x=0)
+ 647:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 648:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 649:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 650:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_quad_enable(uint32_t spi_periph)
+ 651:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1153              		.loc 1 651 1 is_stmt 1 view -0
+ 1154              		.cfi_startproc
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 32
+
+
+ 1155              		@ args = 0, pretend = 0, frame = 0
+ 1156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1157              		@ link register save eliminated.
+ 652:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_QCTL(spi_periph) |= (uint32_t)SPI_QCTL_QMOD;
+ 1158              		.loc 1 652 5 view .LVU267
+ 1159 0000 D0F88030 		ldr	r3, [r0, #128]
+ 1160              		.loc 1 652 26 is_stmt 0 view .LVU268
+ 1161 0004 43F00103 		orr	r3, r3, #1
+ 1162 0008 C0F88030 		str	r3, [r0, #128]
+ 653:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1163              		.loc 1 653 1 view .LVU269
+ 1164 000c 7047     		bx	lr
+ 1165              		.cfi_endproc
+ 1166              	.LFE147:
+ 1168              		.section	.text.spi_quad_disable,"ax",%progbits
+ 1169              		.align	1
+ 1170              		.global	spi_quad_disable
+ 1171              		.syntax unified
+ 1172              		.thumb
+ 1173              		.thumb_func
+ 1175              	spi_quad_disable:
+ 1176              	.LVL89:
+ 1177              	.LFB148:
+ 654:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 655:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 656:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable quad wire SPI 
+ 657:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(only x=0)
+ 658:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 660:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 661:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_quad_disable(uint32_t spi_periph)
+ 662:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1178              		.loc 1 662 1 is_stmt 1 view -0
+ 1179              		.cfi_startproc
+ 1180              		@ args = 0, pretend = 0, frame = 0
+ 1181              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1182              		@ link register save eliminated.
+ 663:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_QCTL(spi_periph) &= (uint32_t)(~SPI_QCTL_QMOD);
+ 1183              		.loc 1 663 5 view .LVU271
+ 1184 0000 D0F88030 		ldr	r3, [r0, #128]
+ 1185              		.loc 1 663 26 is_stmt 0 view .LVU272
+ 1186 0004 23F00103 		bic	r3, r3, #1
+ 1187 0008 C0F88030 		str	r3, [r0, #128]
+ 664:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1188              		.loc 1 664 1 view .LVU273
+ 1189 000c 7047     		bx	lr
+ 1190              		.cfi_endproc
+ 1191              	.LFE148:
+ 1193              		.section	.text.spi_quad_write_enable,"ax",%progbits
+ 1194              		.align	1
+ 1195              		.global	spi_quad_write_enable
+ 1196              		.syntax unified
+ 1197              		.thumb
+ 1198              		.thumb_func
+ 1200              	spi_quad_write_enable:
+ 1201              	.LVL90:
+ 1202              	.LFB149:
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 33
+
+
+ 665:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 666:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 667:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable quad wire SPI write 
+ 668:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(only x=0)
+ 669:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 670:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 671:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 672:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_quad_write_enable(uint32_t spi_periph)
+ 673:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1203              		.loc 1 673 1 is_stmt 1 view -0
+ 1204              		.cfi_startproc
+ 1205              		@ args = 0, pretend = 0, frame = 0
+ 1206              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1207              		@ link register save eliminated.
+ 674:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_QCTL(spi_periph) &= (uint32_t)(~SPI_QCTL_QRD);
+ 1208              		.loc 1 674 5 view .LVU275
+ 1209 0000 D0F88030 		ldr	r3, [r0, #128]
+ 1210              		.loc 1 674 26 is_stmt 0 view .LVU276
+ 1211 0004 23F00203 		bic	r3, r3, #2
+ 1212 0008 C0F88030 		str	r3, [r0, #128]
+ 675:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1213              		.loc 1 675 1 view .LVU277
+ 1214 000c 7047     		bx	lr
+ 1215              		.cfi_endproc
+ 1216              	.LFE149:
+ 1218              		.section	.text.spi_quad_read_enable,"ax",%progbits
+ 1219              		.align	1
+ 1220              		.global	spi_quad_read_enable
+ 1221              		.syntax unified
+ 1222              		.thumb
+ 1223              		.thumb_func
+ 1225              	spi_quad_read_enable:
+ 1226              	.LVL91:
+ 1227              	.LFB150:
+ 676:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 677:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 678:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable quad wire SPI read 
+ 679:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(only x=0)
+ 680:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 681:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 682:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 683:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_quad_read_enable(uint32_t spi_periph)
+ 684:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1228              		.loc 1 684 1 is_stmt 1 view -0
+ 1229              		.cfi_startproc
+ 1230              		@ args = 0, pretend = 0, frame = 0
+ 1231              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1232              		@ link register save eliminated.
+ 685:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_QCTL(spi_periph) |= (uint32_t)SPI_QCTL_QRD;
+ 1233              		.loc 1 685 5 view .LVU279
+ 1234 0000 D0F88030 		ldr	r3, [r0, #128]
+ 1235              		.loc 1 685 26 is_stmt 0 view .LVU280
+ 1236 0004 43F00203 		orr	r3, r3, #2
+ 1237 0008 C0F88030 		str	r3, [r0, #128]
+ 686:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1238              		.loc 1 686 1 view .LVU281
+ 1239 000c 7047     		bx	lr
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 34
+
+
+ 1240              		.cfi_endproc
+ 1241              	.LFE150:
+ 1243              		.section	.text.spi_quad_io23_output_enable,"ax",%progbits
+ 1244              		.align	1
+ 1245              		.global	spi_quad_io23_output_enable
+ 1246              		.syntax unified
+ 1247              		.thumb
+ 1248              		.thumb_func
+ 1250              	spi_quad_io23_output_enable:
+ 1251              	.LVL92:
+ 1252              	.LFB151:
+ 687:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 688:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 689:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable SPI_IO2 and SPI_IO3 pin output 
+ 690:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(only x=0)
+ 691:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 692:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 693:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 694:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_quad_io23_output_enable(uint32_t spi_periph)
+ 695:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1253              		.loc 1 695 1 is_stmt 1 view -0
+ 1254              		.cfi_startproc
+ 1255              		@ args = 0, pretend = 0, frame = 0
+ 1256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1257              		@ link register save eliminated.
+ 696:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_QCTL(spi_periph) |= (uint32_t)SPI_QCTL_IO23_DRV;
+ 1258              		.loc 1 696 5 view .LVU283
+ 1259 0000 D0F88030 		ldr	r3, [r0, #128]
+ 1260              		.loc 1 696 26 is_stmt 0 view .LVU284
+ 1261 0004 43F00403 		orr	r3, r3, #4
+ 1262 0008 C0F88030 		str	r3, [r0, #128]
+ 697:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1263              		.loc 1 697 1 view .LVU285
+ 1264 000c 7047     		bx	lr
+ 1265              		.cfi_endproc
+ 1266              	.LFE151:
+ 1268              		.section	.text.spi_quad_io23_output_disable,"ax",%progbits
+ 1269              		.align	1
+ 1270              		.global	spi_quad_io23_output_disable
+ 1271              		.syntax unified
+ 1272              		.thumb
+ 1273              		.thumb_func
+ 1275              	spi_quad_io23_output_disable:
+ 1276              	.LVL93:
+ 1277              	.LFB152:
+ 698:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****  /*!
+ 700:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable SPI_IO2 and SPI_IO3 pin output 
+ 701:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(only x=0)
+ 702:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 704:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 705:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****  void spi_quad_io23_output_disable(uint32_t spi_periph)
+ 706:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1278              		.loc 1 706 1 is_stmt 1 view -0
+ 1279              		.cfi_startproc
+ 1280              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 35
+
+
+ 1281              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1282              		@ link register save eliminated.
+ 707:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     SPI_QCTL(spi_periph) &= (uint32_t)(~SPI_QCTL_IO23_DRV);
+ 1283              		.loc 1 707 5 view .LVU287
+ 1284 0000 D0F88030 		ldr	r3, [r0, #128]
+ 1285              		.loc 1 707 26 is_stmt 0 view .LVU288
+ 1286 0004 23F00403 		bic	r3, r3, #4
+ 1287 0008 C0F88030 		str	r3, [r0, #128]
+ 708:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1288              		.loc 1 708 1 view .LVU289
+ 1289 000c 7047     		bx	lr
+ 1290              		.cfi_endproc
+ 1291              	.LFE152:
+ 1293              		.section	.text.spi_i2s_interrupt_enable,"ax",%progbits
+ 1294              		.align	1
+ 1295              		.global	spi_i2s_interrupt_enable
+ 1296              		.syntax unified
+ 1297              		.thumb
+ 1298              		.thumb_func
+ 1300              	spi_i2s_interrupt_enable:
+ 1301              	.LVL94:
+ 1302              	.LFB153:
+ 709:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 710:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 711:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      enable SPI and I2S interrupt 
+ 712:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 713:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  interrupt: SPI/I2S interrupt
+ 714:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 715:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_TBE: transmit buffer empty interrupt
+ 716:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_RBNE: receive buffer not empty interrupt
+ 717:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_ERR: CRC error,configuration error,reception overrun error,
+ 718:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                                    transmission underrun error and format error interrupt
+ 719:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 720:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 721:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_i2s_interrupt_enable(uint32_t spi_periph, uint8_t interrupt)
+ 723:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1303              		.loc 1 723 1 is_stmt 1 view -0
+ 1304              		.cfi_startproc
+ 1305              		@ args = 0, pretend = 0, frame = 0
+ 1306              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1307              		@ link register save eliminated.
+ 724:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     switch(interrupt){
+ 1308              		.loc 1 724 5 view .LVU291
+ 1309 0000 0129     		cmp	r1, #1
+ 1310 0002 08D0     		beq	.L69
+ 1311 0004 0229     		cmp	r1, #2
+ 1312 0006 0BD0     		beq	.L70
+ 1313 0008 01B1     		cbz	r1, .L72
+ 1314              	.L68:
+ 725:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S transmit buffer empty interrupt */
+ 726:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_TBE:
+ 727:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_TBEIE;
+ 728:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 729:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S receive buffer not empty interrupt */
+ 730:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_RBNE:
+ 731:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_RBNEIE;
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 36
+
+
+ 732:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 733:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S error */
+ 734:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_ERR:
+ 735:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) |= (uint32_t)SPI_CTL1_ERRIE;
+ 736:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 737:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default:
+ 738:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 739:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 740:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1315              		.loc 1 740 1 is_stmt 0 view .LVU292
+ 1316 000a 7047     		bx	lr
+ 1317              	.L72:
+ 727:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1318              		.loc 1 727 9 is_stmt 1 view .LVU293
+ 1319 000c 4368     		ldr	r3, [r0, #4]
+ 727:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1320              		.loc 1 727 30 is_stmt 0 view .LVU294
+ 1321 000e 43F08003 		orr	r3, r3, #128
+ 1322 0012 4360     		str	r3, [r0, #4]
+ 728:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S receive buffer not empty interrupt */
+ 1323              		.loc 1 728 9 is_stmt 1 view .LVU295
+ 1324 0014 7047     		bx	lr
+ 1325              	.L69:
+ 731:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1326              		.loc 1 731 9 view .LVU296
+ 1327 0016 4368     		ldr	r3, [r0, #4]
+ 731:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1328              		.loc 1 731 30 is_stmt 0 view .LVU297
+ 1329 0018 43F04003 		orr	r3, r3, #64
+ 1330 001c 4360     		str	r3, [r0, #4]
+ 732:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S error */
+ 1331              		.loc 1 732 9 is_stmt 1 view .LVU298
+ 1332 001e 7047     		bx	lr
+ 1333              	.L70:
+ 735:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1334              		.loc 1 735 9 view .LVU299
+ 1335 0020 4368     		ldr	r3, [r0, #4]
+ 735:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1336              		.loc 1 735 30 is_stmt 0 view .LVU300
+ 1337 0022 43F02003 		orr	r3, r3, #32
+ 1338 0026 4360     		str	r3, [r0, #4]
+ 736:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default:
+ 1339              		.loc 1 736 9 is_stmt 1 view .LVU301
+ 1340              		.loc 1 740 1 is_stmt 0 view .LVU302
+ 1341 0028 EFE7     		b	.L68
+ 1342              		.cfi_endproc
+ 1343              	.LFE153:
+ 1345              		.section	.text.spi_i2s_interrupt_disable,"ax",%progbits
+ 1346              		.align	1
+ 1347              		.global	spi_i2s_interrupt_disable
+ 1348              		.syntax unified
+ 1349              		.thumb
+ 1350              		.thumb_func
+ 1352              	spi_i2s_interrupt_disable:
+ 1353              	.LVL95:
+ 1354              	.LFB154:
+ 741:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 37
+
+
+ 742:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 743:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      disable SPI and I2S interrupt 
+ 744:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 745:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  interrupt: SPI/I2S interrupt
+ 746:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 747:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_TBE: transmit buffer empty interrupt
+ 748:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_RBNE: receive buffer not empty interrupt
+ 749:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_ERR: CRC error,configuration error,reception overrun error,
+ 750:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                                    transmission underrun error and format error interrupt
+ 751:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 752:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     none
+ 753:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 754:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** void spi_i2s_interrupt_disable(uint32_t spi_periph, uint8_t interrupt)
+ 755:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1355              		.loc 1 755 1 is_stmt 1 view -0
+ 1356              		.cfi_startproc
+ 1357              		@ args = 0, pretend = 0, frame = 0
+ 1358              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1359              		@ link register save eliminated.
+ 756:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     switch(interrupt){
+ 1360              		.loc 1 756 5 view .LVU304
+ 1361 0000 0129     		cmp	r1, #1
+ 1362 0002 08D0     		beq	.L74
+ 1363 0004 0229     		cmp	r1, #2
+ 1364 0006 0BD0     		beq	.L75
+ 1365 0008 01B1     		cbz	r1, .L77
+ 1366              	.L73:
+ 757:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S transmit buffer empty interrupt */
+ 758:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_TBE:
+ 759:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_TBEIE);
+ 760:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 761:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S receive buffer not empty interrupt */
+ 762:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_RBNE:
+ 763:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_RBNEIE);
+ 764:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 765:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S error */
+ 766:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_ERR:
+ 767:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         SPI_CTL1(spi_periph) &= (uint32_t)(~SPI_CTL1_ERRIE);
+ 768:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 769:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default :
+ 770:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 771:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 772:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1367              		.loc 1 772 1 is_stmt 0 view .LVU305
+ 1368 000a 7047     		bx	lr
+ 1369              	.L77:
+ 759:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1370              		.loc 1 759 9 is_stmt 1 view .LVU306
+ 1371 000c 4368     		ldr	r3, [r0, #4]
+ 759:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1372              		.loc 1 759 30 is_stmt 0 view .LVU307
+ 1373 000e 23F08003 		bic	r3, r3, #128
+ 1374 0012 4360     		str	r3, [r0, #4]
+ 760:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S receive buffer not empty interrupt */
+ 1375              		.loc 1 760 9 is_stmt 1 view .LVU308
+ 1376 0014 7047     		bx	lr
+ 1377              	.L74:
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 38
+
+
+ 763:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1378              		.loc 1 763 9 view .LVU309
+ 1379 0016 4368     		ldr	r3, [r0, #4]
+ 763:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1380              		.loc 1 763 30 is_stmt 0 view .LVU310
+ 1381 0018 23F04003 		bic	r3, r3, #64
+ 1382 001c 4360     		str	r3, [r0, #4]
+ 764:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S error */
+ 1383              		.loc 1 764 9 is_stmt 1 view .LVU311
+ 1384 001e 7047     		bx	lr
+ 1385              	.L75:
+ 767:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1386              		.loc 1 767 9 view .LVU312
+ 1387 0020 4368     		ldr	r3, [r0, #4]
+ 767:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1388              		.loc 1 767 30 is_stmt 0 view .LVU313
+ 1389 0022 23F02003 		bic	r3, r3, #32
+ 1390 0026 4360     		str	r3, [r0, #4]
+ 768:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default :
+ 1391              		.loc 1 768 9 is_stmt 1 view .LVU314
+ 1392              		.loc 1 772 1 is_stmt 0 view .LVU315
+ 1393 0028 EFE7     		b	.L73
+ 1394              		.cfi_endproc
+ 1395              	.LFE154:
+ 1397              		.section	.text.spi_i2s_interrupt_flag_get,"ax",%progbits
+ 1398              		.align	1
+ 1399              		.global	spi_i2s_interrupt_flag_get
+ 1400              		.syntax unified
+ 1401              		.thumb
+ 1402              		.thumb_func
+ 1404              	spi_i2s_interrupt_flag_get:
+ 1405              	.LVL96:
+ 1406              	.LFB155:
+ 773:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 774:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 775:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      get SPI and I2S interrupt flag status
+ 776:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 777:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  interrupt: SPI/I2S interrupt flag status
+ 778:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 779:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_FLAG_TBE: transmit buffer empty interrupt flag
+ 780:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_FLAG_RBNE: receive buffer not empty interrupt flag
+ 781:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_FLAG_RXORERR: overrun interrupt flag
+ 782:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_INT_FLAG_CONFERR: config error interrupt flag
+ 783:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_INT_FLAG_CRCERR: CRC error interrupt flag
+ 784:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_INT_FLAG_TXURERR: underrun error interrupt flag
+ 785:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_I2S_INT_FLAG_FERR: format error interrupt flag
+ 786:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 787:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     FlagStatus: SET or RESET
+ 788:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 789:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** FlagStatus spi_i2s_interrupt_flag_get(uint32_t spi_periph, uint8_t interrupt)
+ 790:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1407              		.loc 1 790 1 is_stmt 1 view -0
+ 1408              		.cfi_startproc
+ 1409              		@ args = 0, pretend = 0, frame = 0
+ 1410              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1411              		@ link register save eliminated.
+ 791:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t reg1 = SPI_STAT(spi_periph);
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 39
+
+
+ 1412              		.loc 1 791 5 view .LVU317
+ 1413              		.loc 1 791 14 is_stmt 0 view .LVU318
+ 1414 0000 8368     		ldr	r3, [r0, #8]
+ 1415              	.LVL97:
+ 792:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     uint32_t reg2 = SPI_CTL1(spi_periph);
+ 1416              		.loc 1 792 5 is_stmt 1 view .LVU319
+ 1417              		.loc 1 792 14 is_stmt 0 view .LVU320
+ 1418 0002 4268     		ldr	r2, [r0, #4]
+ 1419              	.LVL98:
+ 793:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 794:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     switch(interrupt){
+ 1420              		.loc 1 794 5 is_stmt 1 view .LVU321
+ 1421 0004 0629     		cmp	r1, #6
+ 1422 0006 09D8     		bhi	.L79
+ 1423 0008 DFE801F0 		tbb	[pc, r1]
+ 1424              	.LVL99:
+ 1425              	.L81:
+ 1426 000c 04       		.byte	(.L87-.L81)/2
+ 1427 000d 0C       		.byte	(.L86-.L81)/2
+ 1428 000e 11       		.byte	(.L85-.L81)/2
+ 1429 000f 16       		.byte	(.L84-.L81)/2
+ 1430 0010 1B       		.byte	(.L83-.L81)/2
+ 1431 0011 20       		.byte	(.L82-.L81)/2
+ 1432 0012 25       		.byte	(.L80-.L81)/2
+ 1433 0013 00       		.p2align 1
+ 1434              	.L87:
+ 795:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S transmit buffer empty interrupt */
+ 796:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_FLAG_TBE:
+ 797:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg1 = reg1 & SPI_STAT_TBE;
+ 1435              		.loc 1 797 9 view .LVU322
+ 1436              		.loc 1 797 14 is_stmt 0 view .LVU323
+ 1437 0014 03F00203 		and	r3, r3, #2
+ 1438              	.LVL100:
+ 798:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_TBEIE;
+ 1439              		.loc 1 798 9 is_stmt 1 view .LVU324
+ 1440              		.loc 1 798 14 is_stmt 0 view .LVU325
+ 1441 0018 02F08002 		and	r2, r2, #128
+ 1442              	.LVL101:
+ 799:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1443              		.loc 1 799 9 is_stmt 1 view .LVU326
+ 1444              	.L79:
+ 800:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S receive buffer not empty interrupt */
+ 801:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_FLAG_RBNE:
+ 802:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg1 = reg1 & SPI_STAT_RBNE;
+ 803:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_RBNEIE;
+ 804:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 805:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S overrun interrupt */
+ 806:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_FLAG_RXORERR:
+ 807:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg1 = reg1 & SPI_STAT_RXORERR;
+ 808:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 809:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 810:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI config error interrupt */
+ 811:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_INT_FLAG_CONFERR:
+ 812:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg1 = reg1 & SPI_STAT_CONFERR;
+ 813:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 814:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 815:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI CRC error interrupt */
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 40
+
+
+ 816:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_INT_FLAG_CRCERR:
+ 817:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg1 = reg1 & SPI_STAT_CRCERR;
+ 818:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 819:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 820:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* I2S underrun error interrupt */
+ 821:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case I2S_INT_FLAG_TXURERR:
+ 822:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg1 = reg1 & SPI_STAT_TXURERR;
+ 823:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 824:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 825:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S format error interrupt */
+ 826:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     case SPI_I2S_INT_FLAG_FERR:
+ 827:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg1 = reg1 & SPI_STAT_FERR;
+ 828:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 829:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 830:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default :
+ 831:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 832:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 833:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /*get SPI/I2S interrupt flag status */
+ 834:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(reg1 && reg2){
+ 1445              		.loc 1 834 5 view .LVU327
+ 1446              		.loc 1 834 7 is_stmt 0 view .LVU328
+ 1447 001c 03B3     		cbz	r3, .L89
+ 1448              		.loc 1 834 13 discriminator 1 view .LVU329
+ 1449 001e 0ABB     		cbnz	r2, .L90
+ 835:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         return SET;
+ 836:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 837:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         return RESET;
+ 1450              		.loc 1 837 16 view .LVU330
+ 1451 0020 0020     		movs	r0, #0
+ 1452 0022 7047     		bx	lr
+ 1453              	.L86:
+ 802:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_RBNEIE;
+ 1454              		.loc 1 802 9 is_stmt 1 view .LVU331
+ 802:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_RBNEIE;
+ 1455              		.loc 1 802 14 is_stmt 0 view .LVU332
+ 1456 0024 03F00103 		and	r3, r3, #1
+ 1457              	.LVL102:
+ 803:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1458              		.loc 1 803 9 is_stmt 1 view .LVU333
+ 803:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1459              		.loc 1 803 14 is_stmt 0 view .LVU334
+ 1460 0028 02F04002 		and	r2, r2, #64
+ 1461              	.LVL103:
+ 804:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S overrun interrupt */
+ 1462              		.loc 1 804 9 is_stmt 1 view .LVU335
+ 1463 002c F6E7     		b	.L79
+ 1464              	.L85:
+ 807:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1465              		.loc 1 807 9 view .LVU336
+ 807:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1466              		.loc 1 807 14 is_stmt 0 view .LVU337
+ 1467 002e 03F04003 		and	r3, r3, #64
+ 1468              	.LVL104:
+ 808:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1469              		.loc 1 808 9 is_stmt 1 view .LVU338
+ 808:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1470              		.loc 1 808 14 is_stmt 0 view .LVU339
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 41
+
+
+ 1471 0032 02F02002 		and	r2, r2, #32
+ 1472              	.LVL105:
+ 809:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI config error interrupt */
+ 1473              		.loc 1 809 9 is_stmt 1 view .LVU340
+ 1474 0036 F1E7     		b	.L79
+ 1475              	.L84:
+ 812:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1476              		.loc 1 812 9 view .LVU341
+ 812:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1477              		.loc 1 812 14 is_stmt 0 view .LVU342
+ 1478 0038 03F02003 		and	r3, r3, #32
+ 1479              	.LVL106:
+ 813:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1480              		.loc 1 813 9 is_stmt 1 view .LVU343
+ 813:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1481              		.loc 1 813 14 is_stmt 0 view .LVU344
+ 1482 003c 02F02002 		and	r2, r2, #32
+ 1483              	.LVL107:
+ 814:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI CRC error interrupt */
+ 1484              		.loc 1 814 9 is_stmt 1 view .LVU345
+ 1485 0040 ECE7     		b	.L79
+ 1486              	.L83:
+ 817:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1487              		.loc 1 817 9 view .LVU346
+ 817:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1488              		.loc 1 817 14 is_stmt 0 view .LVU347
+ 1489 0042 03F01003 		and	r3, r3, #16
+ 1490              	.LVL108:
+ 818:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1491              		.loc 1 818 9 is_stmt 1 view .LVU348
+ 818:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1492              		.loc 1 818 14 is_stmt 0 view .LVU349
+ 1493 0046 02F02002 		and	r2, r2, #32
+ 1494              	.LVL109:
+ 819:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* I2S underrun error interrupt */
+ 1495              		.loc 1 819 9 is_stmt 1 view .LVU350
+ 1496 004a E7E7     		b	.L79
+ 1497              	.L82:
+ 822:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1498              		.loc 1 822 9 view .LVU351
+ 822:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1499              		.loc 1 822 14 is_stmt 0 view .LVU352
+ 1500 004c 03F00803 		and	r3, r3, #8
+ 1501              	.LVL110:
+ 823:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1502              		.loc 1 823 9 is_stmt 1 view .LVU353
+ 823:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1503              		.loc 1 823 14 is_stmt 0 view .LVU354
+ 1504 0050 02F02002 		and	r2, r2, #32
+ 1505              	.LVL111:
+ 824:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     /* SPI/I2S format error interrupt */
+ 1506              		.loc 1 824 9 is_stmt 1 view .LVU355
+ 1507 0054 E2E7     		b	.L79
+ 1508              	.L80:
+ 827:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ 1509              		.loc 1 827 9 view .LVU356
+ 827:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         reg2 = reg2 & SPI_CTL1_ERRIE;
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 42
+
+
+ 1510              		.loc 1 827 14 is_stmt 0 view .LVU357
+ 1511 0056 03F48073 		and	r3, r3, #256
+ 1512              	.LVL112:
+ 828:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1513              		.loc 1 828 9 is_stmt 1 view .LVU358
+ 828:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         break;
+ 1514              		.loc 1 828 14 is_stmt 0 view .LVU359
+ 1515 005a 02F02002 		and	r2, r2, #32
+ 1516              	.LVL113:
+ 829:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     default :
+ 1517              		.loc 1 829 9 is_stmt 1 view .LVU360
+ 1518 005e DDE7     		b	.L79
+ 1519              	.L89:
+ 1520              		.loc 1 837 16 is_stmt 0 view .LVU361
+ 1521 0060 0020     		movs	r0, #0
+ 1522 0062 7047     		bx	lr
+ 1523              	.L90:
+ 835:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 1524              		.loc 1 835 16 view .LVU362
+ 1525 0064 0120     		movs	r0, #1
+ 838:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 839:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1526              		.loc 1 839 1 view .LVU363
+ 1527 0066 7047     		bx	lr
+ 1528              		.cfi_endproc
+ 1529              	.LFE155:
+ 1531              		.section	.text.spi_i2s_flag_get,"ax",%progbits
+ 1532              		.align	1
+ 1533              		.global	spi_i2s_flag_get
+ 1534              		.syntax unified
+ 1535              		.thumb
+ 1536              		.thumb_func
+ 1538              	spi_i2s_flag_get:
+ 1539              	.LVL114:
+ 1540              	.LFB156:
+ 840:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** 
+ 841:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** /*!
+ 842:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \brief      get SPI and I2S flag status
+ 843:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  spi_periph: SPIx(x=0,1,2)
+ 844:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[in]  flag: SPI/I2S flag status
+ 845:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****                 only one parameter can be selected which is shown as below:
+ 846:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_TBE: transmit buffer empty flag
+ 847:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_RBNE: receive buffer not empty flag
+ 848:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_TRANS: transmit on-going flag
+ 849:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_RXORERR: receive overrun error flag
+ 850:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_CONFERR: mode config error flag
+ 851:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_CRCERR: CRC error flag
+ 852:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        SPI_FLAG_FERR: format error flag
+ 853:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_TBE: transmit buffer empty flag
+ 854:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_RBNE: receive buffer not empty flag
+ 855:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_TRANS: transmit on-going flag
+ 856:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_RXORERR: overrun error flag
+ 857:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_TXURERR: underrun error flag
+ 858:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_CH: channel side flag
+ 859:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****       \arg        I2S_FLAG_FERR: format error flag
+ 860:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \param[out] none
+ 861:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     \retval     FlagStatus: SET or RESET
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 43
+
+
+ 862:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** */
+ 863:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** FlagStatus spi_i2s_flag_get(uint32_t spi_periph, uint32_t flag)
+ 864:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** {
+ 1541              		.loc 1 864 1 is_stmt 1 view -0
+ 1542              		.cfi_startproc
+ 1543              		@ args = 0, pretend = 0, frame = 0
+ 1544              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1545              		@ link register save eliminated.
+ 865:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     if(SPI_STAT(spi_periph) & flag){
+ 1546              		.loc 1 865 5 view .LVU365
+ 1547              		.loc 1 865 8 is_stmt 0 view .LVU366
+ 1548 0000 8368     		ldr	r3, [r0, #8]
+ 1549              		.loc 1 865 7 view .LVU367
+ 1550 0002 0B42     		tst	r3, r1
+ 1551 0004 01D0     		beq	.L94
+ 866:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         return SET;
+ 1552              		.loc 1 866 16 view .LVU368
+ 1553 0006 0120     		movs	r0, #1
+ 1554              	.LVL115:
+ 1555              		.loc 1 866 16 view .LVU369
+ 1556 0008 7047     		bx	lr
+ 1557              	.LVL116:
+ 1558              	.L94:
+ 867:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }else{
+ 868:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****         return RESET;
+ 1559              		.loc 1 868 16 view .LVU370
+ 1560 000a 0020     		movs	r0, #0
+ 1561              	.LVL117:
+ 869:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c ****     }
+ 870:./GD32F30x_standard_peripheral/Source/gd32f30x_spi.c **** }
+ 1562              		.loc 1 870 1 view .LVU371
+ 1563 000c 7047     		bx	lr
+ 1564              		.cfi_endproc
+ 1565              	.LFE156:
+ 1567              		.text
+ 1568              	.Letext0:
+ 1569              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1570              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1571              		.file 4 "CMSIS/GD/GD32F30x/Include/gd32f30x.h"
+ 1572              		.file 5 "GD32F30x_standard_peripheral/Include/gd32f30x_rcu.h"
+ 1573              		.file 6 "GD32F30x_standard_peripheral/Include/gd32f30x_spi.h"
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 44
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_spi.c
+  C:\Temp\ccM6dLVc.s:21     .text.spi_i2s_deinit:00000000 $t
+  C:\Temp\ccM6dLVc.s:27     .text.spi_i2s_deinit:00000000 spi_i2s_deinit
+  C:\Temp\ccM6dLVc.s:100    .text.spi_i2s_deinit:00000050 $d
+  C:\Temp\ccM6dLVc.s:105    .text.spi_struct_para_init:00000000 $t
+  C:\Temp\ccM6dLVc.s:111    .text.spi_struct_para_init:00000000 spi_struct_para_init
+  C:\Temp\ccM6dLVc.s:147    .text.spi_init:00000000 $t
+  C:\Temp\ccM6dLVc.s:153    .text.spi_init:00000000 spi_init
+  C:\Temp\ccM6dLVc.s:228    .text.spi_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:234    .text.spi_enable:00000000 spi_enable
+  C:\Temp\ccM6dLVc.s:253    .text.spi_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:259    .text.spi_disable:00000000 spi_disable
+  C:\Temp\ccM6dLVc.s:278    .text.i2s_init:00000000 $t
+  C:\Temp\ccM6dLVc.s:284    .text.i2s_init:00000000 i2s_init
+  C:\Temp\ccM6dLVc.s:337    .text.i2s_psc_config:00000000 $t
+  C:\Temp\ccM6dLVc.s:343    .text.i2s_psc_config:00000000 i2s_psc_config
+  C:\Temp\ccM6dLVc.s:494    .text.i2s_psc_config:0000007c $d
+  C:\Temp\ccM6dLVc.s:499    .text.i2s_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:505    .text.i2s_enable:00000000 i2s_enable
+  C:\Temp\ccM6dLVc.s:524    .text.i2s_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:530    .text.i2s_disable:00000000 i2s_disable
+  C:\Temp\ccM6dLVc.s:549    .text.spi_nss_output_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:555    .text.spi_nss_output_enable:00000000 spi_nss_output_enable
+  C:\Temp\ccM6dLVc.s:574    .text.spi_nss_output_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:580    .text.spi_nss_output_disable:00000000 spi_nss_output_disable
+  C:\Temp\ccM6dLVc.s:599    .text.spi_nss_internal_high:00000000 $t
+  C:\Temp\ccM6dLVc.s:605    .text.spi_nss_internal_high:00000000 spi_nss_internal_high
+  C:\Temp\ccM6dLVc.s:624    .text.spi_nss_internal_low:00000000 $t
+  C:\Temp\ccM6dLVc.s:630    .text.spi_nss_internal_low:00000000 spi_nss_internal_low
+  C:\Temp\ccM6dLVc.s:649    .text.spi_dma_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:655    .text.spi_dma_enable:00000000 spi_dma_enable
+  C:\Temp\ccM6dLVc.s:684    .text.spi_dma_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:690    .text.spi_dma_disable:00000000 spi_dma_disable
+  C:\Temp\ccM6dLVc.s:719    .text.spi_i2s_data_frame_format_config:00000000 $t
+  C:\Temp\ccM6dLVc.s:725    .text.spi_i2s_data_frame_format_config:00000000 spi_i2s_data_frame_format_config
+  C:\Temp\ccM6dLVc.s:749    .text.spi_i2s_data_transmit:00000000 $t
+  C:\Temp\ccM6dLVc.s:755    .text.spi_i2s_data_transmit:00000000 spi_i2s_data_transmit
+  C:\Temp\ccM6dLVc.s:772    .text.spi_i2s_data_receive:00000000 $t
+  C:\Temp\ccM6dLVc.s:778    .text.spi_i2s_data_receive:00000000 spi_i2s_data_receive
+  C:\Temp\ccM6dLVc.s:797    .text.spi_bidirectional_transfer_config:00000000 $t
+  C:\Temp\ccM6dLVc.s:803    .text.spi_bidirectional_transfer_config:00000000 spi_bidirectional_transfer_config
+  C:\Temp\ccM6dLVc.s:833    .text.spi_i2s_format_error_clear:00000000 $t
+  C:\Temp\ccM6dLVc.s:839    .text.spi_i2s_format_error_clear:00000000 spi_i2s_format_error_clear
+  C:\Temp\ccM6dLVc.s:859    .text.spi_crc_polynomial_set:00000000 $t
+  C:\Temp\ccM6dLVc.s:865    .text.spi_crc_polynomial_set:00000000 spi_crc_polynomial_set
+  C:\Temp\ccM6dLVc.s:882    .text.spi_crc_polynomial_get:00000000 $t
+  C:\Temp\ccM6dLVc.s:888    .text.spi_crc_polynomial_get:00000000 spi_crc_polynomial_get
+  C:\Temp\ccM6dLVc.s:907    .text.spi_crc_on:00000000 $t
+  C:\Temp\ccM6dLVc.s:913    .text.spi_crc_on:00000000 spi_crc_on
+  C:\Temp\ccM6dLVc.s:932    .text.spi_crc_off:00000000 $t
+  C:\Temp\ccM6dLVc.s:938    .text.spi_crc_off:00000000 spi_crc_off
+  C:\Temp\ccM6dLVc.s:957    .text.spi_crc_next:00000000 $t
+  C:\Temp\ccM6dLVc.s:963    .text.spi_crc_next:00000000 spi_crc_next
+  C:\Temp\ccM6dLVc.s:982    .text.spi_crc_get:00000000 $t
+  C:\Temp\ccM6dLVc.s:988    .text.spi_crc_get:00000000 spi_crc_get
+  C:\Temp\ccM6dLVc.s:1020   .text.spi_crc_error_clear:00000000 $t
+ARM GAS  C:\Temp\ccM6dLVc.s 			page 45
+
+
+  C:\Temp\ccM6dLVc.s:1026   .text.spi_crc_error_clear:00000000 spi_crc_error_clear
+  C:\Temp\ccM6dLVc.s:1044   .text.spi_ti_mode_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1050   .text.spi_ti_mode_enable:00000000 spi_ti_mode_enable
+  C:\Temp\ccM6dLVc.s:1069   .text.spi_ti_mode_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1075   .text.spi_ti_mode_disable:00000000 spi_ti_mode_disable
+  C:\Temp\ccM6dLVc.s:1094   .text.spi_nssp_mode_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1100   .text.spi_nssp_mode_enable:00000000 spi_nssp_mode_enable
+  C:\Temp\ccM6dLVc.s:1119   .text.spi_nssp_mode_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1125   .text.spi_nssp_mode_disable:00000000 spi_nssp_mode_disable
+  C:\Temp\ccM6dLVc.s:1144   .text.spi_quad_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1150   .text.spi_quad_enable:00000000 spi_quad_enable
+  C:\Temp\ccM6dLVc.s:1169   .text.spi_quad_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1175   .text.spi_quad_disable:00000000 spi_quad_disable
+  C:\Temp\ccM6dLVc.s:1194   .text.spi_quad_write_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1200   .text.spi_quad_write_enable:00000000 spi_quad_write_enable
+  C:\Temp\ccM6dLVc.s:1219   .text.spi_quad_read_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1225   .text.spi_quad_read_enable:00000000 spi_quad_read_enable
+  C:\Temp\ccM6dLVc.s:1244   .text.spi_quad_io23_output_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1250   .text.spi_quad_io23_output_enable:00000000 spi_quad_io23_output_enable
+  C:\Temp\ccM6dLVc.s:1269   .text.spi_quad_io23_output_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1275   .text.spi_quad_io23_output_disable:00000000 spi_quad_io23_output_disable
+  C:\Temp\ccM6dLVc.s:1294   .text.spi_i2s_interrupt_enable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1300   .text.spi_i2s_interrupt_enable:00000000 spi_i2s_interrupt_enable
+  C:\Temp\ccM6dLVc.s:1346   .text.spi_i2s_interrupt_disable:00000000 $t
+  C:\Temp\ccM6dLVc.s:1352   .text.spi_i2s_interrupt_disable:00000000 spi_i2s_interrupt_disable
+  C:\Temp\ccM6dLVc.s:1398   .text.spi_i2s_interrupt_flag_get:00000000 $t
+  C:\Temp\ccM6dLVc.s:1404   .text.spi_i2s_interrupt_flag_get:00000000 spi_i2s_interrupt_flag_get
+  C:\Temp\ccM6dLVc.s:1426   .text.spi_i2s_interrupt_flag_get:0000000c $d
+  C:\Temp\ccM6dLVc.s:1532   .text.spi_i2s_flag_get:00000000 $t
+  C:\Temp\ccM6dLVc.s:1538   .text.spi_i2s_flag_get:00000000 spi_i2s_flag_get
+  C:\Temp\ccM6dLVc.s:1433   .text.spi_i2s_interrupt_flag_get:00000013 $d
+  C:\Temp\ccM6dLVc.s:1433   .text.spi_i2s_interrupt_flag_get:00000014 $t
+
+UNDEFINED SYMBOLS
+rcu_periph_reset_enable
+rcu_periph_reset_disable
+rcu_clock_freq_get

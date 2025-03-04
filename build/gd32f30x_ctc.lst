@@ -1,0 +1,1271 @@
+ARM GAS  C:\Temp\cc45AUZC.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_ctc.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c"
+  20              		.section	.text.ctc_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	ctc_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	ctc_deinit:
+  28              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \file    gd32f30x_ctc.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief   CTC driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Temp\cc45AUZC.s 			page 2
+
+
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** #include "gd32f30x_ctc.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** #define CTC_FLAG_MASK            ((uint32_t)0x00000700U)
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /* CTC register bit offset */
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** #define CTC_TRIMVALUE_OFFSET     ((uint32_t)8U)
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** #define CTC_TRIM_VALUE_OFFSET    ((uint32_t)8U)
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** #define CTC_REFCAP_OFFSET        ((uint32_t)16U)
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** #define CTC_LIMIT_VALUE_OFFSET   ((uint32_t)16U)
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      reset CTC clock trim controller
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_deinit(void)
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+  29              		.loc 1 52 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33 0000 08B5     		push	{r3, lr}
+  34              	.LCFI0:
+  35              		.cfi_def_cfa_offset 8
+  36              		.cfi_offset 3, -8
+  37              		.cfi_offset 14, -4
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     /* reset CTC */
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     rcu_periph_reset_enable(RCU_CTCRST);
+  38              		.loc 1 54 5 view .LVU1
+  39 0002 43F61B00 		movw	r0, #14363
+  40 0006 FFF7FEFF 		bl	rcu_periph_reset_enable
+  41              	.LVL0:
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     rcu_periph_reset_disable(RCU_CTCRST);
+  42              		.loc 1 55 5 view .LVU2
+  43 000a 43F61B00 		movw	r0, #14363
+  44 000e FFF7FEFF 		bl	rcu_periph_reset_disable
+  45              	.LVL1:
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+  46              		.loc 1 56 1 is_stmt 0 view .LVU3
+  47 0012 08BD     		pop	{r3, pc}
+  48              		.cfi_endproc
+  49              	.LFE116:
+  51              		.section	.text.ctc_counter_enable,"ax",%progbits
+  52              		.align	1
+  53              		.global	ctc_counter_enable
+  54              		.syntax unified
+  55              		.thumb
+  56              		.thumb_func
+  58              	ctc_counter_enable:
+  59              	.LFB117:
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ARM GAS  C:\Temp\cc45AUZC.s 			page 3
+
+
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      enable CTC trim counter
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_counter_enable(void)
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+  60              		.loc 1 65 1 is_stmt 1 view -0
+  61              		.cfi_startproc
+  62              		@ args = 0, pretend = 0, frame = 0
+  63              		@ frame_needed = 0, uses_anonymous_args = 0
+  64              		@ link register save eliminated.
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 |= (uint32_t)CTC_CTL0_CNTEN;
+  65              		.loc 1 66 5 view .LVU5
+  66 0000 034A     		ldr	r2, .L4
+  67 0002 D2F80038 		ldr	r3, [r2, #2048]
+  68              		.loc 1 66 14 is_stmt 0 view .LVU6
+  69 0006 43F02003 		orr	r3, r3, #32
+  70 000a C2F80038 		str	r3, [r2, #2048]
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+  71              		.loc 1 67 1 view .LVU7
+  72 000e 7047     		bx	lr
+  73              	.L5:
+  74              		.align	2
+  75              	.L4:
+  76 0010 00C00040 		.word	1073790976
+  77              		.cfi_endproc
+  78              	.LFE117:
+  80              		.section	.text.ctc_counter_disable,"ax",%progbits
+  81              		.align	1
+  82              		.global	ctc_counter_disable
+  83              		.syntax unified
+  84              		.thumb
+  85              		.thumb_func
+  87              	ctc_counter_disable:
+  88              	.LFB118:
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      disable CTC trim counter
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_counter_disable(void)
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+  89              		.loc 1 76 1 is_stmt 1 view -0
+  90              		.cfi_startproc
+  91              		@ args = 0, pretend = 0, frame = 0
+  92              		@ frame_needed = 0, uses_anonymous_args = 0
+  93              		@ link register save eliminated.
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 &= (uint32_t)(~CTC_CTL0_CNTEN);
+  94              		.loc 1 77 5 view .LVU9
+  95 0000 034A     		ldr	r2, .L7
+  96 0002 D2F80038 		ldr	r3, [r2, #2048]
+  97              		.loc 1 77 14 is_stmt 0 view .LVU10
+  98 0006 23F02003 		bic	r3, r3, #32
+  99 000a C2F80038 		str	r3, [r2, #2048]
+ARM GAS  C:\Temp\cc45AUZC.s 			page 4
+
+
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 100              		.loc 1 78 1 view .LVU11
+ 101 000e 7047     		bx	lr
+ 102              	.L8:
+ 103              		.align	2
+ 104              	.L7:
+ 105 0010 00C00040 		.word	1073790976
+ 106              		.cfi_endproc
+ 107              	.LFE118:
+ 109              		.section	.text.ctc_irc48m_trim_value_config,"ax",%progbits
+ 110              		.align	1
+ 111              		.global	ctc_irc48m_trim_value_config
+ 112              		.syntax unified
+ 113              		.thumb
+ 114              		.thumb_func
+ 116              	ctc_irc48m_trim_value_config:
+ 117              	.LVL2:
+ 118              	.LFB119:
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      configure the IRC48M trim value
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  trim_value: 6-bit IRC48M trim value
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        0x00 - 0x3F
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_irc48m_trim_value_config(uint8_t trim_value)
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 119              		.loc 1 88 1 is_stmt 1 view -0
+ 120              		.cfi_startproc
+ 121              		@ args = 0, pretend = 0, frame = 0
+ 122              		@ frame_needed = 0, uses_anonymous_args = 0
+ 123              		@ link register save eliminated.
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     /* clear TRIMVALUE bits */
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 &= (~(uint32_t)CTC_CTL0_TRIMVALUE);
+ 124              		.loc 1 90 5 view .LVU13
+ 125 0000 064B     		ldr	r3, .L10
+ 126 0002 D3F80028 		ldr	r2, [r3, #2048]
+ 127              		.loc 1 90 14 is_stmt 0 view .LVU14
+ 128 0006 22F47C52 		bic	r2, r2, #16128
+ 129 000a C3F80028 		str	r2, [r3, #2048]
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     /* set TRIMVALUE bits */
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 |= ((uint32_t)trim_value << CTC_TRIM_VALUE_OFFSET);
+ 130              		.loc 1 92 5 is_stmt 1 view .LVU15
+ 131 000e D3F80028 		ldr	r2, [r3, #2048]
+ 132              		.loc 1 92 14 is_stmt 0 view .LVU16
+ 133 0012 42EA0022 		orr	r2, r2, r0, lsl #8
+ 134 0016 C3F80028 		str	r2, [r3, #2048]
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 135              		.loc 1 93 1 view .LVU17
+ 136 001a 7047     		bx	lr
+ 137              	.L11:
+ 138              		.align	2
+ 139              	.L10:
+ 140 001c 00C00040 		.word	1073790976
+ 141              		.cfi_endproc
+ 142              	.LFE119:
+ARM GAS  C:\Temp\cc45AUZC.s 			page 5
+
+
+ 144              		.section	.text.ctc_software_refsource_pulse_generate,"ax",%progbits
+ 145              		.align	1
+ 146              		.global	ctc_software_refsource_pulse_generate
+ 147              		.syntax unified
+ 148              		.thumb
+ 149              		.thumb_func
+ 151              	ctc_software_refsource_pulse_generate:
+ 152              	.LFB120:
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      generate software reference source sync pulse
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_software_refsource_pulse_generate(void)
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 153              		.loc 1 102 1 is_stmt 1 view -0
+ 154              		.cfi_startproc
+ 155              		@ args = 0, pretend = 0, frame = 0
+ 156              		@ frame_needed = 0, uses_anonymous_args = 0
+ 157              		@ link register save eliminated.
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 |= (uint32_t)CTC_CTL0_SWREFPUL;
+ 158              		.loc 1 103 5 view .LVU19
+ 159 0000 034A     		ldr	r2, .L13
+ 160 0002 D2F80038 		ldr	r3, [r2, #2048]
+ 161              		.loc 1 103 14 is_stmt 0 view .LVU20
+ 162 0006 43F08003 		orr	r3, r3, #128
+ 163 000a C2F80038 		str	r3, [r2, #2048]
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 164              		.loc 1 104 1 view .LVU21
+ 165 000e 7047     		bx	lr
+ 166              	.L14:
+ 167              		.align	2
+ 168              	.L13:
+ 169 0010 00C00040 		.word	1073790976
+ 170              		.cfi_endproc
+ 171              	.LFE120:
+ 173              		.section	.text.ctc_hardware_trim_mode_config,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	ctc_hardware_trim_mode_config
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	ctc_hardware_trim_mode_config:
+ 181              	.LVL3:
+ 182              	.LFB121:
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      configure hardware automatically trim mode
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  hardmode:
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below:
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_HARDWARE_TRIM_MODE_ENABLE: hardware automatically trim mode enable
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_HARDWARE_TRIM_MODE_DISABLE: hardware automatically trim mode disable
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ARM GAS  C:\Temp\cc45AUZC.s 			page 6
+
+
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_hardware_trim_mode_config(uint32_t hardmode)
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 183              		.loc 1 116 1 is_stmt 1 view -0
+ 184              		.cfi_startproc
+ 185              		@ args = 0, pretend = 0, frame = 0
+ 186              		@ frame_needed = 0, uses_anonymous_args = 0
+ 187              		@ link register save eliminated.
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 &= (uint32_t)(~CTC_CTL0_AUTOTRIM);
+ 188              		.loc 1 117 5 view .LVU23
+ 189 0000 064B     		ldr	r3, .L16
+ 190 0002 D3F80028 		ldr	r2, [r3, #2048]
+ 191              		.loc 1 117 14 is_stmt 0 view .LVU24
+ 192 0006 22F04002 		bic	r2, r2, #64
+ 193 000a C3F80028 		str	r2, [r3, #2048]
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 |= (uint32_t)hardmode;
+ 194              		.loc 1 118 5 is_stmt 1 view .LVU25
+ 195 000e D3F80028 		ldr	r2, [r3, #2048]
+ 196              		.loc 1 118 14 is_stmt 0 view .LVU26
+ 197 0012 0243     		orrs	r2, r2, r0
+ 198 0014 C3F80028 		str	r2, [r3, #2048]
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 199              		.loc 1 119 1 view .LVU27
+ 200 0018 7047     		bx	lr
+ 201              	.L17:
+ 202 001a 00BF     		.align	2
+ 203              	.L16:
+ 204 001c 00C00040 		.word	1073790976
+ 205              		.cfi_endproc
+ 206              	.LFE121:
+ 208              		.section	.text.ctc_refsource_polarity_config,"ax",%progbits
+ 209              		.align	1
+ 210              		.global	ctc_refsource_polarity_config
+ 211              		.syntax unified
+ 212              		.thumb
+ 213              		.thumb_func
+ 215              	ctc_refsource_polarity_config:
+ 216              	.LVL4:
+ 217              	.LFB122:
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      configure reference signal source polarity
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  polarity:
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below:
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_POLARITY_FALLING: reference signal source polarity is falling edge
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_POLARITY_RISING: reference signal source polarity is rising edge
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_refsource_polarity_config(uint32_t polarity)
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 218              		.loc 1 130 1 is_stmt 1 view -0
+ 219              		.cfi_startproc
+ 220              		@ args = 0, pretend = 0, frame = 0
+ 221              		@ frame_needed = 0, uses_anonymous_args = 0
+ 222              		@ link register save eliminated.
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 &= (uint32_t)(~CTC_CTL1_REFPOL);
+ 223              		.loc 1 131 5 view .LVU29
+ 224 0000 064B     		ldr	r3, .L19
+ARM GAS  C:\Temp\cc45AUZC.s 			page 7
+
+
+ 225 0002 D3F80428 		ldr	r2, [r3, #2052]
+ 226              		.loc 1 131 14 is_stmt 0 view .LVU30
+ 227 0006 22F00042 		bic	r2, r2, #-2147483648
+ 228 000a C3F80428 		str	r2, [r3, #2052]
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 |= (uint32_t)polarity;
+ 229              		.loc 1 132 5 is_stmt 1 view .LVU31
+ 230 000e D3F80428 		ldr	r2, [r3, #2052]
+ 231              		.loc 1 132 14 is_stmt 0 view .LVU32
+ 232 0012 0243     		orrs	r2, r2, r0
+ 233 0014 C3F80428 		str	r2, [r3, #2052]
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 234              		.loc 1 133 1 view .LVU33
+ 235 0018 7047     		bx	lr
+ 236              	.L20:
+ 237 001a 00BF     		.align	2
+ 238              	.L19:
+ 239 001c 00C00040 		.word	1073790976
+ 240              		.cfi_endproc
+ 241              	.LFE122:
+ 243              		.section	.text.ctc_refsource_signal_select,"ax",%progbits
+ 244              		.align	1
+ 245              		.global	ctc_refsource_signal_select
+ 246              		.syntax unified
+ 247              		.thumb
+ 248              		.thumb_func
+ 250              	ctc_refsource_signal_select:
+ 251              	.LVL5:
+ 252              	.LFB123:
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      select reference signal source
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  refs:
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below:
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_GPIO: GPIO is selected
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_LXTAL: LXTAL is selected
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_refsource_signal_select(uint32_t refs)
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 253              		.loc 1 145 1 is_stmt 1 view -0
+ 254              		.cfi_startproc
+ 255              		@ args = 0, pretend = 0, frame = 0
+ 256              		@ frame_needed = 0, uses_anonymous_args = 0
+ 257              		@ link register save eliminated.
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 &= (uint32_t)(~CTC_CTL1_REFSEL);
+ 258              		.loc 1 146 5 view .LVU35
+ 259 0000 064B     		ldr	r3, .L22
+ 260 0002 D3F80428 		ldr	r2, [r3, #2052]
+ 261              		.loc 1 146 14 is_stmt 0 view .LVU36
+ 262 0006 22F04052 		bic	r2, r2, #805306368
+ 263 000a C3F80428 		str	r2, [r3, #2052]
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 |= (uint32_t)refs;
+ 264              		.loc 1 147 5 is_stmt 1 view .LVU37
+ 265 000e D3F80428 		ldr	r2, [r3, #2052]
+ 266              		.loc 1 147 14 is_stmt 0 view .LVU38
+ 267 0012 0243     		orrs	r2, r2, r0
+ARM GAS  C:\Temp\cc45AUZC.s 			page 8
+
+
+ 268 0014 C3F80428 		str	r2, [r3, #2052]
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 269              		.loc 1 148 1 view .LVU39
+ 270 0018 7047     		bx	lr
+ 271              	.L23:
+ 272 001a 00BF     		.align	2
+ 273              	.L22:
+ 274 001c 00C00040 		.word	1073790976
+ 275              		.cfi_endproc
+ 276              	.LFE123:
+ 278              		.section	.text.ctc_refsource_prescaler_config,"ax",%progbits
+ 279              		.align	1
+ 280              		.global	ctc_refsource_prescaler_config
+ 281              		.syntax unified
+ 282              		.thumb
+ 283              		.thumb_func
+ 285              	ctc_refsource_prescaler_config:
+ 286              	.LVL6:
+ 287              	.LFB124:
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      configure reference signal source prescaler
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  prescaler:
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below:
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_OFF: reference signal not divided
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_DIV2: reference signal divided by 2
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_DIV4: reference signal divided by 4
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_DIV8: reference signal divided by 8
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_DIV16: reference signal divided by 16
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_DIV32: reference signal divided by 32
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_DIV64: reference signal divided by 64
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_REFSOURCE_PSC_DIV128: reference signal divided by 128
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_refsource_prescaler_config(uint32_t prescaler)
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 288              		.loc 1 166 1 is_stmt 1 view -0
+ 289              		.cfi_startproc
+ 290              		@ args = 0, pretend = 0, frame = 0
+ 291              		@ frame_needed = 0, uses_anonymous_args = 0
+ 292              		@ link register save eliminated.
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 &= (uint32_t)(~CTC_CTL1_REFPSC);
+ 293              		.loc 1 167 5 view .LVU41
+ 294 0000 064B     		ldr	r3, .L25
+ 295 0002 D3F80428 		ldr	r2, [r3, #2052]
+ 296              		.loc 1 167 14 is_stmt 0 view .LVU42
+ 297 0006 22F0E062 		bic	r2, r2, #117440512
+ 298 000a C3F80428 		str	r2, [r3, #2052]
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 |= (uint32_t)prescaler;
+ 299              		.loc 1 168 5 is_stmt 1 view .LVU43
+ 300 000e D3F80428 		ldr	r2, [r3, #2052]
+ 301              		.loc 1 168 14 is_stmt 0 view .LVU44
+ 302 0012 0243     		orrs	r2, r2, r0
+ 303 0014 C3F80428 		str	r2, [r3, #2052]
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 304              		.loc 1 169 1 view .LVU45
+ARM GAS  C:\Temp\cc45AUZC.s 			page 9
+
+
+ 305 0018 7047     		bx	lr
+ 306              	.L26:
+ 307 001a 00BF     		.align	2
+ 308              	.L25:
+ 309 001c 00C00040 		.word	1073790976
+ 310              		.cfi_endproc
+ 311              	.LFE124:
+ 313              		.section	.text.ctc_clock_limit_value_config,"ax",%progbits
+ 314              		.align	1
+ 315              		.global	ctc_clock_limit_value_config
+ 316              		.syntax unified
+ 317              		.thumb
+ 318              		.thumb_func
+ 320              	ctc_clock_limit_value_config:
+ 321              	.LVL7:
+ 322              	.LFB125:
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      configure clock trim base limit value
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  limit_value: 8-bit clock trim base limit value
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        0x00 - 0xFF
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 176:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 177:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 178:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_clock_limit_value_config(uint8_t limit_value)
+ 179:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 323              		.loc 1 179 1 is_stmt 1 view -0
+ 324              		.cfi_startproc
+ 325              		@ args = 0, pretend = 0, frame = 0
+ 326              		@ frame_needed = 0, uses_anonymous_args = 0
+ 327              		@ link register save eliminated.
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 &= (uint32_t)(~CTC_CTL1_CKLIM);
+ 328              		.loc 1 180 5 view .LVU47
+ 329 0000 064B     		ldr	r3, .L28
+ 330 0002 D3F80428 		ldr	r2, [r3, #2052]
+ 331              		.loc 1 180 14 is_stmt 0 view .LVU48
+ 332 0006 22F47F02 		bic	r2, r2, #16711680
+ 333 000a C3F80428 		str	r2, [r3, #2052]
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 |= (uint32_t)((uint32_t)limit_value << CTC_LIMIT_VALUE_OFFSET);
+ 334              		.loc 1 181 5 is_stmt 1 view .LVU49
+ 335 000e D3F80428 		ldr	r2, [r3, #2052]
+ 336              		.loc 1 181 14 is_stmt 0 view .LVU50
+ 337 0012 42EA0042 		orr	r2, r2, r0, lsl #16
+ 338 0016 C3F80428 		str	r2, [r3, #2052]
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 339              		.loc 1 182 1 view .LVU51
+ 340 001a 7047     		bx	lr
+ 341              	.L29:
+ 342              		.align	2
+ 343              	.L28:
+ 344 001c 00C00040 		.word	1073790976
+ 345              		.cfi_endproc
+ 346              	.LFE125:
+ 348              		.section	.text.ctc_counter_reload_value_config,"ax",%progbits
+ 349              		.align	1
+ 350              		.global	ctc_counter_reload_value_config
+ 351              		.syntax unified
+ARM GAS  C:\Temp\cc45AUZC.s 			page 10
+
+
+ 352              		.thumb
+ 353              		.thumb_func
+ 355              	ctc_counter_reload_value_config:
+ 356              	.LVL8:
+ 357              	.LFB126:
+ 183:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 184:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      configure CTC counter reload value
+ 186:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  reload_value: 16-bit CTC counter reload value
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        0x0000 - 0xFFFF
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 191:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_counter_reload_value_config(uint16_t reload_value)
+ 192:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 358              		.loc 1 192 1 is_stmt 1 view -0
+ 359              		.cfi_startproc
+ 360              		@ args = 0, pretend = 0, frame = 0
+ 361              		@ frame_needed = 0, uses_anonymous_args = 0
+ 362              		@ link register save eliminated.
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 &= (uint32_t)(~CTC_CTL1_RLVALUE);
+ 363              		.loc 1 193 5 view .LVU53
+ 364 0000 064A     		ldr	r2, .L31
+ 365 0002 D2F80438 		ldr	r3, [r2, #2052]
+ 366              		.loc 1 193 14 is_stmt 0 view .LVU54
+ 367 0006 1B0C     		lsrs	r3, r3, #16
+ 368 0008 1B04     		lsls	r3, r3, #16
+ 369 000a C2F80438 		str	r3, [r2, #2052]
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL1 |= (uint32_t)reload_value;
+ 370              		.loc 1 194 5 is_stmt 1 view .LVU55
+ 371 000e D2F80438 		ldr	r3, [r2, #2052]
+ 372              		.loc 1 194 14 is_stmt 0 view .LVU56
+ 373 0012 0343     		orrs	r3, r3, r0
+ 374 0014 C2F80438 		str	r3, [r2, #2052]
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 375              		.loc 1 195 1 view .LVU57
+ 376 0018 7047     		bx	lr
+ 377              	.L32:
+ 378 001a 00BF     		.align	2
+ 379              	.L31:
+ 380 001c 00C00040 		.word	1073790976
+ 381              		.cfi_endproc
+ 382              	.LFE126:
+ 384              		.section	.text.ctc_counter_capture_value_read,"ax",%progbits
+ 385              		.align	1
+ 386              		.global	ctc_counter_capture_value_read
+ 387              		.syntax unified
+ 388              		.thumb
+ 389              		.thumb_func
+ 391              	ctc_counter_capture_value_read:
+ 392              	.LFB127:
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 197:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 198:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      read CTC counter capture value when reference sync pulse occurred
+ 199:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+ 200:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 201:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     the 16-bit CTC counter capture value
+ARM GAS  C:\Temp\cc45AUZC.s 			page 11
+
+
+ 202:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** uint16_t ctc_counter_capture_value_read(void)
+ 204:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 393              		.loc 1 204 1 is_stmt 1 view -0
+ 394              		.cfi_startproc
+ 395              		@ args = 0, pretend = 0, frame = 0
+ 396              		@ frame_needed = 0, uses_anonymous_args = 0
+ 397              		@ link register save eliminated.
+ 205:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     uint16_t capture_value = 0U;
+ 398              		.loc 1 205 5 view .LVU59
+ 399              	.LVL9:
+ 206:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     capture_value = (uint16_t)((CTC_STAT & CTC_STAT_REFCAP)>> CTC_REFCAP_OFFSET);
+ 400              		.loc 1 206 5 view .LVU60
+ 401              		.loc 1 206 33 is_stmt 0 view .LVU61
+ 402 0000 024B     		ldr	r3, .L34
+ 403 0002 D3F80808 		ldr	r0, [r3, #2056]
+ 404              	.LVL10:
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     return (capture_value);
+ 405              		.loc 1 207 5 is_stmt 1 view .LVU62
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 406              		.loc 1 208 1 is_stmt 0 view .LVU63
+ 407 0006 000C     		lsrs	r0, r0, #16
+ 408              	.LVL11:
+ 409              		.loc 1 208 1 view .LVU64
+ 410 0008 7047     		bx	lr
+ 411              	.L35:
+ 412 000a 00BF     		.align	2
+ 413              	.L34:
+ 414 000c 00C00040 		.word	1073790976
+ 415              		.cfi_endproc
+ 416              	.LFE127:
+ 418              		.section	.text.ctc_counter_direction_read,"ax",%progbits
+ 419              		.align	1
+ 420              		.global	ctc_counter_direction_read
+ 421              		.syntax unified
+ 422              		.thumb
+ 423              		.thumb_func
+ 425              	ctc_counter_direction_read:
+ 426              	.LFB128:
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 210:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 211:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      read CTC trim counter direction when reference sync pulse occurred
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 214:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     FlagStatus: SET or RESET
+ 215:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        SET: CTC trim counter direction is down-counting
+ 216:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        RESET: CTC trim counter direction is up-counting
+ 217:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 218:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** FlagStatus ctc_counter_direction_read(void)
+ 219:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 427              		.loc 1 219 1 is_stmt 1 view -0
+ 428              		.cfi_startproc
+ 429              		@ args = 0, pretend = 0, frame = 0
+ 430              		@ frame_needed = 0, uses_anonymous_args = 0
+ 431              		@ link register save eliminated.
+ 220:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     if(RESET != (CTC_STAT & CTC_STAT_REFDIR)){
+ 432              		.loc 1 220 5 view .LVU66
+ARM GAS  C:\Temp\cc45AUZC.s 			page 12
+
+
+ 433              		.loc 1 220 18 is_stmt 0 view .LVU67
+ 434 0000 044B     		ldr	r3, .L39
+ 435 0002 D3F80838 		ldr	r3, [r3, #2056]
+ 436              		.loc 1 220 7 view .LVU68
+ 437 0006 13F4004F 		tst	r3, #32768
+ 438 000a 01D0     		beq	.L38
+ 221:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         return SET;
+ 439              		.loc 1 221 16 view .LVU69
+ 440 000c 0120     		movs	r0, #1
+ 441 000e 7047     		bx	lr
+ 442              	.L38:
+ 222:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }else{
+ 223:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         return RESET;
+ 443              		.loc 1 223 16 view .LVU70
+ 444 0010 0020     		movs	r0, #0
+ 224:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 225:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 445              		.loc 1 225 1 view .LVU71
+ 446 0012 7047     		bx	lr
+ 447              	.L40:
+ 448              		.align	2
+ 449              	.L39:
+ 450 0014 00C00040 		.word	1073790976
+ 451              		.cfi_endproc
+ 452              	.LFE128:
+ 454              		.section	.text.ctc_counter_reload_value_read,"ax",%progbits
+ 455              		.align	1
+ 456              		.global	ctc_counter_reload_value_read
+ 457              		.syntax unified
+ 458              		.thumb
+ 459              		.thumb_func
+ 461              	ctc_counter_reload_value_read:
+ 462              	.LFB129:
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      read CTC counter reload value
+ 229:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+ 230:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     the 16-bit CTC counter reload value
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 233:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** uint16_t ctc_counter_reload_value_read(void)
+ 234:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 463              		.loc 1 234 1 is_stmt 1 view -0
+ 464              		.cfi_startproc
+ 465              		@ args = 0, pretend = 0, frame = 0
+ 466              		@ frame_needed = 0, uses_anonymous_args = 0
+ 467              		@ link register save eliminated.
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     uint16_t reload_value = 0U;
+ 468              		.loc 1 235 5 view .LVU73
+ 469              	.LVL12:
+ 236:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     reload_value = (uint16_t)(CTC_CTL1 & CTC_CTL1_RLVALUE);
+ 470              		.loc 1 236 5 view .LVU74
+ 471              		.loc 1 236 31 is_stmt 0 view .LVU75
+ 472 0000 024B     		ldr	r3, .L42
+ 473 0002 D3F80408 		ldr	r0, [r3, #2052]
+ 474              	.LVL13:
+ 237:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     return (reload_value);
+ARM GAS  C:\Temp\cc45AUZC.s 			page 13
+
+
+ 475              		.loc 1 237 5 is_stmt 1 view .LVU76
+ 238:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 476              		.loc 1 238 1 is_stmt 0 view .LVU77
+ 477 0006 80B2     		uxth	r0, r0
+ 478              		.loc 1 238 1 view .LVU78
+ 479 0008 7047     		bx	lr
+ 480              	.L43:
+ 481 000a 00BF     		.align	2
+ 482              	.L42:
+ 483 000c 00C00040 		.word	1073790976
+ 484              		.cfi_endproc
+ 485              	.LFE129:
+ 487              		.section	.text.ctc_irc48m_trim_value_read,"ax",%progbits
+ 488              		.align	1
+ 489              		.global	ctc_irc48m_trim_value_read
+ 490              		.syntax unified
+ 491              		.thumb
+ 492              		.thumb_func
+ 494              	ctc_irc48m_trim_value_read:
+ 495              	.LFB130:
+ 239:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 240:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 241:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      read the IRC48M trim value
+ 242:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  none
+ 243:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 244:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     the 6-bit IRC48M trim value
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** uint8_t ctc_irc48m_trim_value_read(void)
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 496              		.loc 1 247 1 is_stmt 1 view -0
+ 497              		.cfi_startproc
+ 498              		@ args = 0, pretend = 0, frame = 0
+ 499              		@ frame_needed = 0, uses_anonymous_args = 0
+ 500              		@ link register save eliminated.
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     uint8_t trim_value = 0U;
+ 501              		.loc 1 248 5 view .LVU80
+ 502              	.LVL14:
+ 249:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     trim_value = (uint8_t)((CTC_CTL0 & CTC_CTL0_TRIMVALUE) >> CTC_TRIMVALUE_OFFSET);
+ 503              		.loc 1 249 5 view .LVU81
+ 504              		.loc 1 249 29 is_stmt 0 view .LVU82
+ 505 0000 024B     		ldr	r3, .L45
+ 506 0002 D3F80008 		ldr	r0, [r3, #2048]
+ 507              	.LVL15:
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     return (trim_value);
+ 508              		.loc 1 250 5 is_stmt 1 view .LVU83
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 509              		.loc 1 251 1 is_stmt 0 view .LVU84
+ 510 0006 C0F30520 		ubfx	r0, r0, #8, #6
+ 511              	.LVL16:
+ 512              		.loc 1 251 1 view .LVU85
+ 513 000a 7047     		bx	lr
+ 514              	.L46:
+ 515              		.align	2
+ 516              	.L45:
+ 517 000c 00C00040 		.word	1073790976
+ 518              		.cfi_endproc
+ 519              	.LFE130:
+ARM GAS  C:\Temp\cc45AUZC.s 			page 14
+
+
+ 521              		.section	.text.ctc_flag_get,"ax",%progbits
+ 522              		.align	1
+ 523              		.global	ctc_flag_get
+ 524              		.syntax unified
+ 525              		.thumb
+ 526              		.thumb_func
+ 528              	ctc_flag_get:
+ 529              	.LVL17:
+ 530              	.LFB131:
+ 252:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 253:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 254:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      get CTC flag
+ 255:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  flag: the CTC flag
+ 256:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below: 
+ 257:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_CKOK: clock trim OK flag
+ 258:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_CKWARN: clock trim warning flag 
+ 259:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_ERR: error flag 
+ 260:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_EREF: expect reference flag
+ 261:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_CKERR: clock trim error bit
+ 262:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_REFMISS: reference sync pulse miss
+ 263:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_TRIMERR: trim value error bit
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     FlagStatus: SET or RESET
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 267:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** FlagStatus ctc_flag_get(uint32_t flag)
+ 268:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 531              		.loc 1 268 1 is_stmt 1 view -0
+ 532              		.cfi_startproc
+ 533              		@ args = 0, pretend = 0, frame = 0
+ 534              		@ frame_needed = 0, uses_anonymous_args = 0
+ 535              		@ link register save eliminated.
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     if(RESET != (CTC_STAT & flag)){
+ 536              		.loc 1 269 5 view .LVU87
+ 537              		.loc 1 269 18 is_stmt 0 view .LVU88
+ 538 0000 044B     		ldr	r3, .L50
+ 539 0002 D3F80838 		ldr	r3, [r3, #2056]
+ 540              		.loc 1 269 7 view .LVU89
+ 541 0006 0342     		tst	r3, r0
+ 542 0008 01D0     		beq	.L49
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         return SET;
+ 543              		.loc 1 270 16 view .LVU90
+ 544 000a 0120     		movs	r0, #1
+ 545              	.LVL18:
+ 546              		.loc 1 270 16 view .LVU91
+ 547 000c 7047     		bx	lr
+ 548              	.LVL19:
+ 549              	.L49:
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }else{
+ 272:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         return RESET;
+ 550              		.loc 1 272 16 view .LVU92
+ 551 000e 0020     		movs	r0, #0
+ 552              	.LVL20:
+ 273:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 274:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 553              		.loc 1 274 1 view .LVU93
+ 554 0010 7047     		bx	lr
+ 555              	.L51:
+ARM GAS  C:\Temp\cc45AUZC.s 			page 15
+
+
+ 556 0012 00BF     		.align	2
+ 557              	.L50:
+ 558 0014 00C00040 		.word	1073790976
+ 559              		.cfi_endproc
+ 560              	.LFE131:
+ 562              		.section	.text.ctc_flag_clear,"ax",%progbits
+ 563              		.align	1
+ 564              		.global	ctc_flag_clear
+ 565              		.syntax unified
+ 566              		.thumb
+ 567              		.thumb_func
+ 569              	ctc_flag_clear:
+ 570              	.LVL21:
+ 571              	.LFB132:
+ 275:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 276:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 277:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      clear CTC flag
+ 278:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  flag: the CTC flag
+ 279:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below:
+ 280:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_CKOK: clock trim OK flag
+ 281:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_CKWARN: clock trim warning flag 
+ 282:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_ERR: error flag 
+ 283:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_EREF: expect reference flag
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_CKERR: clock trim error bit
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_REFMISS: reference sync pulse miss
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_FLAG_TRIMERR: trim value error bit
+ 287:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 288:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_flag_clear(uint32_t flag)
+ 291:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 572              		.loc 1 291 1 is_stmt 1 view -0
+ 573              		.cfi_startproc
+ 574              		@ args = 0, pretend = 0, frame = 0
+ 575              		@ frame_needed = 0, uses_anonymous_args = 0
+ 576              		@ link register save eliminated.
+ 292:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     if(RESET != (flag & CTC_FLAG_MASK)){
+ 577              		.loc 1 292 5 view .LVU95
+ 578              		.loc 1 292 7 is_stmt 0 view .LVU96
+ 579 0000 10F4E06F 		tst	r0, #1792
+ 580 0004 07D0     		beq	.L53
+ 293:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         CTC_INTC |= CTC_INTC_ERRIC;
+ 581              		.loc 1 293 9 is_stmt 1 view .LVU97
+ 582 0006 074A     		ldr	r2, .L55
+ 583 0008 D2F80C38 		ldr	r3, [r2, #2060]
+ 584              		.loc 1 293 18 is_stmt 0 view .LVU98
+ 585 000c 43F00403 		orr	r3, r3, #4
+ 586 0010 C2F80C38 		str	r3, [r2, #2060]
+ 587 0014 7047     		bx	lr
+ 588              	.L53:
+ 294:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }else{
+ 295:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         CTC_INTC |= flag;
+ 589              		.loc 1 295 9 is_stmt 1 view .LVU99
+ 590 0016 034A     		ldr	r2, .L55
+ 591 0018 D2F80C38 		ldr	r3, [r2, #2060]
+ 592              		.loc 1 295 18 is_stmt 0 view .LVU100
+ 593 001c 0343     		orrs	r3, r3, r0
+ARM GAS  C:\Temp\cc45AUZC.s 			page 16
+
+
+ 594 001e C2F80C38 		str	r3, [r2, #2060]
+ 296:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 297:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 595              		.loc 1 297 1 view .LVU101
+ 596 0022 7047     		bx	lr
+ 597              	.L56:
+ 598              		.align	2
+ 599              	.L55:
+ 600 0024 00C00040 		.word	1073790976
+ 601              		.cfi_endproc
+ 602              	.LFE132:
+ 604              		.section	.text.ctc_interrupt_enable,"ax",%progbits
+ 605              		.align	1
+ 606              		.global	ctc_interrupt_enable
+ 607              		.syntax unified
+ 608              		.thumb
+ 609              		.thumb_func
+ 611              	ctc_interrupt_enable:
+ 612              	.LVL22:
+ 613              	.LFB133:
+ 298:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 299:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 300:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      enable the CTC interrupt
+ 301:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  interrupt: CTC interrupt enable
+ 302:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 one or more parameters can be selected which are shown as below:
+ 303:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_CKOK: clock trim OK interrupt enable
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_CKWARN: clock trim warning interrupt enable
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_ERR: error interrupt enable
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_EREF: expect reference interrupt enable
+ 307:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 308:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_interrupt_enable(uint32_t interrupt)
+ 311:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 614              		.loc 1 311 1 is_stmt 1 view -0
+ 615              		.cfi_startproc
+ 616              		@ args = 0, pretend = 0, frame = 0
+ 617              		@ frame_needed = 0, uses_anonymous_args = 0
+ 618              		@ link register save eliminated.
+ 312:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 |= (uint32_t)interrupt; 
+ 619              		.loc 1 312 5 view .LVU103
+ 620 0000 034A     		ldr	r2, .L58
+ 621 0002 D2F80038 		ldr	r3, [r2, #2048]
+ 622              		.loc 1 312 14 is_stmt 0 view .LVU104
+ 623 0006 0343     		orrs	r3, r3, r0
+ 624 0008 C2F80038 		str	r3, [r2, #2048]
+ 313:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 625              		.loc 1 313 1 view .LVU105
+ 626 000c 7047     		bx	lr
+ 627              	.L59:
+ 628 000e 00BF     		.align	2
+ 629              	.L58:
+ 630 0010 00C00040 		.word	1073790976
+ 631              		.cfi_endproc
+ 632              	.LFE133:
+ 634              		.section	.text.ctc_interrupt_disable,"ax",%progbits
+ 635              		.align	1
+ARM GAS  C:\Temp\cc45AUZC.s 			page 17
+
+
+ 636              		.global	ctc_interrupt_disable
+ 637              		.syntax unified
+ 638              		.thumb
+ 639              		.thumb_func
+ 641              	ctc_interrupt_disable:
+ 642              	.LVL23:
+ 643              	.LFB134:
+ 314:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 315:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 316:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      disable the CTC interrupt
+ 317:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  interrupt: CTC interrupt enable source
+ 318:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 one or more parameters can be selected which are shown as below:
+ 319:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_CKOK: clock trim OK interrupt enable
+ 320:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_CKWARN: clock trim warning interrupt enable
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_ERR: error interrupt enable
+ 322:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_EREF: expect reference interrupt enable
+ 323:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_interrupt_disable(uint32_t interrupt)
+ 327:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 644              		.loc 1 327 1 is_stmt 1 view -0
+ 645              		.cfi_startproc
+ 646              		@ args = 0, pretend = 0, frame = 0
+ 647              		@ frame_needed = 0, uses_anonymous_args = 0
+ 648              		@ link register save eliminated.
+ 328:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     CTC_CTL0 &= (uint32_t)(~interrupt); 
+ 649              		.loc 1 328 5 view .LVU107
+ 650 0000 034A     		ldr	r2, .L61
+ 651 0002 D2F80038 		ldr	r3, [r2, #2048]
+ 652              		.loc 1 328 14 is_stmt 0 view .LVU108
+ 653 0006 23EA0003 		bic	r3, r3, r0
+ 654 000a C2F80038 		str	r3, [r2, #2048]
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 655              		.loc 1 329 1 view .LVU109
+ 656 000e 7047     		bx	lr
+ 657              	.L62:
+ 658              		.align	2
+ 659              	.L61:
+ 660 0010 00C00040 		.word	1073790976
+ 661              		.cfi_endproc
+ 662              	.LFE134:
+ 664              		.section	.text.ctc_interrupt_flag_get,"ax",%progbits
+ 665              		.align	1
+ 666              		.global	ctc_interrupt_flag_get
+ 667              		.syntax unified
+ 668              		.thumb
+ 669              		.thumb_func
+ 671              	ctc_interrupt_flag_get:
+ 672              	.LVL24:
+ 673              	.LFB135:
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 331:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 332:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      get CTC interrupt flag
+ 333:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  int_flag: the CTC interrupt flag
+ 334:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below:
+ 335:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_CKOK: clock trim OK interrupt
+ARM GAS  C:\Temp\cc45AUZC.s 			page 18
+
+
+ 336:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_CKWARN: clock trim warning interrupt 
+ 337:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_ERR: error interrupt 
+ 338:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_EREF: expect reference interrupt
+ 339:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_CKERR: clock trim error bit interrupt
+ 340:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_REFMISS: reference sync pulse miss interrupt 
+ 341:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_TRIMERR: trim value error interrupt
+ 342:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     FlagStatus: SET or RESET
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** FlagStatus ctc_interrupt_flag_get(uint32_t int_flag)
+ 346:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 674              		.loc 1 346 1 is_stmt 1 view -0
+ 675              		.cfi_startproc
+ 676              		@ args = 0, pretend = 0, frame = 0
+ 677              		@ frame_needed = 0, uses_anonymous_args = 0
+ 678              		@ link register save eliminated.
+ 347:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     uint32_t interrupt_flag = 0U, intenable = 0U;
+ 679              		.loc 1 347 5 view .LVU111
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     /* check whether the interrupt is enabled */
+ 350:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     if(RESET != (int_flag & CTC_FLAG_MASK)){
+ 680              		.loc 1 350 5 view .LVU112
+ 681              		.loc 1 350 7 is_stmt 0 view .LVU113
+ 682 0000 10F4E06F 		tst	r0, #1792
+ 683 0004 0CD0     		beq	.L64
+ 351:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         intenable = CTC_CTL0 & CTC_CTL0_ERRIE;
+ 684              		.loc 1 351 9 is_stmt 1 view .LVU114
+ 685              		.loc 1 351 21 is_stmt 0 view .LVU115
+ 686 0006 0B4B     		ldr	r3, .L69
+ 687 0008 D3F80038 		ldr	r3, [r3, #2048]
+ 688              		.loc 1 351 19 view .LVU116
+ 689 000c 03F00403 		and	r3, r3, #4
+ 690              	.LVL25:
+ 691              	.L65:
+ 352:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }else{
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         intenable = CTC_CTL0 & int_flag;
+ 354:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 355:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     
+ 356:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     /* get interrupt flag status */
+ 357:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     interrupt_flag = CTC_STAT & int_flag;
+ 692              		.loc 1 357 5 is_stmt 1 view .LVU117
+ 693              		.loc 1 357 22 is_stmt 0 view .LVU118
+ 694 0010 084A     		ldr	r2, .L69
+ 695 0012 D2F80828 		ldr	r2, [r2, #2056]
+ 696              	.LVL26:
+ 358:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 359:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     if(interrupt_flag && intenable){
+ 697              		.loc 1 359 5 is_stmt 1 view .LVU119
+ 698              		.loc 1 359 7 is_stmt 0 view .LVU120
+ 699 0016 0242     		tst	r2, r0
+ 700 0018 07D0     		beq	.L67
+ 701              		.loc 1 359 23 discriminator 1 view .LVU121
+ 702 001a 43B9     		cbnz	r3, .L68
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         return SET;
+ 361:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }else{
+ 362:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         return RESET;
+ 703              		.loc 1 362 16 view .LVU122
+ARM GAS  C:\Temp\cc45AUZC.s 			page 19
+
+
+ 704 001c 0020     		movs	r0, #0
+ 705              	.LVL27:
+ 706              		.loc 1 362 16 view .LVU123
+ 707 001e 7047     		bx	lr
+ 708              	.LVL28:
+ 709              	.L64:
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 710              		.loc 1 353 9 is_stmt 1 view .LVU124
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 711              		.loc 1 353 21 is_stmt 0 view .LVU125
+ 712 0020 044B     		ldr	r3, .L69
+ 713 0022 D3F80038 		ldr	r3, [r3, #2048]
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 714              		.loc 1 353 19 view .LVU126
+ 715 0026 0340     		ands	r3, r3, r0
+ 716              	.LVL29:
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 717              		.loc 1 353 19 view .LVU127
+ 718 0028 F2E7     		b	.L65
+ 719              	.LVL30:
+ 720              	.L67:
+ 721              		.loc 1 362 16 view .LVU128
+ 722 002a 0020     		movs	r0, #0
+ 723              	.LVL31:
+ 724              		.loc 1 362 16 view .LVU129
+ 725 002c 7047     		bx	lr
+ 726              	.LVL32:
+ 727              	.L68:
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         return SET;
+ 728              		.loc 1 360 16 view .LVU130
+ 729 002e 0120     		movs	r0, #1
+ 730              	.LVL33:
+ 363:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 364:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 731              		.loc 1 364 1 view .LVU131
+ 732 0030 7047     		bx	lr
+ 733              	.L70:
+ 734 0032 00BF     		.align	2
+ 735              	.L69:
+ 736 0034 00C00040 		.word	1073790976
+ 737              		.cfi_endproc
+ 738              	.LFE135:
+ 740              		.section	.text.ctc_interrupt_flag_clear,"ax",%progbits
+ 741              		.align	1
+ 742              		.global	ctc_interrupt_flag_clear
+ 743              		.syntax unified
+ 744              		.thumb
+ 745              		.thumb_func
+ 747              	ctc_interrupt_flag_clear:
+ 748              	.LVL34:
+ 749              	.LFB136:
+ 365:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** 
+ 366:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** /*!
+ 367:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \brief      clear CTC interrupt flag
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[in]  int_flag: the CTC interrupt flag
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****                 only one parameter can be selected which is shown as below:
+ 370:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_CKOK: clock trim OK interrupt
+ARM GAS  C:\Temp\cc45AUZC.s 			page 20
+
+
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_CKWARN: clock trim warning interrupt 
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_ERR: error interrupt 
+ 373:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_EREF: expect reference interrupt 
+ 374:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_CKERR: clock trim error bit interrupt
+ 375:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_REFMISS: reference sync pulse miss interrupt 
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****       \arg        CTC_INT_FLAG_TRIMERR: trim value error interrupt
+ 377:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \param[out] none
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     \retval     none
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** */ 
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** void ctc_interrupt_flag_clear(uint32_t int_flag)
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** {
+ 750              		.loc 1 381 1 is_stmt 1 view -0
+ 751              		.cfi_startproc
+ 752              		@ args = 0, pretend = 0, frame = 0
+ 753              		@ frame_needed = 0, uses_anonymous_args = 0
+ 754              		@ link register save eliminated.
+ 382:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     if(RESET != (int_flag & CTC_FLAG_MASK)){
+ 755              		.loc 1 382 5 view .LVU133
+ 756              		.loc 1 382 7 is_stmt 0 view .LVU134
+ 757 0000 10F4E06F 		tst	r0, #1792
+ 758 0004 07D0     		beq	.L72
+ 383:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         CTC_INTC |= CTC_INTC_ERRIC;
+ 759              		.loc 1 383 9 is_stmt 1 view .LVU135
+ 760 0006 074A     		ldr	r2, .L74
+ 761 0008 D2F80C38 		ldr	r3, [r2, #2060]
+ 762              		.loc 1 383 18 is_stmt 0 view .LVU136
+ 763 000c 43F00403 		orr	r3, r3, #4
+ 764 0010 C2F80C38 		str	r3, [r2, #2060]
+ 765 0014 7047     		bx	lr
+ 766              	.L72:
+ 384:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }else{
+ 385:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****         CTC_INTC |= int_flag;
+ 767              		.loc 1 385 9 is_stmt 1 view .LVU137
+ 768 0016 034A     		ldr	r2, .L74
+ 769 0018 D2F80C38 		ldr	r3, [r2, #2060]
+ 770              		.loc 1 385 18 is_stmt 0 view .LVU138
+ 771 001c 0343     		orrs	r3, r3, r0
+ 772 001e C2F80C38 		str	r3, [r2, #2060]
+ 386:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c ****     }
+ 387:./GD32F30x_standard_peripheral/Source/gd32f30x_ctc.c **** }
+ 773              		.loc 1 387 1 view .LVU139
+ 774 0022 7047     		bx	lr
+ 775              	.L75:
+ 776              		.align	2
+ 777              	.L74:
+ 778 0024 00C00040 		.word	1073790976
+ 779              		.cfi_endproc
+ 780              	.LFE136:
+ 782              		.text
+ 783              	.Letext0:
+ 784              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 785              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 786              		.file 4 "CMSIS/GD/GD32F30x/Include/gd32f30x.h"
+ 787              		.file 5 "GD32F30x_standard_peripheral/Include/gd32f30x_rcu.h"
+ARM GAS  C:\Temp\cc45AUZC.s 			page 21
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_ctc.c
+  C:\Temp\cc45AUZC.s:21     .text.ctc_deinit:00000000 $t
+  C:\Temp\cc45AUZC.s:27     .text.ctc_deinit:00000000 ctc_deinit
+  C:\Temp\cc45AUZC.s:52     .text.ctc_counter_enable:00000000 $t
+  C:\Temp\cc45AUZC.s:58     .text.ctc_counter_enable:00000000 ctc_counter_enable
+  C:\Temp\cc45AUZC.s:76     .text.ctc_counter_enable:00000010 $d
+  C:\Temp\cc45AUZC.s:81     .text.ctc_counter_disable:00000000 $t
+  C:\Temp\cc45AUZC.s:87     .text.ctc_counter_disable:00000000 ctc_counter_disable
+  C:\Temp\cc45AUZC.s:105    .text.ctc_counter_disable:00000010 $d
+  C:\Temp\cc45AUZC.s:110    .text.ctc_irc48m_trim_value_config:00000000 $t
+  C:\Temp\cc45AUZC.s:116    .text.ctc_irc48m_trim_value_config:00000000 ctc_irc48m_trim_value_config
+  C:\Temp\cc45AUZC.s:140    .text.ctc_irc48m_trim_value_config:0000001c $d
+  C:\Temp\cc45AUZC.s:145    .text.ctc_software_refsource_pulse_generate:00000000 $t
+  C:\Temp\cc45AUZC.s:151    .text.ctc_software_refsource_pulse_generate:00000000 ctc_software_refsource_pulse_generate
+  C:\Temp\cc45AUZC.s:169    .text.ctc_software_refsource_pulse_generate:00000010 $d
+  C:\Temp\cc45AUZC.s:174    .text.ctc_hardware_trim_mode_config:00000000 $t
+  C:\Temp\cc45AUZC.s:180    .text.ctc_hardware_trim_mode_config:00000000 ctc_hardware_trim_mode_config
+  C:\Temp\cc45AUZC.s:204    .text.ctc_hardware_trim_mode_config:0000001c $d
+  C:\Temp\cc45AUZC.s:209    .text.ctc_refsource_polarity_config:00000000 $t
+  C:\Temp\cc45AUZC.s:215    .text.ctc_refsource_polarity_config:00000000 ctc_refsource_polarity_config
+  C:\Temp\cc45AUZC.s:239    .text.ctc_refsource_polarity_config:0000001c $d
+  C:\Temp\cc45AUZC.s:244    .text.ctc_refsource_signal_select:00000000 $t
+  C:\Temp\cc45AUZC.s:250    .text.ctc_refsource_signal_select:00000000 ctc_refsource_signal_select
+  C:\Temp\cc45AUZC.s:274    .text.ctc_refsource_signal_select:0000001c $d
+  C:\Temp\cc45AUZC.s:279    .text.ctc_refsource_prescaler_config:00000000 $t
+  C:\Temp\cc45AUZC.s:285    .text.ctc_refsource_prescaler_config:00000000 ctc_refsource_prescaler_config
+  C:\Temp\cc45AUZC.s:309    .text.ctc_refsource_prescaler_config:0000001c $d
+  C:\Temp\cc45AUZC.s:314    .text.ctc_clock_limit_value_config:00000000 $t
+  C:\Temp\cc45AUZC.s:320    .text.ctc_clock_limit_value_config:00000000 ctc_clock_limit_value_config
+  C:\Temp\cc45AUZC.s:344    .text.ctc_clock_limit_value_config:0000001c $d
+  C:\Temp\cc45AUZC.s:349    .text.ctc_counter_reload_value_config:00000000 $t
+  C:\Temp\cc45AUZC.s:355    .text.ctc_counter_reload_value_config:00000000 ctc_counter_reload_value_config
+  C:\Temp\cc45AUZC.s:380    .text.ctc_counter_reload_value_config:0000001c $d
+  C:\Temp\cc45AUZC.s:385    .text.ctc_counter_capture_value_read:00000000 $t
+  C:\Temp\cc45AUZC.s:391    .text.ctc_counter_capture_value_read:00000000 ctc_counter_capture_value_read
+  C:\Temp\cc45AUZC.s:414    .text.ctc_counter_capture_value_read:0000000c $d
+  C:\Temp\cc45AUZC.s:419    .text.ctc_counter_direction_read:00000000 $t
+  C:\Temp\cc45AUZC.s:425    .text.ctc_counter_direction_read:00000000 ctc_counter_direction_read
+  C:\Temp\cc45AUZC.s:450    .text.ctc_counter_direction_read:00000014 $d
+  C:\Temp\cc45AUZC.s:455    .text.ctc_counter_reload_value_read:00000000 $t
+  C:\Temp\cc45AUZC.s:461    .text.ctc_counter_reload_value_read:00000000 ctc_counter_reload_value_read
+  C:\Temp\cc45AUZC.s:483    .text.ctc_counter_reload_value_read:0000000c $d
+  C:\Temp\cc45AUZC.s:488    .text.ctc_irc48m_trim_value_read:00000000 $t
+  C:\Temp\cc45AUZC.s:494    .text.ctc_irc48m_trim_value_read:00000000 ctc_irc48m_trim_value_read
+  C:\Temp\cc45AUZC.s:517    .text.ctc_irc48m_trim_value_read:0000000c $d
+  C:\Temp\cc45AUZC.s:522    .text.ctc_flag_get:00000000 $t
+  C:\Temp\cc45AUZC.s:528    .text.ctc_flag_get:00000000 ctc_flag_get
+  C:\Temp\cc45AUZC.s:558    .text.ctc_flag_get:00000014 $d
+  C:\Temp\cc45AUZC.s:563    .text.ctc_flag_clear:00000000 $t
+  C:\Temp\cc45AUZC.s:569    .text.ctc_flag_clear:00000000 ctc_flag_clear
+  C:\Temp\cc45AUZC.s:600    .text.ctc_flag_clear:00000024 $d
+  C:\Temp\cc45AUZC.s:605    .text.ctc_interrupt_enable:00000000 $t
+  C:\Temp\cc45AUZC.s:611    .text.ctc_interrupt_enable:00000000 ctc_interrupt_enable
+  C:\Temp\cc45AUZC.s:630    .text.ctc_interrupt_enable:00000010 $d
+  C:\Temp\cc45AUZC.s:635    .text.ctc_interrupt_disable:00000000 $t
+  C:\Temp\cc45AUZC.s:641    .text.ctc_interrupt_disable:00000000 ctc_interrupt_disable
+ARM GAS  C:\Temp\cc45AUZC.s 			page 22
+
+
+  C:\Temp\cc45AUZC.s:660    .text.ctc_interrupt_disable:00000010 $d
+  C:\Temp\cc45AUZC.s:665    .text.ctc_interrupt_flag_get:00000000 $t
+  C:\Temp\cc45AUZC.s:671    .text.ctc_interrupt_flag_get:00000000 ctc_interrupt_flag_get
+  C:\Temp\cc45AUZC.s:736    .text.ctc_interrupt_flag_get:00000034 $d
+  C:\Temp\cc45AUZC.s:741    .text.ctc_interrupt_flag_clear:00000000 $t
+  C:\Temp\cc45AUZC.s:747    .text.ctc_interrupt_flag_clear:00000000 ctc_interrupt_flag_clear
+  C:\Temp\cc45AUZC.s:778    .text.ctc_interrupt_flag_clear:00000024 $d
+
+UNDEFINED SYMBOLS
+rcu_periph_reset_enable
+rcu_periph_reset_disable

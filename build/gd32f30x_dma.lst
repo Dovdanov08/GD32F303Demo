@@ -1,0 +1,2942 @@
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_dma.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c"
+  20              		.section	.text.dma_periph_and_channel_check,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	dma_periph_and_channel_check:
+  27              	.LVL0:
+  28              	.LFB143:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \file    gd32f30x_dma.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief   DMA driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 2
+
+
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** #include "gd32f30x_dma.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** #include <stdlib.h>
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** #define DMA_WRONG_HANDLE        while(1){}
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /* check whether peripheral matches channels or not */
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** static ErrStatus dma_periph_and_channel_check(uint32_t dma_periph, dma_channel_enum channelx);
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      deinitialize DMA a channel registers 
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel is deinitialized
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_deinit(uint32_t dma_periph, dma_channel_enum channelx)
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* disable DMA a channel */
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_CHEN;
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* reset DMA channel registers */
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = DMA_CHCTL_RESET_VALUE;
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCNT(dma_periph, channelx) = DMA_CHCNT_RESET_VALUE;
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHPADDR(dma_periph, channelx) = DMA_CHPADDR_RESET_VALUE;
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHMADDR(dma_periph, channelx) = DMA_CHMADDR_RESET_VALUE;
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_INTC(dma_periph) |= DMA_FLAG_ADD(DMA_CHINTF_RESET_VALUE, channelx);
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      initialize the parameters of DMA struct with the default values
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  init_struct: the initialization data needed to initialize DMA channel
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_struct_para_init(dma_parameter_struct* init_struct)
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(NULL == init_struct){
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* set the DMA struct with the default values */
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->periph_addr  = 0U;
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->periph_width = 0U; 
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->periph_inc   = DMA_PERIPH_INCREASE_DISABLE;
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_addr  = 0U;
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_width = 0U;
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_inc   = DMA_MEMORY_INCREASE_DISABLE;
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 3
+
+
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->number       = 0U;
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->direction    = DMA_PERIPHERAL_TO_MEMORY;
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->priority     = DMA_PRIORITY_LOW;
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      initialize DMA channel
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel is initialized
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  init_struct: the data needed to initialize DMA channel
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   periph_addr: peripheral base address
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   periph_width: DMA_PERIPHERAL_WIDTH_8BIT, DMA_PERIPHERAL_WIDTH_16BIT, DMA_PERIPHER
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   periph_inc: DMA_PERIPH_INCREASE_ENABLE, DMA_PERIPH_INCREASE_DISABLE 
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   memory_addr: memory base address
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   memory_width: DMA_MEMORY_WIDTH_8BIT, DMA_MEMORY_WIDTH_16BIT, DMA_MEMORY_WIDTH_32B
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   memory_inc: DMA_MEMORY_INCREASE_ENABLE, DMA_MEMORY_INCREASE_DISABLE
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   direction: DMA_PERIPHERAL_TO_MEMORY, DMA_MEMORY_TO_PERIPHERAL
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   number: the number of remaining data to be transferred by the DMA
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                   priority: DMA_PRIORITY_LOW, DMA_PRIORITY_MEDIUM, DMA_PRIORITY_HIGH, DMA_PRIORITY_
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_init(uint32_t dma_periph, dma_channel_enum channelx, dma_parameter_struct* init_struct)
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* configure peripheral base address */
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHPADDR(dma_periph, channelx) = init_struct->periph_addr;
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* configure memory base address */
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHMADDR(dma_periph, channelx) = init_struct->memory_addr;
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* configure the number of remaining data to be transferred */
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCNT(dma_periph, channelx) = (init_struct->number & DMA_CHANNEL_CNT_MASK);
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* configure peripheral transfer width,memory transfer width and priority */
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl = DMA_CHCTL(dma_periph, channelx);
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl &= ~(DMA_CHXCTL_PWIDTH | DMA_CHXCTL_MWIDTH | DMA_CHXCTL_PRIO);
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= (init_struct->periph_width | init_struct->memory_width | init_struct->priority);
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* configure peripheral increasing mode */
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(DMA_PERIPH_INCREASE_ENABLE == init_struct->periph_inc){
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_PNAGA;
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_PNAGA;
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* configure memory increasing mode */
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(DMA_MEMORY_INCREASE_ENABLE == init_struct->memory_inc){
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 4
+
+
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_MNAGA;
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_MNAGA;
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* configure the direction of data transfer */
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(DMA_PERIPHERAL_TO_MEMORY == init_struct->direction){
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_DIR;
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_DIR;
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      enable DMA circulation mode  
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none 
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_circulation_enable(uint32_t dma_periph, dma_channel_enum channelx)
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_CMEN;
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 176:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 177:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 178:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      disable DMA circulation mode  
+ 179:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 183:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 184:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none 
+ 186:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_circulation_disable(uint32_t dma_periph, dma_channel_enum channelx)
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 191:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 192:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_CMEN;
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 197:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      enable memory to memory mode
+ 198:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 199:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 200:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 201:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 5
+
+
+ 202:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 204:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 205:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 206:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_memory_to_memory_enable(uint32_t dma_periph, dma_channel_enum channelx)
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 210:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 211:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_M2M;
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 214:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 215:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 216:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      disable memory to memory mode
+ 217:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 218:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 219:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 220:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 221:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 222:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 223:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 224:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 225:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_memory_to_memory_disable(uint32_t dma_periph, dma_channel_enum channelx)
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 229:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 230:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_M2M;
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 233:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 234:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      enable DMA channel 
+ 236:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 237:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 238:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 239:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 240:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 241:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 242:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none 
+ 243:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 244:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_channel_enable(uint32_t dma_periph, dma_channel_enum channelx)
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 249:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_CHEN;
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 252:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 253:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 254:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      disable DMA channel 
+ 255:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 256:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 257:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 258:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 6
+
+
+ 259:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 260:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 261:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none 
+ 262:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 263:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_channel_disable(uint32_t dma_periph, dma_channel_enum channelx)
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 267:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 268:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_CHEN;
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 272:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 273:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      set DMA peripheral base address  
+ 274:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 275:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 276:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to set peripheral base address 
+ 277:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 278:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 279:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  address: peripheral base address
+ 280:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 281:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none 
+ 282:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 283:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_periph_address_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t address)
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 287:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 288:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHPADDR(dma_periph, channelx) = address;
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 291:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 292:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 293:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      set DMA memory base address  
+ 294:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 295:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 296:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to set memory base address 
+ 297:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 298:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 299:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  address: memory base address
+ 300:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 301:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 302:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 303:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_memory_address_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t address)
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 307:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 308:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHMADDR(dma_periph, channelx) = address;
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 311:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 312:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 313:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      set the number of remaining data to be transferred by the DMA 
+ 314:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 315:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 7
+
+
+ 316:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to set number 
+ 317:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 318:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 319:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  number: the number of remaining data to be transferred by the DMA
+ 320:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 322:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 323:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_transfer_number_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t number)
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 327:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 328:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCNT(dma_periph, channelx) = (number & DMA_CHANNEL_CNT_MASK);
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 331:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 332:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 333:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      get the number of remaining data to be transferred by the DMA  
+ 334:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 335:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 336:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to set number 
+ 337:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 338:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 339:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 340:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     uint32_t: the number of remaining data to be transferred by the DMA
+ 341:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 342:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** uint32_t dma_transfer_number_get(uint32_t dma_periph, dma_channel_enum channelx)
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 346:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 347:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     return (uint32_t)DMA_CHCNT(dma_periph, channelx);
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 350:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 351:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 352:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      configure priority level of DMA channel 
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 354:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 355:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 356:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 357:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 358:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  priority: priority Level of this channel
+ 359:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PRIORITY_LOW: low priority
+ 361:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PRIORITY_MEDIUM: medium priority
+ 362:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PRIORITY_HIGH: high priority
+ 363:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PRIORITY_ULTRA_HIGH: ultra high priority
+ 364:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 365:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 366:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 367:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_priority_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t priority)
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 370:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 8
+
+
+ 373:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 374:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 375:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* acquire DMA_CHxCTL register */
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl = DMA_CHCTL(dma_periph, channelx);
+ 377:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl &= ~DMA_CHXCTL_PRIO;
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= priority;
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 382:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 383:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 384:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      configure transfer data size of memory 
+ 385:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 386:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 387:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 388:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  mwidth: transfer data width of memory
+ 391:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 392:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_MEMORY_WIDTH_8BIT: transfer data width of memory is 8-bit
+ 393:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_MEMORY_WIDTH_16BIT: transfer data width of memory is 16-bit
+ 394:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_MEMORY_WIDTH_32BIT: transfer data width of memory is 32-bit
+ 395:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 398:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_memory_width_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t mwidth)
+ 399:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 400:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 401:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 404:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 405:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 406:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* acquire DMA_CHxCTL register */
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl = DMA_CHCTL(dma_periph, channelx);
+ 408:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 409:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl &= ~DMA_CHXCTL_MWIDTH;
+ 410:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= mwidth;
+ 411:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 412:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 413:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 414:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 415:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      configure transfer data size of peripheral 
+ 416:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 417:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 418:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 419:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 420:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 421:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  pwidth: transfer data width of peripheral
+ 422:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 423:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PERIPHERAL_WIDTH_8BIT: transfer data width of peripheral is 8-bit
+ 424:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PERIPHERAL_WIDTH_16BIT: transfer data width of peripheral is 16-bit
+ 425:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PERIPHERAL_WIDTH_32BIT: transfer data width of peripheral is 32-bit
+ 426:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 427:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 428:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 429:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_periph_width_config (uint32_t dma_periph, dma_channel_enum channelx, uint32_t pwidth)
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 9
+
+
+ 430:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 431:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 432:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 435:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 436:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 437:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* acquire DMA_CHxCTL register */
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl = DMA_CHCTL(dma_periph, channelx);
+ 439:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 440:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl &= ~DMA_CHXCTL_PWIDTH;
+ 441:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= pwidth;
+ 442:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 443:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 444:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 445:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 446:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      enable next address increasement algorithm of memory  
+ 447:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 448:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 449:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 450:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 451:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 452:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 453:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 454:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 455:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_memory_increase_enable(uint32_t dma_periph, dma_channel_enum channelx)
+ 456:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 459:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 460:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 461:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_MNAGA;
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 464:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 465:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      disable next address increasement algorithm of memory  
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 468:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 469:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 472:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 473:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 474:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_memory_increase_disable(uint32_t dma_periph, dma_channel_enum channelx)
+ 475:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 478:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 479:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 480:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_MNAGA;
+ 481:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 482:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 483:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 484:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      enable next address increasement algorithm of peripheral
+ 485:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 486:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 10
+
+
+ 487:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 488:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 489:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 490:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 491:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 492:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 493:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_periph_increase_enable(uint32_t dma_periph, dma_channel_enum channelx)
+ 494:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 497:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 498:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 499:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_PNAGA;
+ 500:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 501:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 502:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 503:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      disable next address increasement algorithm of peripheral 
+ 504:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 505:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 506:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 507:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 508:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 509:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 510:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 511:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 512:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_periph_increase_disable(uint32_t dma_periph, dma_channel_enum channelx)
+ 513:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 516:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 517:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 518:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_PNAGA;
+ 519:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 520:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 521:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 522:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      configure the direction of data transfer on the channel  
+ 523:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 524:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 525:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 526:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 527:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 528:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  direction: specify the direction of data transfer
+ 529:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 530:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_PERIPHERAL_TO_MEMORY: read from peripheral and write to memory
+ 531:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_MEMORY_TO_PERIPHERAL: read from memory and write to peripheral
+ 532:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 533:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 534:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 535:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_transfer_direction_config(uint32_t dma_periph, dma_channel_enum channelx, uint32_t directi
+ 536:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 539:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 540:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 541:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(DMA_PERIPHERAL_TO_MEMORY == direction){
+ 542:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_DIR;
+ 543:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     } else {
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 11
+
+
+ 544:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_DIR;
+ 545:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 546:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 547:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 548:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 549:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      check DMA flag is set or not 
+ 550:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 551:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 552:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to get flag
+ 553:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 554:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 555:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  flag: specify get which flag
+ 556:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 557:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_G: global interrupt flag of channel
+ 558:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_FTF: full transfer finish flag of channel
+ 559:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_HTF: half transfer finish flag of channel
+ 560:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_ERR: error flag of channel
+ 561:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 562:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     FlagStatus: SET or RESET
+ 563:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 564:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** FlagStatus dma_flag_get(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag)
+ 565:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 566:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     FlagStatus reval;
+ 567:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(RESET != (DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx))){
+ 569:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         reval = SET;
+ 570:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 571:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         reval = RESET;
+ 572:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 573:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 574:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     return reval;
+ 575:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 576:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 577:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 578:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      clear DMA a channel flag
+ 579:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 580:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 581:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to clear flag
+ 582:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 583:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 584:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  flag: specify get which flag
+ 585:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 586:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_G: global interrupt flag of channel
+ 587:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_FTF: full transfer finish flag of channel
+ 588:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_HTF: half transfer finish flag of channel
+ 589:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_FLAG_ERR: error flag of channel
+ 590:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 591:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 592:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 593:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_flag_clear(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag)
+ 594:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, channelx);
+ 596:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 597:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 598:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 599:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      check DMA flag and interrupt enable bit is set or not 
+ 600:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 12
+
+
+ 601:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 602:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to get flag
+ 603:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 604:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 605:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  flag: specify get which flag
+ 606:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 607:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FLAG_FTF: full transfer finish interrupt flag of channel
+ 608:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FLAG_HTF: half transfer finish interrupt flag of channel
+ 609:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FLAG_ERR: error interrupt flag of channel
+ 610:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 611:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     FlagStatus: SET or RESET
+ 612:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 613:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** FlagStatus dma_interrupt_flag_get(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag)
+ 614:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 615:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t interrupt_enable = 0U, interrupt_flag = 0U;
+ 616:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 617:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     switch(flag){
+ 618:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         case DMA_INT_FLAG_FTF:
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_flag = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx);
+ 620:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_FTFIE;
+ 621:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 622:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         case DMA_INT_FLAG_HTF:
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_flag = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx);
+ 624:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_HTFIE;
+ 625:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 626:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         case DMA_INT_FLAG_ERR:
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_flag = DMA_INTF(dma_periph) & DMA_FLAG_ADD(flag, channelx);
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_ERRIE;
+ 629:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 630:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         default:
+ 631:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             DMA_WRONG_HANDLE
+ 632:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         }
+ 633:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 634:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(interrupt_flag && interrupt_enable){
+ 635:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         return SET;
+ 636:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 637:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         return RESET;
+ 638:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 639:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 640:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 641:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 642:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      clear DMA a channel flag
+ 643:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 644:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 645:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel to clear flag
+ 646:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 647:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 648:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  flag: specify get which flag
+ 649:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 650:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FLAG_G: global interrupt flag of channel
+ 651:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FLAG_FTF: full transfer finish interrupt flag of channel
+ 652:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FLAG_HTF: half transfer finish interrupt flag of channel
+ 653:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FLAG_ERR: error interrupt flag of channel
+ 654:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 655:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 656:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 657:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_interrupt_flag_clear(uint32_t dma_periph, dma_channel_enum channelx, uint32_t flag)
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 13
+
+
+ 658:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, channelx);
+ 660:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 661:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 662:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 663:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      enable DMA interrupt
+ 664:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 665:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 666:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 667:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 668:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 669:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  source: specify which interrupt to enbale
+ 670:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 one or more parameters can be selected which are shown as below
+ 671:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FTF: channel full transfer finish interrupt
+ 672:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_HTF: channel half transfer finish interrupt
+ 673:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_ERR: channel error interrupt
+ 674:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 675:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 676:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 677:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_interrupt_enable(uint32_t dma_periph, dma_channel_enum channelx, uint32_t source)
+ 678:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 679:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 680:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 681:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 682:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 683:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) |= source;
+ 684:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 685:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 686:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 687:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      disable DMA interrupt
+ 688:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 689:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 690:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ 691:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 692:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA0: DMA_CHx(x=0..6), DMA1: DMA_CHx(x=0..4)
+ 693:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  source: specify which interrupt to disbale
+ 694:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 one or more parameters can be selected which are shown as below
+ 695:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_FTF: channel full transfer finish interrupt
+ 696:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_HTF: channel half transfer finish interrupt
+ 697:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_INT_ERR: channel error interrupt
+ 698:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 700:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 701:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** void dma_interrupt_disable(uint32_t dma_periph, dma_channel_enum channelx, uint32_t source)
+ 702:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 704:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 705:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 706:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+ 707:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) &= ~source;
+ 708:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 709:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 710:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** /*!
+ 711:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \brief      check whether peripheral and channels match
+ 712:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  dma_periph: DMAx(x=0,1)
+ 713:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMAx(x=0,1)
+ 714:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[in]  channelx: specify which DMA channel 
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 14
+
+
+ 715:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****                 only one parameter can be selected which is shown as below:
+ 716:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****       \arg        DMA_CHx(x=0..6)
+ 717:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \param[out] none
+ 718:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     \retval     none
+ 719:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** */
+ 720:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** static ErrStatus dma_periph_and_channel_check(uint32_t dma_periph, dma_channel_enum channelx)
+ 721:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** {
+  29              		.loc 1 721 1 view -0
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 0
+  32              		@ frame_needed = 0, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ErrStatus val = SUCCESS;
+  34              		.loc 1 722 5 view .LVU1
+ 723:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+ 724:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(DMA1 == dma_periph){
+  35              		.loc 1 724 5 view .LVU2
+  36              		.loc 1 724 7 is_stmt 0 view .LVU3
+  37 0000 054B     		ldr	r3, .L6
+  38 0002 9842     		cmp	r0, r3
+  39 0004 01D0     		beq	.L5
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ErrStatus val = SUCCESS;
+  40              		.loc 1 722 15 view .LVU4
+  41 0006 0120     		movs	r0, #1
+  42              	.LVL1:
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ErrStatus val = SUCCESS;
+  43              		.loc 1 722 15 view .LVU5
+  44 0008 7047     		bx	lr
+  45              	.LVL2:
+  46              	.L5:
+ 725:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         /* for DMA1, the channel is from DMA_CH0 to DMA_CH4 */
+ 726:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         if(channelx > DMA_CH4){
+  47              		.loc 1 726 9 is_stmt 1 view .LVU6
+  48              		.loc 1 726 11 is_stmt 0 view .LVU7
+  49 000a 0429     		cmp	r1, #4
+  50 000c 01D8     		bhi	.L4
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+  51              		.loc 1 722 15 view .LVU8
+  52 000e 0120     		movs	r0, #1
+  53              	.LVL3:
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+  54              		.loc 1 722 15 view .LVU9
+  55 0010 7047     		bx	lr
+  56              	.LVL4:
+  57              	.L4:
+ 727:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             val = ERROR;
+  58              		.loc 1 727 17 view .LVU10
+  59 0012 0020     		movs	r0, #0
+  60              	.LVL5:
+ 728:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         }
+ 729:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 730:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 731:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     return val;
+  61              		.loc 1 731 5 is_stmt 1 view .LVU11
+ 732:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+  62              		.loc 1 732 1 is_stmt 0 view .LVU12
+  63 0014 7047     		bx	lr
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 15
+
+
+  64              	.L7:
+  65 0016 00BF     		.align	2
+  66              	.L6:
+  67 0018 00040240 		.word	1073873920
+  68              		.cfi_endproc
+  69              	.LFE143:
+  71              		.section	.text.dma_deinit,"ax",%progbits
+  72              		.align	1
+  73              		.global	dma_deinit
+  74              		.syntax unified
+  75              		.thumb
+  76              		.thumb_func
+  78              	dma_deinit:
+  79              	.LVL6:
+  80              	.LFB116:
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+  81              		.loc 1 54 1 is_stmt 1 view -0
+  82              		.cfi_startproc
+  83              		@ args = 0, pretend = 0, frame = 0
+  84              		@ frame_needed = 0, uses_anonymous_args = 0
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+  85              		.loc 1 54 1 is_stmt 0 view .LVU14
+  86 0000 38B5     		push	{r3, r4, r5, lr}
+  87              	.LCFI0:
+  88              		.cfi_def_cfa_offset 16
+  89              		.cfi_offset 3, -16
+  90              		.cfi_offset 4, -12
+  91              		.cfi_offset 5, -8
+  92              		.cfi_offset 14, -4
+  93 0002 0546     		mov	r5, r0
+  94 0004 0C46     		mov	r4, r1
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+  95              		.loc 1 55 5 is_stmt 1 view .LVU15
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+  96              		.loc 1 55 17 is_stmt 0 view .LVU16
+  97 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+  98              	.LVL7:
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+  99              		.loc 1 55 7 view .LVU17
+ 100 000a 00B9     		cbnz	r0, .L9
+ 101              	.L10:
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 102              		.loc 1 56 9 is_stmt 1 discriminator 1 view .LVU18
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 103              		.loc 1 56 9 discriminator 1 view .LVU19
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 104              		.loc 1 56 9 discriminator 1 view .LVU20
+ 105 000c FEE7     		b	.L10
+ 106              	.L9:
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* reset DMA channel registers */
+ 107              		.loc 1 60 5 view .LVU21
+ 108 000e A100     		lsls	r1, r4, #2
+ 109 0010 04EB8404 		add	r4, r4, r4, lsl #2
+ 110 0014 05EB8403 		add	r3, r5, r4, lsl #2
+ 111 0018 9A68     		ldr	r2, [r3, #8]
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* reset DMA channel registers */
+ 112              		.loc 1 60 37 is_stmt 0 view .LVU22
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 16
+
+
+ 113 001a 22F00102 		bic	r2, r2, #1
+ 114 001e 9A60     		str	r2, [r3, #8]
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCNT(dma_periph, channelx) = DMA_CHCNT_RESET_VALUE;
+ 115              		.loc 1 62 5 is_stmt 1 view .LVU23
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCNT(dma_periph, channelx) = DMA_CHCNT_RESET_VALUE;
+ 116              		.loc 1 62 37 is_stmt 0 view .LVU24
+ 117 0020 0022     		movs	r2, #0
+ 118 0022 9A60     		str	r2, [r3, #8]
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHPADDR(dma_periph, channelx) = DMA_CHPADDR_RESET_VALUE;
+ 119              		.loc 1 63 5 is_stmt 1 view .LVU25
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHPADDR(dma_periph, channelx) = DMA_CHPADDR_RESET_VALUE;
+ 120              		.loc 1 63 37 is_stmt 0 view .LVU26
+ 121 0024 DA60     		str	r2, [r3, #12]
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHMADDR(dma_periph, channelx) = DMA_CHMADDR_RESET_VALUE;
+ 122              		.loc 1 64 5 is_stmt 1 view .LVU27
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHMADDR(dma_periph, channelx) = DMA_CHMADDR_RESET_VALUE;
+ 123              		.loc 1 64 39 is_stmt 0 view .LVU28
+ 124 0026 1A61     		str	r2, [r3, #16]
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_INTC(dma_periph) |= DMA_FLAG_ADD(DMA_CHINTF_RESET_VALUE, channelx);
+ 125              		.loc 1 65 5 is_stmt 1 view .LVU29
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_INTC(dma_periph) |= DMA_FLAG_ADD(DMA_CHINTF_RESET_VALUE, channelx);
+ 126              		.loc 1 65 39 is_stmt 0 view .LVU30
+ 127 0028 5A61     		str	r2, [r3, #20]
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 128              		.loc 1 66 5 is_stmt 1 view .LVU31
+ 129 002a 6B68     		ldr	r3, [r5, #4]
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 130              		.loc 1 66 29 is_stmt 0 view .LVU32
+ 131 002c 0F22     		movs	r2, #15
+ 132 002e 8A40     		lsls	r2, r2, r1
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 133              		.loc 1 66 26 view .LVU33
+ 134 0030 1343     		orrs	r3, r3, r2
+ 135 0032 6B60     		str	r3, [r5, #4]
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 136              		.loc 1 67 1 view .LVU34
+ 137 0034 38BD     		pop	{r3, r4, r5, pc}
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 138              		.loc 1 67 1 view .LVU35
+ 139              		.cfi_endproc
+ 140              	.LFE116:
+ 142              		.section	.text.dma_struct_para_init,"ax",%progbits
+ 143              		.align	1
+ 144              		.global	dma_struct_para_init
+ 145              		.syntax unified
+ 146              		.thumb
+ 147              		.thumb_func
+ 149              	dma_struct_para_init:
+ 150              	.LVL8:
+ 151              	.LFB117:
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(NULL == init_struct){
+ 152              		.loc 1 76 1 is_stmt 1 view -0
+ 153              		.cfi_startproc
+ 154              		@ args = 0, pretend = 0, frame = 0
+ 155              		@ frame_needed = 0, uses_anonymous_args = 0
+ 156              		@ link register save eliminated.
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 17
+
+
+ 157              		.loc 1 77 5 view .LVU37
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 158              		.loc 1 77 7 is_stmt 0 view .LVU38
+ 159 0000 50B1     		cbz	r0, .L14
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->periph_width = 0U; 
+ 160              		.loc 1 82 5 is_stmt 1 view .LVU39
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->periph_width = 0U; 
+ 161              		.loc 1 82 31 is_stmt 0 view .LVU40
+ 162 0002 0022     		movs	r2, #0
+ 163 0004 0260     		str	r2, [r0]
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->periph_inc   = DMA_PERIPH_INCREASE_DISABLE;
+ 164              		.loc 1 83 5 is_stmt 1 view .LVU41
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->periph_inc   = DMA_PERIPH_INCREASE_DISABLE;
+ 165              		.loc 1 83 31 is_stmt 0 view .LVU42
+ 166 0006 4260     		str	r2, [r0, #4]
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_addr  = 0U;
+ 167              		.loc 1 84 5 is_stmt 1 view .LVU43
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_addr  = 0U;
+ 168              		.loc 1 84 31 is_stmt 0 view .LVU44
+ 169 0008 0276     		strb	r2, [r0, #24]
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_width = 0U;
+ 170              		.loc 1 85 5 is_stmt 1 view .LVU45
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_width = 0U;
+ 171              		.loc 1 85 31 is_stmt 0 view .LVU46
+ 172 000a 8260     		str	r2, [r0, #8]
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_inc   = DMA_MEMORY_INCREASE_DISABLE;
+ 173              		.loc 1 86 5 is_stmt 1 view .LVU47
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->memory_inc   = DMA_MEMORY_INCREASE_DISABLE;
+ 174              		.loc 1 86 31 is_stmt 0 view .LVU48
+ 175 000c C260     		str	r2, [r0, #12]
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->number       = 0U;
+ 176              		.loc 1 87 5 is_stmt 1 view .LVU49
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->number       = 0U;
+ 177              		.loc 1 87 31 is_stmt 0 view .LVU50
+ 178 000e 4276     		strb	r2, [r0, #25]
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->direction    = DMA_PERIPHERAL_TO_MEMORY;
+ 179              		.loc 1 88 5 is_stmt 1 view .LVU51
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->direction    = DMA_PERIPHERAL_TO_MEMORY;
+ 180              		.loc 1 88 31 is_stmt 0 view .LVU52
+ 181 0010 0261     		str	r2, [r0, #16]
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->priority     = DMA_PRIORITY_LOW;
+ 182              		.loc 1 89 5 is_stmt 1 view .LVU53
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     init_struct->priority     = DMA_PRIORITY_LOW;
+ 183              		.loc 1 89 31 is_stmt 0 view .LVU54
+ 184 0012 8276     		strb	r2, [r0, #26]
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 185              		.loc 1 90 5 is_stmt 1 view .LVU55
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 186              		.loc 1 90 31 is_stmt 0 view .LVU56
+ 187 0014 4261     		str	r2, [r0, #20]
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 188              		.loc 1 91 1 view .LVU57
+ 189 0016 7047     		bx	lr
+ 190              	.L14:
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 191              		.loc 1 78 9 is_stmt 1 discriminator 1 view .LVU58
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 18
+
+
+ 192              		.loc 1 78 9 discriminator 1 view .LVU59
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 193              		.loc 1 78 9 discriminator 1 view .LVU60
+ 194 0018 FEE7     		b	.L14
+ 195              		.cfi_endproc
+ 196              	.LFE117:
+ 198              		.section	.text.dma_init,"ax",%progbits
+ 199              		.align	1
+ 200              		.global	dma_init
+ 201              		.syntax unified
+ 202              		.thumb
+ 203              		.thumb_func
+ 205              	dma_init:
+ 206              	.LVL9:
+ 207              	.LFB118:
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 208              		.loc 1 114 1 view -0
+ 209              		.cfi_startproc
+ 210              		@ args = 0, pretend = 0, frame = 0
+ 211              		@ frame_needed = 0, uses_anonymous_args = 0
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 212              		.loc 1 114 1 is_stmt 0 view .LVU62
+ 213 0000 70B5     		push	{r4, r5, r6, lr}
+ 214              	.LCFI1:
+ 215              		.cfi_def_cfa_offset 16
+ 216              		.cfi_offset 4, -16
+ 217              		.cfi_offset 5, -12
+ 218              		.cfi_offset 6, -8
+ 219              		.cfi_offset 14, -4
+ 220 0002 0646     		mov	r6, r0
+ 221 0004 0C46     		mov	r4, r1
+ 222 0006 1546     		mov	r5, r2
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 223              		.loc 1 115 5 is_stmt 1 view .LVU63
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 224              		.loc 1 117 5 view .LVU64
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 225              		.loc 1 117 17 is_stmt 0 view .LVU65
+ 226 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 227              	.LVL10:
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 228              		.loc 1 117 7 view .LVU66
+ 229 000c 00B9     		cbnz	r0, .L16
+ 230              	.L17:
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 231              		.loc 1 118 9 is_stmt 1 discriminator 1 view .LVU67
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 232              		.loc 1 118 9 discriminator 1 view .LVU68
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 233              		.loc 1 118 9 discriminator 1 view .LVU69
+ 234 000e FEE7     		b	.L17
+ 235              	.L16:
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 236              		.loc 1 122 5 view .LVU70
+ 237 0010 04EB8401 		add	r1, r4, r4, lsl #2
+ 238 0014 06EB8103 		add	r3, r6, r1, lsl #2
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 19
+
+
+ 239              		.loc 1 122 52 is_stmt 0 view .LVU71
+ 240 0018 2A68     		ldr	r2, [r5]
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 241              		.loc 1 122 39 view .LVU72
+ 242 001a 1A61     		str	r2, [r3, #16]
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+ 243              		.loc 1 125 5 is_stmt 1 view .LVU73
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+ 244              		.loc 1 125 52 is_stmt 0 view .LVU74
+ 245 001c AA68     		ldr	r2, [r5, #8]
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     
+ 246              		.loc 1 125 39 view .LVU75
+ 247 001e 5A61     		str	r2, [r3, #20]
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 248              		.loc 1 128 5 is_stmt 1 view .LVU76
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 249              		.loc 1 128 60 is_stmt 0 view .LVU77
+ 250 0020 2A8A     		ldrh	r2, [r5, #16]
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 251              		.loc 1 128 37 view .LVU78
+ 252 0022 DA60     		str	r2, [r3, #12]
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl &= ~(DMA_CHXCTL_PWIDTH | DMA_CHXCTL_MWIDTH | DMA_CHXCTL_PRIO);
+ 253              		.loc 1 131 5 is_stmt 1 view .LVU79
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl &= ~(DMA_CHXCTL_PWIDTH | DMA_CHXCTL_MWIDTH | DMA_CHXCTL_PRIO);
+ 254              		.loc 1 131 9 is_stmt 0 view .LVU80
+ 255 0024 9A68     		ldr	r2, [r3, #8]
+ 256              	.LVL11:
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= (init_struct->periph_width | init_struct->memory_width | init_struct->priority);
+ 257              		.loc 1 132 5 is_stmt 1 view .LVU81
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= (init_struct->periph_width | init_struct->memory_width | init_struct->priority);
+ 258              		.loc 1 132 9 is_stmt 0 view .LVU82
+ 259 0026 22F47C52 		bic	r2, r2, #16128
+ 260              	.LVL12:
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 261              		.loc 1 133 5 is_stmt 1 view .LVU83
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 262              		.loc 1 133 24 is_stmt 0 view .LVU84
+ 263 002a 6968     		ldr	r1, [r5, #4]
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 264              		.loc 1 133 52 view .LVU85
+ 265 002c E868     		ldr	r0, [r5, #12]
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 266              		.loc 1 133 39 view .LVU86
+ 267 002e 0143     		orrs	r1, r1, r0
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 268              		.loc 1 133 80 view .LVU87
+ 269 0030 6869     		ldr	r0, [r5, #20]
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 270              		.loc 1 133 67 view .LVU88
+ 271 0032 0143     		orrs	r1, r1, r0
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 272              		.loc 1 133 9 view .LVU89
+ 273 0034 1143     		orrs	r1, r1, r2
+ 274              	.LVL13:
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 275              		.loc 1 134 5 is_stmt 1 view .LVU90
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 20
+
+
+ 276              		.loc 1 134 37 is_stmt 0 view .LVU91
+ 277 0036 9960     		str	r1, [r3, #8]
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_PNAGA;
+ 278              		.loc 1 137 5 is_stmt 1 view .LVU92
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_PNAGA;
+ 279              		.loc 1 137 49 is_stmt 0 view .LVU93
+ 280 0038 2A7E     		ldrb	r2, [r5, #24]	@ zero_extendqisi2
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_PNAGA;
+ 281              		.loc 1 137 7 view .LVU94
+ 282 003a 012A     		cmp	r2, #1
+ 283 003c 11D0     		beq	.L25
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 284              		.loc 1 140 9 is_stmt 1 view .LVU95
+ 285 003e 9A68     		ldr	r2, [r3, #8]
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 286              		.loc 1 140 41 is_stmt 0 view .LVU96
+ 287 0040 22F04002 		bic	r2, r2, #64
+ 288 0044 9A60     		str	r2, [r3, #8]
+ 289              	.L19:
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_MNAGA;
+ 290              		.loc 1 144 5 is_stmt 1 view .LVU97
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_MNAGA;
+ 291              		.loc 1 144 49 is_stmt 0 view .LVU98
+ 292 0046 6A7E     		ldrb	r2, [r5, #25]	@ zero_extendqisi2
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) |= DMA_CHXCTL_MNAGA;
+ 293              		.loc 1 144 7 view .LVU99
+ 294 0048 012A     		cmp	r2, #1
+ 295 004a 0FD0     		beq	.L26
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 296              		.loc 1 147 9 is_stmt 1 view .LVU100
+ 297 004c 9A68     		ldr	r2, [r3, #8]
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 298              		.loc 1 147 41 is_stmt 0 view .LVU101
+ 299 004e 22F08002 		bic	r2, r2, #128
+ 300 0052 9A60     		str	r2, [r3, #8]
+ 301              	.L21:
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_DIR;
+ 302              		.loc 1 151 5 is_stmt 1 view .LVU102
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_DIR;
+ 303              		.loc 1 151 47 is_stmt 0 view .LVU103
+ 304 0054 AA7E     		ldrb	r2, [r5, #26]	@ zero_extendqisi2
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_DIR;
+ 305              		.loc 1 151 7 view .LVU104
+ 306 0056 72B9     		cbnz	r2, .L22
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 307              		.loc 1 152 9 is_stmt 1 view .LVU105
+ 308 0058 9A68     		ldr	r2, [r3, #8]
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 309              		.loc 1 152 41 is_stmt 0 view .LVU106
+ 310 005a 22F01002 		bic	r2, r2, #16
+ 311 005e 9A60     		str	r2, [r3, #8]
+ 312              	.L15:
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 313              		.loc 1 156 1 view .LVU107
+ 314 0060 70BD     		pop	{r4, r5, r6, pc}
+ 315              	.LVL14:
+ 316              	.L25:
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 21
+
+
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 317              		.loc 1 138 9 is_stmt 1 view .LVU108
+ 318 0062 9A68     		ldr	r2, [r3, #8]
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 319              		.loc 1 138 41 is_stmt 0 view .LVU109
+ 320 0064 42F04002 		orr	r2, r2, #64
+ 321 0068 9A60     		str	r2, [r3, #8]
+ 322 006a ECE7     		b	.L19
+ 323              	.L26:
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 324              		.loc 1 145 9 is_stmt 1 view .LVU110
+ 325 006c 9A68     		ldr	r2, [r3, #8]
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 326              		.loc 1 145 41 is_stmt 0 view .LVU111
+ 327 006e 42F08002 		orr	r2, r2, #128
+ 328 0072 9A60     		str	r2, [r3, #8]
+ 329 0074 EEE7     		b	.L21
+ 330              	.L22:
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 331              		.loc 1 154 9 is_stmt 1 view .LVU112
+ 332 0076 9A68     		ldr	r2, [r3, #8]
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 333              		.loc 1 154 41 is_stmt 0 view .LVU113
+ 334 0078 42F01002 		orr	r2, r2, #16
+ 335 007c 9A60     		str	r2, [r3, #8]
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 336              		.loc 1 156 1 view .LVU114
+ 337 007e EFE7     		b	.L15
+ 338              		.cfi_endproc
+ 339              	.LFE118:
+ 341              		.section	.text.dma_circulation_enable,"ax",%progbits
+ 342              		.align	1
+ 343              		.global	dma_circulation_enable
+ 344              		.syntax unified
+ 345              		.thumb
+ 346              		.thumb_func
+ 348              	dma_circulation_enable:
+ 349              	.LVL15:
+ 350              	.LFB119:
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 351              		.loc 1 169 1 is_stmt 1 view -0
+ 352              		.cfi_startproc
+ 353              		@ args = 0, pretend = 0, frame = 0
+ 354              		@ frame_needed = 0, uses_anonymous_args = 0
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 355              		.loc 1 169 1 is_stmt 0 view .LVU116
+ 356 0000 38B5     		push	{r3, r4, r5, lr}
+ 357              	.LCFI2:
+ 358              		.cfi_def_cfa_offset 16
+ 359              		.cfi_offset 3, -16
+ 360              		.cfi_offset 4, -12
+ 361              		.cfi_offset 5, -8
+ 362              		.cfi_offset 14, -4
+ 363 0002 0446     		mov	r4, r0
+ 364 0004 0D46     		mov	r5, r1
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 365              		.loc 1 170 5 is_stmt 1 view .LVU117
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 22
+
+
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 366              		.loc 1 170 17 is_stmt 0 view .LVU118
+ 367 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 368              	.LVL16:
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 369              		.loc 1 170 7 view .LVU119
+ 370 000a 00B9     		cbnz	r0, .L28
+ 371              	.L29:
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 372              		.loc 1 171 9 is_stmt 1 discriminator 1 view .LVU120
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 373              		.loc 1 171 9 discriminator 1 view .LVU121
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 374              		.loc 1 171 9 discriminator 1 view .LVU122
+ 375 000c FEE7     		b	.L29
+ 376              	.L28:
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 377              		.loc 1 174 5 view .LVU123
+ 378 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 379 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 380 0016 8368     		ldr	r3, [r0, #8]
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 381              		.loc 1 174 37 is_stmt 0 view .LVU124
+ 382 0018 43F02003 		orr	r3, r3, #32
+ 383 001c 8360     		str	r3, [r0, #8]
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 384              		.loc 1 175 1 view .LVU125
+ 385 001e 38BD     		pop	{r3, r4, r5, pc}
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 386              		.loc 1 175 1 view .LVU126
+ 387              		.cfi_endproc
+ 388              	.LFE119:
+ 390              		.section	.text.dma_circulation_disable,"ax",%progbits
+ 391              		.align	1
+ 392              		.global	dma_circulation_disable
+ 393              		.syntax unified
+ 394              		.thumb
+ 395              		.thumb_func
+ 397              	dma_circulation_disable:
+ 398              	.LVL17:
+ 399              	.LFB120:
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 400              		.loc 1 188 1 is_stmt 1 view -0
+ 401              		.cfi_startproc
+ 402              		@ args = 0, pretend = 0, frame = 0
+ 403              		@ frame_needed = 0, uses_anonymous_args = 0
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 404              		.loc 1 188 1 is_stmt 0 view .LVU128
+ 405 0000 38B5     		push	{r3, r4, r5, lr}
+ 406              	.LCFI3:
+ 407              		.cfi_def_cfa_offset 16
+ 408              		.cfi_offset 3, -16
+ 409              		.cfi_offset 4, -12
+ 410              		.cfi_offset 5, -8
+ 411              		.cfi_offset 14, -4
+ 412 0002 0446     		mov	r4, r0
+ 413 0004 0D46     		mov	r5, r1
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 23
+
+
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 414              		.loc 1 189 5 is_stmt 1 view .LVU129
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 415              		.loc 1 189 17 is_stmt 0 view .LVU130
+ 416 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 417              	.LVL18:
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 418              		.loc 1 189 7 view .LVU131
+ 419 000a 00B9     		cbnz	r0, .L32
+ 420              	.L33:
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 421              		.loc 1 190 9 is_stmt 1 discriminator 1 view .LVU132
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 422              		.loc 1 190 9 discriminator 1 view .LVU133
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 423              		.loc 1 190 9 discriminator 1 view .LVU134
+ 424 000c FEE7     		b	.L33
+ 425              	.L32:
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 426              		.loc 1 193 5 view .LVU135
+ 427 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 428 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 429 0016 8368     		ldr	r3, [r0, #8]
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 430              		.loc 1 193 37 is_stmt 0 view .LVU136
+ 431 0018 23F02003 		bic	r3, r3, #32
+ 432 001c 8360     		str	r3, [r0, #8]
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 433              		.loc 1 194 1 view .LVU137
+ 434 001e 38BD     		pop	{r3, r4, r5, pc}
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 435              		.loc 1 194 1 view .LVU138
+ 436              		.cfi_endproc
+ 437              	.LFE120:
+ 439              		.section	.text.dma_memory_to_memory_enable,"ax",%progbits
+ 440              		.align	1
+ 441              		.global	dma_memory_to_memory_enable
+ 442              		.syntax unified
+ 443              		.thumb
+ 444              		.thumb_func
+ 446              	dma_memory_to_memory_enable:
+ 447              	.LVL19:
+ 448              	.LFB121:
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 449              		.loc 1 207 1 is_stmt 1 view -0
+ 450              		.cfi_startproc
+ 451              		@ args = 0, pretend = 0, frame = 0
+ 452              		@ frame_needed = 0, uses_anonymous_args = 0
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 453              		.loc 1 207 1 is_stmt 0 view .LVU140
+ 454 0000 38B5     		push	{r3, r4, r5, lr}
+ 455              	.LCFI4:
+ 456              		.cfi_def_cfa_offset 16
+ 457              		.cfi_offset 3, -16
+ 458              		.cfi_offset 4, -12
+ 459              		.cfi_offset 5, -8
+ 460              		.cfi_offset 14, -4
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 24
+
+
+ 461 0002 0446     		mov	r4, r0
+ 462 0004 0D46     		mov	r5, r1
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 463              		.loc 1 208 5 is_stmt 1 view .LVU141
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 464              		.loc 1 208 17 is_stmt 0 view .LVU142
+ 465 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 466              	.LVL20:
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 467              		.loc 1 208 7 view .LVU143
+ 468 000a 00B9     		cbnz	r0, .L36
+ 469              	.L37:
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 470              		.loc 1 209 9 is_stmt 1 discriminator 1 view .LVU144
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 471              		.loc 1 209 9 discriminator 1 view .LVU145
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 472              		.loc 1 209 9 discriminator 1 view .LVU146
+ 473 000c FEE7     		b	.L37
+ 474              	.L36:
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 475              		.loc 1 212 5 view .LVU147
+ 476 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 477 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 478 0016 8368     		ldr	r3, [r0, #8]
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 479              		.loc 1 212 37 is_stmt 0 view .LVU148
+ 480 0018 43F48043 		orr	r3, r3, #16384
+ 481 001c 8360     		str	r3, [r0, #8]
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 482              		.loc 1 213 1 view .LVU149
+ 483 001e 38BD     		pop	{r3, r4, r5, pc}
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 484              		.loc 1 213 1 view .LVU150
+ 485              		.cfi_endproc
+ 486              	.LFE121:
+ 488              		.section	.text.dma_memory_to_memory_disable,"ax",%progbits
+ 489              		.align	1
+ 490              		.global	dma_memory_to_memory_disable
+ 491              		.syntax unified
+ 492              		.thumb
+ 493              		.thumb_func
+ 495              	dma_memory_to_memory_disable:
+ 496              	.LVL21:
+ 497              	.LFB122:
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 498              		.loc 1 226 1 is_stmt 1 view -0
+ 499              		.cfi_startproc
+ 500              		@ args = 0, pretend = 0, frame = 0
+ 501              		@ frame_needed = 0, uses_anonymous_args = 0
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 502              		.loc 1 226 1 is_stmt 0 view .LVU152
+ 503 0000 38B5     		push	{r3, r4, r5, lr}
+ 504              	.LCFI5:
+ 505              		.cfi_def_cfa_offset 16
+ 506              		.cfi_offset 3, -16
+ 507              		.cfi_offset 4, -12
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 25
+
+
+ 508              		.cfi_offset 5, -8
+ 509              		.cfi_offset 14, -4
+ 510 0002 0446     		mov	r4, r0
+ 511 0004 0D46     		mov	r5, r1
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 512              		.loc 1 227 5 is_stmt 1 view .LVU153
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 513              		.loc 1 227 17 is_stmt 0 view .LVU154
+ 514 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 515              	.LVL22:
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 516              		.loc 1 227 7 view .LVU155
+ 517 000a 00B9     		cbnz	r0, .L40
+ 518              	.L41:
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 519              		.loc 1 228 9 is_stmt 1 discriminator 1 view .LVU156
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 520              		.loc 1 228 9 discriminator 1 view .LVU157
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 521              		.loc 1 228 9 discriminator 1 view .LVU158
+ 522 000c FEE7     		b	.L41
+ 523              	.L40:
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 524              		.loc 1 231 5 view .LVU159
+ 525 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 526 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 527 0016 8368     		ldr	r3, [r0, #8]
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 528              		.loc 1 231 37 is_stmt 0 view .LVU160
+ 529 0018 23F48043 		bic	r3, r3, #16384
+ 530 001c 8360     		str	r3, [r0, #8]
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 531              		.loc 1 232 1 view .LVU161
+ 532 001e 38BD     		pop	{r3, r4, r5, pc}
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 533              		.loc 1 232 1 view .LVU162
+ 534              		.cfi_endproc
+ 535              	.LFE122:
+ 537              		.section	.text.dma_channel_enable,"ax",%progbits
+ 538              		.align	1
+ 539              		.global	dma_channel_enable
+ 540              		.syntax unified
+ 541              		.thumb
+ 542              		.thumb_func
+ 544              	dma_channel_enable:
+ 545              	.LVL23:
+ 546              	.LFB123:
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 547              		.loc 1 245 1 is_stmt 1 view -0
+ 548              		.cfi_startproc
+ 549              		@ args = 0, pretend = 0, frame = 0
+ 550              		@ frame_needed = 0, uses_anonymous_args = 0
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 551              		.loc 1 245 1 is_stmt 0 view .LVU164
+ 552 0000 38B5     		push	{r3, r4, r5, lr}
+ 553              	.LCFI6:
+ 554              		.cfi_def_cfa_offset 16
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 26
+
+
+ 555              		.cfi_offset 3, -16
+ 556              		.cfi_offset 4, -12
+ 557              		.cfi_offset 5, -8
+ 558              		.cfi_offset 14, -4
+ 559 0002 0446     		mov	r4, r0
+ 560 0004 0D46     		mov	r5, r1
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 561              		.loc 1 246 5 is_stmt 1 view .LVU165
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 562              		.loc 1 246 17 is_stmt 0 view .LVU166
+ 563 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 564              	.LVL24:
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 565              		.loc 1 246 7 view .LVU167
+ 566 000a 00B9     		cbnz	r0, .L44
+ 567              	.L45:
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 568              		.loc 1 247 9 is_stmt 1 discriminator 1 view .LVU168
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 569              		.loc 1 247 9 discriminator 1 view .LVU169
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 570              		.loc 1 247 9 discriminator 1 view .LVU170
+ 571 000c FEE7     		b	.L45
+ 572              	.L44:
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 573              		.loc 1 250 5 view .LVU171
+ 574 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 575 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 576 0016 8368     		ldr	r3, [r0, #8]
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 577              		.loc 1 250 37 is_stmt 0 view .LVU172
+ 578 0018 43F00103 		orr	r3, r3, #1
+ 579 001c 8360     		str	r3, [r0, #8]
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 580              		.loc 1 251 1 view .LVU173
+ 581 001e 38BD     		pop	{r3, r4, r5, pc}
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 582              		.loc 1 251 1 view .LVU174
+ 583              		.cfi_endproc
+ 584              	.LFE123:
+ 586              		.section	.text.dma_channel_disable,"ax",%progbits
+ 587              		.align	1
+ 588              		.global	dma_channel_disable
+ 589              		.syntax unified
+ 590              		.thumb
+ 591              		.thumb_func
+ 593              	dma_channel_disable:
+ 594              	.LVL25:
+ 595              	.LFB124:
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 596              		.loc 1 264 1 is_stmt 1 view -0
+ 597              		.cfi_startproc
+ 598              		@ args = 0, pretend = 0, frame = 0
+ 599              		@ frame_needed = 0, uses_anonymous_args = 0
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 600              		.loc 1 264 1 is_stmt 0 view .LVU176
+ 601 0000 38B5     		push	{r3, r4, r5, lr}
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 27
+
+
+ 602              	.LCFI7:
+ 603              		.cfi_def_cfa_offset 16
+ 604              		.cfi_offset 3, -16
+ 605              		.cfi_offset 4, -12
+ 606              		.cfi_offset 5, -8
+ 607              		.cfi_offset 14, -4
+ 608 0002 0446     		mov	r4, r0
+ 609 0004 0D46     		mov	r5, r1
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 610              		.loc 1 265 5 is_stmt 1 view .LVU177
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 611              		.loc 1 265 17 is_stmt 0 view .LVU178
+ 612 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 613              	.LVL26:
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 614              		.loc 1 265 7 view .LVU179
+ 615 000a 00B9     		cbnz	r0, .L48
+ 616              	.L49:
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 617              		.loc 1 266 9 is_stmt 1 discriminator 1 view .LVU180
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 618              		.loc 1 266 9 discriminator 1 view .LVU181
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 619              		.loc 1 266 9 discriminator 1 view .LVU182
+ 620 000c FEE7     		b	.L49
+ 621              	.L48:
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 622              		.loc 1 269 5 view .LVU183
+ 623 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 624 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 625 0016 8368     		ldr	r3, [r0, #8]
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 626              		.loc 1 269 37 is_stmt 0 view .LVU184
+ 627 0018 23F00103 		bic	r3, r3, #1
+ 628 001c 8360     		str	r3, [r0, #8]
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 629              		.loc 1 270 1 view .LVU185
+ 630 001e 38BD     		pop	{r3, r4, r5, pc}
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 631              		.loc 1 270 1 view .LVU186
+ 632              		.cfi_endproc
+ 633              	.LFE124:
+ 635              		.section	.text.dma_periph_address_config,"ax",%progbits
+ 636              		.align	1
+ 637              		.global	dma_periph_address_config
+ 638              		.syntax unified
+ 639              		.thumb
+ 640              		.thumb_func
+ 642              	dma_periph_address_config:
+ 643              	.LVL27:
+ 644              	.LFB125:
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 645              		.loc 1 284 1 is_stmt 1 view -0
+ 646              		.cfi_startproc
+ 647              		@ args = 0, pretend = 0, frame = 0
+ 648              		@ frame_needed = 0, uses_anonymous_args = 0
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 28
+
+
+ 649              		.loc 1 284 1 is_stmt 0 view .LVU188
+ 650 0000 70B5     		push	{r4, r5, r6, lr}
+ 651              	.LCFI8:
+ 652              		.cfi_def_cfa_offset 16
+ 653              		.cfi_offset 4, -16
+ 654              		.cfi_offset 5, -12
+ 655              		.cfi_offset 6, -8
+ 656              		.cfi_offset 14, -4
+ 657 0002 0546     		mov	r5, r0
+ 658 0004 0C46     		mov	r4, r1
+ 659 0006 1646     		mov	r6, r2
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 660              		.loc 1 285 5 is_stmt 1 view .LVU189
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 661              		.loc 1 285 17 is_stmt 0 view .LVU190
+ 662 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 663              	.LVL28:
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 664              		.loc 1 285 7 view .LVU191
+ 665 000c 00B9     		cbnz	r0, .L52
+ 666              	.L53:
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 667              		.loc 1 286 9 is_stmt 1 discriminator 1 view .LVU192
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 668              		.loc 1 286 9 discriminator 1 view .LVU193
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 669              		.loc 1 286 9 discriminator 1 view .LVU194
+ 670 000e FEE7     		b	.L53
+ 671              	.L52:
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 672              		.loc 1 289 5 view .LVU195
+ 673 0010 04EB8401 		add	r1, r4, r4, lsl #2
+ 674 0014 05EB8100 		add	r0, r5, r1, lsl #2
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 675              		.loc 1 289 39 is_stmt 0 view .LVU196
+ 676 0018 0661     		str	r6, [r0, #16]
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 677              		.loc 1 290 1 view .LVU197
+ 678 001a 70BD     		pop	{r4, r5, r6, pc}
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 679              		.loc 1 290 1 view .LVU198
+ 680              		.cfi_endproc
+ 681              	.LFE125:
+ 683              		.section	.text.dma_memory_address_config,"ax",%progbits
+ 684              		.align	1
+ 685              		.global	dma_memory_address_config
+ 686              		.syntax unified
+ 687              		.thumb
+ 688              		.thumb_func
+ 690              	dma_memory_address_config:
+ 691              	.LVL29:
+ 692              	.LFB126:
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 693              		.loc 1 304 1 is_stmt 1 view -0
+ 694              		.cfi_startproc
+ 695              		@ args = 0, pretend = 0, frame = 0
+ 696              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 29
+
+
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 697              		.loc 1 304 1 is_stmt 0 view .LVU200
+ 698 0000 70B5     		push	{r4, r5, r6, lr}
+ 699              	.LCFI9:
+ 700              		.cfi_def_cfa_offset 16
+ 701              		.cfi_offset 4, -16
+ 702              		.cfi_offset 5, -12
+ 703              		.cfi_offset 6, -8
+ 704              		.cfi_offset 14, -4
+ 705 0002 0546     		mov	r5, r0
+ 706 0004 0C46     		mov	r4, r1
+ 707 0006 1646     		mov	r6, r2
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 708              		.loc 1 305 5 is_stmt 1 view .LVU201
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 709              		.loc 1 305 17 is_stmt 0 view .LVU202
+ 710 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 711              	.LVL30:
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 712              		.loc 1 305 7 view .LVU203
+ 713 000c 00B9     		cbnz	r0, .L56
+ 714              	.L57:
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 715              		.loc 1 306 9 is_stmt 1 discriminator 1 view .LVU204
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 716              		.loc 1 306 9 discriminator 1 view .LVU205
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 717              		.loc 1 306 9 discriminator 1 view .LVU206
+ 718 000e FEE7     		b	.L57
+ 719              	.L56:
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 720              		.loc 1 309 5 view .LVU207
+ 721 0010 04EB8401 		add	r1, r4, r4, lsl #2
+ 722 0014 05EB8100 		add	r0, r5, r1, lsl #2
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 723              		.loc 1 309 39 is_stmt 0 view .LVU208
+ 724 0018 4661     		str	r6, [r0, #20]
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 725              		.loc 1 310 1 view .LVU209
+ 726 001a 70BD     		pop	{r4, r5, r6, pc}
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 727              		.loc 1 310 1 view .LVU210
+ 728              		.cfi_endproc
+ 729              	.LFE126:
+ 731              		.section	.text.dma_transfer_number_config,"ax",%progbits
+ 732              		.align	1
+ 733              		.global	dma_transfer_number_config
+ 734              		.syntax unified
+ 735              		.thumb
+ 736              		.thumb_func
+ 738              	dma_transfer_number_config:
+ 739              	.LVL31:
+ 740              	.LFB127:
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 741              		.loc 1 324 1 is_stmt 1 view -0
+ 742              		.cfi_startproc
+ 743              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 30
+
+
+ 744              		@ frame_needed = 0, uses_anonymous_args = 0
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 745              		.loc 1 324 1 is_stmt 0 view .LVU212
+ 746 0000 70B5     		push	{r4, r5, r6, lr}
+ 747              	.LCFI10:
+ 748              		.cfi_def_cfa_offset 16
+ 749              		.cfi_offset 4, -16
+ 750              		.cfi_offset 5, -12
+ 751              		.cfi_offset 6, -8
+ 752              		.cfi_offset 14, -4
+ 753 0002 0546     		mov	r5, r0
+ 754 0004 0C46     		mov	r4, r1
+ 755 0006 1646     		mov	r6, r2
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 756              		.loc 1 325 5 is_stmt 1 view .LVU213
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 757              		.loc 1 325 17 is_stmt 0 view .LVU214
+ 758 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 759              	.LVL32:
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 760              		.loc 1 325 7 view .LVU215
+ 761 000c 00B9     		cbnz	r0, .L60
+ 762              	.L61:
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 763              		.loc 1 326 9 is_stmt 1 discriminator 1 view .LVU216
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 764              		.loc 1 326 9 discriminator 1 view .LVU217
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 765              		.loc 1 326 9 discriminator 1 view .LVU218
+ 766 000e FEE7     		b	.L61
+ 767              	.L60:
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 768              		.loc 1 329 5 view .LVU219
+ 769 0010 04EB8401 		add	r1, r4, r4, lsl #2
+ 770 0014 05EB8100 		add	r0, r5, r1, lsl #2
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 771              		.loc 1 329 47 is_stmt 0 view .LVU220
+ 772 0018 B6B2     		uxth	r6, r6
+ 773              	.LVL33:
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 774              		.loc 1 329 37 view .LVU221
+ 775 001a C660     		str	r6, [r0, #12]
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 776              		.loc 1 330 1 view .LVU222
+ 777 001c 70BD     		pop	{r4, r5, r6, pc}
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 778              		.loc 1 330 1 view .LVU223
+ 779              		.cfi_endproc
+ 780              	.LFE127:
+ 782              		.section	.text.dma_transfer_number_get,"ax",%progbits
+ 783              		.align	1
+ 784              		.global	dma_transfer_number_get
+ 785              		.syntax unified
+ 786              		.thumb
+ 787              		.thumb_func
+ 789              	dma_transfer_number_get:
+ 790              	.LVL34:
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 31
+
+
+ 791              	.LFB128:
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 792              		.loc 1 343 1 is_stmt 1 view -0
+ 793              		.cfi_startproc
+ 794              		@ args = 0, pretend = 0, frame = 0
+ 795              		@ frame_needed = 0, uses_anonymous_args = 0
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 796              		.loc 1 343 1 is_stmt 0 view .LVU225
+ 797 0000 38B5     		push	{r3, r4, r5, lr}
+ 798              	.LCFI11:
+ 799              		.cfi_def_cfa_offset 16
+ 800              		.cfi_offset 3, -16
+ 801              		.cfi_offset 4, -12
+ 802              		.cfi_offset 5, -8
+ 803              		.cfi_offset 14, -4
+ 804 0002 0546     		mov	r5, r0
+ 805 0004 0C46     		mov	r4, r1
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 806              		.loc 1 344 5 is_stmt 1 view .LVU226
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 807              		.loc 1 344 17 is_stmt 0 view .LVU227
+ 808 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 809              	.LVL35:
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 810              		.loc 1 344 7 view .LVU228
+ 811 000a 00B9     		cbnz	r0, .L64
+ 812              	.L65:
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 813              		.loc 1 345 9 is_stmt 1 discriminator 1 view .LVU229
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 814              		.loc 1 345 9 discriminator 1 view .LVU230
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 815              		.loc 1 345 9 discriminator 1 view .LVU231
+ 816 000c FEE7     		b	.L65
+ 817              	.L64:
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 818              		.loc 1 348 5 view .LVU232
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 819              		.loc 1 348 22 is_stmt 0 view .LVU233
+ 820 000e 04EB8401 		add	r1, r4, r4, lsl #2
+ 821 0012 05EB8100 		add	r0, r5, r1, lsl #2
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 822              		.loc 1 348 12 view .LVU234
+ 823 0016 C068     		ldr	r0, [r0, #12]
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 824              		.loc 1 349 1 view .LVU235
+ 825 0018 38BD     		pop	{r3, r4, r5, pc}
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 826              		.loc 1 349 1 view .LVU236
+ 827              		.cfi_endproc
+ 828              	.LFE128:
+ 830              		.section	.text.dma_priority_config,"ax",%progbits
+ 831              		.align	1
+ 832              		.global	dma_priority_config
+ 833              		.syntax unified
+ 834              		.thumb
+ 835              		.thumb_func
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 32
+
+
+ 837              	dma_priority_config:
+ 838              	.LVL36:
+ 839              	.LFB129:
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 840              		.loc 1 368 1 is_stmt 1 view -0
+ 841              		.cfi_startproc
+ 842              		@ args = 0, pretend = 0, frame = 0
+ 843              		@ frame_needed = 0, uses_anonymous_args = 0
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 844              		.loc 1 368 1 is_stmt 0 view .LVU238
+ 845 0000 70B5     		push	{r4, r5, r6, lr}
+ 846              	.LCFI12:
+ 847              		.cfi_def_cfa_offset 16
+ 848              		.cfi_offset 4, -16
+ 849              		.cfi_offset 5, -12
+ 850              		.cfi_offset 6, -8
+ 851              		.cfi_offset 14, -4
+ 852 0002 0446     		mov	r4, r0
+ 853 0004 0D46     		mov	r5, r1
+ 854 0006 1646     		mov	r6, r2
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 855              		.loc 1 369 5 is_stmt 1 view .LVU239
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 856              		.loc 1 371 5 view .LVU240
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 857              		.loc 1 371 17 is_stmt 0 view .LVU241
+ 858 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 859              	.LVL37:
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 860              		.loc 1 371 7 view .LVU242
+ 861 000c 00B9     		cbnz	r0, .L68
+ 862              	.L69:
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 863              		.loc 1 372 9 is_stmt 1 discriminator 1 view .LVU243
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 864              		.loc 1 372 9 discriminator 1 view .LVU244
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 865              		.loc 1 372 9 discriminator 1 view .LVU245
+ 866 000e FEE7     		b	.L69
+ 867              	.L68:
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 868              		.loc 1 376 5 view .LVU246
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 869              		.loc 1 376 11 is_stmt 0 view .LVU247
+ 870 0010 05EB8501 		add	r1, r5, r5, lsl #2
+ 871 0014 04EB8100 		add	r0, r4, r1, lsl #2
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 872              		.loc 1 376 9 view .LVU248
+ 873 0018 8368     		ldr	r3, [r0, #8]
+ 874              	.LVL38:
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= priority;
+ 875              		.loc 1 378 5 is_stmt 1 view .LVU249
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= priority;
+ 876              		.loc 1 378 9 is_stmt 0 view .LVU250
+ 877 001a 23F44053 		bic	r3, r3, #12288
+ 878              	.LVL39:
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 33
+
+
+ 879              		.loc 1 379 5 is_stmt 1 view .LVU251
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 880              		.loc 1 379 9 is_stmt 0 view .LVU252
+ 881 001e 3343     		orrs	r3, r3, r6
+ 882              	.LVL40:
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 883              		.loc 1 380 5 is_stmt 1 view .LVU253
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 884              		.loc 1 380 37 is_stmt 0 view .LVU254
+ 885 0020 8360     		str	r3, [r0, #8]
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 886              		.loc 1 381 1 view .LVU255
+ 887 0022 70BD     		pop	{r4, r5, r6, pc}
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 888              		.loc 1 381 1 view .LVU256
+ 889              		.cfi_endproc
+ 890              	.LFE129:
+ 892              		.section	.text.dma_memory_width_config,"ax",%progbits
+ 893              		.align	1
+ 894              		.global	dma_memory_width_config
+ 895              		.syntax unified
+ 896              		.thumb
+ 897              		.thumb_func
+ 899              	dma_memory_width_config:
+ 900              	.LVL41:
+ 901              	.LFB130:
+ 399:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 902              		.loc 1 399 1 is_stmt 1 view -0
+ 903              		.cfi_startproc
+ 904              		@ args = 0, pretend = 0, frame = 0
+ 905              		@ frame_needed = 0, uses_anonymous_args = 0
+ 399:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 906              		.loc 1 399 1 is_stmt 0 view .LVU258
+ 907 0000 70B5     		push	{r4, r5, r6, lr}
+ 908              	.LCFI13:
+ 909              		.cfi_def_cfa_offset 16
+ 910              		.cfi_offset 4, -16
+ 911              		.cfi_offset 5, -12
+ 912              		.cfi_offset 6, -8
+ 913              		.cfi_offset 14, -4
+ 914 0002 0446     		mov	r4, r0
+ 915 0004 0D46     		mov	r5, r1
+ 916 0006 1646     		mov	r6, r2
+ 400:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 917              		.loc 1 400 5 is_stmt 1 view .LVU259
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 918              		.loc 1 402 5 view .LVU260
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 919              		.loc 1 402 17 is_stmt 0 view .LVU261
+ 920 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 921              	.LVL42:
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 922              		.loc 1 402 7 view .LVU262
+ 923 000c 00B9     		cbnz	r0, .L72
+ 924              	.L73:
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 925              		.loc 1 403 9 is_stmt 1 discriminator 1 view .LVU263
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 34
+
+
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 926              		.loc 1 403 9 discriminator 1 view .LVU264
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 927              		.loc 1 403 9 discriminator 1 view .LVU265
+ 928 000e FEE7     		b	.L73
+ 929              	.L72:
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 930              		.loc 1 407 5 view .LVU266
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 931              		.loc 1 407 11 is_stmt 0 view .LVU267
+ 932 0010 05EB8501 		add	r1, r5, r5, lsl #2
+ 933 0014 04EB8100 		add	r0, r4, r1, lsl #2
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 934              		.loc 1 407 9 view .LVU268
+ 935 0018 8368     		ldr	r3, [r0, #8]
+ 936              	.LVL43:
+ 409:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= mwidth;
+ 937              		.loc 1 409 5 is_stmt 1 view .LVU269
+ 409:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= mwidth;
+ 938              		.loc 1 409 9 is_stmt 0 view .LVU270
+ 939 001a 23F44063 		bic	r3, r3, #3072
+ 940              	.LVL44:
+ 410:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 941              		.loc 1 410 5 is_stmt 1 view .LVU271
+ 410:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 942              		.loc 1 410 9 is_stmt 0 view .LVU272
+ 943 001e 3343     		orrs	r3, r3, r6
+ 944              	.LVL45:
+ 411:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 945              		.loc 1 411 5 is_stmt 1 view .LVU273
+ 411:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 946              		.loc 1 411 37 is_stmt 0 view .LVU274
+ 947 0020 8360     		str	r3, [r0, #8]
+ 412:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 948              		.loc 1 412 1 view .LVU275
+ 949 0022 70BD     		pop	{r4, r5, r6, pc}
+ 412:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 950              		.loc 1 412 1 view .LVU276
+ 951              		.cfi_endproc
+ 952              	.LFE130:
+ 954              		.section	.text.dma_periph_width_config,"ax",%progbits
+ 955              		.align	1
+ 956              		.global	dma_periph_width_config
+ 957              		.syntax unified
+ 958              		.thumb
+ 959              		.thumb_func
+ 961              	dma_periph_width_config:
+ 962              	.LVL46:
+ 963              	.LFB131:
+ 430:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 964              		.loc 1 430 1 is_stmt 1 view -0
+ 965              		.cfi_startproc
+ 966              		@ args = 0, pretend = 0, frame = 0
+ 967              		@ frame_needed = 0, uses_anonymous_args = 0
+ 430:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t ctl;
+ 968              		.loc 1 430 1 is_stmt 0 view .LVU278
+ 969 0000 70B5     		push	{r4, r5, r6, lr}
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 35
+
+
+ 970              	.LCFI14:
+ 971              		.cfi_def_cfa_offset 16
+ 972              		.cfi_offset 4, -16
+ 973              		.cfi_offset 5, -12
+ 974              		.cfi_offset 6, -8
+ 975              		.cfi_offset 14, -4
+ 976 0002 0446     		mov	r4, r0
+ 977 0004 0D46     		mov	r5, r1
+ 978 0006 1646     		mov	r6, r2
+ 431:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 979              		.loc 1 431 5 is_stmt 1 view .LVU279
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 980              		.loc 1 433 5 view .LVU280
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 981              		.loc 1 433 17 is_stmt 0 view .LVU281
+ 982 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 983              	.LVL47:
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 984              		.loc 1 433 7 view .LVU282
+ 985 000c 00B9     		cbnz	r0, .L76
+ 986              	.L77:
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 987              		.loc 1 434 9 is_stmt 1 discriminator 1 view .LVU283
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 988              		.loc 1 434 9 discriminator 1 view .LVU284
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 989              		.loc 1 434 9 discriminator 1 view .LVU285
+ 990 000e FEE7     		b	.L77
+ 991              	.L76:
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 992              		.loc 1 438 5 view .LVU286
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 993              		.loc 1 438 11 is_stmt 0 view .LVU287
+ 994 0010 05EB8501 		add	r1, r5, r5, lsl #2
+ 995 0014 04EB8100 		add	r0, r4, r1, lsl #2
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     /* assign regiser */
+ 996              		.loc 1 438 9 view .LVU288
+ 997 0018 8368     		ldr	r3, [r0, #8]
+ 998              	.LVL48:
+ 440:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= pwidth;
+ 999              		.loc 1 440 5 is_stmt 1 view .LVU289
+ 440:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     ctl |= pwidth;
+ 1000              		.loc 1 440 9 is_stmt 0 view .LVU290
+ 1001 001a 23F44073 		bic	r3, r3, #768
+ 1002              	.LVL49:
+ 441:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 1003              		.loc 1 441 5 is_stmt 1 view .LVU291
+ 441:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_CHCTL(dma_periph, channelx) = ctl;
+ 1004              		.loc 1 441 9 is_stmt 0 view .LVU292
+ 1005 001e 3343     		orrs	r3, r3, r6
+ 1006              	.LVL50:
+ 442:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1007              		.loc 1 442 5 is_stmt 1 view .LVU293
+ 442:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1008              		.loc 1 442 37 is_stmt 0 view .LVU294
+ 1009 0020 8360     		str	r3, [r0, #8]
+ 443:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 36
+
+
+ 1010              		.loc 1 443 1 view .LVU295
+ 1011 0022 70BD     		pop	{r4, r5, r6, pc}
+ 443:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1012              		.loc 1 443 1 view .LVU296
+ 1013              		.cfi_endproc
+ 1014              	.LFE131:
+ 1016              		.section	.text.dma_memory_increase_enable,"ax",%progbits
+ 1017              		.align	1
+ 1018              		.global	dma_memory_increase_enable
+ 1019              		.syntax unified
+ 1020              		.thumb
+ 1021              		.thumb_func
+ 1023              	dma_memory_increase_enable:
+ 1024              	.LVL51:
+ 1025              	.LFB132:
+ 456:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1026              		.loc 1 456 1 is_stmt 1 view -0
+ 1027              		.cfi_startproc
+ 1028              		@ args = 0, pretend = 0, frame = 0
+ 1029              		@ frame_needed = 0, uses_anonymous_args = 0
+ 456:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1030              		.loc 1 456 1 is_stmt 0 view .LVU298
+ 1031 0000 38B5     		push	{r3, r4, r5, lr}
+ 1032              	.LCFI15:
+ 1033              		.cfi_def_cfa_offset 16
+ 1034              		.cfi_offset 3, -16
+ 1035              		.cfi_offset 4, -12
+ 1036              		.cfi_offset 5, -8
+ 1037              		.cfi_offset 14, -4
+ 1038 0002 0446     		mov	r4, r0
+ 1039 0004 0D46     		mov	r5, r1
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1040              		.loc 1 457 5 is_stmt 1 view .LVU299
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1041              		.loc 1 457 17 is_stmt 0 view .LVU300
+ 1042 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 1043              	.LVL52:
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1044              		.loc 1 457 7 view .LVU301
+ 1045 000a 00B9     		cbnz	r0, .L80
+ 1046              	.L81:
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1047              		.loc 1 458 9 is_stmt 1 discriminator 1 view .LVU302
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1048              		.loc 1 458 9 discriminator 1 view .LVU303
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1049              		.loc 1 458 9 discriminator 1 view .LVU304
+ 1050 000c FEE7     		b	.L81
+ 1051              	.L80:
+ 461:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1052              		.loc 1 461 5 view .LVU305
+ 1053 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 1054 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 1055 0016 8368     		ldr	r3, [r0, #8]
+ 461:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1056              		.loc 1 461 37 is_stmt 0 view .LVU306
+ 1057 0018 43F08003 		orr	r3, r3, #128
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 37
+
+
+ 1058 001c 8360     		str	r3, [r0, #8]
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1059              		.loc 1 462 1 view .LVU307
+ 1060 001e 38BD     		pop	{r3, r4, r5, pc}
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1061              		.loc 1 462 1 view .LVU308
+ 1062              		.cfi_endproc
+ 1063              	.LFE132:
+ 1065              		.section	.text.dma_memory_increase_disable,"ax",%progbits
+ 1066              		.align	1
+ 1067              		.global	dma_memory_increase_disable
+ 1068              		.syntax unified
+ 1069              		.thumb
+ 1070              		.thumb_func
+ 1072              	dma_memory_increase_disable:
+ 1073              	.LVL53:
+ 1074              	.LFB133:
+ 475:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1075              		.loc 1 475 1 is_stmt 1 view -0
+ 1076              		.cfi_startproc
+ 1077              		@ args = 0, pretend = 0, frame = 0
+ 1078              		@ frame_needed = 0, uses_anonymous_args = 0
+ 475:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1079              		.loc 1 475 1 is_stmt 0 view .LVU310
+ 1080 0000 38B5     		push	{r3, r4, r5, lr}
+ 1081              	.LCFI16:
+ 1082              		.cfi_def_cfa_offset 16
+ 1083              		.cfi_offset 3, -16
+ 1084              		.cfi_offset 4, -12
+ 1085              		.cfi_offset 5, -8
+ 1086              		.cfi_offset 14, -4
+ 1087 0002 0446     		mov	r4, r0
+ 1088 0004 0D46     		mov	r5, r1
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1089              		.loc 1 476 5 is_stmt 1 view .LVU311
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1090              		.loc 1 476 17 is_stmt 0 view .LVU312
+ 1091 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 1092              	.LVL54:
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1093              		.loc 1 476 7 view .LVU313
+ 1094 000a 00B9     		cbnz	r0, .L84
+ 1095              	.L85:
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1096              		.loc 1 477 9 is_stmt 1 discriminator 1 view .LVU314
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1097              		.loc 1 477 9 discriminator 1 view .LVU315
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1098              		.loc 1 477 9 discriminator 1 view .LVU316
+ 1099 000c FEE7     		b	.L85
+ 1100              	.L84:
+ 480:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1101              		.loc 1 480 5 view .LVU317
+ 1102 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 1103 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 1104 0016 8368     		ldr	r3, [r0, #8]
+ 480:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 38
+
+
+ 1105              		.loc 1 480 37 is_stmt 0 view .LVU318
+ 1106 0018 23F08003 		bic	r3, r3, #128
+ 1107 001c 8360     		str	r3, [r0, #8]
+ 481:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1108              		.loc 1 481 1 view .LVU319
+ 1109 001e 38BD     		pop	{r3, r4, r5, pc}
+ 481:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1110              		.loc 1 481 1 view .LVU320
+ 1111              		.cfi_endproc
+ 1112              	.LFE133:
+ 1114              		.section	.text.dma_periph_increase_enable,"ax",%progbits
+ 1115              		.align	1
+ 1116              		.global	dma_periph_increase_enable
+ 1117              		.syntax unified
+ 1118              		.thumb
+ 1119              		.thumb_func
+ 1121              	dma_periph_increase_enable:
+ 1122              	.LVL55:
+ 1123              	.LFB134:
+ 494:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1124              		.loc 1 494 1 is_stmt 1 view -0
+ 1125              		.cfi_startproc
+ 1126              		@ args = 0, pretend = 0, frame = 0
+ 1127              		@ frame_needed = 0, uses_anonymous_args = 0
+ 494:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1128              		.loc 1 494 1 is_stmt 0 view .LVU322
+ 1129 0000 38B5     		push	{r3, r4, r5, lr}
+ 1130              	.LCFI17:
+ 1131              		.cfi_def_cfa_offset 16
+ 1132              		.cfi_offset 3, -16
+ 1133              		.cfi_offset 4, -12
+ 1134              		.cfi_offset 5, -8
+ 1135              		.cfi_offset 14, -4
+ 1136 0002 0446     		mov	r4, r0
+ 1137 0004 0D46     		mov	r5, r1
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1138              		.loc 1 495 5 is_stmt 1 view .LVU323
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1139              		.loc 1 495 17 is_stmt 0 view .LVU324
+ 1140 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 1141              	.LVL56:
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1142              		.loc 1 495 7 view .LVU325
+ 1143 000a 00B9     		cbnz	r0, .L88
+ 1144              	.L89:
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1145              		.loc 1 496 9 is_stmt 1 discriminator 1 view .LVU326
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1146              		.loc 1 496 9 discriminator 1 view .LVU327
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1147              		.loc 1 496 9 discriminator 1 view .LVU328
+ 1148 000c FEE7     		b	.L89
+ 1149              	.L88:
+ 499:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1150              		.loc 1 499 5 view .LVU329
+ 1151 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 1152 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 39
+
+
+ 1153 0016 8368     		ldr	r3, [r0, #8]
+ 499:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1154              		.loc 1 499 37 is_stmt 0 view .LVU330
+ 1155 0018 43F04003 		orr	r3, r3, #64
+ 1156 001c 8360     		str	r3, [r0, #8]
+ 500:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1157              		.loc 1 500 1 view .LVU331
+ 1158 001e 38BD     		pop	{r3, r4, r5, pc}
+ 500:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1159              		.loc 1 500 1 view .LVU332
+ 1160              		.cfi_endproc
+ 1161              	.LFE134:
+ 1163              		.section	.text.dma_periph_increase_disable,"ax",%progbits
+ 1164              		.align	1
+ 1165              		.global	dma_periph_increase_disable
+ 1166              		.syntax unified
+ 1167              		.thumb
+ 1168              		.thumb_func
+ 1170              	dma_periph_increase_disable:
+ 1171              	.LVL57:
+ 1172              	.LFB135:
+ 513:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1173              		.loc 1 513 1 is_stmt 1 view -0
+ 1174              		.cfi_startproc
+ 1175              		@ args = 0, pretend = 0, frame = 0
+ 1176              		@ frame_needed = 0, uses_anonymous_args = 0
+ 513:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1177              		.loc 1 513 1 is_stmt 0 view .LVU334
+ 1178 0000 38B5     		push	{r3, r4, r5, lr}
+ 1179              	.LCFI18:
+ 1180              		.cfi_def_cfa_offset 16
+ 1181              		.cfi_offset 3, -16
+ 1182              		.cfi_offset 4, -12
+ 1183              		.cfi_offset 5, -8
+ 1184              		.cfi_offset 14, -4
+ 1185 0002 0446     		mov	r4, r0
+ 1186 0004 0D46     		mov	r5, r1
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1187              		.loc 1 514 5 is_stmt 1 view .LVU335
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1188              		.loc 1 514 17 is_stmt 0 view .LVU336
+ 1189 0006 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 1190              	.LVL58:
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1191              		.loc 1 514 7 view .LVU337
+ 1192 000a 00B9     		cbnz	r0, .L92
+ 1193              	.L93:
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1194              		.loc 1 515 9 is_stmt 1 discriminator 1 view .LVU338
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1195              		.loc 1 515 9 discriminator 1 view .LVU339
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1196              		.loc 1 515 9 discriminator 1 view .LVU340
+ 1197 000c FEE7     		b	.L93
+ 1198              	.L92:
+ 518:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1199              		.loc 1 518 5 view .LVU341
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 40
+
+
+ 1200 000e 05EB8501 		add	r1, r5, r5, lsl #2
+ 1201 0012 04EB8100 		add	r0, r4, r1, lsl #2
+ 1202 0016 8368     		ldr	r3, [r0, #8]
+ 518:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1203              		.loc 1 518 37 is_stmt 0 view .LVU342
+ 1204 0018 23F04003 		bic	r3, r3, #64
+ 1205 001c 8360     		str	r3, [r0, #8]
+ 519:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1206              		.loc 1 519 1 view .LVU343
+ 1207 001e 38BD     		pop	{r3, r4, r5, pc}
+ 519:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1208              		.loc 1 519 1 view .LVU344
+ 1209              		.cfi_endproc
+ 1210              	.LFE135:
+ 1212              		.section	.text.dma_transfer_direction_config,"ax",%progbits
+ 1213              		.align	1
+ 1214              		.global	dma_transfer_direction_config
+ 1215              		.syntax unified
+ 1216              		.thumb
+ 1217              		.thumb_func
+ 1219              	dma_transfer_direction_config:
+ 1220              	.LVL59:
+ 1221              	.LFB136:
+ 536:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1222              		.loc 1 536 1 is_stmt 1 view -0
+ 1223              		.cfi_startproc
+ 1224              		@ args = 0, pretend = 0, frame = 0
+ 1225              		@ frame_needed = 0, uses_anonymous_args = 0
+ 536:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1226              		.loc 1 536 1 is_stmt 0 view .LVU346
+ 1227 0000 70B5     		push	{r4, r5, r6, lr}
+ 1228              	.LCFI19:
+ 1229              		.cfi_def_cfa_offset 16
+ 1230              		.cfi_offset 4, -16
+ 1231              		.cfi_offset 5, -12
+ 1232              		.cfi_offset 6, -8
+ 1233              		.cfi_offset 14, -4
+ 1234 0002 0446     		mov	r4, r0
+ 1235 0004 0D46     		mov	r5, r1
+ 1236 0006 1646     		mov	r6, r2
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1237              		.loc 1 537 5 is_stmt 1 view .LVU347
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1238              		.loc 1 537 17 is_stmt 0 view .LVU348
+ 1239 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 1240              	.LVL60:
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1241              		.loc 1 537 7 view .LVU349
+ 1242 000c 00B9     		cbnz	r0, .L96
+ 1243              	.L97:
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1244              		.loc 1 538 9 is_stmt 1 discriminator 1 view .LVU350
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1245              		.loc 1 538 9 discriminator 1 view .LVU351
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1246              		.loc 1 538 9 discriminator 1 view .LVU352
+ 1247 000e FEE7     		b	.L97
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 41
+
+
+ 1248              	.L96:
+ 541:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_DIR;
+ 1249              		.loc 1 541 5 view .LVU353
+ 541:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_CHCTL(dma_periph, channelx) &= ~DMA_CHXCTL_DIR;
+ 1250              		.loc 1 541 7 is_stmt 0 view .LVU354
+ 1251 0010 46B9     		cbnz	r6, .L98
+ 542:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     } else {
+ 1252              		.loc 1 542 9 is_stmt 1 view .LVU355
+ 1253 0012 05EB8505 		add	r5, r5, r5, lsl #2
+ 1254 0016 04EB8500 		add	r0, r4, r5, lsl #2
+ 1255 001a 8368     		ldr	r3, [r0, #8]
+ 542:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     } else {
+ 1256              		.loc 1 542 41 is_stmt 0 view .LVU356
+ 1257 001c 23F01003 		bic	r3, r3, #16
+ 1258 0020 8360     		str	r3, [r0, #8]
+ 1259              	.L95:
+ 546:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1260              		.loc 1 546 1 view .LVU357
+ 1261 0022 70BD     		pop	{r4, r5, r6, pc}
+ 1262              	.LVL61:
+ 1263              	.L98:
+ 544:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1264              		.loc 1 544 9 is_stmt 1 view .LVU358
+ 1265 0024 05EB8505 		add	r5, r5, r5, lsl #2
+ 1266 0028 04EB8500 		add	r0, r4, r5, lsl #2
+ 1267 002c 8368     		ldr	r3, [r0, #8]
+ 544:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1268              		.loc 1 544 41 is_stmt 0 view .LVU359
+ 1269 002e 43F01003 		orr	r3, r3, #16
+ 1270 0032 8360     		str	r3, [r0, #8]
+ 546:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1271              		.loc 1 546 1 view .LVU360
+ 1272 0034 F5E7     		b	.L95
+ 1273              		.cfi_endproc
+ 1274              	.LFE136:
+ 1276              		.section	.text.dma_flag_get,"ax",%progbits
+ 1277              		.align	1
+ 1278              		.global	dma_flag_get
+ 1279              		.syntax unified
+ 1280              		.thumb
+ 1281              		.thumb_func
+ 1283              	dma_flag_get:
+ 1284              	.LVL62:
+ 1285              	.LFB137:
+ 565:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     FlagStatus reval;
+ 1286              		.loc 1 565 1 is_stmt 1 view -0
+ 1287              		.cfi_startproc
+ 1288              		@ args = 0, pretend = 0, frame = 0
+ 1289              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1290              		@ link register save eliminated.
+ 566:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1291              		.loc 1 566 5 view .LVU362
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         reval = SET;
+ 1292              		.loc 1 568 5 view .LVU363
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         reval = SET;
+ 1293              		.loc 1 568 18 is_stmt 0 view .LVU364
+ 1294 0000 0368     		ldr	r3, [r0]
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 42
+
+
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         reval = SET;
+ 1295              		.loc 1 568 41 view .LVU365
+ 1296 0002 8900     		lsls	r1, r1, #2
+ 1297              	.LVL63:
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         reval = SET;
+ 1298              		.loc 1 568 41 view .LVU366
+ 1299 0004 8A40     		lsls	r2, r2, r1
+ 1300              	.LVL64:
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         reval = SET;
+ 1301              		.loc 1 568 7 view .LVU367
+ 1302 0006 1342     		tst	r3, r2
+ 1303 0008 01D0     		beq	.L103
+ 569:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 1304              		.loc 1 569 15 view .LVU368
+ 1305 000a 0120     		movs	r0, #1
+ 1306              	.LVL65:
+ 569:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ 1307              		.loc 1 569 15 view .LVU369
+ 1308 000c 7047     		bx	lr
+ 1309              	.LVL66:
+ 1310              	.L103:
+ 571:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1311              		.loc 1 571 15 view .LVU370
+ 1312 000e 0020     		movs	r0, #0
+ 1313              	.LVL67:
+ 574:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1314              		.loc 1 574 5 is_stmt 1 view .LVU371
+ 575:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1315              		.loc 1 575 1 is_stmt 0 view .LVU372
+ 1316 0010 7047     		bx	lr
+ 1317              		.cfi_endproc
+ 1318              	.LFE137:
+ 1320              		.section	.text.dma_flag_clear,"ax",%progbits
+ 1321              		.align	1
+ 1322              		.global	dma_flag_clear
+ 1323              		.syntax unified
+ 1324              		.thumb
+ 1325              		.thumb_func
+ 1327              	dma_flag_clear:
+ 1328              	.LVL68:
+ 1329              	.LFB138:
+ 594:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, channelx);
+ 1330              		.loc 1 594 1 is_stmt 1 view -0
+ 1331              		.cfi_startproc
+ 1332              		@ args = 0, pretend = 0, frame = 0
+ 1333              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1334              		@ link register save eliminated.
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1335              		.loc 1 595 5 view .LVU374
+ 1336 0000 4368     		ldr	r3, [r0, #4]
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1337              		.loc 1 595 29 is_stmt 0 view .LVU375
+ 1338 0002 8900     		lsls	r1, r1, #2
+ 1339              	.LVL69:
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1340              		.loc 1 595 29 view .LVU376
+ 1341 0004 8A40     		lsls	r2, r2, r1
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 43
+
+
+ 1342              	.LVL70:
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1343              		.loc 1 595 26 view .LVU377
+ 1344 0006 1343     		orrs	r3, r3, r2
+ 1345 0008 4360     		str	r3, [r0, #4]
+ 596:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1346              		.loc 1 596 1 view .LVU378
+ 1347 000a 7047     		bx	lr
+ 1348              		.cfi_endproc
+ 1349              	.LFE138:
+ 1351              		.section	.text.dma_interrupt_flag_get,"ax",%progbits
+ 1352              		.align	1
+ 1353              		.global	dma_interrupt_flag_get
+ 1354              		.syntax unified
+ 1355              		.thumb
+ 1356              		.thumb_func
+ 1358              	dma_interrupt_flag_get:
+ 1359              	.LVL71:
+ 1360              	.LFB139:
+ 614:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t interrupt_enable = 0U, interrupt_flag = 0U;
+ 1361              		.loc 1 614 1 is_stmt 1 view -0
+ 1362              		.cfi_startproc
+ 1363              		@ args = 0, pretend = 0, frame = 0
+ 1364              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1365              		@ link register save eliminated.
+ 614:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     uint32_t interrupt_enable = 0U, interrupt_flag = 0U;
+ 1366              		.loc 1 614 1 is_stmt 0 view .LVU380
+ 1367 0000 10B4     		push	{r4}
+ 1368              	.LCFI20:
+ 1369              		.cfi_def_cfa_offset 4
+ 1370              		.cfi_offset 4, -4
+ 615:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1371              		.loc 1 615 5 is_stmt 1 view .LVU381
+ 1372              	.LVL72:
+ 617:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         case DMA_INT_FLAG_FTF:
+ 1373              		.loc 1 617 5 view .LVU382
+ 1374 0002 042A     		cmp	r2, #4
+ 1375 0004 12D0     		beq	.L106
+ 1376 0006 082A     		cmp	r2, #8
+ 1377 0008 1BD0     		beq	.L107
+ 1378 000a 022A     		cmp	r2, #2
+ 1379 000c 00D0     		beq	.L114
+ 1380              	.L108:
+ 631:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         }
+ 1381              		.loc 1 631 13 discriminator 1 view .LVU383
+ 631:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         }
+ 1382              		.loc 1 631 13 discriminator 1 view .LVU384
+ 631:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         }
+ 1383              		.loc 1 631 13 discriminator 1 view .LVU385
+ 1384 000e FEE7     		b	.L108
+ 1385              	.L114:
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_FTFIE;
+ 1386              		.loc 1 619 13 view .LVU386
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_FTFIE;
+ 1387              		.loc 1 619 30 is_stmt 0 view .LVU387
+ 1388 0010 0468     		ldr	r4, [r0]
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_FTFIE;
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 44
+
+
+ 1389              		.loc 1 619 53 view .LVU388
+ 1390 0012 8B00     		lsls	r3, r1, #2
+ 1391 0014 9A40     		lsls	r2, r2, r3
+ 1392              	.LVL73:
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_FTFIE;
+ 1393              		.loc 1 619 28 view .LVU389
+ 1394 0016 2240     		ands	r2, r2, r4
+ 1395              	.LVL74:
+ 620:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1396              		.loc 1 620 13 is_stmt 1 view .LVU390
+ 620:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1397              		.loc 1 620 32 is_stmt 0 view .LVU391
+ 1398 0018 0B44     		add	r3, r3, r1
+ 1399 001a 00EB8303 		add	r3, r0, r3, lsl #2
+ 1400 001e 9B68     		ldr	r3, [r3, #8]
+ 620:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1401              		.loc 1 620 30 view .LVU392
+ 1402 0020 03F00203 		and	r3, r3, #2
+ 1403              	.LVL75:
+ 621:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         case DMA_INT_FLAG_HTF:
+ 1404              		.loc 1 621 13 is_stmt 1 view .LVU393
+ 1405              	.L109:
+ 634:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         return SET;
+ 1406              		.loc 1 634 5 view .LVU394
+ 634:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         return SET;
+ 1407              		.loc 1 634 7 is_stmt 0 view .LVU395
+ 1408 0024 C2B1     		cbz	r2, .L111
+ 634:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         return SET;
+ 1409              		.loc 1 634 23 discriminator 1 view .LVU396
+ 1410 0026 DBB9     		cbnz	r3, .L112
+ 637:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1411              		.loc 1 637 16 view .LVU397
+ 1412 0028 0020     		movs	r0, #0
+ 1413 002a 16E0     		b	.L110
+ 1414              	.LVL76:
+ 1415              	.L106:
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_HTFIE;
+ 1416              		.loc 1 623 13 is_stmt 1 view .LVU398
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_HTFIE;
+ 1417              		.loc 1 623 30 is_stmt 0 view .LVU399
+ 1418 002c 0468     		ldr	r4, [r0]
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_HTFIE;
+ 1419              		.loc 1 623 53 view .LVU400
+ 1420 002e 8B00     		lsls	r3, r1, #2
+ 1421 0030 9A40     		lsls	r2, r2, r3
+ 1422              	.LVL77:
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_HTFIE;
+ 1423              		.loc 1 623 28 view .LVU401
+ 1424 0032 2240     		ands	r2, r2, r4
+ 1425              	.LVL78:
+ 624:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1426              		.loc 1 624 13 is_stmt 1 view .LVU402
+ 624:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1427              		.loc 1 624 32 is_stmt 0 view .LVU403
+ 1428 0034 0B44     		add	r3, r3, r1
+ 1429 0036 00EB8303 		add	r3, r0, r3, lsl #2
+ 1430 003a 9B68     		ldr	r3, [r3, #8]
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 45
+
+
+ 624:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1431              		.loc 1 624 30 view .LVU404
+ 1432 003c 03F00403 		and	r3, r3, #4
+ 1433              	.LVL79:
+ 625:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         case DMA_INT_FLAG_ERR:
+ 1434              		.loc 1 625 13 is_stmt 1 view .LVU405
+ 1435 0040 F0E7     		b	.L109
+ 1436              	.LVL80:
+ 1437              	.L107:
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_ERRIE;
+ 1438              		.loc 1 627 13 view .LVU406
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_ERRIE;
+ 1439              		.loc 1 627 30 is_stmt 0 view .LVU407
+ 1440 0042 0468     		ldr	r4, [r0]
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_ERRIE;
+ 1441              		.loc 1 627 53 view .LVU408
+ 1442 0044 8B00     		lsls	r3, r1, #2
+ 1443 0046 9A40     		lsls	r2, r2, r3
+ 1444              	.LVL81:
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             interrupt_enable = DMA_CHCTL(dma_periph, channelx) & DMA_CHXCTL_ERRIE;
+ 1445              		.loc 1 627 28 view .LVU409
+ 1446 0048 2240     		ands	r2, r2, r4
+ 1447              	.LVL82:
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1448              		.loc 1 628 13 is_stmt 1 view .LVU410
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1449              		.loc 1 628 32 is_stmt 0 view .LVU411
+ 1450 004a 0B44     		add	r3, r3, r1
+ 1451 004c 00EB8300 		add	r0, r0, r3, lsl #2
+ 1452              	.LVL83:
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1453              		.loc 1 628 32 view .LVU412
+ 1454 0050 8368     		ldr	r3, [r0, #8]
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****             break;
+ 1455              		.loc 1 628 30 view .LVU413
+ 1456 0052 03F00803 		and	r3, r3, #8
+ 1457              	.LVL84:
+ 629:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         default:
+ 1458              		.loc 1 629 13 is_stmt 1 view .LVU414
+ 1459 0056 E5E7     		b	.L109
+ 1460              	.L111:
+ 637:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1461              		.loc 1 637 16 is_stmt 0 view .LVU415
+ 1462 0058 0020     		movs	r0, #0
+ 1463              	.L110:
+ 639:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1464              		.loc 1 639 1 view .LVU416
+ 1465 005a 5DF8044B 		ldr	r4, [sp], #4
+ 1466              	.LCFI21:
+ 1467              		.cfi_remember_state
+ 1468              		.cfi_restore 4
+ 1469              		.cfi_def_cfa_offset 0
+ 1470 005e 7047     		bx	lr
+ 1471              	.L112:
+ 1472              	.LCFI22:
+ 1473              		.cfi_restore_state
+ 635:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }else{
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 46
+
+
+ 1474              		.loc 1 635 16 view .LVU417
+ 1475 0060 0120     		movs	r0, #1
+ 1476 0062 FAE7     		b	.L110
+ 1477              		.cfi_endproc
+ 1478              	.LFE139:
+ 1480              		.section	.text.dma_interrupt_flag_clear,"ax",%progbits
+ 1481              		.align	1
+ 1482              		.global	dma_interrupt_flag_clear
+ 1483              		.syntax unified
+ 1484              		.thumb
+ 1485              		.thumb_func
+ 1487              	dma_interrupt_flag_clear:
+ 1488              	.LVL85:
+ 1489              	.LFB140:
+ 658:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     DMA_INTC(dma_periph) |= DMA_FLAG_ADD(flag, channelx);
+ 1490              		.loc 1 658 1 is_stmt 1 view -0
+ 1491              		.cfi_startproc
+ 1492              		@ args = 0, pretend = 0, frame = 0
+ 1493              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1494              		@ link register save eliminated.
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1495              		.loc 1 659 5 view .LVU419
+ 1496 0000 4368     		ldr	r3, [r0, #4]
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1497              		.loc 1 659 29 is_stmt 0 view .LVU420
+ 1498 0002 8900     		lsls	r1, r1, #2
+ 1499              	.LVL86:
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1500              		.loc 1 659 29 view .LVU421
+ 1501 0004 8A40     		lsls	r2, r2, r1
+ 1502              	.LVL87:
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1503              		.loc 1 659 26 view .LVU422
+ 1504 0006 1343     		orrs	r3, r3, r2
+ 1505 0008 4360     		str	r3, [r0, #4]
+ 660:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1506              		.loc 1 660 1 view .LVU423
+ 1507 000a 7047     		bx	lr
+ 1508              		.cfi_endproc
+ 1509              	.LFE140:
+ 1511              		.section	.text.dma_interrupt_enable,"ax",%progbits
+ 1512              		.align	1
+ 1513              		.global	dma_interrupt_enable
+ 1514              		.syntax unified
+ 1515              		.thumb
+ 1516              		.thumb_func
+ 1518              	dma_interrupt_enable:
+ 1519              	.LVL88:
+ 1520              	.LFB141:
+ 678:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1521              		.loc 1 678 1 is_stmt 1 view -0
+ 1522              		.cfi_startproc
+ 1523              		@ args = 0, pretend = 0, frame = 0
+ 1524              		@ frame_needed = 0, uses_anonymous_args = 0
+ 678:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1525              		.loc 1 678 1 is_stmt 0 view .LVU425
+ 1526 0000 70B5     		push	{r4, r5, r6, lr}
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 47
+
+
+ 1527              	.LCFI23:
+ 1528              		.cfi_def_cfa_offset 16
+ 1529              		.cfi_offset 4, -16
+ 1530              		.cfi_offset 5, -12
+ 1531              		.cfi_offset 6, -8
+ 1532              		.cfi_offset 14, -4
+ 1533 0002 0446     		mov	r4, r0
+ 1534 0004 0D46     		mov	r5, r1
+ 1535 0006 1646     		mov	r6, r2
+ 679:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1536              		.loc 1 679 5 is_stmt 1 view .LVU426
+ 679:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1537              		.loc 1 679 17 is_stmt 0 view .LVU427
+ 1538 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 1539              	.LVL89:
+ 679:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1540              		.loc 1 679 7 view .LVU428
+ 1541 000c 00B9     		cbnz	r0, .L117
+ 1542              	.L118:
+ 680:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1543              		.loc 1 680 9 is_stmt 1 discriminator 1 view .LVU429
+ 680:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1544              		.loc 1 680 9 discriminator 1 view .LVU430
+ 680:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1545              		.loc 1 680 9 discriminator 1 view .LVU431
+ 1546 000e FEE7     		b	.L118
+ 1547              	.L117:
+ 683:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1548              		.loc 1 683 5 view .LVU432
+ 1549 0010 05EB8501 		add	r1, r5, r5, lsl #2
+ 1550 0014 04EB8100 		add	r0, r4, r1, lsl #2
+ 1551 0018 8368     		ldr	r3, [r0, #8]
+ 683:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1552              		.loc 1 683 37 is_stmt 0 view .LVU433
+ 1553 001a 3343     		orrs	r3, r3, r6
+ 1554 001c 8360     		str	r3, [r0, #8]
+ 684:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1555              		.loc 1 684 1 view .LVU434
+ 1556 001e 70BD     		pop	{r4, r5, r6, pc}
+ 684:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1557              		.loc 1 684 1 view .LVU435
+ 1558              		.cfi_endproc
+ 1559              	.LFE141:
+ 1561              		.section	.text.dma_interrupt_disable,"ax",%progbits
+ 1562              		.align	1
+ 1563              		.global	dma_interrupt_disable
+ 1564              		.syntax unified
+ 1565              		.thumb
+ 1566              		.thumb_func
+ 1568              	dma_interrupt_disable:
+ 1569              	.LVL90:
+ 1570              	.LFB142:
+ 702:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1571              		.loc 1 702 1 is_stmt 1 view -0
+ 1572              		.cfi_startproc
+ 1573              		@ args = 0, pretend = 0, frame = 0
+ 1574              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 48
+
+
+ 702:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     if(ERROR == dma_periph_and_channel_check(dma_periph, channelx)){
+ 1575              		.loc 1 702 1 is_stmt 0 view .LVU437
+ 1576 0000 70B5     		push	{r4, r5, r6, lr}
+ 1577              	.LCFI24:
+ 1578              		.cfi_def_cfa_offset 16
+ 1579              		.cfi_offset 4, -16
+ 1580              		.cfi_offset 5, -12
+ 1581              		.cfi_offset 6, -8
+ 1582              		.cfi_offset 14, -4
+ 1583 0002 0446     		mov	r4, r0
+ 1584 0004 0D46     		mov	r5, r1
+ 1585 0006 1646     		mov	r6, r2
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1586              		.loc 1 703 5 is_stmt 1 view .LVU438
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1587              		.loc 1 703 17 is_stmt 0 view .LVU439
+ 1588 0008 FFF7FEFF 		bl	dma_periph_and_channel_check
+ 1589              	.LVL91:
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****         DMA_WRONG_HANDLE
+ 1590              		.loc 1 703 7 view .LVU440
+ 1591 000c 00B9     		cbnz	r0, .L121
+ 1592              	.L122:
+ 704:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1593              		.loc 1 704 9 is_stmt 1 discriminator 1 view .LVU441
+ 704:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1594              		.loc 1 704 9 discriminator 1 view .LVU442
+ 704:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c ****     }
+ 1595              		.loc 1 704 9 discriminator 1 view .LVU443
+ 1596 000e FEE7     		b	.L122
+ 1597              	.L121:
+ 707:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1598              		.loc 1 707 5 view .LVU444
+ 1599 0010 05EB8501 		add	r1, r5, r5, lsl #2
+ 1600 0014 04EB8100 		add	r0, r4, r1, lsl #2
+ 1601 0018 8368     		ldr	r3, [r0, #8]
+ 707:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** }
+ 1602              		.loc 1 707 37 is_stmt 0 view .LVU445
+ 1603 001a 23EA0603 		bic	r3, r3, r6
+ 1604 001e 8360     		str	r3, [r0, #8]
+ 708:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1605              		.loc 1 708 1 view .LVU446
+ 1606 0020 70BD     		pop	{r4, r5, r6, pc}
+ 708:./GD32F30x_standard_peripheral/Source/gd32f30x_dma.c **** 
+ 1607              		.loc 1 708 1 view .LVU447
+ 1608              		.cfi_endproc
+ 1609              	.LFE142:
+ 1611              		.text
+ 1612              	.Letext0:
+ 1613              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1614              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1615              		.file 4 "CMSIS/GD/GD32F30x/Include/gd32f30x.h"
+ 1616              		.file 5 "GD32F30x_standard_peripheral/Include/gd32f30x_dma.h"
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 49
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_dma.c
+  C:\Temp\cc5T0Vyi.s:21     .text.dma_periph_and_channel_check:00000000 $t
+  C:\Temp\cc5T0Vyi.s:26     .text.dma_periph_and_channel_check:00000000 dma_periph_and_channel_check
+  C:\Temp\cc5T0Vyi.s:67     .text.dma_periph_and_channel_check:00000018 $d
+  C:\Temp\cc5T0Vyi.s:72     .text.dma_deinit:00000000 $t
+  C:\Temp\cc5T0Vyi.s:78     .text.dma_deinit:00000000 dma_deinit
+  C:\Temp\cc5T0Vyi.s:143    .text.dma_struct_para_init:00000000 $t
+  C:\Temp\cc5T0Vyi.s:149    .text.dma_struct_para_init:00000000 dma_struct_para_init
+  C:\Temp\cc5T0Vyi.s:199    .text.dma_init:00000000 $t
+  C:\Temp\cc5T0Vyi.s:205    .text.dma_init:00000000 dma_init
+  C:\Temp\cc5T0Vyi.s:342    .text.dma_circulation_enable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:348    .text.dma_circulation_enable:00000000 dma_circulation_enable
+  C:\Temp\cc5T0Vyi.s:391    .text.dma_circulation_disable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:397    .text.dma_circulation_disable:00000000 dma_circulation_disable
+  C:\Temp\cc5T0Vyi.s:440    .text.dma_memory_to_memory_enable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:446    .text.dma_memory_to_memory_enable:00000000 dma_memory_to_memory_enable
+  C:\Temp\cc5T0Vyi.s:489    .text.dma_memory_to_memory_disable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:495    .text.dma_memory_to_memory_disable:00000000 dma_memory_to_memory_disable
+  C:\Temp\cc5T0Vyi.s:538    .text.dma_channel_enable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:544    .text.dma_channel_enable:00000000 dma_channel_enable
+  C:\Temp\cc5T0Vyi.s:587    .text.dma_channel_disable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:593    .text.dma_channel_disable:00000000 dma_channel_disable
+  C:\Temp\cc5T0Vyi.s:636    .text.dma_periph_address_config:00000000 $t
+  C:\Temp\cc5T0Vyi.s:642    .text.dma_periph_address_config:00000000 dma_periph_address_config
+  C:\Temp\cc5T0Vyi.s:684    .text.dma_memory_address_config:00000000 $t
+  C:\Temp\cc5T0Vyi.s:690    .text.dma_memory_address_config:00000000 dma_memory_address_config
+  C:\Temp\cc5T0Vyi.s:732    .text.dma_transfer_number_config:00000000 $t
+  C:\Temp\cc5T0Vyi.s:738    .text.dma_transfer_number_config:00000000 dma_transfer_number_config
+  C:\Temp\cc5T0Vyi.s:783    .text.dma_transfer_number_get:00000000 $t
+  C:\Temp\cc5T0Vyi.s:789    .text.dma_transfer_number_get:00000000 dma_transfer_number_get
+  C:\Temp\cc5T0Vyi.s:831    .text.dma_priority_config:00000000 $t
+  C:\Temp\cc5T0Vyi.s:837    .text.dma_priority_config:00000000 dma_priority_config
+  C:\Temp\cc5T0Vyi.s:893    .text.dma_memory_width_config:00000000 $t
+  C:\Temp\cc5T0Vyi.s:899    .text.dma_memory_width_config:00000000 dma_memory_width_config
+  C:\Temp\cc5T0Vyi.s:955    .text.dma_periph_width_config:00000000 $t
+  C:\Temp\cc5T0Vyi.s:961    .text.dma_periph_width_config:00000000 dma_periph_width_config
+  C:\Temp\cc5T0Vyi.s:1017   .text.dma_memory_increase_enable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1023   .text.dma_memory_increase_enable:00000000 dma_memory_increase_enable
+  C:\Temp\cc5T0Vyi.s:1066   .text.dma_memory_increase_disable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1072   .text.dma_memory_increase_disable:00000000 dma_memory_increase_disable
+  C:\Temp\cc5T0Vyi.s:1115   .text.dma_periph_increase_enable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1121   .text.dma_periph_increase_enable:00000000 dma_periph_increase_enable
+  C:\Temp\cc5T0Vyi.s:1164   .text.dma_periph_increase_disable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1170   .text.dma_periph_increase_disable:00000000 dma_periph_increase_disable
+  C:\Temp\cc5T0Vyi.s:1213   .text.dma_transfer_direction_config:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1219   .text.dma_transfer_direction_config:00000000 dma_transfer_direction_config
+  C:\Temp\cc5T0Vyi.s:1277   .text.dma_flag_get:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1283   .text.dma_flag_get:00000000 dma_flag_get
+  C:\Temp\cc5T0Vyi.s:1321   .text.dma_flag_clear:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1327   .text.dma_flag_clear:00000000 dma_flag_clear
+  C:\Temp\cc5T0Vyi.s:1352   .text.dma_interrupt_flag_get:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1358   .text.dma_interrupt_flag_get:00000000 dma_interrupt_flag_get
+  C:\Temp\cc5T0Vyi.s:1481   .text.dma_interrupt_flag_clear:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1487   .text.dma_interrupt_flag_clear:00000000 dma_interrupt_flag_clear
+  C:\Temp\cc5T0Vyi.s:1512   .text.dma_interrupt_enable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1518   .text.dma_interrupt_enable:00000000 dma_interrupt_enable
+ARM GAS  C:\Temp\cc5T0Vyi.s 			page 50
+
+
+  C:\Temp\cc5T0Vyi.s:1562   .text.dma_interrupt_disable:00000000 $t
+  C:\Temp\cc5T0Vyi.s:1568   .text.dma_interrupt_disable:00000000 dma_interrupt_disable
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,1951 @@
+ARM GAS  C:\Temp\ccyYG8di.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_gpio.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c"
+  20              		.section	.text.gpio_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	gpio_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	gpio_deinit:
+  28              	.LVL0:
+  29              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \file    gd32f30x_gpio.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief   GPIO driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+ARM GAS  C:\Temp\ccyYG8di.s 			page 2
+
+
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #include "gd32f30x_gpio.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define AFIO_EXTI_SOURCE_MASK              ((uint8_t)0x03U)         /*!< AFIO exti source selection
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define AFIO_EXTI_SOURCE_FIELDS            ((uint8_t)0x04U)         /*!< select AFIO exti source re
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define LSB_16BIT_MASK                     ((uint16_t)0xFFFFU)      /*!< LSB 16-bit mask */
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define PCF_POSITION_MASK                  ((uint32_t)0x000F0000U)  /*!< AFIO_PCF register position
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define PCF_SWJCFG_MASK                    ((uint32_t)0xF8FFFFFFU)  /*!< AFIO_PCF register SWJCFG m
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define PCF_LOCATION1_MASK                 ((uint32_t)0x00200000U)  /*!< AFIO_PCF register location
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define PCF_LOCATION2_MASK                 ((uint32_t)0x00100000U)  /*!< AFIO_PCF register location
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define AFIO_PCF1_FIELDS                   ((uint32_t)0x80000000U)  /*!< select AFIO_PCF1 register 
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #define GPIO_OUTPUT_PORT_OFFSET            ((uint32_t)4U)           /*!< GPIO event output port off
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      reset GPIO port
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G)
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_deinit(uint32_t gpio_periph)
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+  30              		.loc 1 54 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 54 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     switch(gpio_periph){
+  40              		.loc 1 55 5 is_stmt 1 view .LVU2
+  41 0002 2D4B     		ldr	r3, .L14
+  42 0004 9842     		cmp	r0, r3
+  43 0006 44D0     		beq	.L2
+  44 0008 1DD8     		bhi	.L3
+  45 000a A3F50063 		sub	r3, r3, #2048
+  46 000e 9842     		cmp	r0, r3
+  47 0010 36D0     		beq	.L4
+  48 0012 03F58063 		add	r3, r3, #1024
+  49 0016 9842     		cmp	r0, r3
+  50 0018 08D1     		bne	.L12
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOA:
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* reset GPIOA */
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_enable(RCU_GPIOARST);
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOARST);
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOB:
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* reset GPIOB */
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_enable(RCU_GPIOBRST);
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOBRST);
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+ARM GAS  C:\Temp\ccyYG8di.s 			page 3
+
+
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOC:
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* reset GPIOC */
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_enable(RCU_GPIOCRST);
+  51              		.loc 1 68 9 view .LVU3
+  52 001a 4FF44170 		mov	r0, #772
+  53              	.LVL1:
+  54              		.loc 1 68 9 is_stmt 0 view .LVU4
+  55 001e FFF7FEFF 		bl	rcu_periph_reset_enable
+  56              	.LVL2:
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOCRST);
+  57              		.loc 1 69 9 is_stmt 1 view .LVU5
+  58 0022 4FF44170 		mov	r0, #772
+  59 0026 FFF7FEFF 		bl	rcu_periph_reset_disable
+  60              	.LVL3:
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  61              		.loc 1 70 9 view .LVU6
+  62 002a 0BE0     		b	.L1
+  63              	.LVL4:
+  64              	.L12:
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOA:
+  65              		.loc 1 55 5 is_stmt 0 view .LVU7
+  66 002c A3F50063 		sub	r3, r3, #2048
+  67 0030 9842     		cmp	r0, r3
+  68 0032 07D1     		bne	.L1
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOARST);
+  69              		.loc 1 58 9 is_stmt 1 view .LVU8
+  70 0034 40F20230 		movw	r0, #770
+  71              	.LVL5:
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOARST);
+  72              		.loc 1 58 9 is_stmt 0 view .LVU9
+  73 0038 FFF7FEFF 		bl	rcu_periph_reset_enable
+  74              	.LVL6:
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  75              		.loc 1 59 9 is_stmt 1 view .LVU10
+  76 003c 40F20230 		movw	r0, #770
+  77 0040 FFF7FEFF 		bl	rcu_periph_reset_disable
+  78              	.LVL7:
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOB:
+  79              		.loc 1 60 9 view .LVU11
+  80              	.L1:
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOD:
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* reset GPIOD */
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_enable(RCU_GPIODRST);
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIODRST);
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOE:
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* reset GPIOE */
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_enable(RCU_GPIOERST);
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOERST);
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOF:
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* reset GPIOF */
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_enable(RCU_GPIOFRST);
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOFRST);
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOG:
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* reset GPIOG */
+ARM GAS  C:\Temp\ccyYG8di.s 			page 4
+
+
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_enable(RCU_GPIOGRST);
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOGRST);
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     default:
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+  81              		.loc 1 94 1 is_stmt 0 view .LVU12
+  82 0044 08BD     		pop	{r3, pc}
+  83              	.LVL8:
+  84              	.L3:
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOA:
+  85              		.loc 1 55 5 view .LVU13
+  86 0046 1D4B     		ldr	r3, .L14+4
+  87 0048 9842     		cmp	r0, r3
+  88 004a 2BD0     		beq	.L8
+  89 004c 03F58063 		add	r3, r3, #1024
+  90 0050 9842     		cmp	r0, r3
+  91 0052 08D1     		bne	.L13
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOGRST);
+  92              		.loc 1 88 9 is_stmt 1 view .LVU14
+  93 0054 4FF44270 		mov	r0, #776
+  94              	.LVL9:
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOGRST);
+  95              		.loc 1 88 9 is_stmt 0 view .LVU15
+  96 0058 FFF7FEFF 		bl	rcu_periph_reset_enable
+  97              	.LVL10:
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+  98              		.loc 1 89 9 is_stmt 1 view .LVU16
+  99 005c 4FF44270 		mov	r0, #776
+ 100 0060 FFF7FEFF 		bl	rcu_periph_reset_disable
+ 101              	.LVL11:
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     default:
+ 102              		.loc 1 90 9 view .LVU17
+ 103              		.loc 1 94 1 is_stmt 0 view .LVU18
+ 104 0064 EEE7     		b	.L1
+ 105              	.LVL12:
+ 106              	.L13:
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOA:
+ 107              		.loc 1 55 5 view .LVU19
+ 108 0066 A3F50063 		sub	r3, r3, #2048
+ 109 006a 9842     		cmp	r0, r3
+ 110 006c EAD1     		bne	.L1
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOERST);
+ 111              		.loc 1 78 9 is_stmt 1 view .LVU20
+ 112 006e 40F20630 		movw	r0, #774
+ 113              	.LVL13:
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOERST);
+ 114              		.loc 1 78 9 is_stmt 0 view .LVU21
+ 115 0072 FFF7FEFF 		bl	rcu_periph_reset_enable
+ 116              	.LVL14:
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+ 117              		.loc 1 79 9 is_stmt 1 view .LVU22
+ 118 0076 40F20630 		movw	r0, #774
+ 119 007a FFF7FEFF 		bl	rcu_periph_reset_disable
+ 120              	.LVL15:
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOF:
+ARM GAS  C:\Temp\ccyYG8di.s 			page 5
+
+
+ 121              		.loc 1 80 9 view .LVU23
+ 122 007e E1E7     		b	.L1
+ 123              	.LVL16:
+ 124              	.L4:
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOBRST);
+ 125              		.loc 1 63 9 view .LVU24
+ 126 0080 40F20330 		movw	r0, #771
+ 127              	.LVL17:
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOBRST);
+ 128              		.loc 1 63 9 is_stmt 0 view .LVU25
+ 129 0084 FFF7FEFF 		bl	rcu_periph_reset_enable
+ 130              	.LVL18:
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+ 131              		.loc 1 64 9 is_stmt 1 view .LVU26
+ 132 0088 40F20330 		movw	r0, #771
+ 133 008c FFF7FEFF 		bl	rcu_periph_reset_disable
+ 134              	.LVL19:
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOC:
+ 135              		.loc 1 65 9 view .LVU27
+ 136 0090 D8E7     		b	.L1
+ 137              	.LVL20:
+ 138              	.L2:
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIODRST);
+ 139              		.loc 1 73 9 view .LVU28
+ 140 0092 40F20530 		movw	r0, #773
+ 141              	.LVL21:
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIODRST);
+ 142              		.loc 1 73 9 is_stmt 0 view .LVU29
+ 143 0096 FFF7FEFF 		bl	rcu_periph_reset_enable
+ 144              	.LVL22:
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+ 145              		.loc 1 74 9 is_stmt 1 view .LVU30
+ 146 009a 40F20530 		movw	r0, #773
+ 147 009e FFF7FEFF 		bl	rcu_periph_reset_disable
+ 148              	.LVL23:
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOE:
+ 149              		.loc 1 75 9 view .LVU31
+ 150 00a2 CFE7     		b	.L1
+ 151              	.LVL24:
+ 152              	.L8:
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOFRST);
+ 153              		.loc 1 83 9 view .LVU32
+ 154 00a4 40F20730 		movw	r0, #775
+ 155              	.LVL25:
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         rcu_periph_reset_disable(RCU_GPIOFRST);
+ 156              		.loc 1 83 9 is_stmt 0 view .LVU33
+ 157 00a8 FFF7FEFF 		bl	rcu_periph_reset_enable
+ 158              	.LVL26:
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         break;
+ 159              		.loc 1 84 9 is_stmt 1 view .LVU34
+ 160 00ac 40F20730 		movw	r0, #775
+ 161 00b0 FFF7FEFF 		bl	rcu_periph_reset_disable
+ 162              	.LVL27:
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     case GPIOG:
+ 163              		.loc 1 85 9 view .LVU35
+ 164 00b4 C6E7     		b	.L1
+ 165              	.L15:
+ARM GAS  C:\Temp\ccyYG8di.s 			page 6
+
+
+ 166 00b6 00BF     		.align	2
+ 167              	.L14:
+ 168 00b8 00140140 		.word	1073812480
+ 169 00bc 001C0140 		.word	1073814528
+ 170              		.cfi_endproc
+ 171              	.LFE116:
+ 173              		.section	.text.gpio_afio_deinit,"ax",%progbits
+ 174              		.align	1
+ 175              		.global	gpio_afio_deinit
+ 176              		.syntax unified
+ 177              		.thumb
+ 178              		.thumb_func
+ 180              	gpio_afio_deinit:
+ 181              	.LFB117:
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      reset alternate function I/O(AFIO)
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  none
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_afio_deinit(void)
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 182              		.loc 1 103 1 view -0
+ 183              		.cfi_startproc
+ 184              		@ args = 0, pretend = 0, frame = 0
+ 185              		@ frame_needed = 0, uses_anonymous_args = 0
+ 186 0000 08B5     		push	{r3, lr}
+ 187              	.LCFI1:
+ 188              		.cfi_def_cfa_offset 8
+ 189              		.cfi_offset 3, -8
+ 190              		.cfi_offset 14, -4
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     rcu_periph_reset_enable(RCU_AFRST);
+ 191              		.loc 1 104 5 view .LVU37
+ 192 0002 4FF44070 		mov	r0, #768
+ 193 0006 FFF7FEFF 		bl	rcu_periph_reset_enable
+ 194              	.LVL28:
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     rcu_periph_reset_disable(RCU_AFRST);
+ 195              		.loc 1 105 5 view .LVU38
+ 196 000a 4FF44070 		mov	r0, #768
+ 197 000e FFF7FEFF 		bl	rcu_periph_reset_disable
+ 198              	.LVL29:
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 199              		.loc 1 106 1 is_stmt 0 view .LVU39
+ 200 0012 08BD     		pop	{r3, pc}
+ 201              		.cfi_endproc
+ 202              	.LFE117:
+ 204              		.section	.text.gpio_init,"ax",%progbits
+ 205              		.align	1
+ 206              		.global	gpio_init
+ 207              		.syntax unified
+ 208              		.thumb
+ 209              		.thumb_func
+ 211              	gpio_init:
+ 212              	.LVL30:
+ 213              	.LFB118:
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ARM GAS  C:\Temp\ccyYG8di.s 			page 7
+
+
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      GPIO parameter initialization
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G) 
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  mode: gpio pin mode
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which is shown as below:
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_AIN: analog input mode
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_IN_FLOATING: floating input mode
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_IPD: pull-down input mode
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_IPU: pull-up input mode
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_OUT_OD: GPIO output with open-drain
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_OUT_PP: GPIO output with push-pull
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_AF_OD: AFIO output with open-drain
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_MODE_AF_PP: AFIO output with push-pull
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  speed: gpio output max speed value
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which is shown as below:
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_OSPEED_10MHZ: output max speed 10MHz
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_OSPEED_2MHZ: output max speed 2MHz
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_OSPEED_50MHZ: output max speed 50MHz
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_OSPEED_MAX: output max speed more than 50MHz
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  pin: GPIO pin
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 one or more parameters can be selected which are shown as below:
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_init(uint32_t gpio_periph, uint32_t mode, uint32_t speed, uint32_t pin)
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 214              		.loc 1 134 1 is_stmt 1 view -0
+ 215              		.cfi_startproc
+ 216              		@ args = 0, pretend = 0, frame = 0
+ 217              		@ frame_needed = 0, uses_anonymous_args = 0
+ 218              		.loc 1 134 1 is_stmt 0 view .LVU41
+ 219 0000 70B5     		push	{r4, r5, r6, lr}
+ 220              	.LCFI2:
+ 221              		.cfi_def_cfa_offset 16
+ 222              		.cfi_offset 4, -16
+ 223              		.cfi_offset 5, -12
+ 224              		.cfi_offset 6, -8
+ 225              		.cfi_offset 14, -4
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint16_t i;
+ 226              		.loc 1 135 5 is_stmt 1 view .LVU42
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint32_t temp_mode = 0U;
+ 227              		.loc 1 136 5 view .LVU43
+ 228              	.LVL31:
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint32_t reg = 0U;
+ 229              		.loc 1 137 5 view .LVU44
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* GPIO mode configuration */
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     temp_mode = (uint32_t)(mode & ((uint32_t)0x0FU));
+ 230              		.loc 1 140 5 view .LVU45
+ 231              		.loc 1 140 15 is_stmt 0 view .LVU46
+ 232 0002 01F00F0E 		and	lr, r1, #15
+ 233              	.LVL32:
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* GPIO speed configuration */
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if(((uint32_t)0x00U) != ((uint32_t)mode & ((uint32_t)0x10U))){
+ 234              		.loc 1 143 5 is_stmt 1 view .LVU47
+ARM GAS  C:\Temp\ccyYG8di.s 			page 8
+
+
+ 235              		.loc 1 143 7 is_stmt 0 view .LVU48
+ 236 0006 11F0100F 		tst	r1, #16
+ 237 000a 03D0     		beq	.L19
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* output mode max speed */
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if(GPIO_OSPEED_MAX == (uint32_t)speed){
+ 238              		.loc 1 145 9 is_stmt 1 view .LVU49
+ 239              		.loc 1 145 11 is_stmt 0 view .LVU50
+ 240 000c 042A     		cmp	r2, #4
+ 241 000e 03D0     		beq	.L32
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             temp_mode |= (uint32_t)0x03U;
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the corresponding SPD bit */
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             GPIOx_SPD(gpio_periph) |= (uint32_t)pin ;
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         }else{
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* output mode max speed:10MHz,2MHz,50MHz */
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             temp_mode |= (uint32_t)speed;
+ 242              		.loc 1 151 13 is_stmt 1 view .LVU51
+ 243              		.loc 1 151 23 is_stmt 0 view .LVU52
+ 244 0010 4EEA020E 		orr	lr, lr, r2
+ 245              	.LVL33:
+ 246              	.L19:
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         }
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* configure the eight low port pins with GPIO_CTL0 */
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     for(i = 0U;i < 8U;i++){
+ 247              		.loc 1 156 5 is_stmt 1 view .LVU53
+ 248              		.loc 1 156 11 is_stmt 0 view .LVU54
+ 249 0014 0022     		movs	r2, #0
+ 250              		.loc 1 156 5 view .LVU55
+ 251 0016 09E0     		b	.L21
+ 252              	.LVL34:
+ 253              	.L32:
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             temp_mode |= (uint32_t)0x03U;
+ 254              		.loc 1 146 13 is_stmt 1 view .LVU56
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             temp_mode |= (uint32_t)0x03U;
+ 255              		.loc 1 146 23 is_stmt 0 view .LVU57
+ 256 0018 4EF0030E 		orr	lr, lr, #3
+ 257              	.LVL35:
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         }else{
+ 258              		.loc 1 148 13 is_stmt 1 view .LVU58
+ 259 001c C26B     		ldr	r2, [r0, #60]
+ 260              	.LVL36:
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         }else{
+ 261              		.loc 1 148 36 is_stmt 0 view .LVU59
+ 262 001e 1A43     		orrs	r2, r2, r3
+ 263 0020 C263     		str	r2, [r0, #60]
+ 264 0022 F7E7     		b	.L19
+ 265              	.LVL37:
+ 266              	.L34:
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             reg = GPIO_CTL0(gpio_periph);
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* clear the specified pin mode bits */
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             reg &= ~GPIO_MODE_MASK(i);
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             reg |= GPIO_MODE_SET(i, temp_mode);
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ARM GAS  C:\Temp\ccyYG8di.s 			page 9
+
+
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set IPD or IPU */
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             if(GPIO_MODE_IPD == mode){
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* reset the corresponding OCTL bit */
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 GPIO_BC(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 267              		.loc 1 168 17 is_stmt 1 view .LVU60
+ 268              		.loc 1 168 38 is_stmt 0 view .LVU61
+ 269 0024 4461     		str	r4, [r0, #20]
+ 270              	.L24:
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             }else{
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* set the corresponding OCTL bit */
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 if(GPIO_MODE_IPU == mode){
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                     GPIO_BOP(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 }
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             }
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set GPIO_CTL0 register */
+ 176:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             GPIO_CTL0(gpio_periph) = reg;
+ 271              		.loc 1 176 13 is_stmt 1 view .LVU62
+ 272              		.loc 1 176 36 is_stmt 0 view .LVU63
+ 273 0026 0560     		str	r5, [r0]
+ 274              	.LVL38:
+ 275              	.L22:
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 276              		.loc 1 156 24 is_stmt 1 discriminator 2 view .LVU64
+ 277 0028 0132     		adds	r2, r2, #1
+ 278              	.LVL39:
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 279              		.loc 1 156 24 is_stmt 0 discriminator 2 view .LVU65
+ 280 002a 92B2     		uxth	r2, r2
+ 281              	.LVL40:
+ 282              	.L21:
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 283              		.loc 1 156 18 is_stmt 1 discriminator 1 view .LVU66
+ 284 002c 072A     		cmp	r2, #7
+ 285 002e 14D8     		bhi	.L33
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 286              		.loc 1 157 9 view .LVU67
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 287              		.loc 1 157 16 is_stmt 0 view .LVU68
+ 288 0030 0124     		movs	r4, #1
+ 289 0032 9440     		lsls	r4, r4, r2
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 290              		.loc 1 157 11 view .LVU69
+ 291 0034 1C40     		ands	r4, r4, r3
+ 292 0036 F7D0     		beq	.L22
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 293              		.loc 1 158 13 is_stmt 1 view .LVU70
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 294              		.loc 1 158 17 is_stmt 0 view .LVU71
+ 295 0038 0668     		ldr	r6, [r0]
+ 296              	.LVL41:
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 297              		.loc 1 161 13 is_stmt 1 view .LVU72
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 298              		.loc 1 161 21 is_stmt 0 view .LVU73
+ 299 003a 9500     		lsls	r5, r2, #2
+ 300 003c 4FF00F0C 		mov	ip, #15
+ 301 0040 0CFA05FC 		lsl	ip, ip, r5
+ARM GAS  C:\Temp\ccyYG8di.s 			page 10
+
+
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 302              		.loc 1 161 17 view .LVU74
+ 303 0044 26EA0C06 		bic	r6, r6, ip
+ 304              	.LVL42:
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 305              		.loc 1 163 13 is_stmt 1 view .LVU75
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 306              		.loc 1 163 20 is_stmt 0 view .LVU76
+ 307 0048 0EFA05F5 		lsl	r5, lr, r5
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 308              		.loc 1 163 17 view .LVU77
+ 309 004c 3543     		orrs	r5, r5, r6
+ 310              	.LVL43:
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* reset the corresponding OCTL bit */
+ 311              		.loc 1 166 13 is_stmt 1 view .LVU78
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* reset the corresponding OCTL bit */
+ 312              		.loc 1 166 15 is_stmt 0 view .LVU79
+ 313 004e 2829     		cmp	r1, #40
+ 314 0050 E8D0     		beq	.L34
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                     GPIO_BOP(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 315              		.loc 1 171 17 is_stmt 1 view .LVU80
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                     GPIO_BOP(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 316              		.loc 1 171 19 is_stmt 0 view .LVU81
+ 317 0052 4829     		cmp	r1, #72
+ 318 0054 E7D1     		bne	.L24
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 }
+ 319              		.loc 1 172 21 is_stmt 1 view .LVU82
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 }
+ 320              		.loc 1 172 43 is_stmt 0 view .LVU83
+ 321 0056 0461     		str	r4, [r0, #16]
+ 322 0058 E5E7     		b	.L24
+ 323              	.LVL44:
+ 324              	.L33:
+ 177:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         }
+ 178:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 179:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* configure the eight high port pins with GPIO_CTL1 */
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     for(i = 8U;i < 16U;i++){
+ 325              		.loc 1 180 11 view .LVU84
+ 326 005a 0822     		movs	r2, #8
+ 327              	.LVL45:
+ 328              		.loc 1 180 11 view .LVU85
+ 329 005c 03E0     		b	.L26
+ 330              	.LVL46:
+ 331              	.L36:
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             reg = GPIO_CTL1(gpio_periph);
+ 183:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 184:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* clear the specified pin mode bits */
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             reg &= ~GPIO_MODE_MASK(i - 8U);
+ 186:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             reg |= GPIO_MODE_SET(i - 8U, temp_mode);
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set IPD or IPU */
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             if(GPIO_MODE_IPD == mode){
+ 191:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* reset the corresponding OCTL bit */
+ 192:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 GPIO_BC(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 332              		.loc 1 192 17 is_stmt 1 view .LVU86
+ARM GAS  C:\Temp\ccyYG8di.s 			page 11
+
+
+ 333              		.loc 1 192 38 is_stmt 0 view .LVU87
+ 334 005e 4461     		str	r4, [r0, #20]
+ 335              	.L29:
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             }else{
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* set the corresponding OCTL bit */
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 if(GPIO_MODE_IPU == mode){
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                     GPIO_BOP(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 197:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 }
+ 198:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             }
+ 199:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set GPIO_CTL1 register */
+ 200:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             GPIO_CTL1(gpio_periph) = reg;
+ 336              		.loc 1 200 13 is_stmt 1 view .LVU88
+ 337              		.loc 1 200 36 is_stmt 0 view .LVU89
+ 338 0060 4560     		str	r5, [r0, #4]
+ 339              	.LVL47:
+ 340              	.L27:
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 341              		.loc 1 180 25 is_stmt 1 discriminator 2 view .LVU90
+ 342 0062 0132     		adds	r2, r2, #1
+ 343              	.LVL48:
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 344              		.loc 1 180 25 is_stmt 0 discriminator 2 view .LVU91
+ 345 0064 92B2     		uxth	r2, r2
+ 346              	.LVL49:
+ 347              	.L26:
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 348              		.loc 1 180 18 is_stmt 1 discriminator 1 view .LVU92
+ 349 0066 0F2A     		cmp	r2, #15
+ 350 0068 1AD8     		bhi	.L35
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 351              		.loc 1 181 9 view .LVU93
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 352              		.loc 1 181 16 is_stmt 0 view .LVU94
+ 353 006a 4FF0010C 		mov	ip, #1
+ 354 006e 0CFA02FC 		lsl	ip, ip, r2
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         if((1U << i) & pin){
+ 355              		.loc 1 181 11 view .LVU95
+ 356 0072 1CEA0304 		ands	r4, ip, r3
+ 357 0076 F4D0     		beq	.L27
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 358              		.loc 1 182 13 is_stmt 1 view .LVU96
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 359              		.loc 1 182 17 is_stmt 0 view .LVU97
+ 360 0078 4568     		ldr	r5, [r0, #4]
+ 361              	.LVL50:
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 362              		.loc 1 185 13 is_stmt 1 view .LVU98
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 363              		.loc 1 185 21 is_stmt 0 view .LVU99
+ 364 007a A2F1080C 		sub	ip, r2, #8
+ 365 007e 4FEA8C0C 		lsl	ip, ip, #2
+ 366 0082 0F26     		movs	r6, #15
+ 367 0084 06FA0CF6 		lsl	r6, r6, ip
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             /* set the specified pin mode bits */
+ 368              		.loc 1 185 17 view .LVU100
+ 369 0088 25EA0605 		bic	r5, r5, r6
+ 370              	.LVL51:
+ARM GAS  C:\Temp\ccyYG8di.s 			page 12
+
+
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 371              		.loc 1 187 13 is_stmt 1 view .LVU101
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 372              		.loc 1 187 20 is_stmt 0 view .LVU102
+ 373 008c 0EFA0CFC 		lsl	ip, lr, ip
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****             
+ 374              		.loc 1 187 17 view .LVU103
+ 375 0090 4CEA0505 		orr	r5, ip, r5
+ 376              	.LVL52:
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* reset the corresponding OCTL bit */
+ 377              		.loc 1 190 13 is_stmt 1 view .LVU104
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 /* reset the corresponding OCTL bit */
+ 378              		.loc 1 190 15 is_stmt 0 view .LVU105
+ 379 0094 2829     		cmp	r1, #40
+ 380 0096 E2D0     		beq	.L36
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                     GPIO_BOP(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 381              		.loc 1 195 17 is_stmt 1 view .LVU106
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                     GPIO_BOP(gpio_periph) = (uint32_t)((1U << i) & pin);
+ 382              		.loc 1 195 19 is_stmt 0 view .LVU107
+ 383 0098 4829     		cmp	r1, #72
+ 384 009a E1D1     		bne	.L29
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 }
+ 385              		.loc 1 196 21 is_stmt 1 view .LVU108
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 }
+ 386              		.loc 1 196 43 is_stmt 0 view .LVU109
+ 387 009c 0461     		str	r4, [r0, #16]
+ 388 009e DFE7     		b	.L29
+ 389              	.LVL53:
+ 390              	.L35:
+ 201:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         }
+ 202:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 391              		.loc 1 203 1 view .LVU110
+ 392 00a0 70BD     		pop	{r4, r5, r6, pc}
+ 393              		.cfi_endproc
+ 394              	.LFE118:
+ 396              		.section	.text.gpio_bit_set,"ax",%progbits
+ 397              		.align	1
+ 398              		.global	gpio_bit_set
+ 399              		.syntax unified
+ 400              		.thumb
+ 401              		.thumb_func
+ 403              	gpio_bit_set:
+ 404              	.LVL54:
+ 405              	.LFB119:
+ 204:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 205:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 206:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      set GPIO pin
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G) 
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  pin: GPIO pin
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 one or more parameters can be selected which are shown as below:
+ 210:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+ 211:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 214:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_bit_set(uint32_t gpio_periph,uint32_t pin)
+ 215:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ARM GAS  C:\Temp\ccyYG8di.s 			page 13
+
+
+ 406              		.loc 1 215 1 is_stmt 1 view -0
+ 407              		.cfi_startproc
+ 408              		@ args = 0, pretend = 0, frame = 0
+ 409              		@ frame_needed = 0, uses_anonymous_args = 0
+ 410              		@ link register save eliminated.
+ 216:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     GPIO_BOP(gpio_periph) = (uint32_t)pin;
+ 411              		.loc 1 216 5 view .LVU112
+ 412              		.loc 1 216 27 is_stmt 0 view .LVU113
+ 413 0000 0161     		str	r1, [r0, #16]
+ 217:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 414              		.loc 1 217 1 view .LVU114
+ 415 0002 7047     		bx	lr
+ 416              		.cfi_endproc
+ 417              	.LFE119:
+ 419              		.section	.text.gpio_bit_reset,"ax",%progbits
+ 420              		.align	1
+ 421              		.global	gpio_bit_reset
+ 422              		.syntax unified
+ 423              		.thumb
+ 424              		.thumb_func
+ 426              	gpio_bit_reset:
+ 427              	.LVL55:
+ 428              	.LFB120:
+ 218:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 219:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 220:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      reset GPIO pin
+ 221:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G)
+ 222:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  pin: GPIO pin
+ 223:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 one or more parameters can be selected which are shown as below:
+ 224:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+ 225:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_bit_reset(uint32_t gpio_periph,uint32_t pin)
+ 229:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 429              		.loc 1 229 1 is_stmt 1 view -0
+ 430              		.cfi_startproc
+ 431              		@ args = 0, pretend = 0, frame = 0
+ 432              		@ frame_needed = 0, uses_anonymous_args = 0
+ 433              		@ link register save eliminated.
+ 230:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     GPIO_BC(gpio_periph) = (uint32_t)pin;
+ 434              		.loc 1 230 5 view .LVU116
+ 435              		.loc 1 230 26 is_stmt 0 view .LVU117
+ 436 0000 4161     		str	r1, [r0, #20]
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 437              		.loc 1 231 1 view .LVU118
+ 438 0002 7047     		bx	lr
+ 439              		.cfi_endproc
+ 440              	.LFE120:
+ 442              		.section	.text.gpio_bit_write,"ax",%progbits
+ 443              		.align	1
+ 444              		.global	gpio_bit_write
+ 445              		.syntax unified
+ 446              		.thumb
+ 447              		.thumb_func
+ 449              	gpio_bit_write:
+ 450              	.LVL56:
+ARM GAS  C:\Temp\ccyYG8di.s 			page 14
+
+
+ 451              	.LFB121:
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 233:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 234:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      write data to the specified GPIO pin
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G)
+ 236:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  pin: GPIO pin
+ 237:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 one or more parameters can be selected which are shown as below:
+ 238:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+ 239:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  bit_value: SET or RESET
+ 240:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        RESET: clear the port pin
+ 241:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        SET: set the port pin
+ 242:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 243:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 244:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_bit_write(uint32_t gpio_periph,uint32_t pin,bit_status bit_value)
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 452              		.loc 1 246 1 is_stmt 1 view -0
+ 453              		.cfi_startproc
+ 454              		@ args = 0, pretend = 0, frame = 0
+ 455              		@ frame_needed = 0, uses_anonymous_args = 0
+ 456              		@ link register save eliminated.
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if(RESET != bit_value){
+ 457              		.loc 1 247 5 view .LVU120
+ 458              		.loc 1 247 7 is_stmt 0 view .LVU121
+ 459 0000 0AB1     		cbz	r2, .L40
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         GPIO_BOP(gpio_periph) = (uint32_t)pin;
+ 460              		.loc 1 248 9 is_stmt 1 view .LVU122
+ 461              		.loc 1 248 31 is_stmt 0 view .LVU123
+ 462 0002 0161     		str	r1, [r0, #16]
+ 463 0004 7047     		bx	lr
+ 464              	.L40:
+ 249:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         GPIO_BC(gpio_periph) = (uint32_t)pin;
+ 465              		.loc 1 250 9 is_stmt 1 view .LVU124
+ 466              		.loc 1 250 30 is_stmt 0 view .LVU125
+ 467 0006 4161     		str	r1, [r0, #20]
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 252:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 468              		.loc 1 252 1 view .LVU126
+ 469 0008 7047     		bx	lr
+ 470              		.cfi_endproc
+ 471              	.LFE121:
+ 473              		.section	.text.gpio_port_write,"ax",%progbits
+ 474              		.align	1
+ 475              		.global	gpio_port_write
+ 476              		.syntax unified
+ 477              		.thumb
+ 478              		.thumb_func
+ 480              	gpio_port_write:
+ 481              	.LVL57:
+ 482              	.LFB122:
+ 253:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 254:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 255:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      write data to the specified GPIO port
+ 256:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G) 
+ 257:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  data: specify the value to be written to the port output data register
+ 258:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ARM GAS  C:\Temp\ccyYG8di.s 			page 15
+
+
+ 259:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 260:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 261:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_port_write(uint32_t gpio_periph,uint16_t data)
+ 262:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 483              		.loc 1 262 1 is_stmt 1 view -0
+ 484              		.cfi_startproc
+ 485              		@ args = 0, pretend = 0, frame = 0
+ 486              		@ frame_needed = 0, uses_anonymous_args = 0
+ 487              		@ link register save eliminated.
+ 263:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     GPIO_OCTL(gpio_periph) = (uint32_t)data;
+ 488              		.loc 1 263 5 view .LVU128
+ 489              		.loc 1 263 28 is_stmt 0 view .LVU129
+ 490 0000 C160     		str	r1, [r0, #12]
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 491              		.loc 1 264 1 view .LVU130
+ 492 0002 7047     		bx	lr
+ 493              		.cfi_endproc
+ 494              	.LFE122:
+ 496              		.section	.text.gpio_input_bit_get,"ax",%progbits
+ 497              		.align	1
+ 498              		.global	gpio_input_bit_get
+ 499              		.syntax unified
+ 500              		.thumb
+ 501              		.thumb_func
+ 503              	gpio_input_bit_get:
+ 504              	.LVL58:
+ 505              	.LFB123:
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 267:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      get GPIO pin input status
+ 268:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G)
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  pin: GPIO pin
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+ 272:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 273:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     input status of gpio pin: SET or RESET
+ 274:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 275:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** FlagStatus gpio_input_bit_get(uint32_t gpio_periph,uint32_t pin)
+ 276:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 506              		.loc 1 276 1 is_stmt 1 view -0
+ 507              		.cfi_startproc
+ 508              		@ args = 0, pretend = 0, frame = 0
+ 509              		@ frame_needed = 0, uses_anonymous_args = 0
+ 510              		@ link register save eliminated.
+ 277:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if((uint32_t)RESET != (GPIO_ISTAT(gpio_periph)&(pin))){
+ 511              		.loc 1 277 5 view .LVU132
+ 512              		.loc 1 277 28 is_stmt 0 view .LVU133
+ 513 0000 8368     		ldr	r3, [r0, #8]
+ 514              		.loc 1 277 7 view .LVU134
+ 515 0002 0B42     		tst	r3, r1
+ 516 0004 01D0     		beq	.L45
+ 278:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         return SET; 
+ 517              		.loc 1 278 16 view .LVU135
+ 518 0006 0120     		movs	r0, #1
+ 519              	.LVL59:
+ 520              		.loc 1 278 16 view .LVU136
+ 521 0008 7047     		bx	lr
+ARM GAS  C:\Temp\ccyYG8di.s 			page 16
+
+
+ 522              	.LVL60:
+ 523              	.L45:
+ 279:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 280:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         return RESET;
+ 524              		.loc 1 280 16 view .LVU137
+ 525 000a 0020     		movs	r0, #0
+ 526              	.LVL61:
+ 281:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 282:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 527              		.loc 1 282 1 view .LVU138
+ 528 000c 7047     		bx	lr
+ 529              		.cfi_endproc
+ 530              	.LFE123:
+ 532              		.section	.text.gpio_input_port_get,"ax",%progbits
+ 533              		.align	1
+ 534              		.global	gpio_input_port_get
+ 535              		.syntax unified
+ 536              		.thumb
+ 537              		.thumb_func
+ 539              	gpio_input_port_get:
+ 540              	.LVL62:
+ 541              	.LFB124:
+ 283:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      get GPIO port input status
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G) 
+ 287:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 288:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     input status of gpio all pins
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** uint16_t gpio_input_port_get(uint32_t gpio_periph)
+ 291:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 542              		.loc 1 291 1 is_stmt 1 view -0
+ 543              		.cfi_startproc
+ 544              		@ args = 0, pretend = 0, frame = 0
+ 545              		@ frame_needed = 0, uses_anonymous_args = 0
+ 546              		@ link register save eliminated.
+ 292:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     return (uint16_t)(GPIO_ISTAT(gpio_periph));
+ 547              		.loc 1 292 5 view .LVU140
+ 548              		.loc 1 292 23 is_stmt 0 view .LVU141
+ 549 0000 8068     		ldr	r0, [r0, #8]
+ 550              	.LVL63:
+ 293:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 551              		.loc 1 293 1 view .LVU142
+ 552 0002 80B2     		uxth	r0, r0
+ 553 0004 7047     		bx	lr
+ 554              		.cfi_endproc
+ 555              	.LFE124:
+ 557              		.section	.text.gpio_output_bit_get,"ax",%progbits
+ 558              		.align	1
+ 559              		.global	gpio_output_bit_get
+ 560              		.syntax unified
+ 561              		.thumb
+ 562              		.thumb_func
+ 564              	gpio_output_bit_get:
+ 565              	.LVL64:
+ 566              	.LFB125:
+ 294:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ARM GAS  C:\Temp\ccyYG8di.s 			page 17
+
+
+ 295:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 296:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      get GPIO pin output status
+ 297:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G)
+ 298:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  pin: GPIO pin
+ 299:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 300:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+ 301:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 302:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     output status of gpio pin: SET or RESET
+ 303:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** FlagStatus gpio_output_bit_get(uint32_t gpio_periph,uint32_t pin)
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 567              		.loc 1 305 1 is_stmt 1 view -0
+ 568              		.cfi_startproc
+ 569              		@ args = 0, pretend = 0, frame = 0
+ 570              		@ frame_needed = 0, uses_anonymous_args = 0
+ 571              		@ link register save eliminated.
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if((uint32_t)RESET !=(GPIO_OCTL(gpio_periph)&(pin))){
+ 572              		.loc 1 306 5 view .LVU144
+ 573              		.loc 1 306 27 is_stmt 0 view .LVU145
+ 574 0000 C368     		ldr	r3, [r0, #12]
+ 575              		.loc 1 306 7 view .LVU146
+ 576 0002 0B42     		tst	r3, r1
+ 577 0004 01D0     		beq	.L49
+ 307:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         return SET;
+ 578              		.loc 1 307 16 view .LVU147
+ 579 0006 0120     		movs	r0, #1
+ 580              	.LVL65:
+ 581              		.loc 1 307 16 view .LVU148
+ 582 0008 7047     		bx	lr
+ 583              	.LVL66:
+ 584              	.L49:
+ 308:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         return RESET;
+ 585              		.loc 1 309 16 view .LVU149
+ 586 000a 0020     		movs	r0, #0
+ 587              	.LVL67:
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 311:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 588              		.loc 1 311 1 view .LVU150
+ 589 000c 7047     		bx	lr
+ 590              		.cfi_endproc
+ 591              	.LFE125:
+ 593              		.section	.text.gpio_output_port_get,"ax",%progbits
+ 594              		.align	1
+ 595              		.global	gpio_output_port_get
+ 596              		.syntax unified
+ 597              		.thumb
+ 598              		.thumb_func
+ 600              	gpio_output_port_get:
+ 601              	.LVL68:
+ 602              	.LFB126:
+ 312:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 313:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 314:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      get GPIO port output status
+ 315:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G) 
+ 316:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 317:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     output status of gpio all pins
+ARM GAS  C:\Temp\ccyYG8di.s 			page 18
+
+
+ 318:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 319:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** uint16_t gpio_output_port_get(uint32_t gpio_periph)
+ 320:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 603              		.loc 1 320 1 is_stmt 1 view -0
+ 604              		.cfi_startproc
+ 605              		@ args = 0, pretend = 0, frame = 0
+ 606              		@ frame_needed = 0, uses_anonymous_args = 0
+ 607              		@ link register save eliminated.
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     return ((uint16_t)GPIO_OCTL(gpio_periph));
+ 608              		.loc 1 321 5 view .LVU152
+ 609              		.loc 1 321 23 is_stmt 0 view .LVU153
+ 610 0000 C068     		ldr	r0, [r0, #12]
+ 611              	.LVL69:
+ 322:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 612              		.loc 1 322 1 view .LVU154
+ 613 0002 80B2     		uxth	r0, r0
+ 614 0004 7047     		bx	lr
+ 615              		.cfi_endproc
+ 616              	.LFE126:
+ 618              		.section	.text.gpio_pin_remap_config,"ax",%progbits
+ 619              		.align	1
+ 620              		.global	gpio_pin_remap_config
+ 621              		.syntax unified
+ 622              		.thumb
+ 623              		.thumb_func
+ 625              	gpio_pin_remap_config:
+ 626              	.LVL70:
+ 627              	.LFB127:
+ 323:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      configure GPIO pin remap
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_remap: select the pin to remap
+ 327:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 328:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_SPI0_REMAP: SPI0 remapping
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_I2C0_REMAP: I2C0 remapping
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_USART0_REMAP: USART0 remapping
+ 331:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_USART1_REMAP: USART1 remapping
+ 332:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_USART2_PARTIAL_REMAP: USART2 partial remapping
+ 333:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_USART2_FULL_REMAP: USART2 full remapping
+ 334:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER0_PARTIAL_REMAP: TIMER0 partial remapping 
+ 335:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER0_FULL_REMAP: TIMER0 full remapping
+ 336:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER1_PARTIAL_REMAP0: TIMER1 partial remapping
+ 337:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER1_PARTIAL_REMAP1: TIMER1 partial remapping
+ 338:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER1_FULL_REMAP: TIMER1 full remapping
+ 339:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER2_PARTIAL_REMAP: TIMER2 partial remapping
+ 340:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER2_FULL_REMAP: TIMER2 full remapping
+ 341:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER3_REMAP: TIMER3 remapping
+ 342:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_CAN_PARTIAL_REMAP: CAN partial remapping(only for GD32F30X_HD devices and GD
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_CAN_FULL_REMAP: CAN full remapping(only for GD32F30X_HD devices and GD32F30X
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_CAN0_PARTIAL_REMAP: CAN0 partial remapping(only for GD32F30X_CL devices)
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_CAN0_FULL_REMAP: CAN0 full remapping(only for GD32F30X_CL devices)
+ 346:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PD01_REMAP: PD01 remapping
+ 347:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER4CH3_IREMAP: TIMER4 channel3 internal remapping
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_ADC0_ETRGINS_REMAP: ADC0 external trigger inserted conversion remapping(only
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_ADC0_ETRGREG_REMAP: ADC0 external trigger regular conversion remapping(only 
+ 350:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_ADC1_ETRGINS_REMAP: ADC1 external trigger inserted conversion remapping(only
+ 351:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_ADC1_ETRGREG_REMAP: ADC1 external trigger regular conversion remapping(only 
+ARM GAS  C:\Temp\ccyYG8di.s 			page 19
+
+
+ 352:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_ENET_REMAP: ENET remapping(only for GD32F30X_CL devices) 
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_CAN1_REMAP: CAN1 remapping(only for GD32F30X_CL devices)
+ 354:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_SWJ_NONJTRST_REMAP: full SWJ(JTAG-DP + SW-DP),but without NJTRST
+ 355:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_SWJ_SWDPENABLE_REMAP: JTAG-DP disabled and SW-DP enabled
+ 356:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_SWJ_DISABLE_REMAP: JTAG-DP disabled and SW-DP disabled
+ 357:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_SPI2_REMAP: SPI2 remapping 
+ 358:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER1ITI1_REMAP: TIMER1 internal trigger 1 remapping(only for GD32F30X_CL d
+ 359:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PTP_PPS_REMAP: ethernet PTP PPS remapping(only for GD32F30X_CL devices) 
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER8_REMAP: TIMER8 remapping
+ 361:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER9_REMAP: TIMER9 remapping
+ 362:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER10_REMAP: TIMER10 remapping
+ 363:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER12_REMAP: TIMER12 remapping
+ 364:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_TIMER13_REMAP: TIMER13 remapping
+ 365:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_EXMC_NADV_REMAP: EXMC_NADV connect/disconnect
+ 366:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_CTC_REMAP0: CTC remapping(PD15)
+ 367:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_CTC_REMAP1: CTC remapping(PF0)
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  newvalue: ENABLE or DISABLE
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 370:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_pin_remap_config(uint32_t remap, ControlStatus newvalue)
+ 373:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 628              		.loc 1 373 1 is_stmt 1 view -0
+ 629              		.cfi_startproc
+ 630              		@ args = 0, pretend = 0, frame = 0
+ 631              		@ frame_needed = 0, uses_anonymous_args = 0
+ 632              		@ link register save eliminated.
+ 633              		.loc 1 373 1 is_stmt 0 view .LVU156
+ 634 0000 30B4     		push	{r4, r5}
+ 635              	.LCFI3:
+ 636              		.cfi_def_cfa_offset 8
+ 637              		.cfi_offset 4, -8
+ 638              		.cfi_offset 5, -4
+ 374:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint32_t remap1 = 0U, remap2 = 0U, temp_reg = 0U, temp_mask = 0U;
+ 639              		.loc 1 374 5 is_stmt 1 view .LVU157
+ 640              	.LVL71:
+ 375:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if(((uint32_t)0x80000000U) == (remap & 0x80000000U)){
+ 641              		.loc 1 376 5 view .LVU158
+ 642              		.loc 1 376 7 is_stmt 0 view .LVU159
+ 643 0002 0028     		cmp	r0, #0
+ 644              		.loc 1 376 7 view .LVU160
+ 645 0004 15DB     		blt	.L61
+ 377:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* get AFIO_PCF1 regiter value */
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg = AFIO_PCF1;
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* get AFIO_PCF0 regiter value */
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg = AFIO_PCF0;
+ 646              		.loc 1 381 9 is_stmt 1 view .LVU161
+ 647              		.loc 1 381 18 is_stmt 0 view .LVU162
+ 648 0006 1C4B     		ldr	r3, .L64
+ 649 0008 5B68     		ldr	r3, [r3, #4]
+ 650              	.LVL72:
+ 651              	.L53:
+ 382:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 383:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 384:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     temp_mask = (remap & PCF_POSITION_MASK) >> 0x10U;
+ARM GAS  C:\Temp\ccyYG8di.s 			page 20
+
+
+ 652              		.loc 1 384 5 is_stmt 1 view .LVU163
+ 653              		.loc 1 384 15 is_stmt 0 view .LVU164
+ 654 000a C0F30344 		ubfx	r4, r0, #16, #4
+ 655              	.LVL73:
+ 385:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     remap1 = remap & LSB_16BIT_MASK;
+ 656              		.loc 1 385 5 is_stmt 1 view .LVU165
+ 657              		.loc 1 385 12 is_stmt 0 view .LVU166
+ 658 000e 82B2     		uxth	r2, r0
+ 659              	.LVL74:
+ 386:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 387:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* judge pin remap type */
+ 388:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if((PCF_LOCATION1_MASK | PCF_LOCATION2_MASK) == (remap & (PCF_LOCATION1_MASK | PCF_LOCATION2_MA
+ 660              		.loc 1 388 5 is_stmt 1 view .LVU167
+ 661              		.loc 1 388 60 is_stmt 0 view .LVU168
+ 662 0010 00F4401C 		and	ip, r0, #3145728
+ 663              		.loc 1 388 7 view .LVU169
+ 664 0014 BCF5401F 		cmp	ip, #3145728
+ 665 0018 0ED0     		beq	.L62
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg &= PCF_SWJCFG_MASK;
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_PCF0 &= PCF_SWJCFG_MASK;
+ 391:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(PCF_LOCATION2_MASK == (remap & PCF_LOCATION2_MASK)){
+ 666              		.loc 1 391 11 is_stmt 1 view .LVU170
+ 667              		.loc 1 391 13 is_stmt 0 view .LVU171
+ 668 001a 10F4801F 		tst	r0, #1048576
+ 669 001e 1DD0     		beq	.L56
+ 392:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         remap2 = ((uint32_t)0x03U) << temp_mask;
+ 670              		.loc 1 392 9 is_stmt 1 view .LVU172
+ 671              		.loc 1 392 16 is_stmt 0 view .LVU173
+ 672 0020 4FF0030C 		mov	ip, #3
+ 673 0024 0CFA04F4 		lsl	r4, ip, r4
+ 674              	.LVL75:
+ 393:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg &= ~remap2;
+ 675              		.loc 1 393 9 is_stmt 1 view .LVU174
+ 676              		.loc 1 393 18 is_stmt 0 view .LVU175
+ 677 0028 23EA0403 		bic	r3, r3, r4
+ 678              	.LVL76:
+ 394:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= ~PCF_SWJCFG_MASK;
+ 679              		.loc 1 394 9 is_stmt 1 view .LVU176
+ 680              		.loc 1 394 18 is_stmt 0 view .LVU177
+ 681 002c 43F0E063 		orr	r3, r3, #117440512
+ 682              	.LVL77:
+ 683              		.loc 1 394 18 view .LVU178
+ 684 0030 09E0     		b	.L55
+ 685              	.LVL78:
+ 686              	.L61:
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 687              		.loc 1 378 9 is_stmt 1 view .LVU179
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 688              		.loc 1 378 18 is_stmt 0 view .LVU180
+ 689 0032 114B     		ldr	r3, .L64
+ 690 0034 DB69     		ldr	r3, [r3, #28]
+ 691              	.LVL79:
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 692              		.loc 1 378 18 view .LVU181
+ 693 0036 E8E7     		b	.L53
+ 694              	.LVL80:
+ 695              	.L62:
+ARM GAS  C:\Temp\ccyYG8di.s 			page 21
+
+
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_PCF0 &= PCF_SWJCFG_MASK;
+ 696              		.loc 1 389 9 is_stmt 1 view .LVU182
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_PCF0 &= PCF_SWJCFG_MASK;
+ 697              		.loc 1 389 18 is_stmt 0 view .LVU183
+ 698 0038 23F0E063 		bic	r3, r3, #117440512
+ 699              	.LVL81:
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(PCF_LOCATION2_MASK == (remap & PCF_LOCATION2_MASK)){
+ 700              		.loc 1 390 9 is_stmt 1 view .LVU184
+ 701 003c 0E4D     		ldr	r5, .L64
+ 702 003e 6C68     		ldr	r4, [r5, #4]
+ 703              	.LVL82:
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(PCF_LOCATION2_MASK == (remap & PCF_LOCATION2_MASK)){
+ 704              		.loc 1 390 19 is_stmt 0 view .LVU185
+ 705 0040 24F0E064 		bic	r4, r4, #117440512
+ 706 0044 6C60     		str	r4, [r5, #4]
+ 707              	.LVL83:
+ 708              	.L55:
+ 395:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg &= ~(remap1 << ((remap >> 0x15U)*0x10U));
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= ~PCF_SWJCFG_MASK;
+ 398:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 399:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     
+ 400:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* set pin remap value */
+ 401:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if(DISABLE != newvalue){
+ 709              		.loc 1 401 5 is_stmt 1 view .LVU186
+ 710              		.loc 1 401 7 is_stmt 0 view .LVU187
+ 711 0046 19B1     		cbz	r1, .L57
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= (remap1 << ((remap >> 0x15U)*0x10U));
+ 712              		.loc 1 402 9 is_stmt 1 view .LVU188
+ 713              		.loc 1 402 40 is_stmt 0 view .LVU189
+ 714 0048 410D     		lsrs	r1, r0, #21
+ 715              	.LVL84:
+ 716              		.loc 1 402 49 view .LVU190
+ 717 004a 0901     		lsls	r1, r1, #4
+ 718              		.loc 1 402 29 view .LVU191
+ 719 004c 8A40     		lsls	r2, r2, r1
+ 720              	.LVL85:
+ 721              		.loc 1 402 18 view .LVU192
+ 722 004e 1343     		orrs	r3, r3, r2
+ 723              	.LVL86:
+ 724              	.L57:
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 404:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     
+ 405:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if(AFIO_PCF1_FIELDS == (remap & AFIO_PCF1_FIELDS)){
+ 725              		.loc 1 405 5 is_stmt 1 view .LVU193
+ 726              		.loc 1 405 7 is_stmt 0 view .LVU194
+ 727 0050 0028     		cmp	r0, #0
+ 728 0052 0EDB     		blt	.L63
+ 406:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* set AFIO_PCF1 regiter value */
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_PCF1 = temp_reg;
+ 408:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 409:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* set AFIO_PCF0 regiter value */
+ 410:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_PCF0 = temp_reg;
+ 729              		.loc 1 410 9 is_stmt 1 view .LVU195
+ 730              		.loc 1 410 19 is_stmt 0 view .LVU196
+ 731 0054 084A     		ldr	r2, .L64
+ 732 0056 5360     		str	r3, [r2, #4]
+ARM GAS  C:\Temp\ccyYG8di.s 			page 22
+
+
+ 733              	.L51:
+ 411:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 412:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 734              		.loc 1 412 1 view .LVU197
+ 735 0058 30BC     		pop	{r4, r5}
+ 736              	.LCFI4:
+ 737              		.cfi_remember_state
+ 738              		.cfi_restore 5
+ 739              		.cfi_restore 4
+ 740              		.cfi_def_cfa_offset 0
+ 741 005a 7047     		bx	lr
+ 742              	.LVL87:
+ 743              	.L56:
+ 744              	.LCFI5:
+ 745              		.cfi_restore_state
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= ~PCF_SWJCFG_MASK;
+ 746              		.loc 1 396 9 is_stmt 1 view .LVU198
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= ~PCF_SWJCFG_MASK;
+ 747              		.loc 1 396 41 is_stmt 0 view .LVU199
+ 748 005c 4FEA505C 		lsr	ip, r0, #21
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= ~PCF_SWJCFG_MASK;
+ 749              		.loc 1 396 50 view .LVU200
+ 750 0060 4FEA0C1C 		lsl	ip, ip, #4
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= ~PCF_SWJCFG_MASK;
+ 751              		.loc 1 396 30 view .LVU201
+ 752 0064 02FA0CFC 		lsl	ip, r2, ip
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         temp_reg |= ~PCF_SWJCFG_MASK;
+ 753              		.loc 1 396 18 view .LVU202
+ 754 0068 23EA0C03 		bic	r3, r3, ip
+ 755              	.LVL88:
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 756              		.loc 1 397 9 is_stmt 1 view .LVU203
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 757              		.loc 1 397 18 is_stmt 0 view .LVU204
+ 758 006c 43F0E063 		orr	r3, r3, #117440512
+ 759              	.LVL89:
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 760              		.loc 1 397 18 view .LVU205
+ 761 0070 E9E7     		b	.L55
+ 762              	.LVL90:
+ 763              	.L63:
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 764              		.loc 1 407 9 is_stmt 1 view .LVU206
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 765              		.loc 1 407 19 is_stmt 0 view .LVU207
+ 766 0072 014A     		ldr	r2, .L64
+ 767 0074 D361     		str	r3, [r2, #28]
+ 768 0076 EFE7     		b	.L51
+ 769              	.L65:
+ 770              		.align	2
+ 771              	.L64:
+ 772 0078 00000140 		.word	1073807360
+ 773              		.cfi_endproc
+ 774              	.LFE127:
+ 776              		.section	.text.gpio_exti_source_select,"ax",%progbits
+ 777              		.align	1
+ 778              		.global	gpio_exti_source_select
+ARM GAS  C:\Temp\ccyYG8di.s 			page 23
+
+
+ 779              		.syntax unified
+ 780              		.thumb
+ 781              		.thumb_func
+ 783              	gpio_exti_source_select:
+ 784              	.LVL91:
+ 785              	.LFB128:
+ 413:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 414:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #ifdef GD32F30X_CL
+ 415:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 416:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      select ethernet MII or RMII PHY
+ 417:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  enet_sel: ethernet MII or RMII PHY selection
+ 418:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_ENET_PHY_MII: configure ethernet MAC for connection with an MII PHY
+ 419:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_ENET_PHY_RMII: configure ethernet MAC for connection with an RMII PHY
+ 420:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 421:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 422:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 423:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_ethernet_phy_select(uint32_t enet_sel)
+ 424:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 425:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* clear AFIO_PCF0_ENET_PHY_SEL bit */
+ 426:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     AFIO_PCF0 &= (uint32_t)(~AFIO_PCF0_ENET_PHY_SEL);
+ 427:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 428:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* select MII or RMII PHY */
+ 429:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     AFIO_PCF0 |= (uint32_t)enet_sel;
+ 430:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 431:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** #endif /* GD32F30X_CL */
+ 432:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      select GPIO pin exti sources
+ 435:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  output_port: gpio event output port
+ 436:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 437:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PORT_SOURCE_GPIOA: output port source A
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PORT_SOURCE_GPIOB: output port source B
+ 439:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PORT_SOURCE_GPIOC: output port source C
+ 440:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PORT_SOURCE_GPIOD: output port source D
+ 441:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PORT_SOURCE_GPIOE: output port source E 
+ 442:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PORT_SOURCE_GPIOF: output port source F
+ 443:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PORT_SOURCE_GPIOG: output port source G
+ 444:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  output_pin: GPIO output pin source
+ 445:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 446:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_SOURCE_x(x=0..15)
+ 447:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 448:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 449:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 450:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_exti_source_select(uint8_t output_port, uint8_t output_pin)
+ 451:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 786              		.loc 1 451 1 is_stmt 1 view -0
+ 787              		.cfi_startproc
+ 788              		@ args = 0, pretend = 0, frame = 0
+ 789              		@ frame_needed = 0, uses_anonymous_args = 0
+ 790              		@ link register save eliminated.
+ 791              		.loc 1 451 1 is_stmt 0 view .LVU209
+ 792 0000 10B4     		push	{r4}
+ 793              	.LCFI6:
+ 794              		.cfi_def_cfa_offset 4
+ 795              		.cfi_offset 4, -4
+ 452:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint32_t source = 0U;
+ 796              		.loc 1 452 5 is_stmt 1 view .LVU210
+ARM GAS  C:\Temp\ccyYG8di.s 			page 24
+
+
+ 797              	.LVL92:
+ 453:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     source = ((uint32_t)0x0FU) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_EXTI_SOURCE_MASK));
+ 798              		.loc 1 453 5 view .LVU211
+ 799              		.loc 1 453 74 is_stmt 0 view .LVU212
+ 800 0002 01F00303 		and	r3, r1, #3
+ 801              		.loc 1 453 60 view .LVU213
+ 802 0006 9B00     		lsls	r3, r3, #2
+ 803              		.loc 1 453 12 view .LVU214
+ 804 0008 0F22     		movs	r2, #15
+ 805 000a 9A40     		lsls	r2, r2, r3
+ 806              	.LVL93:
+ 454:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 455:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* select EXTI sources */
+ 456:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if(GPIO_PIN_SOURCE_4 > output_pin){
+ 807              		.loc 1 456 5 is_stmt 1 view .LVU215
+ 808              		.loc 1 456 7 is_stmt 0 view .LVU216
+ 809 000c 0329     		cmp	r1, #3
+ 810 000e 0CD8     		bhi	.L67
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* select EXTI0/EXTI1/EXTI2/EXTI3 */
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS0 &= ~source;
+ 811              		.loc 1 458 9 is_stmt 1 view .LVU217
+ 812 0010 1849     		ldr	r1, .L72
+ 813              	.LVL94:
+ 814              		.loc 1 458 9 is_stmt 0 view .LVU218
+ 815 0012 8C68     		ldr	r4, [r1, #8]
+ 816              		.loc 1 458 22 view .LVU219
+ 817 0014 24EA0202 		bic	r2, r4, r2
+ 818              	.LVL95:
+ 819              		.loc 1 458 22 view .LVU220
+ 820 0018 8A60     		str	r2, [r1, #8]
+ 459:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS0 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 821              		.loc 1 459 9 is_stmt 1 view .LVU221
+ 822 001a 8A68     		ldr	r2, [r1, #8]
+ 823              		.loc 1 459 50 is_stmt 0 view .LVU222
+ 824 001c 00FA03F3 		lsl	r3, r0, r3
+ 825              	.LVL96:
+ 826              		.loc 1 459 22 view .LVU223
+ 827 0020 1343     		orrs	r3, r3, r2
+ 828 0022 8B60     		str	r3, [r1, #8]
+ 829              	.LVL97:
+ 830              	.L66:
+ 460:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(GPIO_PIN_SOURCE_8 > output_pin){
+ 461:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* select EXTI4/EXTI5/EXTI6/EXTI7 */
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS1 &= ~source;
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS1 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 464:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(GPIO_PIN_SOURCE_12 > output_pin){
+ 465:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* select EXTI8/EXTI9/EXTI10/EXTI11 */
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS2 &= ~source;
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS2 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 468:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 469:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* select EXTI12/EXTI13/EXTI14/EXTI15 */
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS3 &= ~source;
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS3 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 472:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 473:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 831              		.loc 1 473 1 view .LVU224
+ 832 0024 5DF8044B 		ldr	r4, [sp], #4
+ARM GAS  C:\Temp\ccyYG8di.s 			page 25
+
+
+ 833              	.LCFI7:
+ 834              		.cfi_remember_state
+ 835              		.cfi_restore 4
+ 836              		.cfi_def_cfa_offset 0
+ 837 0028 7047     		bx	lr
+ 838              	.LVL98:
+ 839              	.L67:
+ 840              	.LCFI8:
+ 841              		.cfi_restore_state
+ 460:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(GPIO_PIN_SOURCE_8 > output_pin){
+ 842              		.loc 1 460 11 is_stmt 1 view .LVU225
+ 460:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(GPIO_PIN_SOURCE_8 > output_pin){
+ 843              		.loc 1 460 13 is_stmt 0 view .LVU226
+ 844 002a 0729     		cmp	r1, #7
+ 845 002c 0AD8     		bhi	.L69
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS1 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 846              		.loc 1 462 9 is_stmt 1 view .LVU227
+ 847 002e 1149     		ldr	r1, .L72
+ 848              	.LVL99:
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS1 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 849              		.loc 1 462 9 is_stmt 0 view .LVU228
+ 850 0030 CC68     		ldr	r4, [r1, #12]
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS1 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 851              		.loc 1 462 22 view .LVU229
+ 852 0032 24EA0202 		bic	r2, r4, r2
+ 853              	.LVL100:
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS1 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 854              		.loc 1 462 22 view .LVU230
+ 855 0036 CA60     		str	r2, [r1, #12]
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(GPIO_PIN_SOURCE_12 > output_pin){
+ 856              		.loc 1 463 9 is_stmt 1 view .LVU231
+ 857 0038 CA68     		ldr	r2, [r1, #12]
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(GPIO_PIN_SOURCE_12 > output_pin){
+ 858              		.loc 1 463 50 is_stmt 0 view .LVU232
+ 859 003a 00FA03F3 		lsl	r3, r0, r3
+ 860              	.LVL101:
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else if(GPIO_PIN_SOURCE_12 > output_pin){
+ 861              		.loc 1 463 22 view .LVU233
+ 862 003e 1343     		orrs	r3, r3, r2
+ 863 0040 CB60     		str	r3, [r1, #12]
+ 864 0042 EFE7     		b	.L66
+ 865              	.LVL102:
+ 866              	.L69:
+ 464:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* select EXTI8/EXTI9/EXTI10/EXTI11 */
+ 867              		.loc 1 464 11 is_stmt 1 view .LVU234
+ 464:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         /* select EXTI8/EXTI9/EXTI10/EXTI11 */
+ 868              		.loc 1 464 13 is_stmt 0 view .LVU235
+ 869 0044 0B29     		cmp	r1, #11
+ 870 0046 0AD8     		bhi	.L70
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS2 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 871              		.loc 1 466 9 is_stmt 1 view .LVU236
+ 872 0048 0A49     		ldr	r1, .L72
+ 873              	.LVL103:
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS2 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 874              		.loc 1 466 9 is_stmt 0 view .LVU237
+ 875 004a 0C69     		ldr	r4, [r1, #16]
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS2 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ARM GAS  C:\Temp\ccyYG8di.s 			page 26
+
+
+ 876              		.loc 1 466 22 view .LVU238
+ 877 004c 24EA0202 		bic	r2, r4, r2
+ 878              	.LVL104:
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS2 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 879              		.loc 1 466 22 view .LVU239
+ 880 0050 0A61     		str	r2, [r1, #16]
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 881              		.loc 1 467 9 is_stmt 1 view .LVU240
+ 882 0052 0A69     		ldr	r2, [r1, #16]
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 883              		.loc 1 467 50 is_stmt 0 view .LVU241
+ 884 0054 00FA03F3 		lsl	r3, r0, r3
+ 885              	.LVL105:
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 886              		.loc 1 467 22 view .LVU242
+ 887 0058 1343     		orrs	r3, r3, r2
+ 888 005a 0B61     		str	r3, [r1, #16]
+ 889 005c E2E7     		b	.L66
+ 890              	.LVL106:
+ 891              	.L70:
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS3 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 892              		.loc 1 470 9 is_stmt 1 view .LVU243
+ 893 005e 0549     		ldr	r1, .L72
+ 894              	.LVL107:
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS3 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 895              		.loc 1 470 9 is_stmt 0 view .LVU244
+ 896 0060 4C69     		ldr	r4, [r1, #20]
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS3 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 897              		.loc 1 470 22 view .LVU245
+ 898 0062 24EA0202 		bic	r2, r4, r2
+ 899              	.LVL108:
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         AFIO_EXTISS3 |= (((uint32_t)output_port) << (AFIO_EXTI_SOURCE_FIELDS * (output_pin & AFIO_E
+ 900              		.loc 1 470 22 view .LVU246
+ 901 0066 4A61     		str	r2, [r1, #20]
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 902              		.loc 1 471 9 is_stmt 1 view .LVU247
+ 903 0068 4A69     		ldr	r2, [r1, #20]
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 904              		.loc 1 471 50 is_stmt 0 view .LVU248
+ 905 006a 9840     		lsls	r0, r0, r3
+ 906              	.LVL109:
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 907              		.loc 1 471 22 view .LVU249
+ 908 006c 0243     		orrs	r2, r2, r0
+ 909 006e 4A61     		str	r2, [r1, #20]
+ 910              		.loc 1 473 1 view .LVU250
+ 911 0070 D8E7     		b	.L66
+ 912              	.L73:
+ 913 0072 00BF     		.align	2
+ 914              	.L72:
+ 915 0074 00000140 		.word	1073807360
+ 916              		.cfi_endproc
+ 917              	.LFE128:
+ 919              		.section	.text.gpio_event_output_config,"ax",%progbits
+ 920              		.align	1
+ 921              		.global	gpio_event_output_config
+ 922              		.syntax unified
+ARM GAS  C:\Temp\ccyYG8di.s 			page 27
+
+
+ 923              		.thumb
+ 924              		.thumb_func
+ 926              	gpio_event_output_config:
+ 927              	.LVL110:
+ 928              	.LFB129:
+ 474:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 475:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      configure GPIO pin event output
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  output_port: gpio event output port
+ 478:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 479:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_EVENT_PORT_GPIOA: event output port A
+ 480:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_EVENT_PORT_GPIOB: event output port B
+ 481:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_EVENT_PORT_GPIOC: event output port C
+ 482:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_EVENT_PORT_GPIOD: event output port D
+ 483:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_EVENT_PORT_GPIOE: event output port E
+ 484:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  output_pin: GPIO event output pin
+ 485:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 486:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_EVENT_PIN_x(x=0..15)
+ 487:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 488:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 489:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 490:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_event_output_config(uint8_t output_port, uint8_t output_pin)
+ 491:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 929              		.loc 1 491 1 is_stmt 1 view -0
+ 930              		.cfi_startproc
+ 931              		@ args = 0, pretend = 0, frame = 0
+ 932              		@ frame_needed = 0, uses_anonymous_args = 0
+ 933              		@ link register save eliminated.
+ 492:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint32_t reg = 0U;
+ 934              		.loc 1 492 5 view .LVU252
+ 493:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     reg = AFIO_EC;
+ 935              		.loc 1 493 5 view .LVU253
+ 936              		.loc 1 493 9 is_stmt 0 view .LVU254
+ 937 0000 044A     		ldr	r2, .L75
+ 938 0002 1368     		ldr	r3, [r2]
+ 939              	.LVL111:
+ 494:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* clear AFIO_EC_PORT and AFIO_EC_PIN bits */
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     reg &= (uint32_t)(~(AFIO_EC_PORT|AFIO_EC_PIN));
+ 940              		.loc 1 496 5 is_stmt 1 view .LVU255
+ 941              		.loc 1 496 9 is_stmt 0 view .LVU256
+ 942 0004 23F07F03 		bic	r3, r3, #127
+ 943              	.LVL112:
+ 497:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     
+ 498:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     reg |= (uint32_t)((uint32_t)output_port << GPIO_OUTPUT_PORT_OFFSET);
+ 944              		.loc 1 498 5 is_stmt 1 view .LVU257
+ 945              		.loc 1 498 9 is_stmt 0 view .LVU258
+ 946 0008 43EA0013 		orr	r3, r3, r0, lsl #4
+ 947              	.LVL113:
+ 499:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     reg |= (uint32_t)output_pin;
+ 948              		.loc 1 499 5 is_stmt 1 view .LVU259
+ 949              		.loc 1 499 9 is_stmt 0 view .LVU260
+ 950 000c 1943     		orrs	r1, r1, r3
+ 951              	.LVL114:
+ 500:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     
+ 501:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     AFIO_EC = reg;
+ 952              		.loc 1 501 5 is_stmt 1 view .LVU261
+ARM GAS  C:\Temp\ccyYG8di.s 			page 28
+
+
+ 953              		.loc 1 501 13 is_stmt 0 view .LVU262
+ 954 000e 1160     		str	r1, [r2]
+ 502:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 955              		.loc 1 502 1 view .LVU263
+ 956 0010 7047     		bx	lr
+ 957              	.L76:
+ 958 0012 00BF     		.align	2
+ 959              	.L75:
+ 960 0014 00000140 		.word	1073807360
+ 961              		.cfi_endproc
+ 962              	.LFE129:
+ 964              		.section	.text.gpio_event_output_enable,"ax",%progbits
+ 965              		.align	1
+ 966              		.global	gpio_event_output_enable
+ 967              		.syntax unified
+ 968              		.thumb
+ 969              		.thumb_func
+ 971              	gpio_event_output_enable:
+ 972              	.LFB130:
+ 503:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 504:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 505:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      enable GPIO pin event output
+ 506:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  none
+ 507:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 508:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 509:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 510:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_event_output_enable(void)
+ 511:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 973              		.loc 1 511 1 is_stmt 1 view -0
+ 974              		.cfi_startproc
+ 975              		@ args = 0, pretend = 0, frame = 0
+ 976              		@ frame_needed = 0, uses_anonymous_args = 0
+ 977              		@ link register save eliminated.
+ 512:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     AFIO_EC |= AFIO_EC_EOE;
+ 978              		.loc 1 512 5 view .LVU265
+ 979 0000 024A     		ldr	r2, .L78
+ 980 0002 1368     		ldr	r3, [r2]
+ 981              		.loc 1 512 13 is_stmt 0 view .LVU266
+ 982 0004 43F08003 		orr	r3, r3, #128
+ 983 0008 1360     		str	r3, [r2]
+ 513:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 984              		.loc 1 513 1 view .LVU267
+ 985 000a 7047     		bx	lr
+ 986              	.L79:
+ 987              		.align	2
+ 988              	.L78:
+ 989 000c 00000140 		.word	1073807360
+ 990              		.cfi_endproc
+ 991              	.LFE130:
+ 993              		.section	.text.gpio_event_output_disable,"ax",%progbits
+ 994              		.align	1
+ 995              		.global	gpio_event_output_disable
+ 996              		.syntax unified
+ 997              		.thumb
+ 998              		.thumb_func
+ 1000              	gpio_event_output_disable:
+ 1001              	.LFB131:
+ARM GAS  C:\Temp\ccyYG8di.s 			page 29
+
+
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 516:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      disable GPIO pin event output
+ 517:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  none
+ 518:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 519:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 520:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 521:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_event_output_disable(void)
+ 522:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 1002              		.loc 1 522 1 is_stmt 1 view -0
+ 1003              		.cfi_startproc
+ 1004              		@ args = 0, pretend = 0, frame = 0
+ 1005              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1006              		@ link register save eliminated.
+ 523:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     AFIO_EC &= (uint32_t)(~AFIO_EC_EOE);
+ 1007              		.loc 1 523 5 view .LVU269
+ 1008 0000 024A     		ldr	r2, .L81
+ 1009 0002 1368     		ldr	r3, [r2]
+ 1010              		.loc 1 523 13 is_stmt 0 view .LVU270
+ 1011 0004 23F08003 		bic	r3, r3, #128
+ 1012 0008 1360     		str	r3, [r2]
+ 524:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 1013              		.loc 1 524 1 view .LVU271
+ 1014 000a 7047     		bx	lr
+ 1015              	.L82:
+ 1016              		.align	2
+ 1017              	.L81:
+ 1018 000c 00000140 		.word	1073807360
+ 1019              		.cfi_endproc
+ 1020              	.LFE131:
+ 1022              		.section	.text.gpio_pin_lock,"ax",%progbits
+ 1023              		.align	1
+ 1024              		.global	gpio_pin_lock
+ 1025              		.syntax unified
+ 1026              		.thumb
+ 1027              		.thumb_func
+ 1029              	gpio_pin_lock:
+ 1030              	.LVL115:
+ 1031              	.LFB132:
+ 525:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 526:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 527:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      lock GPIO pin
+ 528:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  gpio_periph: GPIOx(x = A,B,C,D,E,F,G)
+ 529:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  pin: GPIO pin
+ 530:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 one or more parameters can be selected which are shown as below:
+ 531:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_PIN_x(x=0..15), GPIO_PIN_ALL
+ 532:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 533:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 534:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 535:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_pin_lock(uint32_t gpio_periph,uint32_t pin)
+ 536:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 1032              		.loc 1 536 1 is_stmt 1 view -0
+ 1033              		.cfi_startproc
+ 1034              		@ args = 0, pretend = 0, frame = 0
+ 1035              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1036              		@ link register save eliminated.
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint32_t lock = 0x00010000U;
+ARM GAS  C:\Temp\ccyYG8di.s 			page 30
+
+
+ 1037              		.loc 1 537 5 view .LVU273
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     lock |= pin;
+ 1038              		.loc 1 538 5 view .LVU274
+ 1039              		.loc 1 538 10 is_stmt 0 view .LVU275
+ 1040 0000 41F48033 		orr	r3, r1, #65536
+ 1041              	.LVL116:
+ 539:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 540:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* lock key writing sequence: write 1 -> write 0 -> write 1 -> read 0 -> read 1 */
+ 541:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     GPIO_LOCK(gpio_periph) = (uint32_t)lock;
+ 1042              		.loc 1 541 5 is_stmt 1 view .LVU276
+ 1043              		.loc 1 541 28 is_stmt 0 view .LVU277
+ 1044 0004 8361     		str	r3, [r0, #24]
+ 542:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     GPIO_LOCK(gpio_periph) = (uint32_t)pin;
+ 1045              		.loc 1 542 5 is_stmt 1 view .LVU278
+ 1046              		.loc 1 542 28 is_stmt 0 view .LVU279
+ 1047 0006 8161     		str	r1, [r0, #24]
+ 543:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     GPIO_LOCK(gpio_periph) = (uint32_t)lock;
+ 1048              		.loc 1 543 5 is_stmt 1 view .LVU280
+ 1049              		.loc 1 543 28 is_stmt 0 view .LVU281
+ 1050 0008 8361     		str	r3, [r0, #24]
+ 544:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     lock = GPIO_LOCK(gpio_periph);
+ 1051              		.loc 1 544 5 is_stmt 1 view .LVU282
+ 1052              		.loc 1 544 10 is_stmt 0 view .LVU283
+ 1053 000a 8369     		ldr	r3, [r0, #24]
+ 1054              	.LVL117:
+ 545:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     lock = GPIO_LOCK(gpio_periph);
+ 1055              		.loc 1 545 5 is_stmt 1 view .LVU284
+ 1056              		.loc 1 545 10 is_stmt 0 view .LVU285
+ 1057 000c 8369     		ldr	r3, [r0, #24]
+ 546:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 1058              		.loc 1 546 1 view .LVU286
+ 1059 000e 7047     		bx	lr
+ 1060              		.cfi_endproc
+ 1061              	.LFE132:
+ 1063              		.section	.text.gpio_compensation_config,"ax",%progbits
+ 1064              		.align	1
+ 1065              		.global	gpio_compensation_config
+ 1066              		.syntax unified
+ 1067              		.thumb
+ 1068              		.thumb_func
+ 1070              	gpio_compensation_config:
+ 1071              	.LVL118:
+ 1072              	.LFB133:
+ 547:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 548:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 549:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      configure the I/O compensation cell
+ 550:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  compensation: specifies the I/O compensation cell mode
+ 551:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****                 only one parameter can be selected which are shown as below:
+ 552:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_COMPENSATION_ENABLE: I/O compensation cell is enabled
+ 553:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****       \arg        GPIO_COMPENSATION_DISABLE: I/O compensation cell is disabled
+ 554:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 555:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     none
+ 556:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** */
+ 557:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** void gpio_compensation_config(uint32_t compensation)
+ 558:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 1073              		.loc 1 558 1 is_stmt 1 view -0
+ 1074              		.cfi_startproc
+ARM GAS  C:\Temp\ccyYG8di.s 			page 31
+
+
+ 1075              		@ args = 0, pretend = 0, frame = 0
+ 1076              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1077              		@ link register save eliminated.
+ 559:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     uint32_t reg;
+ 1078              		.loc 1 559 5 view .LVU288
+ 560:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     reg = AFIO_CPSCTL;
+ 1079              		.loc 1 560 5 view .LVU289
+ 1080              		.loc 1 560 9 is_stmt 0 view .LVU290
+ 1081 0000 034A     		ldr	r2, .L85
+ 1082 0002 136A     		ldr	r3, [r2, #32]
+ 1083              	.LVL119:
+ 561:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 562:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     /* reset the AFIO_CPSCTL_CPS_EN bit and set according to gpio_compensation */
+ 563:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     reg &= ~AFIO_CPSCTL_CPS_EN;
+ 1084              		.loc 1 563 5 is_stmt 1 view .LVU291
+ 1085              		.loc 1 563 9 is_stmt 0 view .LVU292
+ 1086 0004 23F00103 		bic	r3, r3, #1
+ 1087              	.LVL120:
+ 564:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     AFIO_CPSCTL = (reg | compensation);
+ 1088              		.loc 1 564 5 is_stmt 1 view .LVU293
+ 1089              		.loc 1 564 24 is_stmt 0 view .LVU294
+ 1090 0008 0343     		orrs	r3, r3, r0
+ 1091              	.LVL121:
+ 1092              		.loc 1 564 17 view .LVU295
+ 1093 000a 1362     		str	r3, [r2, #32]
+ 565:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 1094              		.loc 1 565 1 view .LVU296
+ 1095 000c 7047     		bx	lr
+ 1096              	.L86:
+ 1097 000e 00BF     		.align	2
+ 1098              	.L85:
+ 1099 0010 00000140 		.word	1073807360
+ 1100              		.cfi_endproc
+ 1101              	.LFE133:
+ 1103              		.section	.text.gpio_compensation_flag_get,"ax",%progbits
+ 1104              		.align	1
+ 1105              		.global	gpio_compensation_flag_get
+ 1106              		.syntax unified
+ 1107              		.thumb
+ 1108              		.thumb_func
+ 1110              	gpio_compensation_flag_get:
+ 1111              	.LFB134:
+ 566:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** 
+ 567:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** /*!
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \brief      check the I/O compensation cell is ready or not
+ 569:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[in]  none
+ 570:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \param[out] none
+ 571:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     \retval     FlagStatus: SET or RESET
+ 572:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****   */
+ 573:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** FlagStatus gpio_compensation_flag_get(void)
+ 574:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** {
+ 1112              		.loc 1 574 1 is_stmt 1 view -0
+ 1113              		.cfi_startproc
+ 1114              		@ args = 0, pretend = 0, frame = 0
+ 1115              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1116              		@ link register save eliminated.
+ 575:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     if(((uint32_t)RESET) != (AFIO_CPSCTL & AFIO_CPSCTL_CPS_RDY)){
+ARM GAS  C:\Temp\ccyYG8di.s 			page 32
+
+
+ 1117              		.loc 1 575 5 view .LVU298
+ 1118              		.loc 1 575 30 is_stmt 0 view .LVU299
+ 1119 0000 044B     		ldr	r3, .L90
+ 1120 0002 1B6A     		ldr	r3, [r3, #32]
+ 1121              		.loc 1 575 7 view .LVU300
+ 1122 0004 13F4807F 		tst	r3, #256
+ 1123 0008 01D0     		beq	.L89
+ 576:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         return SET;
+ 1124              		.loc 1 576 16 view .LVU301
+ 1125 000a 0120     		movs	r0, #1
+ 1126 000c 7047     		bx	lr
+ 1127              	.L89:
+ 577:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }else{
+ 578:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****         return RESET;
+ 1128              		.loc 1 578 16 view .LVU302
+ 1129 000e 0020     		movs	r0, #0
+ 579:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c ****     }
+ 580:./GD32F30x_standard_peripheral/Source/gd32f30x_gpio.c **** }
+ 1130              		.loc 1 580 1 view .LVU303
+ 1131 0010 7047     		bx	lr
+ 1132              	.L91:
+ 1133 0012 00BF     		.align	2
+ 1134              	.L90:
+ 1135 0014 00000140 		.word	1073807360
+ 1136              		.cfi_endproc
+ 1137              	.LFE134:
+ 1139              		.text
+ 1140              	.Letext0:
+ 1141              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1142              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1143              		.file 4 "CMSIS/GD/GD32F30x/Include/gd32f30x.h"
+ 1144              		.file 5 "GD32F30x_standard_peripheral/Include/gd32f30x_rcu.h"
+ 1145              		.file 6 "GD32F30x_standard_peripheral/Include/gd32f30x_gpio.h"
+ARM GAS  C:\Temp\ccyYG8di.s 			page 33
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_gpio.c
+  C:\Temp\ccyYG8di.s:21     .text.gpio_deinit:00000000 $t
+  C:\Temp\ccyYG8di.s:27     .text.gpio_deinit:00000000 gpio_deinit
+  C:\Temp\ccyYG8di.s:168    .text.gpio_deinit:000000b8 $d
+  C:\Temp\ccyYG8di.s:174    .text.gpio_afio_deinit:00000000 $t
+  C:\Temp\ccyYG8di.s:180    .text.gpio_afio_deinit:00000000 gpio_afio_deinit
+  C:\Temp\ccyYG8di.s:205    .text.gpio_init:00000000 $t
+  C:\Temp\ccyYG8di.s:211    .text.gpio_init:00000000 gpio_init
+  C:\Temp\ccyYG8di.s:397    .text.gpio_bit_set:00000000 $t
+  C:\Temp\ccyYG8di.s:403    .text.gpio_bit_set:00000000 gpio_bit_set
+  C:\Temp\ccyYG8di.s:420    .text.gpio_bit_reset:00000000 $t
+  C:\Temp\ccyYG8di.s:426    .text.gpio_bit_reset:00000000 gpio_bit_reset
+  C:\Temp\ccyYG8di.s:443    .text.gpio_bit_write:00000000 $t
+  C:\Temp\ccyYG8di.s:449    .text.gpio_bit_write:00000000 gpio_bit_write
+  C:\Temp\ccyYG8di.s:474    .text.gpio_port_write:00000000 $t
+  C:\Temp\ccyYG8di.s:480    .text.gpio_port_write:00000000 gpio_port_write
+  C:\Temp\ccyYG8di.s:497    .text.gpio_input_bit_get:00000000 $t
+  C:\Temp\ccyYG8di.s:503    .text.gpio_input_bit_get:00000000 gpio_input_bit_get
+  C:\Temp\ccyYG8di.s:533    .text.gpio_input_port_get:00000000 $t
+  C:\Temp\ccyYG8di.s:539    .text.gpio_input_port_get:00000000 gpio_input_port_get
+  C:\Temp\ccyYG8di.s:558    .text.gpio_output_bit_get:00000000 $t
+  C:\Temp\ccyYG8di.s:564    .text.gpio_output_bit_get:00000000 gpio_output_bit_get
+  C:\Temp\ccyYG8di.s:594    .text.gpio_output_port_get:00000000 $t
+  C:\Temp\ccyYG8di.s:600    .text.gpio_output_port_get:00000000 gpio_output_port_get
+  C:\Temp\ccyYG8di.s:619    .text.gpio_pin_remap_config:00000000 $t
+  C:\Temp\ccyYG8di.s:625    .text.gpio_pin_remap_config:00000000 gpio_pin_remap_config
+  C:\Temp\ccyYG8di.s:772    .text.gpio_pin_remap_config:00000078 $d
+  C:\Temp\ccyYG8di.s:777    .text.gpio_exti_source_select:00000000 $t
+  C:\Temp\ccyYG8di.s:783    .text.gpio_exti_source_select:00000000 gpio_exti_source_select
+  C:\Temp\ccyYG8di.s:915    .text.gpio_exti_source_select:00000074 $d
+  C:\Temp\ccyYG8di.s:920    .text.gpio_event_output_config:00000000 $t
+  C:\Temp\ccyYG8di.s:926    .text.gpio_event_output_config:00000000 gpio_event_output_config
+  C:\Temp\ccyYG8di.s:960    .text.gpio_event_output_config:00000014 $d
+  C:\Temp\ccyYG8di.s:965    .text.gpio_event_output_enable:00000000 $t
+  C:\Temp\ccyYG8di.s:971    .text.gpio_event_output_enable:00000000 gpio_event_output_enable
+  C:\Temp\ccyYG8di.s:989    .text.gpio_event_output_enable:0000000c $d
+  C:\Temp\ccyYG8di.s:994    .text.gpio_event_output_disable:00000000 $t
+  C:\Temp\ccyYG8di.s:1000   .text.gpio_event_output_disable:00000000 gpio_event_output_disable
+  C:\Temp\ccyYG8di.s:1018   .text.gpio_event_output_disable:0000000c $d
+  C:\Temp\ccyYG8di.s:1023   .text.gpio_pin_lock:00000000 $t
+  C:\Temp\ccyYG8di.s:1029   .text.gpio_pin_lock:00000000 gpio_pin_lock
+  C:\Temp\ccyYG8di.s:1064   .text.gpio_compensation_config:00000000 $t
+  C:\Temp\ccyYG8di.s:1070   .text.gpio_compensation_config:00000000 gpio_compensation_config
+  C:\Temp\ccyYG8di.s:1099   .text.gpio_compensation_config:00000010 $d
+  C:\Temp\ccyYG8di.s:1104   .text.gpio_compensation_flag_get:00000000 $t
+  C:\Temp\ccyYG8di.s:1110   .text.gpio_compensation_flag_get:00000000 gpio_compensation_flag_get
+  C:\Temp\ccyYG8di.s:1135   .text.gpio_compensation_flag_get:00000014 $d
+
+UNDEFINED SYMBOLS
+rcu_periph_reset_enable
+rcu_periph_reset_disable

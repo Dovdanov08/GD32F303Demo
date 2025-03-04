@@ -1,0 +1,2440 @@
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 1
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"gd32f30x_i2c.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c"
+  20              		.section	.text.i2c_deinit,"ax",%progbits
+  21              		.align	1
+  22              		.global	i2c_deinit
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  27              	i2c_deinit:
+  28              	.LVL0:
+  29              	.LFB116:
+   1:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+   2:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \file    gd32f30x_i2c.c
+   3:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief   I2C driver
+   4:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+   5:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \version 2023-12-30, V2.2.0, firmware for GD32F30x
+   6:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+   7:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+   8:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*
+   9:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     Copyright (c) 2020, GigaDevice Semiconductor Inc.
+  10:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  11:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     Redistribution and use in source and binary forms, with or without modification, 
+  12:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** are permitted provided that the following conditions are met:
+  13:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  14:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     1. Redistributions of source code must retain the above copyright notice, this 
+  15:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****        list of conditions and the following disclaimer.
+  16:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     2. Redistributions in binary form must reproduce the above copyright notice, 
+  17:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****        this list of conditions and the following disclaimer in the documentation 
+  18:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****        and/or other materials provided with the distribution.
+  19:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     3. Neither the name of the copyright holder nor the names of its contributors 
+  20:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****        may be used to endorse or promote products derived from this software without 
+  21:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****        specific prior written permission.
+  22:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  23:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+  24:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+  25:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. 
+  26:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, 
+  27:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT 
+  28:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR 
+  29:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, 
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 2
+
+
+  30:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+  31:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY 
+  32:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** OF SUCH DAMAGE.
+  33:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+  34:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  35:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #include "gd32f30x_i2c.h"
+  36:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  37:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #define I2C_ERROR_HANDLE(s)           do{}while(1)
+  38:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  39:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #define I2CCLK_MAX                    ((uint32_t)0x0000003CU)             /*!< i2cclk maximum value
+  40:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #define I2CCLK_MIN                    ((uint32_t)0x00000002U)             /*!< i2cclk minimum value
+  41:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #define I2C_FLAG_MASK                 ((uint32_t)0x0000FFFFU)             /*!< i2c flag mask */
+  42:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #define I2C_ADDRESS_MASK              ((uint32_t)0x000003FFU)             /*!< i2c address mask */
+  43:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #define I2C_ADDRESS2_MASK             ((uint32_t)0x000000FEU)             /*!< the second i2c addre
+  44:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  45:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /* I2C register bit offset */
+  46:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** #define STAT1_PECV_OFFSET             ((uint32_t)0x00000008U)             /* bit offset of PECV in 
+  47:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  48:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+  49:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      reset I2C
+  50:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+  51:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+  52:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+  53:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+  54:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_deinit(uint32_t i2c_periph)
+  55:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+  30              		.loc 1 55 1 view -0
+  31              		.cfi_startproc
+  32              		@ args = 0, pretend = 0, frame = 0
+  33              		@ frame_needed = 0, uses_anonymous_args = 0
+  34              		.loc 1 55 1 is_stmt 0 view .LVU1
+  35 0000 08B5     		push	{r3, lr}
+  36              	.LCFI0:
+  37              		.cfi_def_cfa_offset 8
+  38              		.cfi_offset 3, -8
+  39              		.cfi_offset 14, -4
+  56:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     switch(i2c_periph){
+  40              		.loc 1 56 5 is_stmt 1 view .LVU2
+  41 0002 0D4B     		ldr	r3, .L6
+  42 0004 9842     		cmp	r0, r3
+  43 0006 04D0     		beq	.L2
+  44 0008 03F58063 		add	r3, r3, #1024
+  45 000c 9842     		cmp	r0, r3
+  46 000e 09D0     		beq	.L3
+  47              	.LVL1:
+  48              	.L1:
+  57:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     case I2C0:
+  58:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* reset I2C0 */
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_enable(RCU_I2C0RST);
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_disable(RCU_I2C0RST);
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         break;
+  62:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     case I2C1:
+  63:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* reset I2C1 */
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_enable(RCU_I2C1RST);
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_disable(RCU_I2C1RST);
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         break;
+  67:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     default:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 3
+
+
+  68:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         break;
+  69:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+  70:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+  49              		.loc 1 70 1 is_stmt 0 view .LVU3
+  50 0010 08BD     		pop	{r3, pc}
+  51              	.LVL2:
+  52              	.L2:
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_disable(RCU_I2C0RST);
+  53              		.loc 1 59 9 is_stmt 1 view .LVU4
+  54 0012 40F21540 		movw	r0, #1045
+  55              	.LVL3:
+  59:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_disable(RCU_I2C0RST);
+  56              		.loc 1 59 9 is_stmt 0 view .LVU5
+  57 0016 FFF7FEFF 		bl	rcu_periph_reset_enable
+  58              	.LVL4:
+  60:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         break;
+  59              		.loc 1 60 9 is_stmt 1 view .LVU6
+  60 001a 40F21540 		movw	r0, #1045
+  61 001e FFF7FEFF 		bl	rcu_periph_reset_disable
+  62              	.LVL5:
+  61:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     case I2C1:
+  63              		.loc 1 61 9 view .LVU7
+  64 0022 F5E7     		b	.L1
+  65              	.LVL6:
+  66              	.L3:
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_disable(RCU_I2C1RST);
+  67              		.loc 1 64 9 view .LVU8
+  68 0024 40F21640 		movw	r0, #1046
+  69              	.LVL7:
+  64:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         rcu_periph_reset_disable(RCU_I2C1RST);
+  70              		.loc 1 64 9 is_stmt 0 view .LVU9
+  71 0028 FFF7FEFF 		bl	rcu_periph_reset_enable
+  72              	.LVL8:
+  65:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         break;
+  73              		.loc 1 65 9 is_stmt 1 view .LVU10
+  74 002c 40F21640 		movw	r0, #1046
+  75 0030 FFF7FEFF 		bl	rcu_periph_reset_disable
+  76              	.LVL9:
+  66:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     default:
+  77              		.loc 1 66 9 view .LVU11
+  78              		.loc 1 70 1 is_stmt 0 view .LVU12
+  79 0034 ECE7     		b	.L1
+  80              	.L7:
+  81 0036 00BF     		.align	2
+  82              	.L6:
+  83 0038 00540040 		.word	1073763328
+  84              		.cfi_endproc
+  85              	.LFE116:
+  87              		.section	.text.i2c_clock_config,"ax",%progbits
+  88              		.align	1
+  89              		.global	i2c_clock_config
+  90              		.syntax unified
+  91              		.thumb
+  92              		.thumb_func
+  94              	i2c_clock_config:
+  95              	.LVL10:
+  96              	.LFB117:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 4
+
+
+  71:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+  72:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+  73:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure I2C clock
+  74:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+  75:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  clkspeed: I2C clock speed, supports standard mode (up to 100 kHz), fast mode (up to
+  76:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                           and fast mode plus (up to 1MHz)
+  77:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  dutycyc: duty cycle in fast mode or fast mode plus
+  78:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+  79:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_DTCY_2: T_low/T_high=2 
+  80:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_DTCY_16_9: T_low/T_high=16/9
+  81:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+  82:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+  83:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+  84:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_clock_config(uint32_t i2c_periph, uint32_t clkspeed, uint32_t dutycyc)
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+  97              		.loc 1 85 1 is_stmt 1 view -0
+  98              		.cfi_startproc
+  99              		@ args = 0, pretend = 0, frame = 0
+ 100              		@ frame_needed = 0, uses_anonymous_args = 0
+  86:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t pclk1, clkc, freq, risetime;
+ 101              		.loc 1 86 5 view .LVU14
+  87:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t temp;
+ 102              		.loc 1 87 5 view .LVU15
+  88:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+  89:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* check the clkspeed value */
+  90:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(0U == clkspeed){
+ 103              		.loc 1 90 5 view .LVU16
+ 104              		.loc 1 90 7 is_stmt 0 view .LVU17
+ 105 0000 01B9     		cbnz	r1, .L9
+ 106              	.L10:
+  91:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_ERROR_HANDLE("the parameter can not be 0 \r\n");
+ 107              		.loc 1 91 9 is_stmt 1 discriminator 1 view .LVU18
+ 108              		.loc 1 91 9 discriminator 1 view .LVU19
+ 109              		.loc 1 91 9 discriminator 1 view .LVU20
+ 110 0002 FEE7     		b	.L10
+ 111              	.L9:
+  85:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t pclk1, clkc, freq, risetime;
+ 112              		.loc 1 85 1 is_stmt 0 view .LVU21
+ 113 0004 70B5     		push	{r4, r5, r6, lr}
+ 114              	.LCFI1:
+ 115              		.cfi_def_cfa_offset 16
+ 116              		.cfi_offset 4, -16
+ 117              		.cfi_offset 5, -12
+ 118              		.cfi_offset 6, -8
+ 119              		.cfi_offset 14, -4
+ 120 0006 0446     		mov	r4, r0
+ 121 0008 1646     		mov	r6, r2
+ 122 000a 0D46     		mov	r5, r1
+  92:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+  93:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+  94:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     pclk1 = rcu_clock_freq_get(CK_APB1);
+ 123              		.loc 1 94 5 is_stmt 1 view .LVU22
+ 124              		.loc 1 94 13 is_stmt 0 view .LVU23
+ 125 000c 0220     		movs	r0, #2
+ 126              	.LVL11:
+ 127              		.loc 1 94 13 view .LVU24
+ 128 000e FFF7FEFF 		bl	rcu_clock_freq_get
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 5
+
+
+ 129              	.LVL12:
+  95:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* I2C peripheral clock frequency */
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     freq = (uint32_t)(pclk1/1000000U);
+ 130              		.loc 1 96 5 is_stmt 1 view .LVU25
+ 131              		.loc 1 96 10 is_stmt 0 view .LVU26
+ 132 0012 404B     		ldr	r3, .L28
+ 133 0014 A3FB0023 		umull	r2, r3, r3, r0
+ 134 0018 9B0C     		lsrs	r3, r3, #18
+ 135              	.LVL13:
+  97:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(freq >= I2CCLK_MAX){
+ 136              		.loc 1 97 5 is_stmt 1 view .LVU27
+ 137              		.loc 1 97 7 is_stmt 0 view .LVU28
+ 138 001a 3F4A     		ldr	r2, .L28+4
+ 139 001c 9042     		cmp	r0, r2
+ 140 001e 19D2     		bcs	.L24
+  96:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(freq >= I2CCLK_MAX){
+ 141              		.loc 1 96 10 view .LVU29
+ 142 0020 1A46     		mov	r2, r3
+ 143              	.L11:
+ 144              	.LVL14:
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         freq = I2CCLK_MAX;
+  99:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 100:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     temp = I2C_CTL1(i2c_periph);
+ 145              		.loc 1 100 5 is_stmt 1 view .LVU30
+ 146              		.loc 1 100 10 is_stmt 0 view .LVU31
+ 147 0022 6168     		ldr	r1, [r4, #4]
+ 148              	.LVL15:
+ 101:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     temp &= ~I2C_CTL1_I2CCLK;
+ 149              		.loc 1 101 5 is_stmt 1 view .LVU32
+ 150              		.loc 1 101 10 is_stmt 0 view .LVU33
+ 151 0024 21F07F01 		bic	r1, r1, #127
+ 152              	.LVL16:
+ 102:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     temp |= freq;
+ 153              		.loc 1 102 5 is_stmt 1 view .LVU34
+ 154              		.loc 1 102 10 is_stmt 0 view .LVU35
+ 155 0028 1143     		orrs	r1, r1, r2
+ 156              	.LVL17:
+ 103:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 104:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL1(i2c_periph) = temp;
+ 157              		.loc 1 104 5 is_stmt 1 view .LVU36
+ 158              		.loc 1 104 26 is_stmt 0 view .LVU37
+ 159 002a 6160     		str	r1, [r4, #4]
+ 105:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 106:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(100000U >= clkspeed){
+ 160              		.loc 1 106 5 is_stmt 1 view .LVU38
+ 161              		.loc 1 106 7 is_stmt 0 view .LVU39
+ 162 002c 3B49     		ldr	r1, .L28+8
+ 163              	.LVL18:
+ 164              		.loc 1 106 7 view .LVU40
+ 165 002e 8D42     		cmp	r5, r1
+ 166 0030 19D8     		bhi	.L12
+ 107:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* the maximum SCL rise time is 1000ns in standard mode */
+ 108:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         risetime = (uint32_t)((pclk1/1000000U)+1U);
+ 167              		.loc 1 108 9 is_stmt 1 view .LVU41
+ 168              		.loc 1 108 18 is_stmt 0 view .LVU42
+ 169 0032 0133     		adds	r3, r3, #1
+ 170              	.LVL19:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 6
+
+
+ 109:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(risetime >= I2CCLK_MAX){
+ 171              		.loc 1 109 9 is_stmt 1 view .LVU43
+ 172              		.loc 1 109 11 is_stmt 0 view .LVU44
+ 173 0034 3B2B     		cmp	r3, #59
+ 174 0036 0FD9     		bls	.L13
+ 110:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_RT(i2c_periph) = I2CCLK_MAX;
+ 175              		.loc 1 110 13 is_stmt 1 view .LVU45
+ 176              		.loc 1 110 32 is_stmt 0 view .LVU46
+ 177 0038 3C23     		movs	r3, #60
+ 178              	.LVL20:
+ 179              		.loc 1 110 32 view .LVU47
+ 180 003a 2362     		str	r3, [r4, #32]
+ 181              	.LVL21:
+ 182              	.L14:
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else if(risetime <= I2CCLK_MIN){
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_RT(i2c_periph) = I2CCLK_MIN;
+ 113:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_RT(i2c_periph) = risetime;
+ 115:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 116:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         clkc = (uint32_t)(pclk1/(clkspeed*2U));
+ 183              		.loc 1 116 9 is_stmt 1 view .LVU48
+ 184              		.loc 1 116 42 is_stmt 0 view .LVU49
+ 185 003c 6B00     		lsls	r3, r5, #1
+ 186              		.loc 1 116 14 view .LVU50
+ 187 003e B0FBF3F3 		udiv	r3, r0, r3
+ 188              	.LVL22:
+ 117:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(clkc < 0x04U){
+ 189              		.loc 1 117 9 is_stmt 1 view .LVU51
+ 190              		.loc 1 117 11 is_stmt 0 view .LVU52
+ 191 0042 032B     		cmp	r3, #3
+ 192 0044 00D8     		bhi	.L16
+ 118:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* the CLKC in standard mode minmum value is 4 */
+ 119:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             clkc = 0x04U;
+ 193              		.loc 1 119 18 view .LVU53
+ 194 0046 0423     		movs	r3, #4
+ 195              	.LVL23:
+ 196              	.L16:
+ 120:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 121:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= (I2C_CKCFG_CLKC & clkc);
+ 197              		.loc 1 121 9 is_stmt 1 view .LVU54
+ 198 0048 E269     		ldr	r2, [r4, #28]
+ 199              	.LVL24:
+ 200              		.loc 1 121 50 is_stmt 0 view .LVU55
+ 201 004a C3F30B03 		ubfx	r3, r3, #0, #12
+ 202              	.LVL25:
+ 203              		.loc 1 121 31 view .LVU56
+ 204 004e 1343     		orrs	r3, r3, r2
+ 205 0050 E361     		str	r3, [r4, #28]
+ 206              	.LVL26:
+ 207              	.L8:
+ 122:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else if(400000U >= clkspeed){
+ 124:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* the maximum SCL rise time is 300ns in fast mode */
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_RT(i2c_periph) = (uint32_t)(((freq*(uint32_t)300U)/(uint32_t)1000U)+(uint32_t)1U);
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 127:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 2 */
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             clkc = (uint32_t)(pclk1/(clkspeed*3U));
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 7
+
+
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 130:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 131:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 16/9 */
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             clkc = (uint32_t)(pclk1/(clkspeed*25U));
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 134:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(0U == (clkc & I2C_CKCFG_CLKC)){
+ 136:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* the CLKC in fast mode minmum value is 1 */
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             clkc |= 0x0001U;  
+ 138:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= I2C_CKCFG_FAST;
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= clkc;
+ 141:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 142:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* fast mode plus, the maximum SCL rise time is 120ns */
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_RT(i2c_periph) = (uint32_t)(((freq*(uint32_t)120U)/(uint32_t)1000U)+(uint32_t)1U);
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 145:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 2 */
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             clkc = (uint32_t)(pclk1/(clkspeed*3U));
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 148:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 149:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 16/9 */
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             clkc = (uint32_t)(pclk1/(clkspeed*25U));
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 152:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 153:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* enable fast mode */
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= I2C_CKCFG_FAST;
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= clkc;
+ 156:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* enable I2C fast mode plus */
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_FMPCFG(i2c_periph) = I2C_FMPCFG_FMPEN;
+ 158:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 159:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 208              		.loc 1 159 1 view .LVU57
+ 209 0052 70BD     		pop	{r4, r5, r6, pc}
+ 210              	.LVL27:
+ 211              	.L24:
+  98:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 212              		.loc 1 98 14 view .LVU58
+ 213 0054 3C22     		movs	r2, #60
+ 214 0056 E4E7     		b	.L11
+ 215              	.LVL28:
+ 216              	.L13:
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_RT(i2c_periph) = I2CCLK_MIN;
+ 217              		.loc 1 111 15 is_stmt 1 view .LVU59
+ 111:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_RT(i2c_periph) = I2CCLK_MIN;
+ 218              		.loc 1 111 17 is_stmt 0 view .LVU60
+ 219 0058 022B     		cmp	r3, #2
+ 220 005a 02D8     		bhi	.L15
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 221              		.loc 1 112 13 is_stmt 1 view .LVU61
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 222              		.loc 1 112 32 is_stmt 0 view .LVU62
+ 223 005c 0223     		movs	r3, #2
+ 224              	.LVL29:
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 225              		.loc 1 112 32 view .LVU63
+ 226 005e 2362     		str	r3, [r4, #32]
+ 227              	.LVL30:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 8
+
+
+ 112:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 228              		.loc 1 112 32 view .LVU64
+ 229 0060 ECE7     		b	.L14
+ 230              	.LVL31:
+ 231              	.L15:
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 232              		.loc 1 114 13 is_stmt 1 view .LVU65
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 233              		.loc 1 114 32 is_stmt 0 view .LVU66
+ 234 0062 2362     		str	r3, [r4, #32]
+ 235              	.LVL32:
+ 114:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 236              		.loc 1 114 32 view .LVU67
+ 237 0064 EAE7     		b	.L14
+ 238              	.LVL33:
+ 239              	.L12:
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* the maximum SCL rise time is 300ns in fast mode */
+ 240              		.loc 1 123 11 is_stmt 1 view .LVU68
+ 123:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* the maximum SCL rise time is 300ns in fast mode */
+ 241              		.loc 1 123 13 is_stmt 0 view .LVU69
+ 242 0066 2E4B     		ldr	r3, .L28+12
+ 243 0068 9D42     		cmp	r5, r3
+ 244 006a 2AD8     		bhi	.L18
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 245              		.loc 1 125 9 is_stmt 1 view .LVU70
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 246              		.loc 1 125 47 is_stmt 0 view .LVU71
+ 247 006c 4FF49673 		mov	r3, #300
+ 248 0070 02FB03F3 		mul	r3, r2, r3
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 249              		.loc 1 125 63 view .LVU72
+ 250 0074 2B4A     		ldr	r2, .L28+16
+ 251              	.LVL34:
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 252              		.loc 1 125 63 view .LVU73
+ 253 0076 A2FB0323 		umull	r2, r3, r2, r3
+ 254 007a 9B09     		lsrs	r3, r3, #6
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 255              		.loc 1 125 30 view .LVU74
+ 256 007c 0133     		adds	r3, r3, #1
+ 125:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 257              		.loc 1 125 28 view .LVU75
+ 258 007e 2362     		str	r3, [r4, #32]
+ 259              	.LVL35:
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 2 */
+ 260              		.loc 1 126 9 is_stmt 1 view .LVU76
+ 126:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 2 */
+ 261              		.loc 1 126 11 is_stmt 0 view .LVU77
+ 262 0080 A6B9     		cbnz	r6, .L19
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 263              		.loc 1 128 13 is_stmt 1 view .LVU78
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 264              		.loc 1 128 46 is_stmt 0 view .LVU79
+ 265 0082 05EB4505 		add	r5, r5, r5, lsl #1
+ 266              	.LVL36:
+ 128:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 267              		.loc 1 128 18 view .LVU80
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 9
+
+
+ 268 0086 B0FBF5F3 		udiv	r3, r0, r5
+ 269              	.LVL37:
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 270              		.loc 1 129 13 is_stmt 1 view .LVU81
+ 271 008a E269     		ldr	r2, [r4, #28]
+ 129:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 272              		.loc 1 129 35 is_stmt 0 view .LVU82
+ 273 008c 22F48042 		bic	r2, r2, #16384
+ 274 0090 E261     		str	r2, [r4, #28]
+ 275              	.L20:
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* the CLKC in fast mode minmum value is 1 */
+ 276              		.loc 1 135 9 is_stmt 1 view .LVU83
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* the CLKC in fast mode minmum value is 1 */
+ 277              		.loc 1 135 24 is_stmt 0 view .LVU84
+ 278 0092 C3F30B02 		ubfx	r2, r3, #0, #12
+ 135:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* the CLKC in fast mode minmum value is 1 */
+ 279              		.loc 1 135 11 view .LVU85
+ 280 0096 0AB9     		cbnz	r2, .L21
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 281              		.loc 1 137 13 is_stmt 1 view .LVU86
+ 137:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 282              		.loc 1 137 18 is_stmt 0 view .LVU87
+ 283 0098 43F00103 		orr	r3, r3, #1
+ 284              	.LVL38:
+ 285              	.L21:
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= clkc;
+ 286              		.loc 1 139 9 is_stmt 1 view .LVU88
+ 287 009c E269     		ldr	r2, [r4, #28]
+ 139:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= clkc;
+ 288              		.loc 1 139 31 is_stmt 0 view .LVU89
+ 289 009e 42F40042 		orr	r2, r2, #32768
+ 290 00a2 E261     		str	r2, [r4, #28]
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 291              		.loc 1 140 9 is_stmt 1 view .LVU90
+ 292 00a4 E269     		ldr	r2, [r4, #28]
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 293              		.loc 1 140 31 is_stmt 0 view .LVU91
+ 294 00a6 1343     		orrs	r3, r3, r2
+ 295              	.LVL39:
+ 140:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 296              		.loc 1 140 31 view .LVU92
+ 297 00a8 E361     		str	r3, [r4, #28]
+ 298 00aa D2E7     		b	.L8
+ 299              	.LVL40:
+ 300              	.L19:
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 301              		.loc 1 132 13 is_stmt 1 view .LVU93
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 302              		.loc 1 132 46 is_stmt 0 view .LVU94
+ 303 00ac 05EB8505 		add	r5, r5, r5, lsl #2
+ 304              	.LVL41:
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 305              		.loc 1 132 46 view .LVU95
+ 306 00b0 05EB8505 		add	r5, r5, r5, lsl #2
+ 132:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 307              		.loc 1 132 18 view .LVU96
+ 308 00b4 B0FBF5F3 		udiv	r3, r0, r5
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 10
+
+
+ 309              	.LVL42:
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 310              		.loc 1 133 13 is_stmt 1 view .LVU97
+ 311 00b8 E269     		ldr	r2, [r4, #28]
+ 133:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 312              		.loc 1 133 35 is_stmt 0 view .LVU98
+ 313 00ba 42F48042 		orr	r2, r2, #16384
+ 314 00be E261     		str	r2, [r4, #28]
+ 315 00c0 E7E7     		b	.L20
+ 316              	.LVL43:
+ 317              	.L18:
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 318              		.loc 1 143 9 is_stmt 1 view .LVU99
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 319              		.loc 1 143 47 is_stmt 0 view .LVU100
+ 320 00c2 C2EB0213 		rsb	r3, r2, r2, lsl #4
+ 321 00c6 DB00     		lsls	r3, r3, #3
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 322              		.loc 1 143 63 view .LVU101
+ 323 00c8 164A     		ldr	r2, .L28+16
+ 324              	.LVL44:
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 325              		.loc 1 143 63 view .LVU102
+ 326 00ca A2FB0323 		umull	r2, r3, r2, r3
+ 327 00ce 9B09     		lsrs	r3, r3, #6
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 328              		.loc 1 143 30 view .LVU103
+ 329 00d0 0133     		adds	r3, r3, #1
+ 143:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(I2C_DTCY_2 == dutycyc){
+ 330              		.loc 1 143 28 view .LVU104
+ 331 00d2 2362     		str	r3, [r4, #32]
+ 332              	.LVL45:
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 2 */
+ 333              		.loc 1 144 9 is_stmt 1 view .LVU105
+ 144:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             /* I2C duty cycle is 2 */
+ 334              		.loc 1 144 11 is_stmt 0 view .LVU106
+ 335 00d4 96B9     		cbnz	r6, .L22
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 336              		.loc 1 146 13 is_stmt 1 view .LVU107
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 337              		.loc 1 146 46 is_stmt 0 view .LVU108
+ 338 00d6 05EB4505 		add	r5, r5, r5, lsl #1
+ 339              	.LVL46:
+ 146:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) &= ~I2C_CKCFG_DTCY;
+ 340              		.loc 1 146 18 view .LVU109
+ 341 00da B0FBF5F0 		udiv	r0, r0, r5
+ 342              	.LVL47:
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 343              		.loc 1 147 13 is_stmt 1 view .LVU110
+ 344 00de E369     		ldr	r3, [r4, #28]
+ 147:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 345              		.loc 1 147 35 is_stmt 0 view .LVU111
+ 346 00e0 23F48043 		bic	r3, r3, #16384
+ 347 00e4 E361     		str	r3, [r4, #28]
+ 348              	.L23:
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= clkc;
+ 349              		.loc 1 154 9 is_stmt 1 view .LVU112
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 11
+
+
+ 350 00e6 E369     		ldr	r3, [r4, #28]
+ 154:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CKCFG(i2c_periph) |= clkc;
+ 351              		.loc 1 154 31 is_stmt 0 view .LVU113
+ 352 00e8 43F40043 		orr	r3, r3, #32768
+ 353 00ec E361     		str	r3, [r4, #28]
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* enable I2C fast mode plus */
+ 354              		.loc 1 155 9 is_stmt 1 view .LVU114
+ 355 00ee E369     		ldr	r3, [r4, #28]
+ 155:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* enable I2C fast mode plus */
+ 356              		.loc 1 155 31 is_stmt 0 view .LVU115
+ 357 00f0 0343     		orrs	r3, r3, r0
+ 358 00f2 E361     		str	r3, [r4, #28]
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 359              		.loc 1 157 9 is_stmt 1 view .LVU116
+ 157:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 360              		.loc 1 157 32 is_stmt 0 view .LVU117
+ 361 00f4 0123     		movs	r3, #1
+ 362 00f6 C4F89030 		str	r3, [r4, #144]
+ 363              		.loc 1 159 1 view .LVU118
+ 364 00fa AAE7     		b	.L8
+ 365              	.LVL48:
+ 366              	.L22:
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 367              		.loc 1 150 13 is_stmt 1 view .LVU119
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 368              		.loc 1 150 46 is_stmt 0 view .LVU120
+ 369 00fc 05EB8505 		add	r5, r5, r5, lsl #2
+ 370              	.LVL49:
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 371              		.loc 1 150 46 view .LVU121
+ 372 0100 05EB8505 		add	r5, r5, r5, lsl #2
+ 150:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             I2C_CKCFG(i2c_periph) |= I2C_CKCFG_DTCY;
+ 373              		.loc 1 150 18 view .LVU122
+ 374 0104 B0FBF5F0 		udiv	r0, r0, r5
+ 375              	.LVL50:
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 376              		.loc 1 151 13 is_stmt 1 view .LVU123
+ 377 0108 E369     		ldr	r3, [r4, #28]
+ 151:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 378              		.loc 1 151 35 is_stmt 0 view .LVU124
+ 379 010a 43F48043 		orr	r3, r3, #16384
+ 380 010e E361     		str	r3, [r4, #28]
+ 381 0110 E9E7     		b	.L23
+ 382              	.L29:
+ 383 0112 00BF     		.align	2
+ 384              	.L28:
+ 385 0114 83DE1B43 		.word	1125899907
+ 386 0118 00879303 		.word	60000000
+ 387 011c A0860100 		.word	100000
+ 388 0120 801A0600 		.word	400000
+ 389 0124 D34D6210 		.word	274877907
+ 390              		.cfi_endproc
+ 391              	.LFE117:
+ 393              		.section	.text.i2c_mode_addr_config,"ax",%progbits
+ 394              		.align	1
+ 395              		.global	i2c_mode_addr_config
+ 396              		.syntax unified
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 12
+
+
+ 397              		.thumb
+ 398              		.thumb_func
+ 400              	i2c_mode_addr_config:
+ 401              	.LVL51:
+ 402              	.LFB118:
+ 160:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 161:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 162:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure I2C address 
+ 163:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 164:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  mode:
+ 165:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 166:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_I2CMODE_ENABLE: I2C mode
+ 167:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SMBUSMODE_ENABLE: SMBus mode
+ 168:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  addformat: 7bits or 10bits
+ 169:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 170:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ADDFORMAT_7BITS: address format is 7bits
+ 171:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ADDFORMAT_10BITS: address format is 10bits
+ 172:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  addr: I2C address
+ 173:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 174:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 175:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 176:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_mode_addr_config(uint32_t i2c_periph, uint32_t mode, uint32_t addformat, uint32_t addr)
+ 177:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 403              		.loc 1 177 1 is_stmt 1 view -0
+ 404              		.cfi_startproc
+ 405              		@ args = 0, pretend = 0, frame = 0
+ 406              		@ frame_needed = 0, uses_anonymous_args = 0
+ 407              		@ link register save eliminated.
+ 408              		.loc 1 177 1 is_stmt 0 view .LVU126
+ 409 0000 10B4     		push	{r4}
+ 410              	.LCFI2:
+ 411              		.cfi_def_cfa_offset 4
+ 412              		.cfi_offset 4, -4
+ 178:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* SMBus/I2C mode selected */
+ 179:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 413              		.loc 1 179 5 is_stmt 1 view .LVU127
+ 414              	.LVL52:
+ 180:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 181:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 415              		.loc 1 181 5 view .LVU128
+ 416              		.loc 1 181 9 is_stmt 0 view .LVU129
+ 417 0002 0468     		ldr	r4, [r0]
+ 418              	.LVL53:
+ 182:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_SMBEN); 
+ 419              		.loc 1 182 5 is_stmt 1 view .LVU130
+ 420              		.loc 1 182 9 is_stmt 0 view .LVU131
+ 421 0004 24F0020C 		bic	ip, r4, #2
+ 422              	.LVL54:
+ 183:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= mode;
+ 423              		.loc 1 183 5 is_stmt 1 view .LVU132
+ 424              		.loc 1 183 9 is_stmt 0 view .LVU133
+ 425 0008 4CEA0101 		orr	r1, ip, r1
+ 426              	.LVL55:
+ 184:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 427              		.loc 1 184 5 is_stmt 1 view .LVU134
+ 428              		.loc 1 184 26 is_stmt 0 view .LVU135
+ 429 000c 0160     		str	r1, [r0]
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 13
+
+
+ 185:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* configure address */
+ 186:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     addr = addr & I2C_ADDRESS_MASK;
+ 430              		.loc 1 186 5 is_stmt 1 view .LVU136
+ 431              		.loc 1 186 10 is_stmt 0 view .LVU137
+ 432 000e C3F30903 		ubfx	r3, r3, #0, #10
+ 433              	.LVL56:
+ 187:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_SADDR0(i2c_periph) = (addformat | addr);
+ 434              		.loc 1 187 5 is_stmt 1 view .LVU138
+ 435              		.loc 1 187 41 is_stmt 0 view .LVU139
+ 436 0012 1343     		orrs	r3, r3, r2
+ 437              	.LVL57:
+ 438              		.loc 1 187 28 view .LVU140
+ 439 0014 8360     		str	r3, [r0, #8]
+ 188:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 440              		.loc 1 188 1 view .LVU141
+ 441 0016 5DF8044B 		ldr	r4, [sp], #4
+ 442              	.LCFI3:
+ 443              		.cfi_restore 4
+ 444              		.cfi_def_cfa_offset 0
+ 445 001a 7047     		bx	lr
+ 446              		.cfi_endproc
+ 447              	.LFE118:
+ 449              		.section	.text.i2c_smbus_type_config,"ax",%progbits
+ 450              		.align	1
+ 451              		.global	i2c_smbus_type_config
+ 452              		.syntax unified
+ 453              		.thumb
+ 454              		.thumb_func
+ 456              	i2c_smbus_type_config:
+ 457              	.LVL58:
+ 458              	.LFB119:
+ 189:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 190:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 191:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      select SMBus type
+ 192:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 193:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  type:
+ 194:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 195:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SMBUS_DEVICE: device
+ 196:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SMBUS_HOST: host
+ 197:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 198:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 199:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 200:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_smbus_type_config(uint32_t i2c_periph, uint32_t type)
+ 201:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 459              		.loc 1 201 1 is_stmt 1 view -0
+ 460              		.cfi_startproc
+ 461              		@ args = 0, pretend = 0, frame = 0
+ 462              		@ frame_needed = 0, uses_anonymous_args = 0
+ 463              		@ link register save eliminated.
+ 202:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(I2C_SMBUS_HOST == type){
+ 464              		.loc 1 202 5 view .LVU143
+ 465              		.loc 1 202 7 is_stmt 0 view .LVU144
+ 466 0000 0829     		cmp	r1, #8
+ 467 0002 04D0     		beq	.L35
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CTL0(i2c_periph) |= I2C_CTL0_SMBSEL;
+ 204:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 205:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CTL0(i2c_periph) &= ~(I2C_CTL0_SMBSEL);
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 14
+
+
+ 468              		.loc 1 205 9 is_stmt 1 view .LVU145
+ 469 0004 0368     		ldr	r3, [r0]
+ 470              		.loc 1 205 30 is_stmt 0 view .LVU146
+ 471 0006 23F00803 		bic	r3, r3, #8
+ 472 000a 0360     		str	r3, [r0]
+ 206:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 207:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 473              		.loc 1 207 1 view .LVU147
+ 474 000c 7047     		bx	lr
+ 475              	.L35:
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CTL0(i2c_periph) |= I2C_CTL0_SMBSEL;
+ 476              		.loc 1 203 9 is_stmt 1 view .LVU148
+ 477 000e 0368     		ldr	r3, [r0]
+ 203:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_CTL0(i2c_periph) |= I2C_CTL0_SMBSEL;
+ 478              		.loc 1 203 30 is_stmt 0 view .LVU149
+ 479 0010 43F00803 		orr	r3, r3, #8
+ 480 0014 0360     		str	r3, [r0]
+ 481 0016 7047     		bx	lr
+ 482              		.cfi_endproc
+ 483              	.LFE119:
+ 485              		.section	.text.i2c_ack_config,"ax",%progbits
+ 486              		.align	1
+ 487              		.global	i2c_ack_config
+ 488              		.syntax unified
+ 489              		.thumb
+ 490              		.thumb_func
+ 492              	i2c_ack_config:
+ 493              	.LVL59:
+ 494              	.LFB120:
+ 208:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 209:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 210:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      whether or not to send an ACK
+ 211:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 212:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  ack:
+ 213:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 214:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ACK_ENABLE: ACK will be sent
+ 215:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ACK_DISABLE: ACK will not be sent
+ 216:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 217:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 218:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 219:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_ack_config(uint32_t i2c_periph, uint32_t ack)
+ 220:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 495              		.loc 1 220 1 is_stmt 1 view -0
+ 496              		.cfi_startproc
+ 497              		@ args = 0, pretend = 0, frame = 0
+ 498              		@ frame_needed = 0, uses_anonymous_args = 0
+ 499              		@ link register save eliminated.
+ 221:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 500              		.loc 1 221 5 view .LVU151
+ 222:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 223:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 501              		.loc 1 223 5 view .LVU152
+ 502              		.loc 1 223 9 is_stmt 0 view .LVU153
+ 503 0000 0368     		ldr	r3, [r0]
+ 504              	.LVL60:
+ 224:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_ACKEN);
+ 505              		.loc 1 224 5 is_stmt 1 view .LVU154
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 15
+
+
+ 506              		.loc 1 224 9 is_stmt 0 view .LVU155
+ 507 0002 23F48063 		bic	r3, r3, #1024
+ 508              	.LVL61:
+ 225:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= ack;
+ 509              		.loc 1 225 5 is_stmt 1 view .LVU156
+ 510              		.loc 1 225 9 is_stmt 0 view .LVU157
+ 511 0006 0B43     		orrs	r3, r3, r1
+ 512              	.LVL62:
+ 226:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 513              		.loc 1 226 5 is_stmt 1 view .LVU158
+ 514              		.loc 1 226 26 is_stmt 0 view .LVU159
+ 515 0008 0360     		str	r3, [r0]
+ 227:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 516              		.loc 1 227 1 view .LVU160
+ 517 000a 7047     		bx	lr
+ 518              		.cfi_endproc
+ 519              	.LFE120:
+ 521              		.section	.text.i2c_ackpos_config,"ax",%progbits
+ 522              		.align	1
+ 523              		.global	i2c_ackpos_config
+ 524              		.syntax unified
+ 525              		.thumb
+ 526              		.thumb_func
+ 528              	i2c_ackpos_config:
+ 529              	.LVL63:
+ 530              	.LFB121:
+ 228:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 229:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 230:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure I2C POAP position
+ 231:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 232:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  pos:
+ 233:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 234:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ACKPOS_CURRENT: ACKEN bit decides whether or not to send ACK or not for the c
+ 235:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ACKPOS_NEXT: ACKEN bit decides whether or not to send ACK for the next byte
+ 236:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 237:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 238:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 239:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_ackpos_config(uint32_t i2c_periph, uint32_t pos)
+ 240:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 531              		.loc 1 240 1 is_stmt 1 view -0
+ 532              		.cfi_startproc
+ 533              		@ args = 0, pretend = 0, frame = 0
+ 534              		@ frame_needed = 0, uses_anonymous_args = 0
+ 535              		@ link register save eliminated.
+ 241:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 536              		.loc 1 241 5 view .LVU162
+ 242:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* configure I2C POAP position */
+ 243:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 537              		.loc 1 243 5 view .LVU163
+ 538              		.loc 1 243 9 is_stmt 0 view .LVU164
+ 539 0000 0368     		ldr	r3, [r0]
+ 540              	.LVL64:
+ 244:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_POAP);
+ 541              		.loc 1 244 5 is_stmt 1 view .LVU165
+ 542              		.loc 1 244 9 is_stmt 0 view .LVU166
+ 543 0002 23F40063 		bic	r3, r3, #2048
+ 544              	.LVL65:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 16
+
+
+ 245:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= pos;
+ 545              		.loc 1 245 5 is_stmt 1 view .LVU167
+ 546              		.loc 1 245 9 is_stmt 0 view .LVU168
+ 547 0006 0B43     		orrs	r3, r3, r1
+ 548              	.LVL66:
+ 246:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 549              		.loc 1 246 5 is_stmt 1 view .LVU169
+ 550              		.loc 1 246 26 is_stmt 0 view .LVU170
+ 551 0008 0360     		str	r3, [r0]
+ 247:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 552              		.loc 1 247 1 view .LVU171
+ 553 000a 7047     		bx	lr
+ 554              		.cfi_endproc
+ 555              	.LFE121:
+ 557              		.section	.text.i2c_master_addressing,"ax",%progbits
+ 558              		.align	1
+ 559              		.global	i2c_master_addressing
+ 560              		.syntax unified
+ 561              		.thumb
+ 562              		.thumb_func
+ 564              	i2c_master_addressing:
+ 565              	.LVL67:
+ 566              	.LFB122:
+ 248:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 249:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 250:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      master sends slave address
+ 251:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 252:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  addr: slave address  
+ 253:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  trandirection: transmitter or receiver
+ 254:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 255:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_TRANSMITTER: transmitter  
+ 256:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_RECEIVER: receiver  
+ 257:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 258:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 259:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 260:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_master_addressing(uint32_t i2c_periph, uint32_t addr, uint32_t trandirection)
+ 261:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 567              		.loc 1 261 1 is_stmt 1 view -0
+ 568              		.cfi_startproc
+ 569              		@ args = 0, pretend = 0, frame = 0
+ 570              		@ frame_needed = 0, uses_anonymous_args = 0
+ 571              		@ link register save eliminated.
+ 262:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* master is a transmitter or a receiver */
+ 263:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(I2C_TRANSMITTER == trandirection){
+ 572              		.loc 1 263 5 view .LVU173
+ 573              		.loc 1 263 7 is_stmt 0 view .LVU174
+ 574 0000 12F1020F 		cmn	r2, #2
+ 575 0004 03D0     		beq	.L41
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         addr = addr & I2C_TRANSMITTER;
+ 265:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 266:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         addr = addr | I2C_RECEIVER;
+ 576              		.loc 1 266 9 is_stmt 1 view .LVU175
+ 577              		.loc 1 266 14 is_stmt 0 view .LVU176
+ 578 0006 41F00101 		orr	r1, r1, #1
+ 579              	.LVL68:
+ 580              	.L40:
+ 267:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 17
+
+
+ 268:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* send slave address */
+ 269:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_DATA(i2c_periph) = addr;
+ 581              		.loc 1 269 5 is_stmt 1 view .LVU177
+ 582              		.loc 1 269 26 is_stmt 0 view .LVU178
+ 583 000a 0161     		str	r1, [r0, #16]
+ 270:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 584              		.loc 1 270 1 view .LVU179
+ 585 000c 7047     		bx	lr
+ 586              	.L41:
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         addr = addr & I2C_TRANSMITTER;
+ 587              		.loc 1 264 9 is_stmt 1 view .LVU180
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         addr = addr & I2C_TRANSMITTER;
+ 588              		.loc 1 264 14 is_stmt 0 view .LVU181
+ 589 000e 21F00101 		bic	r1, r1, #1
+ 590              	.LVL69:
+ 264:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         addr = addr & I2C_TRANSMITTER;
+ 591              		.loc 1 264 14 view .LVU182
+ 592 0012 FAE7     		b	.L40
+ 593              		.cfi_endproc
+ 594              	.LFE122:
+ 596              		.section	.text.i2c_dualaddr_enable,"ax",%progbits
+ 597              		.align	1
+ 598              		.global	i2c_dualaddr_enable
+ 599              		.syntax unified
+ 600              		.thumb
+ 601              		.thumb_func
+ 603              	i2c_dualaddr_enable:
+ 604              	.LVL70:
+ 605              	.LFB123:
+ 271:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 272:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 273:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      enable dual-address mode
+ 274:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 275:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  dualaddr: the second address in dual-address mode
+ 276:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 277:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 278:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 279:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_dualaddr_enable(uint32_t i2c_periph, uint32_t dualaddr)
+ 280:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 606              		.loc 1 280 1 is_stmt 1 view -0
+ 607              		.cfi_startproc
+ 608              		@ args = 0, pretend = 0, frame = 0
+ 609              		@ frame_needed = 0, uses_anonymous_args = 0
+ 610              		@ link register save eliminated.
+ 281:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* configure address */
+ 282:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     dualaddr = dualaddr & I2C_ADDRESS2_MASK;
+ 611              		.loc 1 282 5 view .LVU184
+ 612              		.loc 1 282 14 is_stmt 0 view .LVU185
+ 613 0000 01F0FE01 		and	r1, r1, #254
+ 614              	.LVL71:
+ 283:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_SADDR1(i2c_periph) = (I2C_SADDR1_DUADEN | dualaddr);
+ 615              		.loc 1 283 5 is_stmt 1 view .LVU186
+ 616              		.loc 1 283 49 is_stmt 0 view .LVU187
+ 617 0004 41F00101 		orr	r1, r1, #1
+ 618              	.LVL72:
+ 619              		.loc 1 283 28 view .LVU188
+ 620 0008 C160     		str	r1, [r0, #12]
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 18
+
+
+ 284:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 621              		.loc 1 284 1 view .LVU189
+ 622 000a 7047     		bx	lr
+ 623              		.cfi_endproc
+ 624              	.LFE123:
+ 626              		.section	.text.i2c_dualaddr_disable,"ax",%progbits
+ 627              		.align	1
+ 628              		.global	i2c_dualaddr_disable
+ 629              		.syntax unified
+ 630              		.thumb
+ 631              		.thumb_func
+ 633              	i2c_dualaddr_disable:
+ 634              	.LVL73:
+ 635              	.LFB124:
+ 285:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 286:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 287:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      disable dual-address mode
+ 288:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1) 
+ 289:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 290:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 291:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 292:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_dualaddr_disable(uint32_t i2c_periph)
+ 293:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 636              		.loc 1 293 1 is_stmt 1 view -0
+ 637              		.cfi_startproc
+ 638              		@ args = 0, pretend = 0, frame = 0
+ 639              		@ frame_needed = 0, uses_anonymous_args = 0
+ 640              		@ link register save eliminated.
+ 294:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_SADDR1(i2c_periph) &= ~(I2C_SADDR1_DUADEN);
+ 641              		.loc 1 294 5 view .LVU191
+ 642 0000 C368     		ldr	r3, [r0, #12]
+ 643              		.loc 1 294 28 is_stmt 0 view .LVU192
+ 644 0002 23F00103 		bic	r3, r3, #1
+ 645 0006 C360     		str	r3, [r0, #12]
+ 295:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 646              		.loc 1 295 1 view .LVU193
+ 647 0008 7047     		bx	lr
+ 648              		.cfi_endproc
+ 649              	.LFE124:
+ 651              		.section	.text.i2c_enable,"ax",%progbits
+ 652              		.align	1
+ 653              		.global	i2c_enable
+ 654              		.syntax unified
+ 655              		.thumb
+ 656              		.thumb_func
+ 658              	i2c_enable:
+ 659              	.LVL74:
+ 660              	.LFB125:
+ 296:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 297:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 298:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      enable I2C
+ 299:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1) 
+ 300:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 301:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 302:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 303:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_enable(uint32_t i2c_periph)
+ 304:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 19
+
+
+ 661              		.loc 1 304 1 is_stmt 1 view -0
+ 662              		.cfi_startproc
+ 663              		@ args = 0, pretend = 0, frame = 0
+ 664              		@ frame_needed = 0, uses_anonymous_args = 0
+ 665              		@ link register save eliminated.
+ 305:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) |= I2C_CTL0_I2CEN;
+ 666              		.loc 1 305 5 view .LVU195
+ 667 0000 0368     		ldr	r3, [r0]
+ 668              		.loc 1 305 26 is_stmt 0 view .LVU196
+ 669 0002 43F00103 		orr	r3, r3, #1
+ 670 0006 0360     		str	r3, [r0]
+ 306:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 671              		.loc 1 306 1 view .LVU197
+ 672 0008 7047     		bx	lr
+ 673              		.cfi_endproc
+ 674              	.LFE125:
+ 676              		.section	.text.i2c_disable,"ax",%progbits
+ 677              		.align	1
+ 678              		.global	i2c_disable
+ 679              		.syntax unified
+ 680              		.thumb
+ 681              		.thumb_func
+ 683              	i2c_disable:
+ 684              	.LVL75:
+ 685              	.LFB126:
+ 307:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 308:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 309:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      disable I2C
+ 310:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1) 
+ 311:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 312:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 313:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 314:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_disable(uint32_t i2c_periph)
+ 315:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 686              		.loc 1 315 1 is_stmt 1 view -0
+ 687              		.cfi_startproc
+ 688              		@ args = 0, pretend = 0, frame = 0
+ 689              		@ frame_needed = 0, uses_anonymous_args = 0
+ 690              		@ link register save eliminated.
+ 316:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) &= ~(I2C_CTL0_I2CEN);
+ 691              		.loc 1 316 5 view .LVU199
+ 692 0000 0368     		ldr	r3, [r0]
+ 693              		.loc 1 316 26 is_stmt 0 view .LVU200
+ 694 0002 23F00103 		bic	r3, r3, #1
+ 695 0006 0360     		str	r3, [r0]
+ 317:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 696              		.loc 1 317 1 view .LVU201
+ 697 0008 7047     		bx	lr
+ 698              		.cfi_endproc
+ 699              	.LFE126:
+ 701              		.section	.text.i2c_start_on_bus,"ax",%progbits
+ 702              		.align	1
+ 703              		.global	i2c_start_on_bus
+ 704              		.syntax unified
+ 705              		.thumb
+ 706              		.thumb_func
+ 708              	i2c_start_on_bus:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 20
+
+
+ 709              	.LVL76:
+ 710              	.LFB127:
+ 318:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 319:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 320:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      generate a START condition on I2C bus
+ 321:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 322:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 323:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 324:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 325:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_start_on_bus(uint32_t i2c_periph)
+ 326:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 711              		.loc 1 326 1 is_stmt 1 view -0
+ 712              		.cfi_startproc
+ 713              		@ args = 0, pretend = 0, frame = 0
+ 714              		@ frame_needed = 0, uses_anonymous_args = 0
+ 715              		@ link register save eliminated.
+ 327:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) |= I2C_CTL0_START;
+ 716              		.loc 1 327 5 view .LVU203
+ 717 0000 0368     		ldr	r3, [r0]
+ 718              		.loc 1 327 26 is_stmt 0 view .LVU204
+ 719 0002 43F48073 		orr	r3, r3, #256
+ 720 0006 0360     		str	r3, [r0]
+ 328:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 721              		.loc 1 328 1 view .LVU205
+ 722 0008 7047     		bx	lr
+ 723              		.cfi_endproc
+ 724              	.LFE127:
+ 726              		.section	.text.i2c_stop_on_bus,"ax",%progbits
+ 727              		.align	1
+ 728              		.global	i2c_stop_on_bus
+ 729              		.syntax unified
+ 730              		.thumb
+ 731              		.thumb_func
+ 733              	i2c_stop_on_bus:
+ 734              	.LVL77:
+ 735              	.LFB128:
+ 329:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 330:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 331:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      generate a STOP condition on I2C bus
+ 332:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 333:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 334:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 335:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 336:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_stop_on_bus(uint32_t i2c_periph)
+ 337:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 736              		.loc 1 337 1 is_stmt 1 view -0
+ 737              		.cfi_startproc
+ 738              		@ args = 0, pretend = 0, frame = 0
+ 739              		@ frame_needed = 0, uses_anonymous_args = 0
+ 740              		@ link register save eliminated.
+ 338:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) |= I2C_CTL0_STOP;
+ 741              		.loc 1 338 5 view .LVU207
+ 742 0000 0368     		ldr	r3, [r0]
+ 743              		.loc 1 338 26 is_stmt 0 view .LVU208
+ 744 0002 43F40073 		orr	r3, r3, #512
+ 745 0006 0360     		str	r3, [r0]
+ 339:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 21
+
+
+ 746              		.loc 1 339 1 view .LVU209
+ 747 0008 7047     		bx	lr
+ 748              		.cfi_endproc
+ 749              	.LFE128:
+ 751              		.section	.text.i2c_data_transmit,"ax",%progbits
+ 752              		.align	1
+ 753              		.global	i2c_data_transmit
+ 754              		.syntax unified
+ 755              		.thumb
+ 756              		.thumb_func
+ 758              	i2c_data_transmit:
+ 759              	.LVL78:
+ 760              	.LFB129:
+ 340:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 341:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 342:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      I2C transmit data function
+ 343:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 344:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  data: data of transmission 
+ 345:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 346:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 347:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 348:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_data_transmit(uint32_t i2c_periph, uint8_t data)
+ 349:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 761              		.loc 1 349 1 is_stmt 1 view -0
+ 762              		.cfi_startproc
+ 763              		@ args = 0, pretend = 0, frame = 0
+ 764              		@ frame_needed = 0, uses_anonymous_args = 0
+ 765              		@ link register save eliminated.
+ 350:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_DATA(i2c_periph) = DATA_TRANS(data);
+ 766              		.loc 1 350 5 view .LVU211
+ 767              		.loc 1 350 26 is_stmt 0 view .LVU212
+ 768 0000 0161     		str	r1, [r0, #16]
+ 351:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 769              		.loc 1 351 1 view .LVU213
+ 770 0002 7047     		bx	lr
+ 771              		.cfi_endproc
+ 772              	.LFE129:
+ 774              		.section	.text.i2c_data_receive,"ax",%progbits
+ 775              		.align	1
+ 776              		.global	i2c_data_receive
+ 777              		.syntax unified
+ 778              		.thumb
+ 779              		.thumb_func
+ 781              	i2c_data_receive:
+ 782              	.LVL79:
+ 783              	.LFB130:
+ 352:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 353:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 354:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      I2C receive data function
+ 355:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 356:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 357:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     data of received
+ 358:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 359:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** uint8_t i2c_data_receive(uint32_t i2c_periph)
+ 360:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 784              		.loc 1 360 1 is_stmt 1 view -0
+ 785              		.cfi_startproc
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 22
+
+
+ 786              		@ args = 0, pretend = 0, frame = 0
+ 787              		@ frame_needed = 0, uses_anonymous_args = 0
+ 788              		@ link register save eliminated.
+ 361:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     return (uint8_t)DATA_RECV(I2C_DATA(i2c_periph));
+ 789              		.loc 1 361 5 view .LVU215
+ 790              		.loc 1 361 21 is_stmt 0 view .LVU216
+ 791 0000 0069     		ldr	r0, [r0, #16]
+ 792              	.LVL80:
+ 362:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 793              		.loc 1 362 1 view .LVU217
+ 794 0002 C0B2     		uxtb	r0, r0
+ 795 0004 7047     		bx	lr
+ 796              		.cfi_endproc
+ 797              	.LFE130:
+ 799              		.section	.text.i2c_dma_config,"ax",%progbits
+ 800              		.align	1
+ 801              		.global	i2c_dma_config
+ 802              		.syntax unified
+ 803              		.thumb
+ 804              		.thumb_func
+ 806              	i2c_dma_config:
+ 807              	.LVL81:
+ 808              	.LFB131:
+ 363:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 364:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 365:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure I2C DMA mode 
+ 366:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 367:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  dmastate:
+ 368:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 369:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_DMA_ON: enable DMA mode
+ 370:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_DMA_OFF: disable DMA mode
+ 371:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 372:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 373:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 374:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_dma_config(uint32_t i2c_periph, uint32_t dmastate)
+ 375:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 809              		.loc 1 375 1 is_stmt 1 view -0
+ 810              		.cfi_startproc
+ 811              		@ args = 0, pretend = 0, frame = 0
+ 812              		@ frame_needed = 0, uses_anonymous_args = 0
+ 813              		@ link register save eliminated.
+ 376:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* configure I2C DMA function */
+ 377:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 814              		.loc 1 377 5 view .LVU219
+ 378:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 379:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL1(i2c_periph);
+ 815              		.loc 1 379 5 view .LVU220
+ 816              		.loc 1 379 9 is_stmt 0 view .LVU221
+ 817 0000 4368     		ldr	r3, [r0, #4]
+ 818              	.LVL82:
+ 380:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL1_DMAON); 
+ 819              		.loc 1 380 5 is_stmt 1 view .LVU222
+ 820              		.loc 1 380 9 is_stmt 0 view .LVU223
+ 821 0002 23F40063 		bic	r3, r3, #2048
+ 822              	.LVL83:
+ 381:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= dmastate;
+ 823              		.loc 1 381 5 is_stmt 1 view .LVU224
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 23
+
+
+ 824              		.loc 1 381 9 is_stmt 0 view .LVU225
+ 825 0006 0B43     		orrs	r3, r3, r1
+ 826              	.LVL84:
+ 382:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL1(i2c_periph) = ctl;
+ 827              		.loc 1 382 5 is_stmt 1 view .LVU226
+ 828              		.loc 1 382 26 is_stmt 0 view .LVU227
+ 829 0008 4360     		str	r3, [r0, #4]
+ 383:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 830              		.loc 1 383 1 view .LVU228
+ 831 000a 7047     		bx	lr
+ 832              		.cfi_endproc
+ 833              	.LFE131:
+ 835              		.section	.text.i2c_dma_last_transfer_config,"ax",%progbits
+ 836              		.align	1
+ 837              		.global	i2c_dma_last_transfer_config
+ 838              		.syntax unified
+ 839              		.thumb
+ 840              		.thumb_func
+ 842              	i2c_dma_last_transfer_config:
+ 843              	.LVL85:
+ 844              	.LFB132:
+ 384:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 385:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 386:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure whether next DMA EOT is DMA last transfer or not
+ 387:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 388:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  dmalast:
+ 389:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 390:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_DMALST_ON: next DMA EOT is the last transfer
+ 391:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_DMALST_OFF: next DMA EOT is not the last transfer
+ 392:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 393:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 394:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 395:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_dma_last_transfer_config(uint32_t i2c_periph, uint32_t dmalast)
+ 396:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 845              		.loc 1 396 1 is_stmt 1 view -0
+ 846              		.cfi_startproc
+ 847              		@ args = 0, pretend = 0, frame = 0
+ 848              		@ frame_needed = 0, uses_anonymous_args = 0
+ 849              		@ link register save eliminated.
+ 397:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* configure DMA last transfer */
+ 398:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 850              		.loc 1 398 5 view .LVU230
+ 399:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 400:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL1(i2c_periph);
+ 851              		.loc 1 400 5 view .LVU231
+ 852              		.loc 1 400 9 is_stmt 0 view .LVU232
+ 853 0000 4368     		ldr	r3, [r0, #4]
+ 854              	.LVL86:
+ 401:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL1_DMALST); 
+ 855              		.loc 1 401 5 is_stmt 1 view .LVU233
+ 856              		.loc 1 401 9 is_stmt 0 view .LVU234
+ 857 0002 23F48053 		bic	r3, r3, #4096
+ 858              	.LVL87:
+ 402:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= dmalast;
+ 859              		.loc 1 402 5 is_stmt 1 view .LVU235
+ 860              		.loc 1 402 9 is_stmt 0 view .LVU236
+ 861 0006 0B43     		orrs	r3, r3, r1
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 24
+
+
+ 862              	.LVL88:
+ 403:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL1(i2c_periph) = ctl;
+ 863              		.loc 1 403 5 is_stmt 1 view .LVU237
+ 864              		.loc 1 403 26 is_stmt 0 view .LVU238
+ 865 0008 4360     		str	r3, [r0, #4]
+ 404:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 866              		.loc 1 404 1 view .LVU239
+ 867 000a 7047     		bx	lr
+ 868              		.cfi_endproc
+ 869              	.LFE132:
+ 871              		.section	.text.i2c_stretch_scl_low_config,"ax",%progbits
+ 872              		.align	1
+ 873              		.global	i2c_stretch_scl_low_config
+ 874              		.syntax unified
+ 875              		.thumb
+ 876              		.thumb_func
+ 878              	i2c_stretch_scl_low_config:
+ 879              	.LVL89:
+ 880              	.LFB133:
+ 405:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 406:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 407:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      whether to stretch SCL low when data is not ready in slave mode 
+ 408:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 409:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  stretchpara:
+ 410:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 411:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SCLSTRETCH_ENABLE: enable SCL stretching
+ 412:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SCLSTRETCH_DISABLE: disable SCL stretching
+ 413:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 414:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 415:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 416:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_stretch_scl_low_config(uint32_t i2c_periph, uint32_t stretchpara)
+ 417:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 881              		.loc 1 417 1 is_stmt 1 view -0
+ 882              		.cfi_startproc
+ 883              		@ args = 0, pretend = 0, frame = 0
+ 884              		@ frame_needed = 0, uses_anonymous_args = 0
+ 885              		@ link register save eliminated.
+ 418:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* configure I2C SCL strerching */
+ 419:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 886              		.loc 1 419 5 view .LVU241
+ 420:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 421:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 887              		.loc 1 421 5 view .LVU242
+ 888              		.loc 1 421 9 is_stmt 0 view .LVU243
+ 889 0000 0368     		ldr	r3, [r0]
+ 890              	.LVL90:
+ 422:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_SS); 
+ 891              		.loc 1 422 5 is_stmt 1 view .LVU244
+ 892              		.loc 1 422 9 is_stmt 0 view .LVU245
+ 893 0002 23F08003 		bic	r3, r3, #128
+ 894              	.LVL91:
+ 423:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= stretchpara;
+ 895              		.loc 1 423 5 is_stmt 1 view .LVU246
+ 896              		.loc 1 423 9 is_stmt 0 view .LVU247
+ 897 0006 0B43     		orrs	r3, r3, r1
+ 898              	.LVL92:
+ 424:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 25
+
+
+ 899              		.loc 1 424 5 is_stmt 1 view .LVU248
+ 900              		.loc 1 424 26 is_stmt 0 view .LVU249
+ 901 0008 0360     		str	r3, [r0]
+ 425:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 902              		.loc 1 425 1 view .LVU250
+ 903 000a 7047     		bx	lr
+ 904              		.cfi_endproc
+ 905              	.LFE133:
+ 907              		.section	.text.i2c_slave_response_to_gcall_config,"ax",%progbits
+ 908              		.align	1
+ 909              		.global	i2c_slave_response_to_gcall_config
+ 910              		.syntax unified
+ 911              		.thumb
+ 912              		.thumb_func
+ 914              	i2c_slave_response_to_gcall_config:
+ 915              	.LVL93:
+ 916              	.LFB134:
+ 426:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 427:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 428:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      whether or not to response to a general call 
+ 429:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 430:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  gcallpara:
+ 431:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 432:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_GCEN_ENABLE: slave will response to a general call
+ 433:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_GCEN_DISABLE: slave will not response to a general call
+ 434:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 435:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 436:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 437:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_slave_response_to_gcall_config(uint32_t i2c_periph, uint32_t gcallpara)
+ 438:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 917              		.loc 1 438 1 is_stmt 1 view -0
+ 918              		.cfi_startproc
+ 919              		@ args = 0, pretend = 0, frame = 0
+ 920              		@ frame_needed = 0, uses_anonymous_args = 0
+ 921              		@ link register save eliminated.
+ 439:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* configure slave response to a general call enable or disable */
+ 440:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 922              		.loc 1 440 5 view .LVU252
+ 441:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 442:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 923              		.loc 1 442 5 view .LVU253
+ 924              		.loc 1 442 9 is_stmt 0 view .LVU254
+ 925 0000 0368     		ldr	r3, [r0]
+ 926              	.LVL94:
+ 443:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_GCEN); 
+ 927              		.loc 1 443 5 is_stmt 1 view .LVU255
+ 928              		.loc 1 443 9 is_stmt 0 view .LVU256
+ 929 0002 23F04003 		bic	r3, r3, #64
+ 930              	.LVL95:
+ 444:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= gcallpara;
+ 931              		.loc 1 444 5 is_stmt 1 view .LVU257
+ 932              		.loc 1 444 9 is_stmt 0 view .LVU258
+ 933 0006 0B43     		orrs	r3, r3, r1
+ 934              	.LVL96:
+ 445:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 935              		.loc 1 445 5 is_stmt 1 view .LVU259
+ 936              		.loc 1 445 26 is_stmt 0 view .LVU260
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 26
+
+
+ 937 0008 0360     		str	r3, [r0]
+ 446:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 938              		.loc 1 446 1 view .LVU261
+ 939 000a 7047     		bx	lr
+ 940              		.cfi_endproc
+ 941              	.LFE134:
+ 943              		.section	.text.i2c_software_reset_config,"ax",%progbits
+ 944              		.align	1
+ 945              		.global	i2c_software_reset_config
+ 946              		.syntax unified
+ 947              		.thumb
+ 948              		.thumb_func
+ 950              	i2c_software_reset_config:
+ 951              	.LVL97:
+ 952              	.LFB135:
+ 447:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 448:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 449:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure software reset of I2C
+ 450:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 451:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  sreset:
+ 452:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 453:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SRESET_SET: I2C is under reset
+ 454:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SRESET_RESET: I2C is not under reset
+ 455:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 456:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 457:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 458:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_software_reset_config(uint32_t i2c_periph, uint32_t sreset)
+ 459:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 953              		.loc 1 459 1 is_stmt 1 view -0
+ 954              		.cfi_startproc
+ 955              		@ args = 0, pretend = 0, frame = 0
+ 956              		@ frame_needed = 0, uses_anonymous_args = 0
+ 957              		@ link register save eliminated.
+ 460:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* modify CTL0 and configure software reset I2C state */
+ 461:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 958              		.loc 1 461 5 view .LVU263
+ 462:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 463:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 959              		.loc 1 463 5 view .LVU264
+ 960              		.loc 1 463 9 is_stmt 0 view .LVU265
+ 961 0000 0368     		ldr	r3, [r0]
+ 962              	.LVL98:
+ 464:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_SRESET); 
+ 963              		.loc 1 464 5 is_stmt 1 view .LVU266
+ 964              		.loc 1 464 9 is_stmt 0 view .LVU267
+ 965 0002 23F40043 		bic	r3, r3, #32768
+ 966              	.LVL99:
+ 465:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= sreset;
+ 967              		.loc 1 465 5 is_stmt 1 view .LVU268
+ 968              		.loc 1 465 9 is_stmt 0 view .LVU269
+ 969 0006 0B43     		orrs	r3, r3, r1
+ 970              	.LVL100:
+ 466:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 971              		.loc 1 466 5 is_stmt 1 view .LVU270
+ 972              		.loc 1 466 26 is_stmt 0 view .LVU271
+ 973 0008 0360     		str	r3, [r0]
+ 467:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 27
+
+
+ 974              		.loc 1 467 1 view .LVU272
+ 975 000a 7047     		bx	lr
+ 976              		.cfi_endproc
+ 977              	.LFE135:
+ 979              		.section	.text.i2c_pec_config,"ax",%progbits
+ 980              		.align	1
+ 981              		.global	i2c_pec_config
+ 982              		.syntax unified
+ 983              		.thumb
+ 984              		.thumb_func
+ 986              	i2c_pec_config:
+ 987              	.LVL101:
+ 988              	.LFB136:
+ 468:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 469:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 470:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure I2C PEC calculation
+ 471:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 472:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  pecpara:
+ 473:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 474:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_PEC_ENABLE: PEC calculation on 
+ 475:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_PEC_DISABLE: PEC calculation off 
+ 476:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 477:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 478:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 479:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_pec_config(uint32_t i2c_periph, uint32_t pecstate)
+ 480:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 989              		.loc 1 480 1 is_stmt 1 view -0
+ 990              		.cfi_startproc
+ 991              		@ args = 0, pretend = 0, frame = 0
+ 992              		@ frame_needed = 0, uses_anonymous_args = 0
+ 993              		@ link register save eliminated.
+ 481:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* on/off PEC calculation */
+ 482:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 994              		.loc 1 482 5 view .LVU274
+ 483:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 484:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 995              		.loc 1 484 5 view .LVU275
+ 996              		.loc 1 484 9 is_stmt 0 view .LVU276
+ 997 0000 0368     		ldr	r3, [r0]
+ 998              	.LVL102:
+ 485:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_PECEN);
+ 999              		.loc 1 485 5 is_stmt 1 view .LVU277
+ 1000              		.loc 1 485 9 is_stmt 0 view .LVU278
+ 1001 0002 23F02003 		bic	r3, r3, #32
+ 1002              	.LVL103:
+ 486:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= pecstate;
+ 1003              		.loc 1 486 5 is_stmt 1 view .LVU279
+ 1004              		.loc 1 486 9 is_stmt 0 view .LVU280
+ 1005 0006 0B43     		orrs	r3, r3, r1
+ 1006              	.LVL104:
+ 487:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 1007              		.loc 1 487 5 is_stmt 1 view .LVU281
+ 1008              		.loc 1 487 26 is_stmt 0 view .LVU282
+ 1009 0008 0360     		str	r3, [r0]
+ 488:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1010              		.loc 1 488 1 view .LVU283
+ 1011 000a 7047     		bx	lr
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 28
+
+
+ 1012              		.cfi_endproc
+ 1013              	.LFE136:
+ 1015              		.section	.text.i2c_pec_transfer_config,"ax",%progbits
+ 1016              		.align	1
+ 1017              		.global	i2c_pec_transfer_config
+ 1018              		.syntax unified
+ 1019              		.thumb
+ 1020              		.thumb_func
+ 1022              	i2c_pec_transfer_config:
+ 1023              	.LVL105:
+ 1024              	.LFB137:
+ 489:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 490:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 491:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure whether to transfer PEC value
+ 492:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 493:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  pecpara:
+ 494:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 495:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_PECTRANS_ENABLE: transfer PEC 
+ 496:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_PECTRANS_DISABLE: not transfer PEC 
+ 497:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 498:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 499:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 500:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_pec_transfer_config(uint32_t i2c_periph, uint32_t pecpara)
+ 501:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1025              		.loc 1 501 1 is_stmt 1 view -0
+ 1026              		.cfi_startproc
+ 1027              		@ args = 0, pretend = 0, frame = 0
+ 1028              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1029              		@ link register save eliminated.
+ 502:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* whether to transfer PEC */
+ 503:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 1030              		.loc 1 503 5 view .LVU285
+ 504:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 505:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 1031              		.loc 1 505 5 view .LVU286
+ 1032              		.loc 1 505 9 is_stmt 0 view .LVU287
+ 1033 0000 0368     		ldr	r3, [r0]
+ 1034              	.LVL106:
+ 506:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_PECTRANS);
+ 1035              		.loc 1 506 5 is_stmt 1 view .LVU288
+ 1036              		.loc 1 506 9 is_stmt 0 view .LVU289
+ 1037 0002 23F48053 		bic	r3, r3, #4096
+ 1038              	.LVL107:
+ 507:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= pecpara;
+ 1039              		.loc 1 507 5 is_stmt 1 view .LVU290
+ 1040              		.loc 1 507 9 is_stmt 0 view .LVU291
+ 1041 0006 0B43     		orrs	r3, r3, r1
+ 1042              	.LVL108:
+ 508:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 1043              		.loc 1 508 5 is_stmt 1 view .LVU292
+ 1044              		.loc 1 508 26 is_stmt 0 view .LVU293
+ 1045 0008 0360     		str	r3, [r0]
+ 509:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1046              		.loc 1 509 1 view .LVU294
+ 1047 000a 7047     		bx	lr
+ 1048              		.cfi_endproc
+ 1049              	.LFE137:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 29
+
+
+ 1051              		.section	.text.i2c_pec_value_get,"ax",%progbits
+ 1052              		.align	1
+ 1053              		.global	i2c_pec_value_get
+ 1054              		.syntax unified
+ 1055              		.thumb
+ 1056              		.thumb_func
+ 1058              	i2c_pec_value_get:
+ 1059              	.LVL109:
+ 1060              	.LFB138:
+ 510:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 511:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 512:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      get packet error checking value 
+ 513:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 514:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 515:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     PEC value
+ 516:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 517:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** uint8_t i2c_pec_value_get(uint32_t i2c_periph)
+ 518:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1061              		.loc 1 518 1 is_stmt 1 view -0
+ 1062              		.cfi_startproc
+ 1063              		@ args = 0, pretend = 0, frame = 0
+ 1064              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1065              		@ link register save eliminated.
+ 519:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     return (uint8_t)((I2C_STAT1(i2c_periph) & I2C_STAT1_PECV)>>STAT1_PECV_OFFSET);
+ 1066              		.loc 1 519 5 view .LVU296
+ 1067              		.loc 1 519 23 is_stmt 0 view .LVU297
+ 1068 0000 8069     		ldr	r0, [r0, #24]
+ 1069              	.LVL110:
+ 520:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1070              		.loc 1 520 1 view .LVU298
+ 1071 0002 C0F30720 		ubfx	r0, r0, #8, #8
+ 1072 0006 7047     		bx	lr
+ 1073              		.cfi_endproc
+ 1074              	.LFE138:
+ 1076              		.section	.text.i2c_smbus_alert_config,"ax",%progbits
+ 1077              		.align	1
+ 1078              		.global	i2c_smbus_alert_config
+ 1079              		.syntax unified
+ 1080              		.thumb
+ 1081              		.thumb_func
+ 1083              	i2c_smbus_alert_config:
+ 1084              	.LVL111:
+ 1085              	.LFB139:
+ 521:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 522:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 523:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure I2C alert through SMBA pin 
+ 524:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 525:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  smbuspara:
+ 526:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 527:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SALTSEND_ENABLE: issue alert through SMBA pin 
+ 528:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_SALTSEND_DISABLE: not issue alert through SMBA pin 
+ 529:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 530:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 531:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 532:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_smbus_alert_config(uint32_t i2c_periph, uint32_t smbuspara)
+ 533:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1086              		.loc 1 533 1 is_stmt 1 view -0
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 30
+
+
+ 1087              		.cfi_startproc
+ 1088              		@ args = 0, pretend = 0, frame = 0
+ 1089              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1090              		@ link register save eliminated.
+ 534:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* issue alert through SMBA pin configure*/
+ 535:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 1091              		.loc 1 535 5 view .LVU300
+ 536:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 537:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 1092              		.loc 1 537 5 view .LVU301
+ 1093              		.loc 1 537 9 is_stmt 0 view .LVU302
+ 1094 0000 0368     		ldr	r3, [r0]
+ 1095              	.LVL112:
+ 538:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_SALT);
+ 1096              		.loc 1 538 5 is_stmt 1 view .LVU303
+ 1097              		.loc 1 538 9 is_stmt 0 view .LVU304
+ 1098 0002 23F40053 		bic	r3, r3, #8192
+ 1099              	.LVL113:
+ 539:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= smbuspara;
+ 1100              		.loc 1 539 5 is_stmt 1 view .LVU305
+ 1101              		.loc 1 539 9 is_stmt 0 view .LVU306
+ 1102 0006 0B43     		orrs	r3, r3, r1
+ 1103              	.LVL114:
+ 540:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 1104              		.loc 1 540 5 is_stmt 1 view .LVU307
+ 1105              		.loc 1 540 26 is_stmt 0 view .LVU308
+ 1106 0008 0360     		str	r3, [r0]
+ 541:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1107              		.loc 1 541 1 view .LVU309
+ 1108 000a 7047     		bx	lr
+ 1109              		.cfi_endproc
+ 1110              	.LFE139:
+ 1112              		.section	.text.i2c_smbus_arp_config,"ax",%progbits
+ 1113              		.align	1
+ 1114              		.global	i2c_smbus_arp_config
+ 1115              		.syntax unified
+ 1116              		.thumb
+ 1117              		.thumb_func
+ 1119              	i2c_smbus_arp_config:
+ 1120              	.LVL115:
+ 1121              	.LFB140:
+ 542:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 543:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 544:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      configure I2C ARP protocol in SMBus
+ 545:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 546:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  smbuspara:
+ 547:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 548:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ARP_ENABLE: enable ARP
+ 549:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_ARP_DISABLE: disable ARP
+ 550:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 551:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 552:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 553:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_smbus_arp_config(uint32_t i2c_periph, uint32_t arpstate)
+ 554:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1122              		.loc 1 554 1 is_stmt 1 view -0
+ 1123              		.cfi_startproc
+ 1124              		@ args = 0, pretend = 0, frame = 0
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 31
+
+
+ 1125              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1126              		@ link register save eliminated.
+ 555:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* enable or disable I2C ARP protocol*/
+ 556:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t ctl = 0U;
+ 1127              		.loc 1 556 5 view .LVU311
+ 557:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 558:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl = I2C_CTL0(i2c_periph);
+ 1128              		.loc 1 558 5 view .LVU312
+ 1129              		.loc 1 558 9 is_stmt 0 view .LVU313
+ 1130 0000 0368     		ldr	r3, [r0]
+ 1131              	.LVL116:
+ 559:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl &= ~(I2C_CTL0_ARPEN);
+ 1132              		.loc 1 559 5 is_stmt 1 view .LVU314
+ 1133              		.loc 1 559 9 is_stmt 0 view .LVU315
+ 1134 0002 23F01003 		bic	r3, r3, #16
+ 1135              	.LVL117:
+ 560:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     ctl |= arpstate;
+ 1136              		.loc 1 560 5 is_stmt 1 view .LVU316
+ 1137              		.loc 1 560 9 is_stmt 0 view .LVU317
+ 1138 0006 0B43     		orrs	r3, r3, r1
+ 1139              	.LVL118:
+ 561:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_CTL0(i2c_periph) = ctl;
+ 1140              		.loc 1 561 5 is_stmt 1 view .LVU318
+ 1141              		.loc 1 561 26 is_stmt 0 view .LVU319
+ 1142 0008 0360     		str	r3, [r0]
+ 562:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1143              		.loc 1 562 1 view .LVU320
+ 1144 000a 7047     		bx	lr
+ 1145              		.cfi_endproc
+ 1146              	.LFE140:
+ 1148              		.section	.text.i2c_flag_get,"ax",%progbits
+ 1149              		.align	1
+ 1150              		.global	i2c_flag_get
+ 1151              		.syntax unified
+ 1152              		.thumb
+ 1153              		.thumb_func
+ 1155              	i2c_flag_get:
+ 1156              	.LVL119:
+ 1157              	.LFB141:
+ 563:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 564:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 565:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      get I2C flag status
+ 566:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 567:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  flag: I2C flags, refer to i2c_flag_enum
+ 568:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 569:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_SBSEND: start condition sent out in master mode 
+ 570:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_ADDSEND: address is sent in master mode or received and matches in slave
+ 571:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_BTC: byte transmission finishes
+ 572:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_ADD10SEND: header of 10-bit address is sent in master mode
+ 573:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_STPDET: stop condition detected in slave mode
+ 574:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_RBNE: I2C_DATA is not empty during receiving
+ 575:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_TBE: I2C_DATA is empty during transmitting
+ 576:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_BERR: a bus error occurs indication a unexpected start or stop condition
+ 577:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_LOSTARB: arbitration lost in master mode
+ 578:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_AERR: acknowledge error
+ 579:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_OUERR: overrun or underrun situation occurs in slave mode
+ 580:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_PECERR: PEC error when receiving data
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 32
+
+
+ 581:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_SMBTO: timeout signal in SMBus mode
+ 582:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_SMBALT: SMBus alert status
+ 583:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_MASTER: a flag indicating whether I2C block is in master or slave mode
+ 584:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_I2CBSY: busy flag
+ 585:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_TRS: whether the I2C is a transmitter or a receiver
+ 586:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_RXGC: general call address (00h) received
+ 587:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_DEFSMB: default address of SMBus device
+ 588:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_HSTSMB: SMBus host header detected in slave mode
+ 589:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_FLAG_DUMOD: dual flag in slave mode indicating which address is matched in du
+ 590:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 591:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     FlagStatus: SET or RESET
+ 592:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 593:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** FlagStatus i2c_flag_get(uint32_t i2c_periph, i2c_flag_enum flag)
+ 594:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1158              		.loc 1 594 1 is_stmt 1 view -0
+ 1159              		.cfi_startproc
+ 1160              		@ args = 0, pretend = 0, frame = 0
+ 1161              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1162              		@ link register save eliminated.
+ 595:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(RESET != (I2C_REG_VAL(i2c_periph, flag) & BIT(I2C_BIT_POS(flag)))){
+ 1163              		.loc 1 595 5 view .LVU322
+ 1164              		.loc 1 595 18 is_stmt 0 view .LVU323
+ 1165 0000 8B09     		lsrs	r3, r1, #6
+ 1166 0002 1B58     		ldr	r3, [r3, r0]
+ 1167              		.loc 1 595 50 view .LVU324
+ 1168 0004 01F01F01 		and	r1, r1, #31
+ 1169              	.LVL120:
+ 1170              		.loc 1 595 14 view .LVU325
+ 1171 0008 CB40     		lsrs	r3, r3, r1
+ 1172              		.loc 1 595 7 view .LVU326
+ 1173 000a 13F0010F 		tst	r3, #1
+ 1174 000e 01D0     		beq	.L62
+ 596:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         return SET;
+ 1175              		.loc 1 596 16 view .LVU327
+ 1176 0010 0120     		movs	r0, #1
+ 1177              	.LVL121:
+ 1178              		.loc 1 596 16 view .LVU328
+ 1179 0012 7047     		bx	lr
+ 1180              	.LVL122:
+ 1181              	.L62:
+ 597:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 598:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         return RESET;
+ 1182              		.loc 1 598 16 view .LVU329
+ 1183 0014 0020     		movs	r0, #0
+ 1184              	.LVL123:
+ 599:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 600:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1185              		.loc 1 600 1 view .LVU330
+ 1186 0016 7047     		bx	lr
+ 1187              		.cfi_endproc
+ 1188              	.LFE141:
+ 1190              		.section	.text.i2c_flag_clear,"ax",%progbits
+ 1191              		.align	1
+ 1192              		.global	i2c_flag_clear
+ 1193              		.syntax unified
+ 1194              		.thumb
+ 1195              		.thumb_func
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 33
+
+
+ 1197              	i2c_flag_clear:
+ 1198              	.LVL124:
+ 1199              	.LFB142:
+ 601:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 602:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 603:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      clear I2C flag status
+ 604:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 605:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  flag: I2C flags, refer to i2c_flag_enum
+ 606:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 607:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_SMBALT: SMBus alert status
+ 608:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_SMBTO: timeout signal in SMBus mode
+ 609:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_PECERR: PEC error when receiving data
+ 610:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_OUERR: over-run or under-run situation occurs in slave mode    
+ 611:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_AERR: acknowledge error
+ 612:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_LOSTARB: arbitration lost in master mode   
+ 613:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_BERR: a bus error occurs indication a unexpected start or stop condition 
+ 614:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg       I2C_FLAG_ADDSEND: address is sent in master mode or received and matches in slave 
+ 615:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 616:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 617:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 618:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_flag_clear(uint32_t i2c_periph, i2c_flag_enum flag)
+ 619:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1200              		.loc 1 619 1 is_stmt 1 view -0
+ 1201              		.cfi_startproc
+ 1202              		@ args = 0, pretend = 0, frame = 0
+ 1203              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1204              		@ link register save eliminated.
+ 620:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(I2C_FLAG_ADDSEND == flag){
+ 1205              		.loc 1 620 5 view .LVU332
+ 1206              		.loc 1 620 7 is_stmt 0 view .LVU333
+ 1207 0000 40F20153 		movw	r3, #1281
+ 1208 0004 9942     		cmp	r1, r3
+ 1209 0006 0CD0     		beq	.L66
+ 621:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* read I2C_STAT0 and then read I2C_STAT1 to clear ADDSEND */
+ 622:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_STAT0(i2c_periph);
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_STAT1(i2c_periph);
+ 624:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 625:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_REG_VAL(i2c_periph, flag) &= ~BIT(I2C_BIT_POS(flag));
+ 1210              		.loc 1 625 9 is_stmt 1 view .LVU334
+ 1211 0008 4FEA911C 		lsr	ip, r1, #6
+ 1212 000c 5CF80030 		ldr	r3, [ip, r0]
+ 1213              		.loc 1 625 43 is_stmt 0 view .LVU335
+ 1214 0010 01F01F01 		and	r1, r1, #31
+ 1215              	.LVL125:
+ 1216              		.loc 1 625 43 view .LVU336
+ 1217 0014 0122     		movs	r2, #1
+ 1218 0016 8A40     		lsls	r2, r2, r1
+ 1219              		.loc 1 625 39 view .LVU337
+ 1220 0018 23EA0203 		bic	r3, r3, r2
+ 1221 001c 4CF80030 		str	r3, [ip, r0]
+ 626:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 627:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1222              		.loc 1 627 1 view .LVU338
+ 1223 0020 7047     		bx	lr
+ 1224              	.LVL126:
+ 1225              	.L66:
+ 622:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_STAT1(i2c_periph);
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 34
+
+
+ 1226              		.loc 1 622 9 is_stmt 1 view .LVU339
+ 1227 0022 4369     		ldr	r3, [r0, #20]
+ 623:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 1228              		.loc 1 623 9 view .LVU340
+ 1229 0024 8369     		ldr	r3, [r0, #24]
+ 1230 0026 7047     		bx	lr
+ 1231              		.cfi_endproc
+ 1232              	.LFE142:
+ 1234              		.section	.text.i2c_interrupt_enable,"ax",%progbits
+ 1235              		.align	1
+ 1236              		.global	i2c_interrupt_enable
+ 1237              		.syntax unified
+ 1238              		.thumb
+ 1239              		.thumb_func
+ 1241              	i2c_interrupt_enable:
+ 1242              	.LVL127:
+ 1243              	.LFB143:
+ 628:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 629:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 630:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      enable I2C interrupt
+ 631:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 632:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  interrupt: I2C interrupts, refer to i2c_interrupt_enum
+ 633:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 634:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_ERR: error interrupt
+ 635:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_EV: event interrupt
+ 636:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_BUF: buffer interrupt
+ 637:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 638:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 639:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 640:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_interrupt_enable(uint32_t i2c_periph, i2c_interrupt_enum interrupt)
+ 641:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1244              		.loc 1 641 1 view -0
+ 1245              		.cfi_startproc
+ 1246              		@ args = 0, pretend = 0, frame = 0
+ 1247              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1248              		@ link register save eliminated.
+ 642:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_REG_VAL(i2c_periph, interrupt) |= BIT(I2C_BIT_POS(interrupt));
+ 1249              		.loc 1 642 5 view .LVU342
+ 1250 0000 4FEA911C 		lsr	ip, r1, #6
+ 1251 0004 5CF80030 		ldr	r3, [ip, r0]
+ 1252              		.loc 1 642 43 is_stmt 0 view .LVU343
+ 1253 0008 01F01F01 		and	r1, r1, #31
+ 1254              	.LVL128:
+ 1255              		.loc 1 642 43 view .LVU344
+ 1256 000c 0122     		movs	r2, #1
+ 1257 000e 8A40     		lsls	r2, r2, r1
+ 1258              		.loc 1 642 40 view .LVU345
+ 1259 0010 1343     		orrs	r3, r3, r2
+ 1260 0012 4CF80030 		str	r3, [ip, r0]
+ 643:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1261              		.loc 1 643 1 view .LVU346
+ 1262 0016 7047     		bx	lr
+ 1263              		.cfi_endproc
+ 1264              	.LFE143:
+ 1266              		.section	.text.i2c_interrupt_disable,"ax",%progbits
+ 1267              		.align	1
+ 1268              		.global	i2c_interrupt_disable
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 35
+
+
+ 1269              		.syntax unified
+ 1270              		.thumb
+ 1271              		.thumb_func
+ 1273              	i2c_interrupt_disable:
+ 1274              	.LVL129:
+ 1275              	.LFB144:
+ 644:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 645:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 646:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      disable I2C interrupt
+ 647:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 648:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  interrupt: I2C interrupts, refer to i2c_flag_enum
+ 649:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 650:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_ERR: error interrupt enable 
+ 651:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_EV: event interrupt enable 
+ 652:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_BUF: buffer interrupt enable
+ 653:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 654:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 655:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 656:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_interrupt_disable(uint32_t i2c_periph, i2c_interrupt_enum interrupt)
+ 657:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1276              		.loc 1 657 1 is_stmt 1 view -0
+ 1277              		.cfi_startproc
+ 1278              		@ args = 0, pretend = 0, frame = 0
+ 1279              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1280              		@ link register save eliminated.
+ 658:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     I2C_REG_VAL(i2c_periph, interrupt) &= ~BIT(I2C_BIT_POS(interrupt));
+ 1281              		.loc 1 658 5 view .LVU348
+ 1282 0000 4FEA911C 		lsr	ip, r1, #6
+ 1283 0004 5CF80030 		ldr	r3, [ip, r0]
+ 1284              		.loc 1 658 44 is_stmt 0 view .LVU349
+ 1285 0008 01F01F01 		and	r1, r1, #31
+ 1286              	.LVL130:
+ 1287              		.loc 1 658 44 view .LVU350
+ 1288 000c 0122     		movs	r2, #1
+ 1289 000e 8A40     		lsls	r2, r2, r1
+ 1290              		.loc 1 658 40 view .LVU351
+ 1291 0010 23EA0203 		bic	r3, r3, r2
+ 1292 0014 4CF80030 		str	r3, [ip, r0]
+ 659:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1293              		.loc 1 659 1 view .LVU352
+ 1294 0018 7047     		bx	lr
+ 1295              		.cfi_endproc
+ 1296              	.LFE144:
+ 1298              		.section	.text.i2c_interrupt_flag_get,"ax",%progbits
+ 1299              		.align	1
+ 1300              		.global	i2c_interrupt_flag_get
+ 1301              		.syntax unified
+ 1302              		.thumb
+ 1303              		.thumb_func
+ 1305              	i2c_interrupt_flag_get:
+ 1306              	.LVL131:
+ 1307              	.LFB145:
+ 660:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 661:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 662:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      get I2C interrupt flag status
+ 663:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 664:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  int_flag: I2C interrupt flags, refer to i2c_interrupt_flag_enum
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 36
+
+
+ 665:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 666:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_SBSEND: start condition sent out in master mode interrupt flag
+ 667:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_ADDSEND: address is sent in master mode or received and matches in s
+ 668:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_BTC: byte transmission finishes
+ 669:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_ADD10SEND: header of 10-bit address is sent in master mode interrupt
+ 670:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_STPDET: etop condition detected in slave mode interrupt flag
+ 671:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_RBNE: I2C_DATA is not Empty during receiving interrupt flag
+ 672:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_TBE: I2C_DATA is empty during transmitting interrupt flag
+ 673:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_BERR: a bus error occurs indication a unexpected start or stop condi
+ 674:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_LOSTARB: arbitration lost in master mode interrupt flag
+ 675:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_AERR: acknowledge error interrupt flag
+ 676:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_OUERR: over-run or under-run situation occurs in slave mode interrup
+ 677:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_PECERR: PEC error when receiving data interrupt flag
+ 678:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_SMBTO: timeout signal in SMBus mode interrupt flag
+ 679:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_SMBALT: SMBus alert status interrupt flag
+ 680:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 681:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     FlagStatus: SET or RESET
+ 682:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 683:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** FlagStatus i2c_interrupt_flag_get(uint32_t i2c_periph, i2c_interrupt_flag_enum int_flag)
+ 684:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1308              		.loc 1 684 1 is_stmt 1 view -0
+ 1309              		.cfi_startproc
+ 1310              		@ args = 0, pretend = 0, frame = 0
+ 1311              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1312              		@ link register save eliminated.
+ 1313              		.loc 1 684 1 is_stmt 0 view .LVU354
+ 1314 0000 10B4     		push	{r4}
+ 1315              	.LCFI4:
+ 1316              		.cfi_def_cfa_offset 4
+ 1317              		.cfi_offset 4, -4
+ 685:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     uint32_t intenable = 0U, flagstatus = 0U, bufie;
+ 1318              		.loc 1 685 5 is_stmt 1 view .LVU355
+ 1319              	.LVL132:
+ 686:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 687:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* check BUFIE */
+ 688:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     bufie = I2C_CTL1(i2c_periph)&I2C_CTL1_BUFIE;
+ 1320              		.loc 1 688 5 view .LVU356
+ 1321              		.loc 1 688 13 is_stmt 0 view .LVU357
+ 1322 0002 4468     		ldr	r4, [r0, #4]
+ 1323              		.loc 1 688 11 view .LVU358
+ 1324 0004 04F48064 		and	r4, r4, #1024
+ 1325              	.LVL133:
+ 689:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     
+ 690:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* get the interrupt enable bit status */
+ 691:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     intenable = (I2C_REG_VAL(i2c_periph, int_flag) & BIT(I2C_BIT_POS(int_flag)));
+ 1326              		.loc 1 691 5 is_stmt 1 view .LVU359
+ 1327              		.loc 1 691 18 is_stmt 0 view .LVU360
+ 1328 0008 C1F38913 		ubfx	r3, r1, #6, #10
+ 1329 000c 1A58     		ldr	r2, [r3, r0]
+ 1330              		.loc 1 691 54 view .LVU361
+ 1331 000e 01F01F0C 		and	ip, r1, #31
+ 1332 0012 0123     		movs	r3, #1
+ 1333 0014 03FA0CFC 		lsl	ip, r3, ip
+ 1334              		.loc 1 691 15 view .LVU362
+ 1335 0018 02EA0C02 		and	r2, r2, ip
+ 1336              	.LVL134:
+ 692:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     /* get the corresponding flag bit status */
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 37
+
+
+ 693:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     flagstatus = (I2C_REG_VAL2(i2c_periph, int_flag) & BIT(I2C_BIT_POS2(int_flag)));
+ 1337              		.loc 1 693 5 is_stmt 1 view .LVU363
+ 1338              		.loc 1 693 19 is_stmt 0 view .LVU364
+ 1339 001c 4FEA915C 		lsr	ip, r1, #22
+ 1340 0020 5CF80000 		ldr	r0, [ip, r0]
+ 1341              	.LVL135:
+ 1342              		.loc 1 693 56 view .LVU365
+ 1343 0024 C1F3044C 		ubfx	ip, r1, #16, #5
+ 1344 0028 03FA0CF3 		lsl	r3, r3, ip
+ 1345              		.loc 1 693 16 view .LVU366
+ 1346 002c 0340     		ands	r3, r3, r0
+ 1347              	.LVL136:
+ 694:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 695:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if((I2C_INT_FLAG_RBNE == int_flag) || (I2C_INT_FLAG_TBE == int_flag)){
+ 1348              		.loc 1 695 5 is_stmt 1 view .LVU367
+ 1349              		.loc 1 695 7 is_stmt 0 view .LVU368
+ 1350 002e 0C48     		ldr	r0, .L78
+ 1351 0030 8142     		cmp	r1, r0
+ 1352 0032 07D0     		beq	.L70
+ 1353              		.loc 1 695 40 discriminator 1 view .LVU369
+ 1354 0034 00F58030 		add	r0, r0, #65536
+ 1355 0038 8142     		cmp	r1, r0
+ 1356 003a 03D0     		beq	.L70
+ 1357              	.LVL137:
+ 1358              	.L71:
+ 696:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(intenable && bufie){
+ 697:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             intenable = 1U;                       
+ 698:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****             intenable = 0U;
+ 700:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 701:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 702:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if((0U != flagstatus) && (0U != intenable)){
+ 1359              		.loc 1 702 5 is_stmt 1 view .LVU370
+ 1360              		.loc 1 702 7 is_stmt 0 view .LVU371
+ 1361 003c 53B1     		cbz	r3, .L75
+ 1362              		.loc 1 702 27 discriminator 1 view .LVU372
+ 1363 003e 6AB9     		cbnz	r2, .L76
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         return SET;
+ 704:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 705:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         return RESET; 
+ 1364              		.loc 1 705 16 view .LVU373
+ 1365 0040 0020     		movs	r0, #0
+ 1366 0042 08E0     		b	.L72
+ 1367              	.L70:
+ 696:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(intenable && bufie){
+ 1368              		.loc 1 696 9 is_stmt 1 view .LVU374
+ 696:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(intenable && bufie){
+ 1369              		.loc 1 696 11 is_stmt 0 view .LVU375
+ 1370 0044 12B1     		cbz	r2, .L73
+ 696:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         if(intenable && bufie){
+ 1371              		.loc 1 696 22 discriminator 1 view .LVU376
+ 1372 0046 1CB9     		cbnz	r4, .L74
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 1373              		.loc 1 699 23 view .LVU377
+ 1374 0048 0022     		movs	r2, #0
+ 1375              	.LVL138:
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 38
+
+
+ 1376              		.loc 1 699 23 view .LVU378
+ 1377 004a F7E7     		b	.L71
+ 1378              	.LVL139:
+ 1379              	.L73:
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 1380              		.loc 1 699 23 view .LVU379
+ 1381 004c 0022     		movs	r2, #0
+ 1382              	.LVL140:
+ 699:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }
+ 1383              		.loc 1 699 23 view .LVU380
+ 1384 004e F5E7     		b	.L71
+ 1385              	.LVL141:
+ 1386              	.L74:
+ 697:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 1387              		.loc 1 697 23 view .LVU381
+ 1388 0050 0122     		movs	r2, #1
+ 1389              	.LVL142:
+ 697:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         }else{
+ 1390              		.loc 1 697 23 view .LVU382
+ 1391 0052 F3E7     		b	.L71
+ 1392              	.LVL143:
+ 1393              	.L75:
+ 1394              		.loc 1 705 16 view .LVU383
+ 1395 0054 0020     		movs	r0, #0
+ 1396              	.L72:
+ 706:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 707:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1397              		.loc 1 707 1 view .LVU384
+ 1398 0056 5DF8044B 		ldr	r4, [sp], #4
+ 1399              	.LCFI5:
+ 1400              		.cfi_remember_state
+ 1401              		.cfi_restore 4
+ 1402              		.cfi_def_cfa_offset 0
+ 1403              	.LVL144:
+ 1404              		.loc 1 707 1 view .LVU385
+ 1405 005a 7047     		bx	lr
+ 1406              	.LVL145:
+ 1407              	.L76:
+ 1408              	.LCFI6:
+ 1409              		.cfi_restore_state
+ 703:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 1410              		.loc 1 703 16 view .LVU386
+ 1411 005c 0120     		movs	r0, #1
+ 1412 005e FAE7     		b	.L72
+ 1413              	.L79:
+ 1414              		.align	2
+ 1415              	.L78:
+ 1416 0060 09010605 		.word	84279561
+ 1417              		.cfi_endproc
+ 1418              	.LFE145:
+ 1420              		.section	.text.i2c_interrupt_flag_clear,"ax",%progbits
+ 1421              		.align	1
+ 1422              		.global	i2c_interrupt_flag_clear
+ 1423              		.syntax unified
+ 1424              		.thumb
+ 1425              		.thumb_func
+ 1427              	i2c_interrupt_flag_clear:
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 39
+
+
+ 1428              	.LVL146:
+ 1429              	.LFB146:
+ 708:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** 
+ 709:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** /*!
+ 710:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \brief      clear I2C interrupt flag status 
+ 711:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  i2c_periph: I2Cx(x=0,1)
+ 712:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[in]  intflag: I2C interrupt flags, refer to i2c_interrupt_flag_enum
+ 713:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****                 only one parameter can be selected which is shown as below:
+ 714:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_ADDSEND: address is sent in master mode or received and matches in s
+ 715:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_BERR: a bus error occurs indication a unexpected start or stop condi
+ 716:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_LOSTARB: arbitration lost in master mode interrupt flag
+ 717:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_AERR: acknowledge error interrupt flag
+ 718:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_OUERR: over-run or under-run situation occurs in slave mode interrup
+ 719:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_PECERR: PEC error when receiving data interrupt flag
+ 720:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_SMBTO: timeout signal in SMBus mode interrupt flag
+ 721:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****       \arg        I2C_INT_FLAG_SMBALT: SMBus alert status interrupt flag
+ 722:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \param[out] none
+ 723:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     \retval     none
+ 724:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** */
+ 725:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** void i2c_interrupt_flag_clear(uint32_t i2c_periph, i2c_interrupt_flag_enum int_flag)
+ 726:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** {
+ 1430              		.loc 1 726 1 is_stmt 1 view -0
+ 1431              		.cfi_startproc
+ 1432              		@ args = 0, pretend = 0, frame = 0
+ 1433              		@ frame_needed = 0, uses_anonymous_args = 0
+ 1434              		@ link register save eliminated.
+ 727:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     if(I2C_INT_FLAG_ADDSEND == int_flag){
+ 1435              		.loc 1 727 5 view .LVU388
+ 1436              		.loc 1 727 7 is_stmt 0 view .LVU389
+ 1437 0000 064B     		ldr	r3, .L84
+ 1438 0002 9942     		cmp	r1, r3
+ 1439 0004 07D0     		beq	.L83
+ 728:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         /* read I2C_STAT0 and then read I2C_STAT1 to clear ADDSEND */
+ 729:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_STAT0(i2c_periph);
+ 730:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_STAT1(i2c_periph);
+ 731:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 732:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_REG_VAL2(i2c_periph, int_flag) = ~BIT(I2C_BIT_POS2(int_flag));
+ 1440              		.loc 1 732 9 is_stmt 1 view .LVU390
+ 1441              		.loc 1 732 47 is_stmt 0 view .LVU391
+ 1442 0006 C1F30442 		ubfx	r2, r1, #16, #5
+ 1443 000a 0123     		movs	r3, #1
+ 1444 000c 9340     		lsls	r3, r3, r2
+ 1445              		.loc 1 732 9 view .LVU392
+ 1446 000e 890D     		lsrs	r1, r1, #22
+ 1447              	.LVL147:
+ 1448              		.loc 1 732 46 view .LVU393
+ 1449 0010 DB43     		mvns	r3, r3
+ 1450              		.loc 1 732 44 view .LVU394
+ 1451 0012 0B50     		str	r3, [r1, r0]
+ 733:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }
+ 734:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c **** }
+ 1452              		.loc 1 734 1 view .LVU395
+ 1453 0014 7047     		bx	lr
+ 1454              	.LVL148:
+ 1455              	.L83:
+ 729:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****         I2C_STAT1(i2c_periph);
+ 1456              		.loc 1 729 9 is_stmt 1 view .LVU396
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 40
+
+
+ 1457 0016 4369     		ldr	r3, [r0, #20]
+ 730:./GD32F30x_standard_peripheral/Source/gd32f30x_i2c.c ****     }else{
+ 1458              		.loc 1 730 9 view .LVU397
+ 1459 0018 8369     		ldr	r3, [r0, #24]
+ 1460 001a 7047     		bx	lr
+ 1461              	.L85:
+ 1462              		.align	2
+ 1463              	.L84:
+ 1464 001c 09010105 		.word	83951881
+ 1465              		.cfi_endproc
+ 1466              	.LFE146:
+ 1468              		.text
+ 1469              	.Letext0:
+ 1470              		.file 2 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1471              		.file 3 "c:\\ST\\STM32CubeIDE_1.15.0\\STM32CubeIDE\\plugins\\com.st.stm32cube.ide.mcu.externaltool
+ 1472              		.file 4 "CMSIS/GD/GD32F30x/Include/gd32f30x.h"
+ 1473              		.file 5 "GD32F30x_standard_peripheral/Include/gd32f30x_rcu.h"
+ 1474              		.file 6 "GD32F30x_standard_peripheral/Include/gd32f30x_i2c.h"
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 41
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 gd32f30x_i2c.c
+  C:\Temp\ccT6QyGp.s:21     .text.i2c_deinit:00000000 $t
+  C:\Temp\ccT6QyGp.s:27     .text.i2c_deinit:00000000 i2c_deinit
+  C:\Temp\ccT6QyGp.s:83     .text.i2c_deinit:00000038 $d
+  C:\Temp\ccT6QyGp.s:88     .text.i2c_clock_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:94     .text.i2c_clock_config:00000000 i2c_clock_config
+  C:\Temp\ccT6QyGp.s:385    .text.i2c_clock_config:00000114 $d
+  C:\Temp\ccT6QyGp.s:394    .text.i2c_mode_addr_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:400    .text.i2c_mode_addr_config:00000000 i2c_mode_addr_config
+  C:\Temp\ccT6QyGp.s:450    .text.i2c_smbus_type_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:456    .text.i2c_smbus_type_config:00000000 i2c_smbus_type_config
+  C:\Temp\ccT6QyGp.s:486    .text.i2c_ack_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:492    .text.i2c_ack_config:00000000 i2c_ack_config
+  C:\Temp\ccT6QyGp.s:522    .text.i2c_ackpos_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:528    .text.i2c_ackpos_config:00000000 i2c_ackpos_config
+  C:\Temp\ccT6QyGp.s:558    .text.i2c_master_addressing:00000000 $t
+  C:\Temp\ccT6QyGp.s:564    .text.i2c_master_addressing:00000000 i2c_master_addressing
+  C:\Temp\ccT6QyGp.s:597    .text.i2c_dualaddr_enable:00000000 $t
+  C:\Temp\ccT6QyGp.s:603    .text.i2c_dualaddr_enable:00000000 i2c_dualaddr_enable
+  C:\Temp\ccT6QyGp.s:627    .text.i2c_dualaddr_disable:00000000 $t
+  C:\Temp\ccT6QyGp.s:633    .text.i2c_dualaddr_disable:00000000 i2c_dualaddr_disable
+  C:\Temp\ccT6QyGp.s:652    .text.i2c_enable:00000000 $t
+  C:\Temp\ccT6QyGp.s:658    .text.i2c_enable:00000000 i2c_enable
+  C:\Temp\ccT6QyGp.s:677    .text.i2c_disable:00000000 $t
+  C:\Temp\ccT6QyGp.s:683    .text.i2c_disable:00000000 i2c_disable
+  C:\Temp\ccT6QyGp.s:702    .text.i2c_start_on_bus:00000000 $t
+  C:\Temp\ccT6QyGp.s:708    .text.i2c_start_on_bus:00000000 i2c_start_on_bus
+  C:\Temp\ccT6QyGp.s:727    .text.i2c_stop_on_bus:00000000 $t
+  C:\Temp\ccT6QyGp.s:733    .text.i2c_stop_on_bus:00000000 i2c_stop_on_bus
+  C:\Temp\ccT6QyGp.s:752    .text.i2c_data_transmit:00000000 $t
+  C:\Temp\ccT6QyGp.s:758    .text.i2c_data_transmit:00000000 i2c_data_transmit
+  C:\Temp\ccT6QyGp.s:775    .text.i2c_data_receive:00000000 $t
+  C:\Temp\ccT6QyGp.s:781    .text.i2c_data_receive:00000000 i2c_data_receive
+  C:\Temp\ccT6QyGp.s:800    .text.i2c_dma_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:806    .text.i2c_dma_config:00000000 i2c_dma_config
+  C:\Temp\ccT6QyGp.s:836    .text.i2c_dma_last_transfer_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:842    .text.i2c_dma_last_transfer_config:00000000 i2c_dma_last_transfer_config
+  C:\Temp\ccT6QyGp.s:872    .text.i2c_stretch_scl_low_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:878    .text.i2c_stretch_scl_low_config:00000000 i2c_stretch_scl_low_config
+  C:\Temp\ccT6QyGp.s:908    .text.i2c_slave_response_to_gcall_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:914    .text.i2c_slave_response_to_gcall_config:00000000 i2c_slave_response_to_gcall_config
+  C:\Temp\ccT6QyGp.s:944    .text.i2c_software_reset_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:950    .text.i2c_software_reset_config:00000000 i2c_software_reset_config
+  C:\Temp\ccT6QyGp.s:980    .text.i2c_pec_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:986    .text.i2c_pec_config:00000000 i2c_pec_config
+  C:\Temp\ccT6QyGp.s:1016   .text.i2c_pec_transfer_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:1022   .text.i2c_pec_transfer_config:00000000 i2c_pec_transfer_config
+  C:\Temp\ccT6QyGp.s:1052   .text.i2c_pec_value_get:00000000 $t
+  C:\Temp\ccT6QyGp.s:1058   .text.i2c_pec_value_get:00000000 i2c_pec_value_get
+  C:\Temp\ccT6QyGp.s:1077   .text.i2c_smbus_alert_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:1083   .text.i2c_smbus_alert_config:00000000 i2c_smbus_alert_config
+  C:\Temp\ccT6QyGp.s:1113   .text.i2c_smbus_arp_config:00000000 $t
+  C:\Temp\ccT6QyGp.s:1119   .text.i2c_smbus_arp_config:00000000 i2c_smbus_arp_config
+  C:\Temp\ccT6QyGp.s:1149   .text.i2c_flag_get:00000000 $t
+  C:\Temp\ccT6QyGp.s:1155   .text.i2c_flag_get:00000000 i2c_flag_get
+  C:\Temp\ccT6QyGp.s:1191   .text.i2c_flag_clear:00000000 $t
+ARM GAS  C:\Temp\ccT6QyGp.s 			page 42
+
+
+  C:\Temp\ccT6QyGp.s:1197   .text.i2c_flag_clear:00000000 i2c_flag_clear
+  C:\Temp\ccT6QyGp.s:1235   .text.i2c_interrupt_enable:00000000 $t
+  C:\Temp\ccT6QyGp.s:1241   .text.i2c_interrupt_enable:00000000 i2c_interrupt_enable
+  C:\Temp\ccT6QyGp.s:1267   .text.i2c_interrupt_disable:00000000 $t
+  C:\Temp\ccT6QyGp.s:1273   .text.i2c_interrupt_disable:00000000 i2c_interrupt_disable
+  C:\Temp\ccT6QyGp.s:1299   .text.i2c_interrupt_flag_get:00000000 $t
+  C:\Temp\ccT6QyGp.s:1305   .text.i2c_interrupt_flag_get:00000000 i2c_interrupt_flag_get
+  C:\Temp\ccT6QyGp.s:1416   .text.i2c_interrupt_flag_get:00000060 $d
+  C:\Temp\ccT6QyGp.s:1421   .text.i2c_interrupt_flag_clear:00000000 $t
+  C:\Temp\ccT6QyGp.s:1427   .text.i2c_interrupt_flag_clear:00000000 i2c_interrupt_flag_clear
+  C:\Temp\ccT6QyGp.s:1464   .text.i2c_interrupt_flag_clear:0000001c $d
+
+UNDEFINED SYMBOLS
+rcu_periph_reset_enable
+rcu_periph_reset_disable
+rcu_clock_freq_get

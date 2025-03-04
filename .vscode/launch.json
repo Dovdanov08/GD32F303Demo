@@ -1,0 +1,19 @@
+{
+		"version": "0.2.0",
+		"configurations": [
+			{
+				"name": "openocd",
+				"type": "cortex-debug",
+				"request": "launch",
+				"cwd": "${workspaceRoot}",
+				"servertype": "openocd",
+				"executable": "./build/gd32f303_blink_make.elf",
+				"svdFile": "GD32F30x_HD.svd",
+				"configFiles": [
+					"C:/OpenOCD-0.12.0/share/openocd/scripts/interface/stlink.cfg",    
+					"C:/OpenOCD-0.12.0/share/openocd/scripts/target/stm32f3x.cfg"],
+				"searchDir": [	"C:/OpenOCD-0.12.0/share/openocd/scripts"],
+				"preLaunchTask": "Build"
+			}
+		]
+	}
